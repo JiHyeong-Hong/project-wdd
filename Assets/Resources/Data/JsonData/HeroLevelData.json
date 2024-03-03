@@ -1,0 +1,544 @@
+{
+  "levels": [
+    {
+      "DataId": 101,
+      "Level": 1,
+      "Exp": 70,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 102,
+      "Level": 2,
+      "Exp": 110,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 103,
+      "Level": 3,
+      "Exp": 150,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 104,
+      "Level": 4,
+      "Exp": 190,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 105,
+      "Level": 5,
+      "Exp": 230,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 106,
+      "Level": 6,
+      "Exp": 270,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 107,
+      "Level": 7,
+      "Exp": 310,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 108,
+      "Level": 8,
+      "Exp": 350,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 109,
+      "Level": 9,
+      "Exp": 390,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 110,
+      "Level": 10,
+      "Exp": 430,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 111,
+      "Level": 11,
+      "Exp": 470,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 112,
+      "Level": 12,
+      "Exp": 510,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 113,
+      "Level": 13,
+      "Exp": 550,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 114,
+      "Level": 14,
+      "Exp": 590,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 115,
+      "Level": 15,
+      "Exp": 630,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 116,
+      "Level": 16,
+      "Exp": 670,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 117,
+      "Level": 17,
+      "Exp": 710,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 118,
+      "Level": 18,
+      "Exp": 750,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 119,
+      "Level": 19,
+      "Exp": 790,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 120,
+      "Level": 20,
+      "Exp": 830,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 121,
+      "Level": 21,
+      "Exp": 870,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 122,
+      "Level": 22,
+      "Exp": 910,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 123,
+      "Level": 23,
+      "Exp": 950,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 124,
+      "Level": 24,
+      "Exp": 990,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 125,
+      "Level": 25,
+      "Exp": 1030,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 126,
+      "Level": 26,
+      "Exp": 1070,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 127,
+      "Level": 27,
+      "Exp": 1110,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 128,
+      "Level": 28,
+      "Exp": 1150,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 129,
+      "Level": 29,
+      "Exp": 1190,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 130,
+      "Level": 30,
+      "Exp": 1230,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 131,
+      "Level": 31,
+      "Exp": 1270,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 132,
+      "Level": 32,
+      "Exp": 1310,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 133,
+      "Level": 33,
+      "Exp": 1350,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 134,
+      "Level": 34,
+      "Exp": 1390,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 135,
+      "Level": 35,
+      "Exp": 1430,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 136,
+      "Level": 36,
+      "Exp": 1470,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 137,
+      "Level": 37,
+      "Exp": 1510,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 138,
+      "Level": 38,
+      "Exp": 1550,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 139,
+      "Level": 39,
+      "Exp": 1590,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 140,
+      "Level": 40,
+      "Exp": 1630,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 141,
+      "Level": 41,
+      "Exp": 1670,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 142,
+      "Level": 42,
+      "Exp": 1710,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 143,
+      "Level": 43,
+      "Exp": 1750,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 144,
+      "Level": 44,
+      "Exp": 1790,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 145,
+      "Level": 45,
+      "Exp": 1830,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 146,
+      "Level": 46,
+      "Exp": 1870,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 147,
+      "Level": 47,
+      "Exp": 1910,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 148,
+      "Level": 48,
+      "Exp": 1950,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 149,
+      "Level": 49,
+      "Exp": 1990,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 150,
+      "Level": 50,
+      "Exp": 2030,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 151,
+      "Level": 51,
+      "Exp": 2070,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 152,
+      "Level": 52,
+      "Exp": 2110,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 153,
+      "Level": 53,
+      "Exp": 2150,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 154,
+      "Level": 54,
+      "Exp": 2190,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 155,
+      "Level": 55,
+      "Exp": 2230,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 156,
+      "Level": 56,
+      "Exp": 2270,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 157,
+      "Level": 57,
+      "Exp": 2310,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 158,
+      "Level": 58,
+      "Exp": 2350,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 159,
+      "Level": 59,
+      "Exp": 2390,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    },
+    {
+      "DataId": 160,
+      "Level": 60,
+      "Exp": 2430,
+      "MoveSpeed": 100.0,
+      "MaxHp": 100,
+      "ItemAcquireRange": 0.0,
+      "ResistDisorder": 0
+    }
+  ]
+}

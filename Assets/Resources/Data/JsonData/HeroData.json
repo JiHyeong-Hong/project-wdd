@@ -1,0 +1,23 @@
+{
+  "heroes": [
+    {
+      "Level": 1,
+      "MaxExp": 70,
+      "ItemAcquireRange": 0.0,
+      "SkillIdList": [
+        2015,
+        1010,
+        2020,
+        1020,
+        1030
+      ],
+      "DataId": 100,
+      "DescriptionTextID": "사육사",
+      "MaxHp": 100,
+      "Atk": 2,
+      "MoveSpeed": 100.0,
+      "ResistDisorder": 0.0,
+      "AnimatorDataID": "Animations/Hero/hero"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "DataId": 41,
+      "Name": "경험치구슬1",
+      "Value": 5,
+      "IconPath": "Art/ExpLv1"
+    },
+    {
+      "DataId": 42,
+      "Name": "경험치구슬2",
+      "Value": 10,
+      "IconPath": "Art/ExpLv2"
+    },
+    {
+      "DataId": 43,
+      "Name": "경험치구슬3",
+      "Value": 15,
+      "IconPath": "Art/ExpLv3"
+    }
+  ]
+}
