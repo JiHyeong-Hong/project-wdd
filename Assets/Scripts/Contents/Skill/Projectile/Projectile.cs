@@ -4,44 +4,47 @@ using UnityEngine;
 
 public class Projectile : BaseObject
 {
-    public Creature Owner { get; private set; }
-    public SkillBase Skill { get; private set; }
-    public Data.ProjectileData ProjectileData { get; private set; }
+	public Creature Owner { get; private set; }
+	public SkillBase Skill { get; private set; }
+	public Data.ProjectileData ProjectileData { get; private set; }
 
-    public override bool Init()
-    {
-        if (base.Init() == false)
-            return false;
+	protected bool canMove = true;
 
-        ObjectType = Define.EObjectType.Projectile;
+	public override bool Init()
+	{
+		if (base.Init() == false)
+			return false;
 
-        return true;
-    }
+		ObjectType = Define.EObjectType.Projectile;
 
-    public void SetInfo(int dataTemplateID)
-    {
-        ProjectileData = Managers.Data.ProjectileDic[dataTemplateID];
-        Renderer.sortingOrder = SortingLayers.PROJECTILE;
-    }
+		return true;
+	}
 
-    public virtual void SetSpawnInfo(Creature owner, SkillBase skill, Vector2 direction)
-    {
-        Owner = owner;
-        Skill = skill;
+	public void SetInfo(int dataTemplateID)
+	{
+		ProjectileData = Managers.Data.ProjectileDic[dataTemplateID];
+		Renderer.sortingOrder = SortingLayers.PROJECTILE;
+	}
 
-        float angle = Util.VectorToAngle(direction);
-        transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
-    }
+	public virtual void SetSpawnInfo(Creature owner, SkillBase skill, Vector2 direction)
+	{
+		Owner = owner;
+		Skill = skill;
 
-    private float tick = 0f;
-    void Update()
-    {
-        transform.Translate(Vector2.up * 5 * Time.deltaTime);
+		float angle = Util.VectorToAngle(direction);
+		transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
+	}
 
-        tick += Time.deltaTime;
-        if (tick > 5f)
-        {
-            Managers.Object.Despawn(this);
-        }
-    }
+	private float tick = 0f;
+	void Update()
+	{
+		if (canMove)
+			transform.Translate(Vector2.up * 5 * Time.deltaTime);
+
+		tick += Time.deltaTime;
+		if (tick > 5f)
+		{
+			Managers.Object.Despawn(this);
+		}
+	}
 }
