@@ -100,7 +100,6 @@ public class Hero : Creature
 				Managers.Object.Spawn<Monster>(new Vector3(-2f + i, 1f, 0f), Define.MONSTER_SECURITY3_ID);
 		}
 	}
-	
 	private void HandleOnMoveDirChanged(Vector2 dir)
 	{
 		_moveDir = dir;
@@ -147,7 +146,6 @@ public class Hero : Creature
 		SetRigidbodyVelocity(Vector2.zero);
 		Managers.Game.OnMoveDirChanged -= HandleOnMoveDirChanged;
 		Managers.Game.OnJoystickStateChanged -= HandleOnJoystickStateChanged;
-
 
 	}
 
