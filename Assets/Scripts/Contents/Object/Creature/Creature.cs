@@ -142,7 +142,7 @@ public class Creature : BaseObject
         if (creature == null)
             return;
 
-        int finalDamage = (skill == null) ? creature.Atk : skill.SkillData.Atk;
+        int finalDamage = (skill == null) ? creature.Atk : skill.SkillData.Damage;
         Hp = Mathf.Clamp(Hp - finalDamage, 0, MaxHp);
 
         if (Hp <= 0)

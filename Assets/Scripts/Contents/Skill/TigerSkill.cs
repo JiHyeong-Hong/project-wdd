@@ -4,19 +4,6 @@ using UnityEngine;
 
 public class TigerSkill : SkillBase
 {
-    public override bool Init()
-    {
-        if (base.Init() == false)
-            return false;
-
-        return true;
-    }
-
-    public override void SetInfo(Creature owner, int skillTemplateID)
-    {
-        base.SetInfo(owner, skillTemplateID);
-    }
-
     public override void DoSkill()
     {
         Vector2 direction = Owner.Direction;
@@ -24,7 +11,7 @@ public class TigerSkill : SkillBase
 
         for (int i = 2; i <= SkillData.AtkCount; ++i)
         {
-            direction = Util.RotateVectorByAngle(direction, SkillData.AtkAngle);
+            direction = Util.RotateVectorByAngle(direction, SkillData.CastAngle);
             AttackTiger(direction);
         }
     }

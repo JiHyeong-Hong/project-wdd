@@ -22,11 +22,7 @@ public class UI_LevelUp : UI_Popup
         SecondLevel,
         ThirdLevel
     }
-
-    Action _first;
-    Action _second;
-    Action _third;
-
+    
     public override bool Init()
     {
         if (base.Init() == false)
@@ -34,7 +30,8 @@ public class UI_LevelUp : UI_Popup
 
         BindObject(typeof(GameObjects));
         BindText(typeof(Texts));
-
+        
+        
         GetObject((int)GameObjects.First).BindEvent(OnClickFirst);
         GetObject((int)GameObjects.Second).BindEvent(OnClickSecond);
         GetObject((int)GameObjects.Third).BindEvent(OnClickThird);
@@ -45,11 +42,7 @@ public class UI_LevelUp : UI_Popup
     public void SetInfo(List<SkillBase> skills)
     {
         Managers.Game.IsGamePaused = true;
-
-        _first = skills[0].LevelUp;
-        _second = skills[1].LevelUp;
-        _third = skills[2].LevelUp;
-
+        
         GetText((int)Texts.FirstName).text = skills[0].SkillData.Name;
         GetText((int)Texts.SecondName).text = skills[1].SkillData.Name;
         GetText((int)Texts.ThirdName).text = skills[2].SkillData.Name;
@@ -61,25 +54,22 @@ public class UI_LevelUp : UI_Popup
 
     public void OnClickFirst(PointerEventData evt)
     {
-        _first?.Invoke();
+        Managers.Skill.IncreaseSkillLevel(0);
         Managers.Game.IsGamePaused = false;
-
         Managers.UI.ClosePopupUI(this);
     }
 
     public void OnClickSecond(PointerEventData evt)
     {
-        _second?.Invoke();
+        Managers.Skill.IncreaseSkillLevel(1);
         Managers.Game.IsGamePaused = false;
-
         Managers.UI.ClosePopupUI(this);
     }
 
     public void OnClickThird(PointerEventData evt)
     {
-        _third?.Invoke();
+        Managers.Skill.IncreaseSkillLevel(2);
         Managers.Game.IsGamePaused = false;
-
         Managers.UI.ClosePopupUI(this);
     }
 }

@@ -1,46 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
+using Data;
 using UnityEngine;
 
-public abstract class SkillBase : InitBase
+public abstract class SkillBase
 {
     public Creature Owner { get; protected set; }
-    public Data.SkillData SkillData { get; private set; }
-
-    public override bool Init()
+    public SkillData SkillData { get; private set; }
+    
+    public void SetInfo(SkillData data)
     {
-        if (base.Init() == false)
-            return false;
-
-        return true;
-    }
-
-    public virtual void SetInfo(Creature owner, int skillTemplateID)
-    {
-        Owner = owner;
-        SkillData = Managers.Data.SkillDic[skillTemplateID];
+        SkillData = data;
         _cooldownTick = SkillData.CoolTime;
     }
 
-    public void LevelUp()
+    public void SetOwner(Creature owner)
     {
-        SkillData = Managers.Data.SkillDic[SkillData.DataId + 1];
+        Owner = owner;
+    }
 
+    public void LevelUp(SkillData data)
+    {
+        SkillData = data;
         Clear();
         _cooldownTick = SkillData.CoolTime;
     }
 
     protected float _cooldownTick = 0f;
-    protected virtual void Update()
+    public virtual void UpdateCoolTime(float deltaTime)
     {
-        if (SkillData.Level == 0)
+        if (SkillData.Level < 1)
             return;
-
-        _cooldownTick += Time.deltaTime;
+        
+        _cooldownTick += deltaTime;
+        
         if (_cooldownTick <= SkillData.CoolTime)
             return;
+        
         _cooldownTick = 0.0f;
-
         DoSkill();
     }
 

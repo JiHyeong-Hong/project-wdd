@@ -79,5 +79,7 @@ public class GameManager
     {
         OnUIRefreshed?.Invoke();
     }
+
+    public Action OnLevelUp;
     #endregion
 }
