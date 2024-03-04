@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class SatelliteSkill : SkillBase
+public class ParrotSkill : SkillBase
 {
     private bool isTimeActive = false;
     private float durationTick = 0.0f;
     
     public override void UpdateCoolTime(float deltaTime)
     {
+        if (SkillData.Level < 1)
+            return;
+        
         RotateSatellites();
     
         if (isTimeActive)

@@ -41,7 +41,6 @@ public class DataTransformer : EditorWindow
     private static List<LoaderData> ParseExcelDataToList<LoaderData>(string filename) where LoaderData : new()
     {
         List<LoaderData> loaderDatas = new List<LoaderData>();
-
         string[] lines = File.ReadAllText($"{Application.dataPath}/Resources/Data/ExcelData/{filename}Data.csv").Split("\n");
 
         for (int l = 1; l < lines.Length; l++)
@@ -107,7 +106,7 @@ public class DataTransformer : EditorWindow
     public static List<FieldInfo> GetFieldsInBase(Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
     {
         List<FieldInfo> fields = new List<FieldInfo>();
-        HashSet<string> fieldNames = new HashSet<string>(); // Áßº¹¹æÁö
+        HashSet<string> fieldNames = new HashSet<string>(); // ì¤‘ë³µë°©ì§€
         Stack<Type> stack = new Stack<Type>();
 
         while (type != typeof(object))

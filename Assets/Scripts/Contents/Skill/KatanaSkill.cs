@@ -4,19 +4,6 @@ using UnityEngine;
 
 public class KatanaSkill : SkillBase
 {
-    public override bool Init()
-    {
-        if (base.Init() == false)
-            return false;
-
-        return true;
-    }
-
-    public override void SetInfo(Creature owner, int skillTemplateID)
-    {
-        base.SetInfo(owner, skillTemplateID);
-    }
-
     public override void DoSkill()
     {
         Vector2 direction = Owner.Direction;
@@ -24,14 +11,14 @@ public class KatanaSkill : SkillBase
 
         for (int i = 2; i <= SkillData.AtkCount; ++i)
         {
-            direction = Util.RotateVectorByAngle(direction, SkillData.AtkAngle);
+            direction = Util.RotateVectorByAngle(direction, SkillData.CastAngle);
             AttackKatana(direction);
         }
     }
 
     private void AttackKatana(Vector2 direction)
     {
-        Area katana = Managers.Resource.Instantiate("Area/Quarter", transform).GetOrAddComponent<Area>();
+        Area katana = Managers.Resource.Instantiate("Area/Quarter", Owner.transform).GetOrAddComponent<Area>();
         katana.SetInfo(Owner.transform.position, 0.2f);
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;

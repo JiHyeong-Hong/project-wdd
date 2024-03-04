@@ -4,26 +4,13 @@ using UnityEngine;
 
 public class RocketSkill : SkillBase
 {
-    public override bool Init()
-    {
-        if (base.Init() == false)
-            return false;
-
-        return true;
-    }
-
-    public override void SetInfo(Creature owner, int skillTemplateID)
-    {
-        base.SetInfo(owner, skillTemplateID);
-    }
-
     public override void DoSkill()
     {
         AttackRocket(0);
 
         for (int i = 2; i <= SkillData.AtkCount; ++i)
         {
-            float angle = (i / 2) * SkillData.AtkAngle;
+            float angle = (i / 2) * SkillData.CastAngle;
             if (i % 2 == 1)
                 angle *= -1;
             AttackRocket(angle);

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Data
 {
@@ -101,13 +102,19 @@ namespace Data
         public int DataId;
         public string Name;
         public string ClassName;
+        public Define.SkillType skillType;
         public int Level;
         public int ProjectileId;
+        public float CastAngle;
+        public int Damage;
+        public float AttackSpeed;
+        public float AttackRange;
         public float CoolTime;
-        public int Atk;
         public int AtkCount;
-        public float AtkAngle;
         public float Duration;
+        public int KnockbackPower;
+        public float StunTime;
+
     }
 
     [Serializable]
