@@ -19,7 +19,7 @@ public abstract class SkillBase
         Owner = owner;
     }
 
-    public void LevelUp(SkillData data)
+    public virtual void LevelUp(SkillData data)
     {
         SkillData = data;
         Clear();
