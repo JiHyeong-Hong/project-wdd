@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -9,20 +7,20 @@ using Random = UnityEngine.Random;
 [RequireComponent(typeof(CircleCollider2D))]
 public class PeacockRange : MonoBehaviour
 {
-    [SerializeField] private CircleCollider2D collider;
+    private CircleCollider2D collider;
 
     private Monster[] targets;
     private List<Monster> colList;
     private int targetNum;
-    
-    public void Init()
+
+    private void Awake()
     {
         collider = GetComponent<CircleCollider2D>();
         colList = new List<Monster>();
         collider.isTrigger = true;
         collider.enabled = false;
     }
-    
+
     public void SetData(float radius, int targetNum)
     {
         this.targetNum = targetNum;
@@ -35,6 +33,7 @@ public class PeacockRange : MonoBehaviour
         for (int i = 0; i < targets.Length; i++)
             targets[i] = null;
         
+        colList.Clear();
         collider.enabled = true;
     }
 
@@ -49,10 +48,14 @@ public class PeacockRange : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D col)
     {
-        colList.Clear();
         if (((1 << (int)Define.ELayer.Monster) & (1 << col.gameObject.layer)) != 0)
         {
-            colList.Add(col.GetComponent<Monster>());
+            var monster = col.GetComponent<Monster>();
+           
+            if (monster.Hp <= 0)
+                return;
+            
+            colList.Add(monster);
         }
     }
     

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-
+using Data;
 public class PeacockSkill : SkillBase
 {
 	private PeacockRange targetChecker;
@@ -18,15 +18,17 @@ public class PeacockSkill : SkillBase
 	/// </summary>
 	private void CreateRange()
 	{
-		GameObject obj = new GameObject("PeacockRange", typeof(PeacockRange));
-		obj.transform.SetParent(Owner.transform);
-		obj.transform.localPosition = Vector3.zero;
-
-		targetChecker = obj.GetComponent<PeacockRange>();
-		targetChecker.Init();
+		targetChecker = Managers.Resource.Instantiate("Area/InvisibleCircle", Owner.transform).GetOrAddComponent<PeacockRange>();
+		targetChecker.transform.localPosition = Vector3.zero;
 		targetChecker.SetData( /*SkillData.AttackRange*/3, SkillData.Projectile);
 	}
-
+	
+	public override void LevelUp(SkillData data)
+	{
+		base.LevelUp(data);
+		targetChecker.SetData( /*SkillData.AttackRange*/3, SkillData.Projectile);
+	}
+	
 	public override void DoSkill()
 	{
 		targetChecker.CheckTarget();
