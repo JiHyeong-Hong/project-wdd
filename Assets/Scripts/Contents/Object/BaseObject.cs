@@ -6,8 +6,8 @@ using static Define;
 public class BaseObject : InitBase
 {
     public EObjectType ObjectType { get; protected set; } = EObjectType.None;
-    public CircleCollider2D Collider { get; private set; }
-    public Animator Animator { get; private set; }
+    public CircleCollider2D Collider { get; protected set; }
+    public Animator Animator { get; protected set; }
     public Rigidbody2D RigidBody { get; private set; }
     public SpriteRenderer Renderer { get; protected set; }
 

@@ -36,7 +36,8 @@ public class Projectile : BaseObject
 	}
 
 	private float tick = 0f;
-	void Update()
+
+	protected virtual void Move()
 	{
 		if (canMove)
 			transform.Translate(Vector2.up * 5 * Time.deltaTime);
@@ -46,5 +47,10 @@ public class Projectile : BaseObject
 		{
 			Managers.Object.Despawn(this);
 		}
+	}
+
+	void Update()
+	{
+		Move();
 	}
 }
