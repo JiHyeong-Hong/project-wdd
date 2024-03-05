@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -37,9 +38,9 @@ public class PeacockRange : MonoBehaviour
         collider.enabled = true;
     }
 
-    public async Task<Monster[]> GetTargets()
+    public async UniTask<Monster[]> GetTargets()
     {
-        await Task.Delay(TimeSpan.FromSeconds(2f / 60f));
+        await UniTask.DelayFrame(2);
         collider.enabled = false;
         SelectRandomTarget();
 

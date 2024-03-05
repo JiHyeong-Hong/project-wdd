@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class BearSkill : SkillBase
@@ -25,13 +26,13 @@ public class BearSkill : SkillBase
 
 		if (SkillData.Level >= Define.MAX_SKILL_LEVEL)
 		{
-			SpawnSecond(isFlip, bear.transform.eulerAngles.z, bear.GetAnimLength());
+			SpawnSecond(isFlip, bear.transform.eulerAngles.z, bear.GetAnimLength()).Forget();
 		}
 	}
 
-	private async void SpawnSecond(bool isFlip, float angle, float animLength)
+	private async UniTaskVoid SpawnSecond(bool isFlip, float angle, float animLength)
 	{
-		await Task.Delay(TimeSpan.FromSeconds(animLength));
+		await UniTask.Delay(TimeSpan.FromSeconds(animLength));
 		isFlip = !isFlip;
 
 		Bear bear2 = Managers.Object.Spawn<Bear>((Vector2)Owner.transform.position + Owner.Direction * (-1 * DISTANCE_OFFSET),

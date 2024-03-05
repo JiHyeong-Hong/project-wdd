@@ -104,13 +104,13 @@ namespace Data
         public string ClassName;
         public Define.SkillType skillType;
         public int Level;
-        [FormerlySerializedAs("ProjectileId")] public int Projectile;
+        public int Projectile;
         public float CastAngle;
         public int Damage;
         public float AttackSpeed;
         public float AttackRange;
         public float CoolTime;
-        [FormerlySerializedAs("AtkCount")] public int CastCount;
+       public int CastCount;
         public float Duration;
         public int KnockbackPower;
         public float StunTime;

@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class PeacockSkill : SkillBase
 {
 	private PeacockRange targetChecker;
 
+	public override void SetOwner(Creature owner)
+	{
+		base.SetOwner(owner);
+		CreateRange();
+	}
 
 	/// <summary>
 	/// 공작 범위 체크용 오브젝트 생성
@@ -23,21 +29,19 @@ public class PeacockSkill : SkillBase
 
 	public override void DoSkill()
 	{
-		if (targetChecker == null)
-		{
-			CreateRange();
-			return;
-		}
 		targetChecker.CheckTarget();
-		GetTargets();
+		GetTargets().Forget();
 	}
 
-	private async void GetTargets()
+	private async UniTaskVoid GetTargets()
 	{
 		var targets = await targetChecker.GetTargets();
 		for (int i = 0; i < targets.Length; i++)
 		{
-			
+			Peacock peacock = Managers.Object.Spawn<Peacock>(Owner.transform.position, 1);
+
+			peacock.SetTarget(targets[i]);
+			peacock.SetSpawnInfo(Owner, this, targets[i] == null ? Util.GetRandomDir() : Vector2.zero);
 		}
 	}
 
