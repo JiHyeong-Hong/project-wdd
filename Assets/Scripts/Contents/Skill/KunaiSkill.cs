@@ -12,9 +12,7 @@ public class KunaiSkill : SkillBase
         Monster target = Managers.Object.FindClosestMonster(Owner.CenterPosition, 5);
         if (target == null)
         {
-            float randomAngle = Random.Range(0f, 360f);
-            float radianAngle = Mathf.Deg2Rad * randomAngle;
-            direction = new Vector2(Mathf.Cos(radianAngle), Mathf.Sin(radianAngle));
+            direction = Util.GetRandomDir();
         }
         else
         {

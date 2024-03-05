@@ -14,7 +14,7 @@ public abstract class SkillBase
         _cooldownTick = SkillData.CoolTime;
     }
 
-    public void SetOwner(Creature owner)
+    public virtual void SetOwner(Creature owner)
     {
         Owner = owner;
     }

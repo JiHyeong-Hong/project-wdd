@@ -69,5 +69,10 @@ public class Util
         return null;
     }
 
-
+    public static Vector2 GetRandomDir()
+    {
+        float randomAngle = Random.Range(0f, 360f);
+        float radianAngle = Mathf.Deg2Rad * randomAngle;
+        return new Vector2(Mathf.Cos(radianAngle), Mathf.Sin(radianAngle));
+    }
 }

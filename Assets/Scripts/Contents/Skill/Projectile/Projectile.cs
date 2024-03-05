@@ -40,7 +40,7 @@ public class Projectile : BaseObject
 	protected virtual void Move()
 	{
 		if (canMove)
-			transform.Translate(Vector2.up * 5 * Time.deltaTime);
+			transform.Translate(Vector2.up * (Skill.SkillData.AttackSpeed * Time.deltaTime));
 
 		tick += Time.deltaTime;
 		if (tick > 5f)
