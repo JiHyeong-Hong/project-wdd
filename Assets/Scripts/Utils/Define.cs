@@ -83,6 +83,7 @@ public static class Define
 	}
 
 	public const float DEFAULT_SPEED = 3;
+	public const int MAX_SKILL_LEVEL = 5;
 	public const int MAX_LEVEL = 60;
 
 	public const int HERO_ZOOKEEPER_ID = 100;

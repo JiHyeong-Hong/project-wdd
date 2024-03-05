@@ -30,7 +30,8 @@ public class SkillManager
 
 		RegisterAllSkills();
 		Managers.Game.OnLevelUp += CreateRandomSkills;
-
+		
+		usingSkillDic[SkillType.Active][3].LevelUp(allSkillDic[usingSkillDic[SkillType.Active][3].SkillData.ClassName][usingSkillDic[SkillType.Active][3].SkillData.Level + 1].SkillData);
 		isInit = true;
 	}
 
@@ -43,12 +44,17 @@ public class SkillManager
 		if (!isInit)
 			return;
 
-		foreach (var skill in usingSkillDic[SkillType.Active])
+		if (Input.GetKeyDown(KeyCode.A))
 		{
-			skill?.UpdateCoolTime(deltaTime);
+			usingSkillDic[SkillType.Active][3].DoSkill();
 		}
+		
+		// foreach (var skill in usingSkillDic[SkillType.Active])
+		// {
+		// 	skill?.UpdateCoolTime(deltaTime);
+		// }
 	}
-
+	
 	/// <summary>
 	/// 전체 스킬 캐싱
 	/// </summary>
@@ -134,24 +140,6 @@ public class SkillManager
 	private void CreateRandomSkills()
 	{
 		sampleSkillList.Clear();
-		List<int> spawnList = new List<int>();
-
-		var allKeyList = allSkillDic.Keys.ToList();
-
-		// for (int i = 0; i < allKeyList.Count; ++i)
-		// {
-		// 	if (allSkillDic[allKeyList[i]].SkillData.Level >= 5)
-		// 		continue;
-		// 	spawnList.Add(allKeyList[i]);
-		// }
-
-		// for (int i = 0; i < 3; ++i)
-		// {
-		// 	int rand = Random.Range(0, spawnList.Count);
-		//
-		// 	sampleSkillList.Add(allSkillDic[spawnList[rand]]);
-		// 	spawnList.RemoveAt(rand);
-		// }
 
 		List<string> tempList = new List<string>();
 		tempList.AddRange(canPickSkillList);
@@ -218,7 +206,7 @@ public class SkillManager
 					hasSkill = true;
 
 					//만렙이면 뽑을 수 있는 스킬목록에서 삭제
-					if (skill.SkillData.Level == 5)
+					if (skill.SkillData.Level == Define.MAX_SKILL_LEVEL)
 					{
 						canPickSkillList.Remove(skill.SkillData.ClassName);
 					}
