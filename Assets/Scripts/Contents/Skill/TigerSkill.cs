@@ -9,7 +9,7 @@ public class TigerSkill : SkillBase
         Vector2 direction = Owner.Direction;
         AttackTiger(direction);
 
-        for (int i = 2; i <= SkillData.AtkCount; ++i)
+        for (int i = 2; i <= SkillData.CastCount; ++i)
         {
             direction = Util.RotateVectorByAngle(direction, SkillData.CastAngle);
             AttackTiger(direction);
@@ -26,7 +26,7 @@ public class TigerSkill : SkillBase
         if (Mathf.Abs(direction.y) < 0.001f && direction.x < 0)
             offsetY *= -1;
 
-        Tiger tiger = Managers.Object.Spawn<Tiger>(Owner.transform.position + new Vector3(offsetX, offsetY, 0f), SkillData.ProjectileId);
+        Tiger tiger = Managers.Object.Spawn<Tiger>(Owner.transform.position + new Vector3(offsetX, offsetY, 0f), SkillData.Projectile);
         tiger.SetSpawnInfo(Owner, this, direction);
     }
 

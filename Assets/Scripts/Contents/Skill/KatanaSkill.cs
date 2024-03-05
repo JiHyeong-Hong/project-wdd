@@ -9,7 +9,7 @@ public class KatanaSkill : SkillBase
         Vector2 direction = Owner.Direction;
         AttackKatana(direction);
 
-        for (int i = 2; i <= SkillData.AtkCount; ++i)
+        for (int i = 2; i <= SkillData.CastCount; ++i)
         {
             direction = Util.RotateVectorByAngle(direction, SkillData.CastAngle);
             AttackKatana(direction);

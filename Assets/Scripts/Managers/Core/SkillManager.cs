@@ -31,7 +31,8 @@ public class SkillManager
 		RegisterAllSkills();
 		Managers.Game.OnLevelUp += CreateRandomSkills;
 		
-		usingSkillDic[SkillType.Active][3].LevelUp(allSkillDic[usingSkillDic[SkillType.Active][3].SkillData.ClassName][usingSkillDic[SkillType.Active][3].SkillData.Level + 1].SkillData);
+		usingSkillDic[SkillType.Active][0].LevelUp(allSkillDic[usingSkillDic[SkillType.Active][0].
+			SkillData.ClassName][usingSkillDic[SkillType.Active][0].SkillData.Level + 1].SkillData);
 		isInit = true;
 	}
 
@@ -46,7 +47,7 @@ public class SkillManager
 
 		if (Input.GetKeyDown(KeyCode.A))
 		{
-			usingSkillDic[SkillType.Active][3].DoSkill();
+			usingSkillDic[SkillType.Active][0].DoSkill();
 		}
 		
 		// foreach (var skill in usingSkillDic[SkillType.Active])
