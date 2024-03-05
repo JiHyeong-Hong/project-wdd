@@ -8,7 +8,7 @@ public class RocketSkill : SkillBase
     {
         AttackRocket(0);
 
-        for (int i = 2; i <= SkillData.AtkCount; ++i)
+        for (int i = 2; i <= SkillData.CastCount; ++i)
         {
             float angle = (i / 2) * SkillData.CastAngle;
             if (i % 2 == 1)
@@ -19,7 +19,7 @@ public class RocketSkill : SkillBase
 
     private void AttackRocket(float angle)
     {
-        Rocket proj = Managers.Object.Spawn<Rocket>(Owner.transform.position, SkillData.ProjectileId);
+        Rocket proj = Managers.Object.Spawn<Rocket>(Owner.transform.position, SkillData.Projectile);
         proj.SetSpawnInfo(Owner, this, Util.RotateVectorByAngle(Owner.Direction, angle));
     }
 
