@@ -9,7 +9,9 @@ public class Projectile : BaseObject
 	public Data.ProjectileData ProjectileData { get; private set; }
 
 	protected bool canMove = true;
-
+	private float duration;
+	private float elapsedTime;
+	
 	public override bool Init()
 	{
 		if (base.Init() == false)
@@ -31,26 +33,32 @@ public class Projectile : BaseObject
 		Owner = owner;
 		Skill = skill;
 
+		duration = skill.SkillData.Duration;
 		float angle = Util.VectorToAngle(direction);
 		transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
 	}
 
-	private float tick = 0f;
+	
 
 	protected virtual void Move()
 	{
 		if (canMove)
 			transform.Translate(Vector2.up * (Skill.SkillData.AttackSpeed * Time.deltaTime));
-
-		tick += Time.deltaTime;
-		if (tick > 5f)
-		{
-			Managers.Object.Despawn(this);
-		}
+		
 	}
 
 	void Update()
 	{
+		UpdateDuration();
 		Move();
+	}
+
+	private void UpdateDuration()
+	{
+		elapsedTime += Time.deltaTime;
+		if (elapsedTime > duration)
+		{
+			Managers.Object.Despawn(this);
+		}
 	}
 }

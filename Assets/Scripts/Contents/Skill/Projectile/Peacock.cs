@@ -7,12 +7,12 @@ public class Peacock : Projectile
 {
 	private Monster target;
 	private Vector2 dir;
-	private CircleCollider2D collider;
+	private CircleCollider2D col;
 	
 	public override bool Init()
 	{
-		if (collider == null)
-			collider = GetComponent<CircleCollider2D>();
+		if (col == null)
+			col = GetComponent<CircleCollider2D>();
 		
 		return base.Init();
 	}
@@ -20,7 +20,7 @@ public class Peacock : Projectile
 	public void SetTarget(Monster target)
 	{
 		this.target = target;
-		collider.enabled = target == null;
+		col.enabled = target == null;
 	}
 
 	protected override void Move()
