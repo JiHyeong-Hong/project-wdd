@@ -5,45 +5,48 @@ using UnityEngine;
 using Data;
 public class PeacockSkill : SkillBase
 {
-	private PeacockRange targetChecker;
+	private List<Monster> monsterList = new List<Monster>();
 
-	public override void SetOwner(Creature owner)
+	public override void DoSkill()
 	{
-		base.SetOwner(owner);
-		CreateRange();
+		monsterList.Clear();
+		GetTargets();
 	}
-
-	/// <summary>
-	/// 공작 범위 체크용 오브젝트 생성
-	/// </summary>
-	private void CreateRange()
-	{
-		targetChecker = Managers.Resource.Instantiate("Area/InvisibleCircle", Owner.transform).GetOrAddComponent<PeacockRange>();
-		targetChecker.transform.localPosition = Vector3.zero;
-		targetChecker.SetData( /*SkillData.AttackRange*/3, SkillData.Projectile);
-	}
-	
 	public override void LevelUp(SkillData data)
 	{
 		base.LevelUp(data);
-		targetChecker.SetData( /*SkillData.AttackRange*/3, SkillData.Projectile);
-	}
-	
-	public override void DoSkill()
-	{
-		targetChecker.CheckTarget();
-		GetTargets().Forget();
+		//targets = new Monster[data.Projectile];
 	}
 
-	private async UniTaskVoid GetTargets()
+	private void GetTargets()
 	{
-		var targets = await targetChecker.GetTargets();
-		for (int i = 0; i < targets.Length; i++)
+		var list = Managers.Object.Monsters;
+
+		foreach (var monster in list)
 		{
+			if (monster.Hp <= 0)
+				continue;
+
+			if (Util.CheckTargetInScreen(monster.transform.position))
+			{
+				monsterList.Add(monster);
+			}
+		}
+
+		//var targets = await targetChecker.GetTargets();
+		for (int i = 0; i < SkillData.Projectile; i++)
+		{
+			bool isNull = monsterList.Count == 0;
+
+			int idx = Random.Range(0, monsterList.Count);
+			Monster target = !isNull ? monsterList[idx] : null;
 			Peacock peacock = Managers.Object.Spawn<Peacock>(Owner.transform.position, 1);
 
-			peacock.SetTarget(targets[i]);
-			peacock.SetSpawnInfo(Owner, this, targets[i] == null ? Util.GetRandomDir() : Vector2.zero);
+			peacock.SetTarget(target);
+			peacock.SetSpawnInfo(Owner, this, isNull ? Util.GetRandomDir() : Vector2.zero);
+	
+			if (!isNull)
+				monsterList.RemoveAt(idx);
 		}
 	}
 
