@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(CircleCollider2D))]
 public class LionRange : MonoBehaviour
 {
-	private CircleCollider2D collider;
+	private CircleCollider2D col;
 	
 	private List<Monster> colList;
 	private List<Monster> hitList;
@@ -22,9 +22,9 @@ public class LionRange : MonoBehaviour
 		hitList = new List<Monster>();
 		stunList = new List<Monster>();
 
-		collider = GetComponent<CircleCollider2D>();
-		collider.isTrigger = true;
-		collider.enabled = false;
+		col = GetComponent<CircleCollider2D>();
+		col.isTrigger = true;
+		col.enabled = false;
 	}
 
 	public void SetData(float radius, float ccRadius)
@@ -32,7 +32,7 @@ public class LionRange : MonoBehaviour
 		this.radius = radius;
 		this.ccRadius = ccRadius;
 
-		collider.radius = Math.Max(radius, ccRadius);
+		col.radius = Math.Max(radius, ccRadius);
 	}
 
 	public void CheckTarget()
@@ -41,7 +41,7 @@ public class LionRange : MonoBehaviour
 		hitList.Clear();
 		stunList.Clear();
 		
-		collider.enabled = true;
+		col.enabled = true;
 	}
 
 	private void OnTriggerEnter2D(Collider2D col)
@@ -60,7 +60,7 @@ public class LionRange : MonoBehaviour
 	public async UniTask<(List<Monster> hitList,List<Monster> stunList)> GetTargets()
 	{
 		await UniTask.DelayFrame(2);
-		collider.enabled = false;
+		col.enabled = false;
 
 		//스턴,데미지 유닛 구분
 		foreach (var col in colList)

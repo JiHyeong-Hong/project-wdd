@@ -48,10 +48,10 @@ public class SkillManager
 			usingSkillDic[SkillType.Active][0].DoSkill();
 		}
 		
-		foreach (var skill in usingSkillDic[SkillType.Active])
-		{
-			skill?.UpdateCoolTime(deltaTime);
-		}
+		// foreach (var skill in usingSkillDic[SkillType.Active])
+		// {
+		// 	skill?.UpdateCoolTime(deltaTime);
+		// }
 	}
 	
 	/// <summary>
@@ -171,7 +171,6 @@ public class SkillManager
 	private void AddSkill(SkillData skillData)
 	{
 		var list = usingSkillDic[skillData.skillType];
-		bool hasEmpty = false;
 
 		if (list.Count == 6)
 		{
