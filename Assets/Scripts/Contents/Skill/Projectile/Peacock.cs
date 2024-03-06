@@ -40,10 +40,10 @@ public class Peacock : Projectile
 		else
 		{
 			transform.Translate(Vector2.up * (Skill.SkillData.AttackSpeed * Time.deltaTime));
+			
+			if(!Util.CheckTargetInScreen(transform.position))
+				Managers.Object.Despawn(this);
 		}
-		
-		if(!Util.CheckTargetInScreen(transform.position))
-			Managers.Object.Despawn(this);
 	}
 
 	private void OnTriggerEnter2D(Collider2D col)
