@@ -9,6 +9,8 @@ public class Projectile : BaseObject
 	public Data.ProjectileData ProjectileData { get; private set; }
 
 	protected bool canMove = true;
+	protected bool isInfinityDuration;	//임시
+	
 	private float duration;
 	private float elapsedTime;
 	
@@ -37,9 +39,7 @@ public class Projectile : BaseObject
 		float angle = Util.VectorToAngle(direction);
 		transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
 	}
-
 	
-
 	protected virtual void Move()
 	{
 		if (canMove)
@@ -54,6 +54,9 @@ public class Projectile : BaseObject
 
 	private void UpdateDuration()
 	{
+		if (isInfinityDuration)
+			return;
+		
 		elapsedTime += Time.deltaTime;
 		if (elapsedTime > duration)
 		{
