@@ -10,7 +10,7 @@ public class Monster : Creature
     public int DropItemID { get; set; }
     public int DropPersent { get; set; }
     #endregion
-
+    public float temp;
     public override bool Init()
     {
         if (base.Init() == false)

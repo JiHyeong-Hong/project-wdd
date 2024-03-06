@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8963585215500687619}
   - component: {fileID: 1948924083474734219}
   - component: {fileID: 2136970318261523128}
-  - component: {fileID: 9163941104825291967}
+  - component: {fileID: -7179715082350649059}
   m_Layer: 7
   m_Name: Monster
   m_TagString: Untagged
@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b6db10cc94176043851ec1872a62ec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  temp: 0
 --- !u!50 &2136970318261523128
 Rigidbody2D:
   serializedVersion: 4
@@ -148,7 +149,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &9163941104825291967
+--- !u!58 &-7179715082350649059
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

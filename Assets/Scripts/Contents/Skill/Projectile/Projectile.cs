@@ -44,7 +44,6 @@ public class Projectile : BaseObject
 	{
 		if (canMove)
 			transform.Translate(Vector2.up * (Skill.SkillData.AttackSpeed * Time.deltaTime));
-		
 	}
 
 	void Update()
