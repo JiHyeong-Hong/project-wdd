@@ -15,7 +15,7 @@ public class DolphinSkill : SkillBase
 			var spawnPos = (Vector2)Owner.transform.position + (dir * DISTANCE);
 			
 			var dolphine = Managers.Object.Spawn<DolPhine>(spawnPos, 1);
-			dolphine.SetSpawnInfo(Owner,this,Vector2.zero);
+			dolphine.SetSpawnInfo(Owner,this);
 		}
 	}
 	public override void Clear()
