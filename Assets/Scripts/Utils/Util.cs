@@ -95,4 +95,15 @@ public static class Util
 	{
 		return Vector3.SqrMagnitude(circle1 - circle2) <= Mathf.Pow(radius1 + radius2, 2);
 	}
+	
+	/// <summary>
+	/// 타겟이 화면 안에 있는지 (포착범위 내)
+	/// </summary>
+	/// <param name="position"></param>
+	/// <returns></returns>
+	public static bool CheckTargetInScreen(Vector2 position)
+	{
+		Vector3 screenPoint = Camera.main.WorldToViewportPoint(position);
+		return screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1 && screenPoint.z > 0;
+	}
 }
