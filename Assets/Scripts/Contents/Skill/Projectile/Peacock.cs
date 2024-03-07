@@ -8,19 +8,14 @@ public class Peacock : Projectile
 	private Monster target;
 	private Vector2 dir;
 	private CircleCollider2D col;
-	private float moveSpeed = 5f;
+	
 	public override bool Init()
 	{
-		if (!base.Init())
-			return false;
-		
 		if (col == null)
 			col = GetComponent<CircleCollider2D>();
-		
-		Renderer = GetComponentInChildren<SpriteRenderer>();
+
 		isInfinityDuration = true;
-		
-		return true;
+		return base.Init();
 	}
 
 	public void SetTarget(Monster target)
@@ -33,14 +28,10 @@ public class Peacock : Projectile
 	{
 		if (target != null)
 		{
-			var dir = target.transform.position - transform.position;
-			var position = Vector2.MoveTowards(transform.position,
-				target.transform.position, moveSpeed * Time.deltaTime);
+			transform.position = Vector2.MoveTowards(transform.position,
+				target.transform.position, Skill.SkillData.AttackSpeed * Time.deltaTime);
 
-			float angle = Util.VectorToAngle(dir);
-			transform.SetPositionAndRotation(position,Quaternion.Euler(new Vector3(0f, 0f, angle)));
-			
-			if (Vector2.SqrMagnitude(dir) <= Mathf.Pow(0.5f,2))
+			if (Vector2.SqrMagnitude(transform.position - target.transform.position) <= Mathf.Pow(0.5f,2))
 			{
 				target.OnDamaged(Owner,Skill);
 				Managers.Object.Despawn(this);
@@ -48,7 +39,7 @@ public class Peacock : Projectile
 		}
 		else
 		{
-			transform.Translate(Vector2.up * (moveSpeed* Time.deltaTime));
+			transform.Translate(Vector2.up * (Skill.SkillData.AttackSpeed * Time.deltaTime));
 		}
 		if(!Util.CheckTargetInScreen(transform.position))
 			Managers.Object.Despawn(this);

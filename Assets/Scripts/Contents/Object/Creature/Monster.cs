@@ -80,8 +80,7 @@ public class Monster : Creature
         {
             Vector2 dest = (_hero.transform.position - transform.position).normalized;
 
-          //  SetRigidbodyVelocity(dest * MoveSpeed);
-            SetRigidbodyVelocity(dest * 0);
+            SetRigidbodyVelocity(dest * MoveSpeed);
         }
         else
             SetRigidbodyVelocity(Vector2.zero);
