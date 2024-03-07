@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-public class BearSkill : SkillBase
+public class BearSkill : ActiveSkill
 {
 	private readonly float DISTANCE_OFFSET = 3f;
 	private readonly float ANGLE_OFFSET = 70f;

@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DolphinSkill : SkillBase
+public class DolphinSkill : ActiveSkill
 {
 	private readonly float[] angles = { 10f, 190f };
 	private readonly float DISTANCE = 5f;
 	public override void DoSkill()
 	{
-		for (int i = 0; i < 2; i++)
+		for (int i = 0; i < SkillData.Projectile; i++)
 		{
 			var dir =  Util.AngleToVector(angles[i]);
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Data;
-public class PeacockSkill : SkillBase
+public class PeacockSkill : ActiveSkill
 {
 	private List<Monster> monsterList = new List<Monster>();
 

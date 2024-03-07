@@ -82,6 +82,23 @@ public static class Define
 		Breakthrogh = 3
 	}
 
+	public enum PassiveType
+	{
+		CoolTime_Down = 0,
+		Farming_Down,
+		Exp_Add,
+		Gold_Add,
+		Effect_Increase,
+		Recovery,
+		Hp,
+		MoveSpeed,
+		Attack,
+		AttackSpeed,
+		AttackRange,
+		DamageCare,
+		Length
+	}
+	
 	public const float DEFAULT_SPEED = 3;
 	public const int MAX_SKILL_LEVEL = 5;
 	public const int MAX_LEVEL = 60;

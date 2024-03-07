@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TigerSkill : SkillBase
+public class TigerSkill : ActiveSkill
 {
     public override void DoSkill()
     {
