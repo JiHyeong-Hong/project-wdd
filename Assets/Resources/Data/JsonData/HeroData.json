@@ -5,11 +5,7 @@
       "MaxExp": 70,
       "ItemAcquireRange": 0.0,
       "SkillIdList": [
-       1000,
-        1010,
-        2020,
-        1020,
-        1030
+        1085
       ],
       "DataId": 100,
       "DescriptionTextID": "사육사",

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class Bear : Projectile
@@ -14,7 +15,7 @@ public class Bear : Projectile
 		Animator = transform.GetChild(0).GetComponent<Animator>();
 		Renderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
 		
-		Despawn();
+		Despawn().Forget();
 		return true;
 	}
 
@@ -36,9 +37,9 @@ public class Bear : Projectile
 		
 		creature.OnDamaged(Owner, Skill);
 	}
-	private async void Despawn()
+	private async UniTaskVoid Despawn()
 	{
-		await Task.Delay(TimeSpan.FromSeconds(GetAnimLength() + 0.15f));
+		await UniTask.Delay(TimeSpan.FromSeconds(GetAnimLength() + 0.15f));
 		Managers.Object.Despawn(this);
 	}
 }

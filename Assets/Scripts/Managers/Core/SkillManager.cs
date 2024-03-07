@@ -30,10 +30,8 @@ public class SkillManager
 
 		RegisterAllSkills();
 		Managers.Game.OnLevelUp += CreateRandomSkills;
-
-        //  @홍지형 임시.
-        // usingSkillDic[SkillType.Active][3].LevelUp(allSkillDic[usingSkillDic[SkillType.Active][3].SkillData.ClassName][usingSkillDic[SkillType.Active][3].SkillData.Level + 1].SkillData);
-        isInit = true;
+		
+		isInit = true;
 	}
 
 	/// <summary>
@@ -47,7 +45,7 @@ public class SkillManager
 
 		if (Input.GetKeyDown(KeyCode.A))
 		{
-			usingSkillDic[SkillType.Active][0].DoSkill(); // @홍지형 임시.
+			usingSkillDic[SkillType.Active][0].DoSkill();
 		}
 		
 		// foreach (var skill in usingSkillDic[SkillType.Active])
@@ -175,7 +173,6 @@ public class SkillManager
 	private void AddSkill(SkillData skillData)
 	{
 		var list = usingSkillDic[skillData.skillType];
-		bool hasEmpty = false;
 
 		if (list.Count == 6)
 		{
