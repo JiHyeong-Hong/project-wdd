@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Cysharp.Threading.Tasks;
 using Data;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -12,22 +11,26 @@ using SkillType = Define.SkillType;
 
 public class SkillManager
 {
-	private Dictionary<string, SkillBase> allSkillDic = new Dictionary<string, SkillBase>(); //string => 스킬 영문이름
-
-	private List<ActiveSkill> usingActiveSkillList = new List<ActiveSkill>();
-	private List<PassiveSkill> usingPassiveSkillList = new List<PassiveSkill>();
-
-	private List<SkillData> sampleSkillList = new List<SkillData>();
+	private Dictionary<string, List<SkillBase>> allSkillDic = new Dictionary<string, List<SkillBase>>(); //string => 스킬 영문이름, List index => 스킬레벨
+	private Dictionary<SkillType, List<SkillBase>> usingSkillDic = new Dictionary<SkillType, List<SkillBase>>();
+	
+	private List<SkillBase> sampleSkillList = new List<SkillBase>();
 	private List<string> canPickSkillList = new List<string>(); //만랩이 아닌 스킬들 이름 저장한 리스트 (레벨업 가능)
-
+	
 	private bool isInit;
 
-	public async UniTaskVoid Init()
+	public IEnumerator CoInit()
 	{
-		await UniTask.WaitUntil(() => Managers.Object.Hero != null);
+		yield return new WaitUntil(() => Managers.Object.Hero != null);
+
+		foreach (SkillType skillType in Enum.GetValues(typeof(SkillType)))
+		{
+			usingSkillDic.Add(skillType, new List<SkillBase>());
+		}
+
 		RegisterAllSkills();
 		Managers.Game.OnLevelUp += CreateRandomSkills;
-
+		
 		isInit = true;
 	}
 
@@ -42,15 +45,15 @@ public class SkillManager
 
 		if (Input.GetKeyDown(KeyCode.A))
 		{
-			usingActiveSkillList[0].DoSkill();
+			usingSkillDic[SkillType.Active][0].DoSkill();
 		}
-
-		foreach (var skill in usingActiveSkillList)
-		{
-			skill?.UpdateCoolTime(deltaTime);
-		}
+		
+		// foreach (var skill in usingSkillDic[SkillType.Active])
+		// {
+		// 	skill?.UpdateCoolTime(deltaTime);
+		// }
 	}
-
+	
 	/// <summary>
 	/// 전체 스킬 캐싱
 	/// </summary>
@@ -65,40 +68,43 @@ public class SkillManager
 		// 전체 스킬
 		foreach (var skillID in skillKeys)
 		{
-			if (beforeID.Equals(skillDic[skillID].ClassName))
-				continue;
-
-			beforeID = skillDic[skillID].ClassName;
 			string skillName = skillDic[skillID].ClassName + "Skill";
 
-			canPickSkillList.Add(beforeID);
 			Type t = assembly.GetType(skillName);
 
 			if (t == null)
-			{
-				canPickSkillList.Remove(beforeID);
 				continue;
-			}
 
 			object obj = Activator.CreateInstance(t);
 
 			if (obj == null)
 			{
-				Debug.LogError("스킬 등록 error");
+				Debug.Log("스킬 등록 error");
 				return;
 			}
 
-			var className = skillDic[skillID].ClassName;
-
 			var skill = obj as SkillBase;
-			skill.SetData(skillDic[skillID]);
-			allSkillDic.Add(className, skill);
+			skill.SetInfo(skillDic[skillID]);
+
+			var className = skillDic[skillID].ClassName;
+			if (!allSkillDic.TryGetValue(className, out var list))
+			{
+				allSkillDic.Add(className,new List<SkillBase>());
+				list = allSkillDic[className];
+			}
+			
+			list.Add(skill);
+
+			if (!beforeID.Equals(skill.SkillData.ClassName))
+			{
+				beforeID = skill.SkillData.ClassName;
+				canPickSkillList.Add(beforeID);
+			}
 		}
 
 		// 플레이어 고유 스킬
-		var hero = Managers.Object.Hero;
-		var heroData = hero.CreatureData as HeroData;
-
+		var heroData = Managers.Object.Hero.CreatureData as HeroData;
+		
 		foreach (var skillID in heroData.SkillIdList)
 		{
 			//임시
@@ -120,21 +126,10 @@ public class SkillManager
 			}
 
 			var ownSkill = (obj as SkillBase);
-			ownSkill.SetData(Managers.Data.SkillDic[skillID]);
-			ownSkill.Init(hero);
+			ownSkill.SetInfo(Managers.Data.SkillDic[skillID]);
+			ownSkill.SetOwner(Managers.Object.Hero);
 
-			if (ownSkill.SkillData.Level >= Define.MAX_SKILL_LEVEL)
-				canPickSkillList.Remove(ownSkill.SkillData.ClassName);
-
-			switch (ownSkill.SkillData.skillType)
-			{
-				case SkillType.Active:
-					usingActiveSkillList.Add(ownSkill as ActiveSkill);
-					break;
-				case SkillType.Passive:
-					usingPassiveSkillList.Add(ownSkill as PassiveSkill);
-					break;
-			}
+			usingSkillDic[ownSkill.SkillData.skillType].Add(ownSkill);
 		}
 	}
 
@@ -147,116 +142,81 @@ public class SkillManager
 
 		List<string> tempList = new List<string>();
 		tempList.AddRange(canPickSkillList);
-
+		
 		// 칸이 가득 찼는지 체크 (나중에 추가)
-		// bool isFullActive = usingSkillDic[SkillType.Active].Count == 6;
-		// bool isFullPassive = usingSkillDic[SkillType.Passive].Count == 6;
-
+		bool isFullActive = usingSkillDic[SkillType.Active].Count == 6;
+		bool isFullPassive = usingSkillDic[SkillType.Passive].Count == 6;
+		
 		int pick = 0;
 		while (pick < 3)
 		{
-			//이쪽 나중에 작업 필요
-			// 현재는 canPickSkillList가 비었을때 고려 x
 			if (tempList.Count == 0)
 			{
 				var randomName = canPickSkillList[Random.Range(0, canPickSkillList.Count)];
-				sampleSkillList.Add(allSkillDic[randomName].SkillData);
+				sampleSkillList.Add(allSkillDic[randomName][0]);
 			}
 			else
 			{
 				var randomIndex = Random.Range(0, tempList.Count);
-
-				var skillData = allSkillDic[tempList[randomIndex]].SkillData;
-				var skillType = skillData.skillType;
-
-				SkillData data = skillType switch
-				{
-					SkillType.Active => usingActiveSkillList.FirstOrDefault(x => x.SkillData.ClassName.Equals(skillData.ClassName))?.SkillData,
-					SkillType.Passive => usingPassiveSkillList.FirstOrDefault(x => x.SkillData.ClassName.Equals(skillData.ClassName))?.SkillData,
-				};
-
-				// data가 null이면 없는거 (새로운 스킬)
-				if (data == null)
-					data = allSkillDic[tempList[randomIndex]].SkillData;
-
-				sampleSkillList.Add(data);
+				sampleSkillList.Add(allSkillDic[tempList[randomIndex]][0]);
 				tempList.RemoveAt(randomIndex);
 			}
-
+			
 			pick++;
 		}
-
+		
 		Managers.UI.ShowPopupUI<UI_LevelUp>().SetInfo(sampleSkillList);
 	}
 
 	private void AddSkill(SkillData skillData)
 	{
-		SkillType skillType = skillData.skillType;
+		var list = usingSkillDic[skillData.skillType];
 
-		if (skillType == SkillType.Active)
+		if (list.Count == 6)
 		{
-			if (usingActiveSkillList.Count == 6)
-			{
-				Debug.Log("스킬 추가할 자리 없음");
-				return;
-			}
-
-			var skill = allSkillDic[skillData.ClassName] as ActiveSkill;
-
-			skill.Init(Managers.Object.Hero, Managers.Data.SkillDic[skill.SkillData.DataId + skill.SkillData.Level + 1]);
-			usingActiveSkillList.Add(skill);
-		}
-		else if (skillType == SkillType.Passive)
-		{
-			if (usingPassiveSkillList.Count == 6)
-			{
-				Debug.Log("스킬 추가할 자리 없음");
-				return;
-			}
-			var skill = allSkillDic[skillData.ClassName] as PassiveSkill;
-			skill.Init(Managers.Object.Hero, Managers.Data.SkillDic[skill.SkillData.DataId + skill.SkillData.Level + 1]);
-			usingPassiveSkillList.Add(allSkillDic[skillData.ClassName] as PassiveSkill);
-		}
-	}
-	private void LevelUpInUsingSkillList(List<SkillBase> skillList, string className, ref bool isEmpty)
-	{
-		foreach (var skill in skillList)
-		{
-			if (className.Equals(skill.SkillData.ClassName))
-			{
-				skill.LevelUp(Managers.Data.SkillDic[skill.SkillData.DataId + skill.SkillData.Level + 1]);
-				CheckMaxLevel(skill.SkillData);
-				isEmpty = false;
-				break;
-			}
-		}
-	}
-	public void IncreaseSkillLevel(int index)
-	{
-		var skillData = sampleSkillList[index];
-		string className = skillData.ClassName;
-		var skillType = skillData.skillType;
-		bool isEmpty = true;
-
-		if (skillType == SkillType.Active)
-		{
-			LevelUpInUsingSkillList(usingActiveSkillList.Cast<SkillBase>().ToList(), className, ref isEmpty);
-		}
-		else if (skillType == SkillType.Passive)
-		{
-			LevelUpInUsingSkillList(usingPassiveSkillList.Cast<SkillBase>().ToList(), className, ref isEmpty);
+			Debug.Log("스킬 추가할 자리 없음");
+			return;
 		}
 		
+		// 나중에 제대로 동작하는지 체크
+		list.Add(allSkillDic[skillData.ClassName][skillData.Level]);
+
+		int index = list.Count - 1;
+		list[index].SetInfo(skillData);
+		list[index].SetOwner(Managers.Object.Hero);
+	}
+
+	public void IncreaseSkillLevel(int index)
+	{
+		var skillData = sampleSkillList[index].SkillData;
+		string className = skillData.ClassName;
+		var skillType = skillData.skillType;
+
+		bool hasSkill = false;
+
+		if (skillType == SkillType.Active)
+		{
+			foreach (var skill in usingSkillDic[skillType])
+			{
+				if (className.Equals(skill.SkillData.ClassName))
+				{
+					skill.LevelUp(allSkillDic[className][skill.SkillData.Level + 1].SkillData);
+					hasSkill = true;
+
+					//만렙이면 뽑을 수 있는 스킬목록에서 삭제
+					if (skill.SkillData.Level == Define.MAX_SKILL_LEVEL)
+					{
+						canPickSkillList.Remove(skill.SkillData.ClassName);
+					}
+					break;
+				}
+			}
+		}
+
 		// 업그레이드 할 스킬이 없음 => 스킬 추가
-		if (isEmpty)
+		if (!hasSkill)
 		{
 			AddSkill(skillData);
 		}
-	}
-
-	private void CheckMaxLevel(SkillData data)
-	{
-		if (data.Level == Define.MAX_SKILL_LEVEL)
-			canPickSkillList.Remove(data.ClassName);
 	}
 }

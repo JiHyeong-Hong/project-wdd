@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Data;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -40,17 +39,17 @@ public class UI_LevelUp : UI_Popup
         return true;
     }
 
-    public void SetInfo(List<SkillData> skills)
+    public void SetInfo(List<SkillBase> skills)
     {
         Managers.Game.IsGamePaused = true;
         
-        GetText((int)Texts.FirstName).text = skills[0].Name;
-        GetText((int)Texts.SecondName).text = skills[1].Name;
-        GetText((int)Texts.ThirdName).text = skills[2].Name;
+        GetText((int)Texts.FirstName).text = skills[0].SkillData.Name;
+        GetText((int)Texts.SecondName).text = skills[1].SkillData.Name;
+        GetText((int)Texts.ThirdName).text = skills[2].SkillData.Name;
 
-        GetText((int)Texts.FirstLevel).text = (skills[0].Level == 0) ? "New!" : "Lv. " + (skills[0].Level + 1);
-        GetText((int)Texts.SecondLevel).text = (skills[1].Level == 0) ? "New!" : "Lv. " + (skills[1].Level + 1);
-        GetText((int)Texts.ThirdLevel).text = (skills[2].Level == 0) ? "New!" : "Lv. " + (skills[2].Level + 1);
+        GetText((int)Texts.FirstLevel).text = (skills[0].SkillData.Level == 0) ? "New!" : "Lv. " + (skills[0].SkillData.Level + 1);
+        GetText((int)Texts.SecondLevel).text = (skills[1].SkillData.Level == 0) ? "New!" : "Lv. " + (skills[1].SkillData.Level + 1);
+        GetText((int)Texts.ThirdLevel).text = (skills[2].SkillData.Level == 0) ? "New!" : "Lv. " + (skills[2].SkillData.Level + 1);
     }
 
     public void OnClickFirst(PointerEventData evt)

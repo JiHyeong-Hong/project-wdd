@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RocketSkill : ActiveSkill
+public class RocketSkill : SkillBase
 {
     public override void DoSkill()
     {

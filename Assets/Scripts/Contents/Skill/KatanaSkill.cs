@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KatanaSkill : ActiveSkill
+public class KatanaSkill : SkillBase
 {
     public override void DoSkill()
     {

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KunaiSkill : ActiveSkill
+public class KunaiSkill : SkillBase
 {
     public override void DoSkill()
     {

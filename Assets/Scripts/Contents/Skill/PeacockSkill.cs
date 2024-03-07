@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Data;
-public class PeacockSkill : ActiveSkill
+public class PeacockSkill : SkillBase
 {
 	private List<Monster> monsterList = new List<Monster>();
 
@@ -11,11 +11,6 @@ public class PeacockSkill : ActiveSkill
 	{
 		monsterList.Clear();
 		GetTargets();
-	}
-	public override void LevelUp(SkillData data)
-	{
-		base.LevelUp(data);
-		//targets = new Monster[data.Projectile];
 	}
 
 	private void GetTargets()
@@ -32,8 +27,7 @@ public class PeacockSkill : ActiveSkill
 				monsterList.Add(monster);
 			}
 		}
-
-		//var targets = await targetChecker.GetTargets();
+		
 		for (int i = 0; i < SkillData.Projectile; i++)
 		{
 			bool isNull = monsterList.Count == 0;

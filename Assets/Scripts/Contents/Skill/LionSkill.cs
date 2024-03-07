@@ -4,13 +4,13 @@ using Cysharp.Threading.Tasks;
 using Data;
 using UnityEngine;
 
-public class LionSkill : ActiveSkill
+public class LionSkill : SkillBase
 {
 	private LionRange targetChecker;
 
-	public override void Init(Creature owner, SkillData data = null)
+	public override void SetOwner(Creature owner)
 	{
-		base.Init(owner, data);
+		base.SetOwner(owner);
 		CreateRange();
 	}
 

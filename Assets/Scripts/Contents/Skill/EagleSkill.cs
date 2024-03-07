@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EagleSkill : ActiveSkill
+public class EagleSkill : SkillBase
 {
 	private List<Monster> targetList = new List<Monster>();
 	

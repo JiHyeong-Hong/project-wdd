@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParrotSkill : ActiveSkill
+public class ParrotSkill : SkillBase
 {
     private bool isTimeActive = false;
     private float durationTick = 0.0f;
