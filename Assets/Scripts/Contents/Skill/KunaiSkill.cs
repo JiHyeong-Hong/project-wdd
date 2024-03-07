@@ -12,9 +12,7 @@ public class KunaiSkill : SkillBase
         Monster target = Managers.Object.FindClosestMonster(Owner.CenterPosition, 5);
         if (target == null)
         {
-            float randomAngle = Random.Range(0f, 360f);
-            float radianAngle = Mathf.Deg2Rad * randomAngle;
-            direction = new Vector2(Mathf.Cos(radianAngle), Mathf.Sin(radianAngle));
+            direction = Util.GetRandomDir();
         }
         else
         {
@@ -23,7 +21,7 @@ public class KunaiSkill : SkillBase
 
         AttackKunai(direction, 0);
 
-        for (int i = 2; i <= SkillData.AtkCount; ++i)
+        for (int i = 2; i <= SkillData.CastCount; ++i)
         {
             float angle = (i / 2) * SkillData.CastAngle;
             if (i % 2 == 1)
@@ -34,7 +32,7 @@ public class KunaiSkill : SkillBase
 
     private void AttackKunai(Vector2 direction, float angle)
     {
-        Kunai proj = Managers.Object.Spawn<Kunai>(Owner.transform.position, SkillData.ProjectileId);
+        Kunai proj = Managers.Object.Spawn<Kunai>(Owner.transform.position, SkillData.Projectile);
         proj.SetSpawnInfo(Owner, this, Util.RotateVectorByAngle(direction, angle));
     }
 

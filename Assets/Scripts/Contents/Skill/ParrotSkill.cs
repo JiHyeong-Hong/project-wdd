@@ -36,12 +36,12 @@ public class ParrotSkill : SkillBase
     {
         ClearSatellites();
 
-        for (int i = 0; i < SkillData.AtkCount; ++i)
+        for (int i = 0; i < SkillData.CastCount; ++i)
         {
-            float angle = i * 360f / SkillData.AtkCount;
+            float angle = i * 360f / SkillData.CastCount;
             Vector2 spawnPosition = GetCirclePosition(angle, orbitRadius);
 
-            Bird bird = Managers.Object.Spawn<Bird>(spawnPosition, SkillData.ProjectileId, Owner.transform);
+            Bird bird = Managers.Object.Spawn<Bird>(spawnPosition, SkillData.Projectile, Owner.transform);
             bird.SetSpawnInfo(Owner, this, Vector2.up);
 
             birds.Add(bird);

@@ -10,7 +10,7 @@ public class Monster : Creature
     public int DropItemID { get; set; }
     public int DropPersent { get; set; }
     #endregion
-
+    public float temp;
     public override bool Init()
     {
         if (base.Init() == false)
@@ -80,7 +80,8 @@ public class Monster : Creature
         {
             Vector2 dest = (_hero.transform.position - transform.position).normalized;
 
-            SetRigidbodyVelocity(dest * MoveSpeed);
+          //  SetRigidbodyVelocity(dest * MoveSpeed);
+            SetRigidbodyVelocity(dest * 0);
         }
         else
             SetRigidbodyVelocity(Vector2.zero);

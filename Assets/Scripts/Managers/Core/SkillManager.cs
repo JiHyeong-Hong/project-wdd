@@ -31,7 +31,6 @@ public class SkillManager
 		RegisterAllSkills();
 		Managers.Game.OnLevelUp += CreateRandomSkills;
 		
-		usingSkillDic[SkillType.Active][3].LevelUp(allSkillDic[usingSkillDic[SkillType.Active][3].SkillData.ClassName][usingSkillDic[SkillType.Active][3].SkillData.Level + 1].SkillData);
 		isInit = true;
 	}
 
@@ -46,7 +45,7 @@ public class SkillManager
 
 		if (Input.GetKeyDown(KeyCode.A))
 		{
-			usingSkillDic[SkillType.Active][3].DoSkill();
+			usingSkillDic[SkillType.Active][0].DoSkill();
 		}
 		
 		// foreach (var skill in usingSkillDic[SkillType.Active])
@@ -108,11 +107,13 @@ public class SkillManager
 		
 		foreach (var skillID in heroData.SkillIdList)
 		{
-			//임시
-			if (skillID / 1000 > 1)
-				continue;
+            ////임시
+            //if (skillID / 1000 > 1)
+            //	continue;
 
-			string className = Managers.Data.SkillDic[skillID].ClassName + "Skill";
+            // 현재 SkillData에 얼룩말 1개만 임의로 넣음. (1091)  @홍지형 임시.
+
+            string className = Managers.Data.SkillDic[skillID].ClassName + "Skill";
 			Type t = assembly.GetType(className);
 
 			if (t == null)
@@ -172,7 +173,6 @@ public class SkillManager
 	private void AddSkill(SkillData skillData)
 	{
 		var list = usingSkillDic[skillData.skillType];
-		bool hasEmpty = false;
 
 		if (list.Count == 6)
 		{
