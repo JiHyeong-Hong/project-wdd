@@ -8,6 +8,8 @@ public class Crocodile : Projectile
     private Rigidbody2D rb; // Rigidbody2D 컴포넌트에 대한 참조
     public float speed = 4f; // 이동 속도
 
+    private Vector2 heroDirection = Vector2.right; // 기본 방향을 오른쪽으로 설정
+
     void Start()
     {
         animator.ResetTrigger("CollisionDetected");
@@ -19,7 +21,7 @@ public class Crocodile : Projectile
              return false;
 
         animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>(); // Rigidbody2D 컴포넌트를 가져옴
+        rb = GetComponent<Rigidbody2D>(); 
 
         if (animator == null)
          {
@@ -29,20 +31,19 @@ public class Crocodile : Projectile
          return true; 
 }
 
-    public override void SetSpawnInfo(Creature owner, SkillBase skill, Vector2 direction)
+    // Crocodile 소환 위치 및 방향 설정을 위함
+    public void SetInitialPositionAndDirection(Transform arrowTransform, Vector2 direction)
     {
-        // 랜덤 방향 설정을 위해, direction 대신 Random.insideUnitCircle.normalized 사용
-        base.SetSpawnInfo(owner, skill, Random.insideUnitCircle.normalized);
-        transform.rotation = Quaternion.Euler(0f, 0f, Util.VectorToAngle(Random.insideUnitCircle.normalized));
+        this.transform.position = arrowTransform.position + new Vector3(0, arrowTransform.localScale.y / 2, 0);
+        this.heroDirection = direction.normalized; // 방향 저장
     }
 
-   
     void FixedUpdate()
     {
         Debug.Log("FixedUpdate call Move()");
         Move();
     }
-
+    
     protected override void Move()
     {
         //// Skill 또는 SkillData가 null이면 이동을 중지
@@ -50,13 +51,12 @@ public class Crocodile : Projectile
         //{
         //    return; // 초기화되지 않았으므로 이동 처리를 중단
         //}
-
+    
         // 오브젝트의 앞 방향으로 지속적으로 이동
-        Vector2 moveDirection = transform.up * speed;
+        Vector2 moveDirection = heroDirection * speed;
         Debug.Log($"Setting velocity to {moveDirection}");
         rb.velocity = moveDirection;
     }
-
 
     void OnTriggerEnter2D(Collider2D other)
     {
