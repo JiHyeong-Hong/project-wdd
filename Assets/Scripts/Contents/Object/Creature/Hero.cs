@@ -1,12 +1,6 @@
 using Data;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using static Define;
-using static Unity.Collections.AllocatorManager;
 
 public class Hero : Creature
 {
@@ -39,8 +33,7 @@ public class Hero : Creature
 
 	public Transform Pivot { get; private set; }
 	public Transform Destination { get; private set; }
-
-
+	
 	public override bool Init()
 	{
 		if (base.Init() == false)

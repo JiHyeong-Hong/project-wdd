@@ -3,30 +3,22 @@ using System.Collections.Generic;
 using Data;
 using UnityEngine;
 
-public abstract class SkillBase
+public abstract class ActiveSkill : SkillBase
 {
-    public Creature Owner { get; protected set; }
-    public SkillData SkillData { get; private set; }
-    
-    public void SetInfo(SkillData data)
-    {
-        SkillData = data;
-        _cooldownTick = SkillData.CoolTime;
-    }
-
-    public virtual void SetOwner(Creature owner)
-    {
-        Owner = owner;
-    }
-
-    public virtual void LevelUp(SkillData data)
-    {
-        SkillData = data;
-        Clear();
-        _cooldownTick = SkillData.CoolTime;
-    }
-
     protected float _cooldownTick = 0f;
+
+    public override void Init(Creature owner, SkillData data = null)
+    {
+        base.Init(owner, data); 
+        _cooldownTick = SkillData.CoolTime;
+    }
+
+    public override void LevelUp(SkillData data)
+    {
+        base.LevelUp(data);
+        _cooldownTick = SkillData.CoolTime;
+    }
+
     public virtual void UpdateCoolTime(float deltaTime)
     {
         if (SkillData.Level < 1)
@@ -40,7 +32,7 @@ public abstract class SkillBase
         _cooldownTick = 0.0f;
         DoSkill();
     }
-
+    
     public abstract void DoSkill();
     public abstract void Clear();
 }
