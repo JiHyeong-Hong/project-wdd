@@ -8,11 +8,17 @@ public class Crocodile : Projectile
     private Rigidbody2D rb; // Rigidbody2D 컴포넌트에 대한 참조
     public float speed = 4f; // 이동 속도
 
-    private Vector2 heroDirection = Vector2.right; // 기본 방향을 오른쪽으로 설정
+    private Vector2 moveDirection;
+    private Hero hero; // Hero 객체 참조
+    public float crocodileHeightOffset = 5f; // Crocodile이 소환될 때 추가적으로 더해줄 높이 값
 
     void Start()
     {
         animator.ResetTrigger("CollisionDetected");
+
+        hero = FindObjectOfType<Hero>(); // Scene 내에서 Hero 객체를 찾아 참조를 저장
+
+        InitializeDirectionAndPosition();
     }
 
     public override bool Init()
@@ -31,30 +37,24 @@ public class Crocodile : Projectile
          return true; 
 }
 
-    // Crocodile 소환 위치 및 방향 설정을 위함
-    public void SetInitialPositionAndDirection(Transform arrowTransform, Vector2 direction)
-    {
-        this.transform.position = arrowTransform.position + new Vector3(0, arrowTransform.localScale.y / 2, 0);
-        this.heroDirection = direction.normalized; // 방향 저장
-    }
-
     void FixedUpdate()
     {
         Debug.Log("FixedUpdate call Move()");
         Move();
     }
-    
+
+    private void InitializeDirectionAndPosition()
+    {
+        // Hero의 바라보는 방향을 기준으로 Crocodile의 소환 위치와 이동 방향 설정
+        Vector3 heroDirection = (hero.Destination.position - hero.transform.position).normalized;
+        transform.position = hero.Destination.position + new Vector3(0, crocodileHeightOffset, 0);
+
+        // 이동 방향 설정
+        moveDirection = new Vector2(heroDirection.x, heroDirection.y).normalized * speed;
+    }
+
     protected override void Move()
     {
-        //// Skill 또는 SkillData가 null이면 이동을 중지
-        //if (Skill == null || Skill.SkillData == null)
-        //{
-        //    return; // 초기화되지 않았으므로 이동 처리를 중단
-        //}
-    
-        // 오브젝트의 앞 방향으로 지속적으로 이동
-        Vector2 moveDirection = heroDirection * speed;
-        Debug.Log($"Setting velocity to {moveDirection}");
         rb.velocity = moveDirection;
     }
 
