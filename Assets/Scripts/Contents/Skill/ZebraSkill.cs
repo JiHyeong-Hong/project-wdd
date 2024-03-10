@@ -18,7 +18,7 @@ public class ZebraSkill : SkillBase
         float boxHeight = 9f; // 가상의 네모칸 높이
         Vector2 topRight = centerPosition + new Vector2(boxWidth / 2, boxHeight / 2);            
 
-        Zebra zebra = Managers.Object.Spawn<Zebra>(topRight, SkillData.ProjectileId);
+        Zebra zebra = Managers.Object.Spawn<Zebra>(topRight, SkillData.Projectile);
         zebra.SetSpawnInfo(Owner, this, direction);
     }
 

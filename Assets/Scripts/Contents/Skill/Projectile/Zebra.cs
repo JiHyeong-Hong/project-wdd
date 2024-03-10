@@ -9,7 +9,9 @@ public class Zebra : Projectile
     
     float boxWidth = 5f; // 가상의 네모칸 너비
     float boxHeight = 9f; // 가상의 네모칸 높이
-    float moveDuration = 5f; // 이동하는 데 걸리는 시간
+    float moveDuration = 3f; // 이동하는 데 걸리는 시간
+
+    private Vector3 lastPlayerPosition;
     Vector2 centerPosition; 
     public override bool Init()
     {
@@ -45,24 +47,28 @@ public class Zebra : Projectile
             transform.SetParent(Managers.Object.Hero.gameObject.transform, true);
         }
 
-        MoveZebra();
+        // MoveZebra();
     }
 
     // 애니메이션, 이동
     private void MoveZebra()
     {        
         //Vector2 topRight = centerPosition + new Vector2(boxWidth / 2, boxHeight / 2);
-        //Vector2 topLeft = centerPosition + new Vector2(-boxWidth / 2, boxHeight / 2);
+        Vector2 topLeft = centerPosition + new Vector2(-boxWidth / 2, boxHeight / 2);
         //Vector2 bottomRight = centerPosition + new Vector2(boxWidth / 2, -boxHeight / 2);
         Vector2 bottomLeft = centerPosition + new Vector2(-boxWidth / 2, -boxHeight / 2);
 
         // 얼룩말 동작.
         Sequence sequence = DOTween.Sequence()
                .Append(Renderer.DOFade(1f, 0f))
-               .Append(transform.DOLocalMove(bottomLeft, moveDuration)).SetEase(Ease.Linear)               
+                  // .Append(transform.DOLocalMove(bottomLeft, moveDuration)).SetEase(Ease.Linear)               
+                  // .Append(transform.mo(bottomLeft, moveDuration)).SetEase(Ease.Linear)               
+                  // .Append(transform.DOMove(centerPosition, moveDuration)).SetEase(Ease.Linear)               
+               .Append(transform.DOMove(topLeft, moveDuration).SetEase(Ease.Linear)) // 왼쪽 위로 이동
+               .Append(transform.DOMove(bottomLeft, moveDuration).SetEase(Ease.Linear)) // 왼쪽 아래로 이동
                .AppendCallback(() =>
                {
-                   _collider.enabled = false;
+                   // _collider.enabled = false;
                    Animator.SetInteger("state", 4);
                })
                .InsertCallback(moveDuration, () =>
@@ -73,8 +79,22 @@ public class Zebra : Projectile
     }
 
     private void Update()
-    {        
+    {
+        //Vector2 topRight = centerPosition + new Vector2(boxWidth / 2, boxHeight / 2);
+        Vector2 topLeft = centerPosition + new Vector2(-boxWidth / 2, boxHeight / 2);
+        //Vector2 bottomRight = centerPosition + new Vector2(boxWidth / 2, -boxHeight / 2);
+        Vector2 bottomLeft = centerPosition + new Vector2(-boxWidth / 2, -boxHeight / 2);
+
         transform.rotation = Quaternion.identity;
+
+        if (Managers.Object.Hero.transform.position != lastPlayerPosition)
+        {
+            // 플레이어의 위치가 변경을때만 동작
+            // MoveZebra(); 
+            transform.DOMove(topLeft, moveDuration).SetEase(Ease.Linear);
+            transform.DOMove(bottomLeft, moveDuration).SetEase(Ease.Linear);
+            lastPlayerPosition = Managers.Object.Hero.transform.position; // 위치 업데이트
+        }
     }
 
     // 충돌 시 이벤트 트리거
