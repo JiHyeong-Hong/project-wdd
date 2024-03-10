@@ -85,7 +85,8 @@ public class Hero : Creature
 		if (IsValid(this) == false)
 			return;
 
-		SetRigidbodyVelocity(_moveDir * MoveSpeed);
+		SetRigidbodyVelocity(_moveDir * 10);
+		// SetRigidbodyVelocity(_moveDir * MoveSpeed);
 
 		// 테스트 용
 		if (Input.GetKeyDown(KeyCode.S))

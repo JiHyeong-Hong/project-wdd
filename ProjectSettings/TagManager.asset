@@ -3,12 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Map
+  - Area
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Dummy1
+  - Map_Walkable
   - Water
   - UI
   - Hero

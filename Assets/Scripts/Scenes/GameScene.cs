@@ -14,7 +14,7 @@ public class GameScene : BaseScene
 
         Managers.UI.ShowSceneUI<UI_GameScene>();
 
-        Managers.Object.Spawn<Hero>(new Vector3(0f, -4f, 0f), Define.HERO_ZOOKEEPER_ID);
+        Managers.Object.Spawn<Hero>(new Vector3(0f, -5f, 0f), Define.HERO_ZOOKEEPER_ID);
         Camera.main.GetOrAddComponent<FollowCamera>();
 
         //for (int i = 0; i < 5; ++i)
