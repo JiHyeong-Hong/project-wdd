@@ -23,7 +23,7 @@ public class Crocodile : Projectile
         InitializeDirectionAndPosition();
 
         // 충돌하지 않은 인스턴스는 자동으로 Despawn되도록 함
-        StartCoroutine(DespawnAfterTime(10f));
+        StartCoroutine(DespawnAfterTime(5f));
     }
 
     public override bool Init()
@@ -39,8 +39,11 @@ public class Crocodile : Projectile
          {
              return false;
          }
-         return true; 
-}
+
+        isInfinityDuration = true;
+
+        return true; 
+    }
 
     void FixedUpdate()
     {

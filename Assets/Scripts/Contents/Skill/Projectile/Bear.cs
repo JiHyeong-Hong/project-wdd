@@ -14,8 +14,11 @@ public class Bear : Projectile
 		canMove = false;
 		Animator = transform.GetChild(0).GetComponent<Animator>();
 		Renderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
-		
-		Despawn().Forget();
+
+		///
+        isInfinityDuration = true;
+		///
+        Despawn().Forget();
 		return true;
 	}
 
@@ -39,7 +42,15 @@ public class Bear : Projectile
 	}
 	private async UniTaskVoid Despawn()
 	{
-		await UniTask.Delay(TimeSpan.FromSeconds(GetAnimLength() + 0.15f));
-		Managers.Object.Despawn(this);
+        await UniTask.Delay(TimeSpan.FromSeconds(GetAnimLength() + 0.15f));
+		
+		// 객체가 아직 존재하는지 확인
+		if (this == null || gameObject == null)
+		{
+			return;
+		}
+		//
+      
+        Managers.Object.Despawn(this);
 	}
 }
