@@ -11,11 +11,11 @@ using SkillType = Define.SkillType;
 
 public class SkillManager
 {
-	private Dictionary<string, List<SkillBase>> allSkillDic = new Dictionary<string, List<SkillBase>>(); //string => 스킬 영문이름, List index => 스킬레벨
-	private Dictionary<SkillType, List<SkillBase>> usingSkillDic = new Dictionary<SkillType, List<SkillBase>>();
-	
-	private List<SkillBase> sampleSkillList = new List<SkillBase>();
-	private List<string> canPickSkillList = new List<string>(); //만랩이 아닌 스킬들 이름 저장한 리스트 (레벨업 가능)
+    public Dictionary<string, List<SkillBase>> allSkillDic { get; } = new Dictionary<string, List<SkillBase>>(); //string => 스킬 영문이름, List index => 스킬레벨
+    public Dictionary<SkillType, List<SkillBase>> usingSkillDic { get; } = new Dictionary<SkillType, List<SkillBase>>();
+
+    public List<SkillBase> sampleSkillList { get; }  = new List<SkillBase>();
+    public List<string> canPickSkillList { get; } = new List<string>(); //만랩이 아닌 스킬들 이름 저장한 리스트 (레벨업 가능)
 	
 	private bool isInit;
 
