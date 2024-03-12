@@ -36,7 +36,10 @@ public class Projectile : BaseObject
 		Skill = skill;
 
 		duration = skill.SkillData.Duration;
-		float angle = Util.VectorToAngle(direction);
+
+        Debug.Log($"[Projectile] SetSpawnInfo called. Duration set to: {duration}, SkillData Duration: {skill.SkillData.Duration}");
+
+        float angle = Util.VectorToAngle(direction);
 		transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
 	}
 	
@@ -58,9 +61,12 @@ public class Projectile : BaseObject
 			return;
 		
 		elapsedTime += Time.deltaTime;
-		if (elapsedTime > duration)
+        Debug.Log($"[Projectile] elapsedTime: {elapsedTime}, duration: {duration}");
+
+        if (elapsedTime > duration)
 		{
-			Managers.Object.Despawn(this);
+            Debug.Log("[Projectile] Duration exceeded, despawning...");
+            Managers.Object.Despawn(this);
 		}
 	}
 }

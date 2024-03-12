@@ -46,7 +46,8 @@ public class DolPhine : BaseObject
 		hitMonsterKeys = new();
 		removeList = new();
 		Renderer = GetComponentInChildren<SpriteRenderer>();
-		return true;
+
+        return true;
 	}
 	
 	/// <summary>
@@ -81,9 +82,31 @@ public class DolPhine : BaseObject
 		Owner = owner;
 		Skill = skill;
 
-		duration = skill.SkillData.Duration;
+		//duration = skill.SkillData.Duration;
+		duration = 5;
+        Debug.Log($"[DolPhine] SetSpawnInfo called. SkillData Duration: {skill.SkillData.Duration}, duration set to: {duration}");
+        //
 
-		hitMonsters.Clear();
+        //public void SetSpawnInfo(Creature owner, SkillBase skill, int level)
+        // 레벨에 따른 duration 설정
+        //switch (level)
+        //{
+        //    case 1:
+        //        duration = 5; // 1레벨일 때 5초
+        //        break;
+        //    case 2:
+        //        duration = 10; // 2레벨일 때 10초
+        //        break;
+        //    case 3:
+        //        duration = 15; // 3레벨일 때 15초
+        //        break;
+        //    default:
+        //        duration = 5; // 기본값
+        //        break;
+        //}
+	    //인스턴스가 생성되자마자 파괴되는 버그가 있어서 레벨에 따라 그냥 하드코딩 해버리는 것도...
+
+        hitMonsters.Clear();
 		hitMonsterKeys.Clear();
 		removeList.Clear();
 
@@ -144,10 +167,12 @@ public class DolPhine : BaseObject
 	private void UpdateDuration()
 	{
 		elapsedTime += Time.deltaTime;
-		if (elapsedTime > duration)
+
+        Debug.Log($"[DolPhine] elapsedTime: {elapsedTime}, duration: {duration}");
+
+        if (elapsedTime > duration)
 		{
 			Managers.Object.Despawn(this);
 		}
 	}
-
 }
