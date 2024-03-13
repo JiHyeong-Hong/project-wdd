@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -26,8 +27,11 @@ public class DolPhine : BaseObject
 	[SerializeField] private Transform sprite;
 	private readonly float SPEED = 2;
 
-	private float duration;
-	private float elapsedTime;
+    [SerializeField] private float duration = 5f;
+    //private float duration;
+
+
+    private float elapsedTime;
 	private float radius;
 
 	private HashSet<int> hitMonsterKeys;
@@ -37,7 +41,9 @@ public class DolPhine : BaseObject
 	public Creature Owner { get; private set; }
 	public SkillBase Skill { get; private set; }
 
-	public override bool Init()
+
+
+    public override bool Init()
 	{
 		if (base.Init() == false)
 			return false;
@@ -79,32 +85,11 @@ public class DolPhine : BaseObject
 
 	public void SetSpawnInfo(Creature owner, SkillBase skill)
 	{
-		Owner = owner;
+        Debug.Log("[DolPhine] SetSpawnInfo called.");
+        Owner = owner;
 		Skill = skill;
 
-		//duration = skill.SkillData.Duration;
-		duration = 5;
-        Debug.Log($"[DolPhine] SetSpawnInfo called. SkillData Duration: {skill.SkillData.Duration}, duration set to: {duration}");
-        //
-
-        //public void SetSpawnInfo(Creature owner, SkillBase skill, int level)
-        // 레벨에 따른 duration 설정
-        //switch (level)
-        //{
-        //    case 1:
-        //        duration = 5; // 1레벨일 때 5초
-        //        break;
-        //    case 2:
-        //        duration = 10; // 2레벨일 때 10초
-        //        break;
-        //    case 3:
-        //        duration = 15; // 3레벨일 때 15초
-        //        break;
-        //    default:
-        //        duration = 5; // 기본값
-        //        break;
-        //}
-	    //인스턴스가 생성되자마자 파괴되는 버그가 있어서 레벨에 따라 그냥 하드코딩 해버리는 것도...
+		duration = skill.SkillData.Duration;
 
         hitMonsters.Clear();
 		hitMonsterKeys.Clear();

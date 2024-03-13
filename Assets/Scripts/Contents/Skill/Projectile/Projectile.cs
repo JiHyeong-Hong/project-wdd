@@ -61,11 +61,9 @@ public class Projectile : BaseObject
 			return;
 		
 		elapsedTime += Time.deltaTime;
-        Debug.Log($"[Projectile] elapsedTime: {elapsedTime}, duration: {duration}");
 
         if (elapsedTime > duration)
 		{
-            Debug.Log("[Projectile] Duration exceeded, despawning...");
             Managers.Object.Despawn(this);
 		}
 	}
