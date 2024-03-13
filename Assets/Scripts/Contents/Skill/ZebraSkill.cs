@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// ¾ó·è¸» ½ºÅ³ Å¬·¡½º. @È«ÁöÇü
+// ï¿½ï¿½è¸» ï¿½ï¿½Å³ Å¬ï¿½ï¿½ï¿½ï¿½. @È«ï¿½ï¿½ï¿½ï¿½
 public class ZebraSkill : SkillBase
 {
     public override void DoSkill()
@@ -14,11 +14,11 @@ public class ZebraSkill : SkillBase
     private void SpawnZebras(Vector2 direction)
     {
         Vector2 centerPosition = Managers.Object.Hero.CenterPosition;
-        float boxWidth = 5f; // °¡»óÀÇ ³×¸ðÄ­ ³Êºñ
-        float boxHeight = 9f; // °¡»óÀÇ ³×¸ðÄ­ ³ôÀÌ
-        Vector2 topRight = centerPosition + new Vector2(boxWidth / 2, boxHeight / 2);            
+        float boxWidth = 5f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½Ä­ ï¿½Êºï¿½
+        float boxHeight = 9f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½Ä­ ï¿½ï¿½ï¿½ï¿½
+        Vector2 topRight = centerPosition + new Vector2(boxWidth / 2, boxHeight / 2);        
 
-        Zebra zebra = Managers.Object.Spawn<Zebra>(topRight, SkillData.ProjectileId);
+        Zebra zebra = Managers.Object.Spawn<Zebra>(topRight, 1);
         zebra.SetSpawnInfo(Owner, this, direction);
     }
 

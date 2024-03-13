@@ -39,11 +39,25 @@ public class Managers : MonoBehaviour
     {
         Init();
         StartCoroutine(s_instance._skill.CoInit());
-	}
+        StartCoroutine(Game.BossCount());
+    }
+
+	public bool boss;
 
     void Update()
     {
 		s_instance._skill.UpdateSkillCoolTime(Time.deltaTime);
+		
+		// if (!boss && Game.CurrentTime >= 5f)
+		// {
+		// 	boss = !boss;
+		// 	UI.ShowPopupUI<UI_Warning>();
+		// }
+		// if (!boss && Game.CurrentTime >= 10f)
+		// {
+		// 	boss = !boss;
+		// 	UI.ShowPopupUI<UI_Warning>();
+		// }
     }
 
     static void Init()

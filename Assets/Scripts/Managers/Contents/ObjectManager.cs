@@ -22,6 +22,10 @@ public class ObjectManager
 
     public Transform HeroRoot { get { return GetRootTransform("@Heroes"); } }
     public Transform MonsterRoot { get { return GetRootTransform("@Monsters"); } }
+    
+    //TODO 몬스터와 보스를 객체를 나눈어서 보는 경우 보스 루트를 생성 해야함 - 의논 필요
+    // public Transform BossRoot { get { return GetRootTransform("@Boss"); } }
+    
     public Transform ProjectileRoot { get { return GetRootTransform("@Projectiles"); } }
     public Transform ItemRoot { get { return GetRootTransform("@Item"); } }
     #endregion
@@ -53,6 +57,8 @@ public class ObjectManager
                     Monsters.Add(monster);
                     monster.SetInfo(templateID);
                     break;
+                
+                //TODO ECreatureType.Boss의 경우 코드 작성 
             }
         }
         else if (obj.ObjectType == EObjectType.Projectile)
