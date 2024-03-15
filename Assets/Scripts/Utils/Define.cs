@@ -40,6 +40,7 @@ public static class Define
 		Projectile,
 		Env,
 		Item,
+		Structure,
 	}
 
 	public enum ECreatureType
@@ -47,6 +48,7 @@ public static class Define
 		None,
 		Hero,
 		Monster,
+		Boss,
 		Npc,
 	}
 
@@ -58,6 +60,7 @@ public static class Define
 		Attack = 3,
 		Hit = 4,
 		Dead = 5,
+		Pattern = 6,
 	}
 
 	public enum ELayer
