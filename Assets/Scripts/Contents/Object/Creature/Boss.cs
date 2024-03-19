@@ -5,7 +5,7 @@ using UnityEngine;
 using static Define;
 using Random = UnityEngine.Random;
 
-public class Boss : Creature
+public class Boss : Monster
 {
     public int Phase { get; set; } //현재 보스 페이즈
 
@@ -15,7 +15,8 @@ public class Boss : Creature
     public int[,] Pattern_Percent { get; set; } //패턴 확률 배열 - [페이즈][확률] 
 
     //[0][50,50,0], [1][20,40,40], [2][10, 45, 45], [3][10, 45, 45]
-    public float cooltime { get; set; }
+    
+    public float cooltime;
 
     public int prepatternidx;
 
@@ -29,15 +30,10 @@ public class Boss : Creature
         _hero = Managers.Object.Hero;
         Phase_Percent = new[] { 70, 50, 30 };
         Pattern_Percent = new int[,] { { 50, 50, 0 }, { 20, 40, 40 }, { 10, 45, 45 }, { 10, 45, 45 } };
-        StartCoroutine(CoUpdateBossAI());
         return true;
     }
 
     public Coroutine PlayCo;
-    // protected override void UpdateMove()
-    // {
-    //     
-    // }
 
     protected override void UpdatePattern()
     {
@@ -46,8 +42,6 @@ public class Boss : Creature
         UpdateAITick = cooltime;
 
         SelectPattern(Phase);
-
-        //접근 = Move, 원거리 공격 = Attack, 돌진 = Skill
     }
 
     public void SelectPattern(int Phase)
@@ -96,70 +90,20 @@ public class Boss : Creature
     public override void SetInfo(int templateID)
     {
         base.SetInfo(templateID);
-
-        CreatureState = ECreatureState.Move;
-
-        Renderer.sortingOrder = SortingLayers.MONSTER;
-
-        Data.MonsterData monsterData = CreatureData as Data.MonsterData;
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log("부딫힘");
-        BaseObject target = other.GetComponent<BaseObject>();
-        if (target.IsValid() == false)
-            return;
-
-        Creature creature = target as Creature;
-        if (creature == null || creature.CreatureType != Define.ECreatureType.Hero)
-            return;
-
-        // TODO
-        target.OnDamaged(this, null);
-    }
+    
 
     #region Battle
-
-    public override void OnDamaged(BaseObject attacker, SkillBase skill)
-    {
-        base.OnDamaged(attacker, skill);
-    }
-
-    public override void OnDead(BaseObject attacker, SkillBase skill)
-    {
-        base.OnDead(attacker, skill);
-
-        int rand = Random.Range(0, 100);
-
-        //TODO 게임 종료
-    }
 
     #endregion
 
     #region AI
 
+    protected override void UpdateAttack()
+    {
+        Debug.Log("BossAttack!!!");
+    }
     public Hero _hero;
-
-    protected override void UpdateMove()
-    {
-        _hero = Managers.Object.Hero;
-
-        if (_hero.IsValid())
-        {
-            Vector2 dest = (_hero.transform.position - transform.position).normalized;
-
-            //  SetRigidbodyVelocity(dest * MoveSpeed);
-            SetRigidbodyVelocity(dest * 0);
-        }
-        else
-            SetRigidbodyVelocity(Vector2.zero);
-    }
-
-    protected override void UpdateHit()
-    {
-        CreatureState = ECreatureState.Move;
-    }
 
     IEnumerator Pattern(int idx_Pattern)
     {

@@ -26,11 +26,23 @@ public class Monster : Creature
     {
         base.SetInfo(templateID);
 
-        CreatureState = ECreatureState.Move;
+        CreatureState = ECreatureState.Attack;
 
         Renderer.sortingOrder = SortingLayers.MONSTER;
-
+        _hero = Managers.Object.Hero;
+        
         Data.MonsterData monsterData = CreatureData as Data.MonsterData;
+        //몬스터 클래스에서 몬스터와 보스 타입 재분류
+        switch (monsterData.type)
+        {
+            case 1:
+                CreatureType = ECreatureType.Monster;
+                break;
+            case 2:
+                CreatureType = ECreatureType.Boss;
+                break;
+        }
+        
         DropItemID = monsterData.DropItemID;
         DropPersent = monsterData.DropPersent;
     }
@@ -71,17 +83,31 @@ public class Monster : Creature
 
     #region AI
     private Hero _hero;
-
-    protected override void UpdateMove()
+    private float distance = 0f;
+    
+    protected override void UpdateAttack()
     {
-        _hero = Managers.Object.Hero;
-
+        distance = Vector2.Distance(_hero.transform.position, this.transform.position);
+        
         if (_hero.IsValid())
         {
             Vector2 dest = (_hero.transform.position - transform.position).normalized;
 
-          //  SetRigidbodyVelocity(dest * MoveSpeed);
-            SetRigidbodyVelocity(dest * 0);
+            switch (CreatureData.Atktype)
+            {
+                case 1:
+                    SetRigidbodyVelocity(dest * MoveSpeed);
+                    Debug.Log("근접 공격!!");
+                    break;
+                case 2:
+                    if(distance >= 5)
+                        // Debug.Log("근접 공격!!");
+                        SetRigidbodyVelocity(dest * MoveSpeed);
+                    else
+                        //TODO 원거리 공격 코루틴 작성 필요 - 원거리 공격중 Creature.UpdateAITick 시간 변경후 루프 시간 설정할 예정 
+                        SetRigidbodyVelocity(dest * 0);
+                    break;
+            }
         }
         else
             SetRigidbodyVelocity(Vector2.zero);
@@ -89,7 +115,7 @@ public class Monster : Creature
 
     protected override void UpdateHit()
     {
-        CreatureState = ECreatureState.Move;
+        CreatureState = ECreatureState.Attack;
     }
     #endregion
 }

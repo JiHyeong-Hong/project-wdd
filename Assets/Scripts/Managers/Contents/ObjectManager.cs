@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Data;
 using UnityEngine;
 using static Define;
 
@@ -63,10 +64,12 @@ public class ObjectManager
                     break;
                 case ECreatureType.Boss:
                     obj.transform.parent = (parent == null) ? BossRoot : parent;
-                    Boss boss = creature as Boss;
+                    //TODO 보스 소환 코드 수정 필요
+                    Monster boss2 = creature as Monster;
+                    // Boss boss = creature as Boss;
                     //TODO 몬스터 통합하면 boss 수정
-                    Bosses.Add(boss);
-                    // boss.SetInfo(templateID);
+                    Monsters.Add(boss2);
+                    boss2.SetInfo(templateID);
                     break;
                 
                 //TODO ECreatureType.Boss의 경우 코드 작성 
