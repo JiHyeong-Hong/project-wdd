@@ -101,18 +101,21 @@ namespace Data
 		}
 	}
 
-    #endregion
+	#endregion
 
-    #region SkillData
+	#region SkillData
 
 	[Serializable]
 	public class SkillData
 	{
+		// Common
 		public int DataId;
 		public string Name;
 		public string ClassName;
 		public Define.SkillType skillType;
 		public int Level;
+
+        //ActtiveSkill_Stat
 		public int Projectile;
 		public float CastAngle;
 		public int Damage;
@@ -125,6 +128,13 @@ namespace Data
 		public int KnockbackPower;
 		public float StunTime;
 
+        //PassiveSkill_Stat
+        public int StatType;
+		public int StatApply;
+		public float StatValue;
+		public int SkillGetType;
+		public int SkillMaxLv;
+		public string SkillIconImg;
 	}
 
 	[Serializable]

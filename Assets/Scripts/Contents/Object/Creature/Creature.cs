@@ -12,6 +12,9 @@ public class Creature : BaseObject
     public Data.CreatureData CreatureData { get; private set; }
     public ECreatureType CreatureType { get; protected set; } = ECreatureType.None;
 
+    // 패시브 스킬의 리스트
+    public List<Data.SkillData> PassiveSkills { get; protected set; } = new List<Data.SkillData>();
+
     #region Stats
     public int DataID { get; set; }
     public int Hp { get; set; }
