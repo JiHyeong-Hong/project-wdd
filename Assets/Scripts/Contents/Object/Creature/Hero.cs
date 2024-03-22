@@ -92,13 +92,14 @@ public class Hero : Creature
 		// 테스트 용
 		if (Input.GetKeyDown(KeyCode.S))
 		{
-			for (int i = 0; i < 5; ++i)
-				Managers.Object.Spawn<Monster>(new Vector3(-2f + i, -1f, 0f), Define.MONSTER_SECURITY1_ID);
+			//몬스터 출현 갯수 수정
+			// for (int i = 0; i < 1; ++i)
+			// 	Managers.Object.Spawn<Monster>(new Vector3(-2f + i, -1f, 0f), Define.MONSTER_SECURITY1_ID);
 
-			for (int i = 0; i < 5; ++i)
-				Managers.Object.Spawn<Monster>(new Vector3(-2f + i, 0f, 0f), Define.MONSTER_SECURITY2_ID);
+			// for (int i = 0; i < 1; ++i)
+			// 	Managers.Object.Spawn<Monster>(new Vector3(-2f + i, 0f, 0f), Define.MONSTER_SECURITY2_ID);
 
-			for (int i = 0; i < 5; ++i)
+			for (int i = 0; i < 1; ++i)
 				Managers.Object.Spawn<Monster>(new Vector3(-2f + i, 1f, 0f), Define.MONSTER_SECURITY3_ID);
 		}
 	}
