@@ -39,7 +39,8 @@ public class Managers : MonoBehaviour
     {
         Init();
         StartCoroutine(s_instance._skill.CoInit());
-        StartCoroutine(Game.BossCount());
+        //TODO Eung 보스 출현 카운트
+        // StartCoroutine(Game.BossCount());
     }
 
 	public bool boss;

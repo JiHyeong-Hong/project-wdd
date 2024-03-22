@@ -84,6 +84,12 @@ public class Creature : BaseObject
     {
         RigidBody.velocity = velocity;
 
+        SetImageDirecton(velocity);
+    }
+    
+    //이동하지않고 이미지만 좌우 반전 함수
+    protected void SetImageDirecton(Vector2 velocity)
+    {
         if (velocity.x < 0)
             LookLeft = true;
         else if (velocity.x > 0)
@@ -91,7 +97,7 @@ public class Creature : BaseObject
     }
 
     #region AI
-    public float UpdateAITick { get; protected set; } = 100f;
+    public float UpdateAITick { get; protected set; } = 0.0f;
 
     protected IEnumerator CoUpdateAI()
     {
@@ -125,7 +131,7 @@ public class Creature : BaseObject
                 yield return null;
         }
     }
-    //TODO 몬스터와 보스를 하나의 Monster객체로 만들면 사실상필요없는 코드 - CoUpdateAI와 통합가능
+    //TODO Eung 몬스터와 보스를 하나의 Monster객체로 만들면 사실상필요없는 코드 - CoUpdateAI와 통합가능
     protected IEnumerator CoUpdateBossAI()
     {
         while (true)

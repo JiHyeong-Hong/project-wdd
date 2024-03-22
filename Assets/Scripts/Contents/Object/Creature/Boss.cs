@@ -46,7 +46,7 @@ public class Boss : Monster
 
     public void SelectPattern(int Phase)
     {
-        //TODO 코드다듬기 필요
+        //TODO Eung 코드다듬기 필요
         int min = 1;
         int max = 101;
         int per = Random.Range(min, max - Pattern_Percent[Phase, prepatternidx]);

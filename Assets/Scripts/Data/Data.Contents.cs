@@ -12,11 +12,11 @@ namespace Data
 	public class CreatureData
 	{
 		public int DataId;
-		//TODO 몬스터 타입 - 테이블에 따라 변경필요
+		//TODO Eung 몬스터 타입 - 테이블에 따라 변경필요
 		public int type;
 		public string DescriptionTextID;
 		public int MaxHp;
-		//TODO 공격 타입 - 테이블에 따라 변경필요
+		//TODO Eung 공격 타입 - 테이블에 따라 변경필요
 		public int Atktype;
 		public int Atk;
 		public float MoveSpeed;

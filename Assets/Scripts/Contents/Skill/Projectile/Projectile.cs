@@ -34,16 +34,25 @@ public class Projectile : BaseObject
 	{
 		Owner = owner;
 		Skill = skill;
-
-		duration = skill.SkillData.Duration;
+		
+		//duration = skill.SkillData.Duration;
+		//TODO Eung 스킬이 아닌 경우 회전값 0으로 일단 둠
+		duration = skill != null ? skill.SkillData.Duration : 0;
 		float angle = Util.VectorToAngle(direction);
 		transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
 	}
 	
+	
 	protected virtual void Move()
 	{
 		if (canMove)
-			transform.Translate(Vector2.up * (Skill.SkillData.AttackSpeed * Time.deltaTime));
+		{
+			if(Skill != null)
+				transform.Translate(Vector2.up * (Skill.SkillData.AttackSpeed * Time.deltaTime));
+			else
+				//스킬이 없는 경우 속도 고정으로 이동
+				transform.Translate(Vector2.up * (1 * Time.deltaTime));
+		}
 	}
 
 	void Update()
