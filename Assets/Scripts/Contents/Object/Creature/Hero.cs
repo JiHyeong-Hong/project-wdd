@@ -35,9 +35,11 @@ public class Hero : Creature
 		}
 	}
 
+    private bool isInvincible = false;	//jh
+
     #endregion
 
-	public Transform Pivot { get; private set; }
+    public Transform Pivot { get; private set; }
 	public Transform Destination { get; private set; }
 
 
@@ -85,8 +87,7 @@ public class Hero : Creature
 		if (IsValid(this) == false)
 			return;
 
-		SetRigidbodyVelocity(_moveDir * 10);
-		// SetRigidbodyVelocity(_moveDir * MoveSpeed);
+		SetRigidbodyVelocity(_moveDir * MoveSpeed);
 
 		// 테스트 용
 		if (Input.GetKeyDown(KeyCode.S))
@@ -135,7 +136,10 @@ public class Hero : Creature
 
 	public override void OnDamaged(BaseObject attacker, SkillBase skill)
 	{
-		base.OnDamaged(attacker, skill);
+        if (isInvincible)
+            return; // 무적 상태일 때는 아무런 처리를 하지 않음
+
+        base.OnDamaged(attacker, skill);
 
 		Managers.Game.RefreshUI();
 	}
@@ -168,6 +172,29 @@ public class Hero : Creature
 
 		Managers.Game.OnLevelUp?.Invoke();
 	}
+
+    /// jh 부스터 발판 밟았을 시 속도 변화
+    public IEnumerator SpeedBoost(float duration, float multiplier)
+    {
+        float originalSpeed = MoveSpeed; 
+        MoveSpeed *= multiplier; // 속도 증가
+
+        isInvincible = true; // 무적 상태 설정
+
+        // duration 시간만큼 대기
+        yield return new WaitForSeconds(duration);
+
+        // 서서히 속도를 원래대로 돌려놓음
+        float elapsed = 0;
+        while (elapsed < duration)
+        {
+            MoveSpeed = Mathf.Lerp(MoveSpeed, originalSpeed, elapsed / duration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        MoveSpeed = originalSpeed; // 부스트 끝나면 다시 원래 속도로 설정
+    }
 
     #endregion
 }
