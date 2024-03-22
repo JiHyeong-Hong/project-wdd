@@ -8,25 +8,20 @@ public class BigWistleSkill : SkillBase
    public override void Clear()
     {
         Owner.PassiveSkills.Remove(SkillData);
-        UpdateBuff(SkillData, true);
+        UpdatePassive(SkillData, true);
     }
 
     public override void DoSkill()
     {
         Owner.PassiveSkills.Add(SkillData);
-        UpdateBuff(SkillData);
+        UpdatePassive(SkillData);
     }
 
 
-    private void UpdateBuff(SkillData skillData, bool removeBuff = false)
+    private void UpdatePassive(SkillData skillData, bool removePassive = false)
     {
-        int operatorValue = removeBuff ? -1 : 1;
-
-        //MaxHp += skillData.MaxHp * operatorValue;
-        //Hp += skillData.MaxHp * operatorValue;
-        //Atk += skillData.Atk * operatorValue;
-        //MoveSpeed += skillData.MoveSpeed * operatorValue;
-        Debug.Log($"isRemove = {removeBuff} UpdateBuff {skillData.StatValue} ");
-
+        int operatorValue = removePassive ? -1 : 1;
+        SetPassive((Define.PassiveSkillStatusType)skillData.StatType, operatorValue);
+        Debug.Log($"isRemove = {removePassive} UpdateBuff {skillData.StatValue} ");
     }
 }

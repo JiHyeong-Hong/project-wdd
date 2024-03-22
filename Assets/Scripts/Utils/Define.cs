@@ -82,7 +82,25 @@ public static class Define
 		Breakthrogh = 3
 	}
 
-	public const float DEFAULT_SPEED = 3;
+	public enum PassiveSkillStatusType
+	{
+		CoolTimeDown = 1,
+		Farming = 2,
+		Exp = 3,
+		Gold = 4,
+		Duration = 5,
+		Recovery = 6,
+		Hp = 7,
+		MoveSpeed = 8,
+		Attack = 9,
+		AttackSpeed = 10,
+		AttackRange = 11,
+		DamageCare = 12,
+		CastPer = 13,
+    }
+
+
+    public const float DEFAULT_SPEED = 3;
 	public const int MAX_SKILL_LEVEL = 5;
 	public const int MAX_LEVEL = 60;
 

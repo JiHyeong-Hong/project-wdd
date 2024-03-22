@@ -17,8 +17,8 @@ public class Creature : BaseObject
 
     #region Stats
     public int DataID { get; set; }
-    public int Hp { get; set; }
-    public int MaxHp { get; set; }
+    public float Hp { get; set; }
+    public float MaxHp { get; set; }
     public int Atk { get; set; }
     public float MoveSpeed { get; set; }
     #endregion

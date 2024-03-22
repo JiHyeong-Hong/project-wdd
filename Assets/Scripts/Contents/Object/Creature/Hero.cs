@@ -19,8 +19,8 @@ public class Hero : Creature
 	public float ItemAcquireRange { get; set; }
 	public float ResistDisorder { get; set; }
 
-	private int _exp = 0;
-	public int Exp
+	private float _exp = 0;
+	public float Exp
 	{
 		get
 		{

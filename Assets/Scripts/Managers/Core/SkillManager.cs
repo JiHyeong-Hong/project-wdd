@@ -131,7 +131,10 @@ public class SkillManager
 			ownSkill.SetInfo(Managers.Data.SkillDic[skillID]);
 			ownSkill.SetOwner(Managers.Object.Hero);
 
-			usingSkillDic[ownSkill.SkillData.skillType].Add(ownSkill);
+			if (ownSkill.SkillData.skillType == Define.SkillType.Passive) ownSkill.DoSkill();
+
+
+            usingSkillDic[ownSkill.SkillData.skillType].Add(ownSkill);
 		}
 	}
 
@@ -196,27 +199,26 @@ public class SkillManager
 
 		bool hasSkill = false;
 
-		if (skillType == SkillType.Active)
-		{
-			foreach (var skill in usingSkillDic[skillType])
-			{
-				if (className.Equals(skill.SkillData.ClassName))
-				{
-					skill.LevelUp(allSkillDic[className][skill.SkillData.Level + 1].SkillData);
-					hasSkill = true;
+        foreach (var skill in usingSkillDic[skillType])
+        {
+            if (className.Equals(skill.SkillData.ClassName))
+            {
+                skill.LevelUp(allSkillDic[className][skill.SkillData.Level + 1].SkillData);
+                hasSkill = true;
 
-					//만렙이면 뽑을 수 있는 스킬목록에서 삭제
-					if (skill.SkillData.Level == Define.MAX_SKILL_LEVEL)
-					{
-						canPickSkillList.Remove(skill.SkillData.ClassName);
-					}
-					break;
-				}
-			}
-		}
+                //만렙이면 뽑을 수 있는 스킬목록에서 삭제
+                if (skill.SkillData.Level == Define.MAX_SKILL_LEVEL)
+                {
+                    canPickSkillList.Remove(skill.SkillData.ClassName);
+                }
+                break;
+            }
+        }
 
-		// 업그레이드 할 스킬이 없음 => 스킬 추가
-		if (!hasSkill)
+
+
+        // 업그레이드 할 스킬이 없음 => 스킬 추가
+        if (!hasSkill)
 		{
 			AddSkill(skillData);
 		}
