@@ -140,7 +140,7 @@ public class Hero : Creature
         if (isInvincible)
             return; // 무적 상태일 때는 아무런 처리를 하지 않음
 
-        base.OnDamaged(attacker, skill);
+        base.OnDamaged(attacker, skill);	
 
 		Managers.Game.RefreshUI();
 	}

@@ -347,7 +347,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7077649311484578813}
   - component: {fileID: 603181181606511709}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Map_Area
   m_TagString: Area
   m_Icon: {fileID: 0}

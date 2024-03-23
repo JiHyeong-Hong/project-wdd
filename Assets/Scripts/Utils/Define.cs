@@ -112,6 +112,10 @@ public static class Define
 	public const int MONSTER_SECURITY1_ID = 411;
 	public const int MONSTER_SECURITY2_ID = 412;
 	public const int MONSTER_SECURITY3_ID = 413;
+
+	// 현재 임시 테스트용. @홍지형 240323
+    public const int MONSTER_SHOOTER_ID = 414; // 길리슈터. @홍지형
+    public const int SKILL_STUNBULLET_ID = 20000; // 길리슈터 마취총알. @홍지형 TODO: 무기 Enum 체계 변경점 적용 필요. 240219
 }
 
 public static class SortingLayers

@@ -136,7 +136,8 @@ public class SkillManager
 
             usingSkillDic[ownSkill.SkillData.skillType].Add(ownSkill);
 		}
-	}
+
+    }
 
 	/// <summary>
 	/// 스킬 3개 랜덤 뽑기

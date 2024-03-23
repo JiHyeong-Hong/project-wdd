@@ -191,7 +191,7 @@ public class Creature : BaseObject
 
         int finalDamage = (skill == null) ? creature.Atk : skill.SkillData.Damage;
         Hp = Mathf.Clamp(Hp - finalDamage, 0, MaxHp);
-
+        Debug.Log($"[{gameObject.name}] Hit! HP({Hp}/{MaxHp})"); // 디버깅용. 삭제가능 @홍지형
         if (Hp <= 0)
         {
             OnDead(attacker, skill);
