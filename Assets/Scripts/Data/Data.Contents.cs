@@ -118,7 +118,7 @@ namespace Data
         //ActtiveSkill_Stat
 		public int Projectile;
 		public float CastAngle;
-		public int Damage;
+		public float Damage;
 		public float AttackSpeed;
 		public float AttackRange;
 		public float ConditionRange;

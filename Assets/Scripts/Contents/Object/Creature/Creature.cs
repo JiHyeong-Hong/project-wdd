@@ -19,7 +19,7 @@ public class Creature : BaseObject
     public int DataID { get; set; }
     public float Hp { get; set; }
     public float MaxHp { get; set; }
-    public int Atk { get; set; }
+    public float Atk { get; set; }
     public float MoveSpeed { get; set; }
     #endregion
 
@@ -145,7 +145,7 @@ public class Creature : BaseObject
         if (creature == null)
             return;
 
-        int finalDamage = (skill == null) ? creature.Atk : skill.SkillData.Damage;
+        float finalDamage = (skill == null) ? creature.Atk : skill.SkillData.Damage + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Attack);
         Hp = Mathf.Clamp(Hp - finalDamage, 0, MaxHp);
 
         if (Hp <= 0)
