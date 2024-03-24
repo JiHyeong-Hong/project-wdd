@@ -12,8 +12,12 @@ namespace Data
 	public class CreatureData
 	{
 		public int DataId;
+		//TODO Eung 몬스터 타입 - 테이블에 따라 변경필요
+		public int type;
 		public string DescriptionTextID;
 		public int MaxHp;
+		//TODO Eung 공격 타입 - 테이블에 따라 변경필요
+		public int Atktype;
 		public int Atk;
 		public float MoveSpeed;
 		public float ResistDisorder;
@@ -101,21 +105,24 @@ namespace Data
 		}
 	}
 
-    #endregion
+	#endregion
 
-    #region SkillData
+	#region SkillData
 
 	[Serializable]
 	public class SkillData
 	{
+		// Common
 		public int DataId;
 		public string Name;
 		public string ClassName;
 		public Define.SkillType skillType;
 		public int Level;
+
+        //ActtiveSkill_Stat
 		public int Projectile;
 		public float CastAngle;
-		public int Damage;
+		public float Damage;
 		public float AttackSpeed;
 		public float AttackRange;
 		public float ConditionRange;
@@ -125,6 +132,13 @@ namespace Data
 		public int KnockbackPower;
 		public float StunTime;
 
+        //PassiveSkill_Stat
+        public int StatType;
+		public int StatApply;
+		public float StatValue;
+		public int SkillGetType;
+		public int SkillMaxLv;
+		public string SkillIconImg;
 	}
 
 	[Serializable]
