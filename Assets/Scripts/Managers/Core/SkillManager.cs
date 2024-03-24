@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Data;
-using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using SkillType = Define.SkillType;
@@ -28,9 +27,11 @@ public class SkillManager
 			usingSkillDic.Add(skillType, new List<SkillBase>());
 		}
 
+		RegisterPassiveSkill();
 		RegisterAllSkills();
-		Managers.Game.OnLevelUp += CreateRandomSkills;
-		
+
+        Managers.Game.OnLevelUp += CreateRandomSkills;
+
 		isInit = true;
 	}
 
@@ -224,4 +225,12 @@ public class SkillManager
 			AddSkill(skillData);
 		}
 	}
+
+	private void RegisterPassiveSkill()
+	{
+		foreach (var item in usingSkillDic[SkillType.Passive])
+		{
+			PassiveHelper.Instance.SetPassive(item.SkillData);
+        }
+    }
 }

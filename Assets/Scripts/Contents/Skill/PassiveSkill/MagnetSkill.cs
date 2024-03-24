@@ -7,21 +7,18 @@ public class MagnetSkill : SkillBase
 {
     public override void Clear()
     {
-        Owner.PassiveSkills.Remove(SkillData);
-        UpdatePassive(SkillData, true);
+        UpdatePassive(true);
     }
 
     public override void DoSkill()
     {
-        Owner.PassiveSkills.Add(SkillData);
-        UpdatePassive(SkillData);
+        UpdatePassive();
     }
 
 
-    private void UpdatePassive(SkillData skillData, bool removePassive = false)
+    private void UpdatePassive(bool removePassive = false)
     {
         int operatorValue = removePassive ? -1 : 1;
-        SetPassive((Define.PassiveSkillStatusType)skillData.StatType, operatorValue);
-        Debug.Log($"isRemove = {removePassive} UpdateBuff {skillData.StatValue} ");
+        SetPassive(operatorValue);
     }
 }

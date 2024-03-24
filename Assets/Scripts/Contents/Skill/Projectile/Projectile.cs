@@ -35,7 +35,7 @@ public class Projectile : BaseObject
 		Owner = owner;
 		Skill = skill;
 
-		duration = skill.SkillData.Duration;
+		duration = skill.SkillData.Duration + PassiveHelper.Instance.GetPassiveValue(Define.PassiveSkillStatusType.Duration);
 
         Debug.Log($"[Projectile] SetSpawnInfo called. Duration set to: {duration}, SkillData Duration: {skill.SkillData.Duration}");
 
@@ -46,7 +46,7 @@ public class Projectile : BaseObject
 	protected virtual void Move()
 	{
 		if (canMove)
-			transform.Translate(Vector2.up * (Skill.SkillData.AttackSpeed * Time.deltaTime));
+			transform.Translate(Vector2.up * (Skill.SkillData.AttackSpeed + PassiveHelper.Instance.GetPassiveValue(Define.PassiveSkillStatusType.AttackSpeed) * Time.deltaTime));
 	}
 
 	void Update()
