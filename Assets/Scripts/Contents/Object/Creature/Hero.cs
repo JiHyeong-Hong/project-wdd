@@ -73,8 +73,10 @@ public class Hero : Creature
 		Level = heroData.Level;
 		MaxExp = heroData.MaxExp;
 		Exp = 0;
-		ItemAcquireRange = heroData.ItemAcquireRange;
-		ResistDisorder = heroData.ResistDisorder;
+		MaxHp = heroData.MaxHp + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Hp);
+		Hp = heroData.MaxHp + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Hp);
+		ItemAcquireRange = heroData.ItemAcquireRange + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Farming);
+		ResistDisorder = heroData.ResistDisorder + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.DamageCare);
 
 		// foreach (int skillID in hereData.SkillIdList)
 		// 	AddSkill(skillID);
@@ -161,14 +163,14 @@ public class Hero : Creature
 
 		Level += 1;
 		Data.HeroLevelData heroLevelData = Managers.Data.HeroLevelDic[DataID + Level];
-
+		
 		Exp = 0;
-		MaxHp = heroLevelData.MaxHp;
-		Hp = heroLevelData.MaxHp;
+		MaxHp = heroLevelData.MaxHp + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Hp);
+		Hp = heroLevelData.MaxHp + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Hp);
 		MaxExp = heroLevelData.Exp;
-		MoveSpeed = (heroLevelData.MoveSpeed / 100.0f) * Define.DEFAULT_SPEED;
-		ItemAcquireRange = heroLevelData.ItemAcquireRange;
-		ResistDisorder = heroLevelData.ResistDisorder;
+		MoveSpeed = ((heroLevelData.MoveSpeed + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.MoveSpeed)) / 100.0f) * Define.DEFAULT_SPEED;
+		ItemAcquireRange = heroLevelData.ItemAcquireRange + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Farming);
+		ResistDisorder = heroLevelData.ResistDisorder + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.DamageCare);
 
 		Managers.Game.OnLevelUp?.Invoke();
 	}

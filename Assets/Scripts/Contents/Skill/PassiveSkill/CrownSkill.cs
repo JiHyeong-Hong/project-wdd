@@ -7,13 +7,11 @@ public class CrownSkill : SkillBase
 {
     public override void Clear()
     {
-        Owner.PassiveSkills.Remove(SkillData);
         UpdatePassive(true);
     }
 
     public override void DoSkill()
     {
-        Owner.PassiveSkills.Add(SkillData);
         UpdatePassive();
     }
 

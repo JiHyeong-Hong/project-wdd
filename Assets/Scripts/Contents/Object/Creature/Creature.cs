@@ -12,9 +12,6 @@ public class Creature : BaseObject
     public Data.CreatureData CreatureData { get; private set; }
     public ECreatureType CreatureType { get; protected set; } = ECreatureType.None;
 
-    // 패시브 스킬의 리스트
-    public List<Data.SkillData> PassiveSkills { get; protected set; } = new List<Data.SkillData>();
-
     #region Stats
     public int DataID { get; set; }
     public float Hp { get; set; }
@@ -145,7 +142,14 @@ public class Creature : BaseObject
         if (creature == null)
             return;
 
-        float finalDamage = (skill == null) ? creature.Atk : skill.SkillData.Damage + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Attack);
+        float finalDamage = 0;
+        if (skill == null)
+            finalDamage = creature.Atk;
+        else if(CreatureType == ECreatureType.Hero)
+            finalDamage = skill.SkillData.Damage + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Attack);
+        else if(CreatureType == ECreatureType.Monster)
+            finalDamage = skill.SkillData.Damage;
+
         Hp = Mathf.Clamp(Hp - finalDamage, 0, MaxHp);
 
         if (Hp <= 0)
