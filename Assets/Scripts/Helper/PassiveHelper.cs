@@ -4,21 +4,21 @@ using static Define;
 
 public struct PassiveSkill
 {
-    public float coolDown;
-    public float farming;
-    public float exp;
-    public float gold;
-    public float duration;
-    public float recovery;
-    public float hp;
-    public float moveSpeed;
-    public float attack;
-    public float attackSpeed;
-    public float attackRange;
-    public float damageCare;
-    public float castPer;
-    public float castSpeed;
-    public float castRange;
+    public float CoolDown;
+    public float Farming;
+    public float Exp;
+    public float Gold;
+    public float Duration;
+    public float Recovery;
+    public float HP;
+    public float MoveSpeed;
+    public float Attack;
+    public float AttackSpeed;
+    public float AttackRange;
+    public float DamageCare;
+    public float CastPer;
+    public float CastSpeed;
+    public float CastRange;
 }
 
 public class PassiveHelper
@@ -42,43 +42,43 @@ public class PassiveHelper
         switch ((PassiveSkillStatusType)skillData.StatType)
         {
             case PassiveSkillStatusType.CoolTimeDown:
-                passiveSkill.coolDown += stateValue;
+                passiveSkill.CoolDown += stateValue;
                 break;
             case PassiveSkillStatusType.Farming:
-                passiveSkill.farming += stateValue;
+                passiveSkill.Farming += stateValue;
                 break;
             case PassiveSkillStatusType.Exp:
-                passiveSkill.exp += stateValue;
+                passiveSkill.Exp += stateValue;
                 break;
             case PassiveSkillStatusType.Gold:
-                passiveSkill.gold += stateValue;
+                passiveSkill.Gold += stateValue;
                 break;
             case PassiveSkillStatusType.Duration:
-                passiveSkill.duration += stateValue;
+                passiveSkill.Duration += stateValue;
                 break;
             case PassiveSkillStatusType.Recovery:
-                passiveSkill.recovery += stateValue;
+                passiveSkill.Recovery += stateValue;
                 break;
             case PassiveSkillStatusType.Hp:
-                passiveSkill.hp += stateValue;
+                passiveSkill.HP += stateValue;
                 break;
             case PassiveSkillStatusType.MoveSpeed:
-                passiveSkill.moveSpeed += stateValue;
+                passiveSkill.MoveSpeed += stateValue;
                 break;
             case PassiveSkillStatusType.Attack:
-                passiveSkill.attack += stateValue;
+                passiveSkill.Attack += stateValue;
                 break;
             case PassiveSkillStatusType.AttackSpeed:
-                passiveSkill.attackSpeed += stateValue;
+                passiveSkill.AttackSpeed += stateValue;
                 break;
             case PassiveSkillStatusType.AttackRange:
-                passiveSkill.attackRange += stateValue;
+                passiveSkill.AttackRange += stateValue;
                 break;
             case PassiveSkillStatusType.DamageCare:
-                passiveSkill.damageCare += stateValue;
+                passiveSkill.DamageCare += stateValue;
                 break;
             case PassiveSkillStatusType.CastPer:
-                passiveSkill.castPer += stateValue;
+                passiveSkill.CastPer += stateValue;
                 break;
             default:
                 break;
@@ -87,6 +87,7 @@ public class PassiveHelper
 
     public float GetPassiveValue(PassiveSkillStatusType value)
     {
+        return 0;
         return (float)passiveSkill.GetType().GetField(value.ToString()).GetValue(passiveSkill);
     }
 
