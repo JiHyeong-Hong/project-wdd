@@ -10,7 +10,7 @@ public struct PassiveSkill
     public float Gold;
     public float Duration;
     public float Recovery;
-    public float HP;
+    public float Hp;
     public float MoveSpeed;
     public float Attack;
     public float AttackSpeed;
@@ -60,7 +60,7 @@ public class PassiveHelper
                 passiveSkill.Recovery += stateValue;
                 break;
             case PassiveSkillStatusType.Hp:
-                passiveSkill.HP += stateValue;
+                passiveSkill.Hp += stateValue;
                 break;
             case PassiveSkillStatusType.MoveSpeed:
                 passiveSkill.MoveSpeed += stateValue;
@@ -87,7 +87,6 @@ public class PassiveHelper
 
     public float GetPassiveValue(PassiveSkillStatusType value)
     {
-        return 0;
         return (float)passiveSkill.GetType().GetField(value.ToString()).GetValue(passiveSkill);
     }
 
