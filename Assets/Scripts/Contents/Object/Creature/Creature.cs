@@ -14,9 +14,9 @@ public class Creature : BaseObject
 
     #region Stats
     public int DataID { get; set; }
-    public float Hp { get; set; }
-    public float MaxHp { get; set; }
-    public float Atk { get; set; }
+    public int Hp { get; set; }
+    public int MaxHp { get; set; }
+    public int Atk { get; set; }
     public float MoveSpeed { get; set; }
     #endregion
 
@@ -84,12 +84,6 @@ public class Creature : BaseObject
     {
         RigidBody.velocity = velocity;
 
-        SetImageDirecton(velocity);
-    }
-    
-    //이동하지않고 이미지만 좌우 반전 함수
-    protected void SetImageDirecton(Vector2 velocity)
-    {
         if (velocity.x < 0)
             LookLeft = true;
         else if (velocity.x > 0)
@@ -120,45 +114,8 @@ public class Creature : BaseObject
                 case ECreatureState.Dead:
                     UpdateDead();
                     break;
-                case ECreatureState.Pattern:
-                    UpdatePattern();
-                    break;
             }
 
-            if (UpdateAITick > 0)
-                yield return new WaitForSeconds(UpdateAITick);
-            else
-                yield return null;
-        }
-    }
-    //TODO Eung 몬스터와 보스를 하나의 Monster객체로 만들면 사실상필요없는 코드 - CoUpdateAI와 통합가능
-    protected IEnumerator CoUpdateBossAI()
-    {
-        while (true)
-        {
-            switch (CreatureState)
-            {
-                case ECreatureState.Idle:
-                    UpdateIdle();
-                    break;
-                case ECreatureState.Move:
-                    UpdateMove();
-                    break;
-                case ECreatureState.Attack:
-                    UpdateAttack();
-                    break;
-                case ECreatureState.Hit:
-                    UpdateHit();
-                    break;
-                case ECreatureState.Dead:
-                    UpdateDead();
-                    break;
-                case ECreatureState.Pattern:
-                    UpdatePattern();
-                    break;
-            }
-            // Debug.Log(CreatureState);
-            // Debug.Log(UpdateAITick + "후에 재실행");
             if (UpdateAITick > 0)
                 yield return new WaitForSeconds(UpdateAITick);
             else
@@ -171,7 +128,6 @@ public class Creature : BaseObject
     protected virtual void UpdateAttack() { }
     protected virtual void UpdateHit() { }
     protected virtual void UpdateDead() { }
-    protected virtual void UpdatePattern() { }
     #endregion
 
     #region Battle
@@ -186,16 +142,9 @@ public class Creature : BaseObject
         if (creature == null)
             return;
 
-        float finalDamage = 0;
-        if (skill == null)
-            finalDamage = creature.Atk;
-        else if(CreatureType == ECreatureType.Hero)
-            finalDamage = skill.SkillData.Damage + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Attack);
-        else if(CreatureType == ECreatureType.Monster)
-            finalDamage = skill.SkillData.Damage;
-
+        int finalDamage = (skill == null) ? creature.Atk : skill.SkillData.Damage;
         Hp = Mathf.Clamp(Hp - finalDamage, 0, MaxHp);
-        Debug.Log($"[{gameObject.name}] Hit! HP({Hp}/{MaxHp})"); // 디버깅용. 삭제가능 @홍지형
+
         if (Hp <= 0)
         {
             OnDead(attacker, skill);

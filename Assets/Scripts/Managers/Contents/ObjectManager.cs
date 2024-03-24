@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Data;
 using UnityEngine;
 using static Define;
 
@@ -8,10 +7,9 @@ public class ObjectManager
 {
     public Hero Hero { get; private set; }
     public HashSet<Monster> Monsters { get; } = new HashSet<Monster>();
-    public HashSet<Boss> Bosses { get; } = new HashSet<Boss>();
     public HashSet<Projectile> Projectiles { get; } = new HashSet<Projectile>();
     public HashSet<Item> Items { get; } = new HashSet<Item>();
-    public HashSet<Structure> Structures { get; } = new HashSet<Structure>();
+
     #region Roots
     public Transform GetRootTransform(string name)
     {
@@ -24,15 +22,8 @@ public class ObjectManager
 
     public Transform HeroRoot { get { return GetRootTransform("@Heroes"); } }
     public Transform MonsterRoot { get { return GetRootTransform("@Monsters"); } }
-    //TODO Eung 몬스터총합후 보스삭제
-    public Transform BossRoot { get { return GetRootTransform("@Boss"); } }
-    
-    //TODO Eung 몬스터와 보스를 객체를 나눈어서 보는 경우 보스 루트를 생성 해야함 - 의논 필요
-    // public Transform BossRoot { get { return GetRootTransform("@Boss"); } }
-    
     public Transform ProjectileRoot { get { return GetRootTransform("@Projectiles"); } }
     public Transform ItemRoot { get { return GetRootTransform("@Item"); } }
-    public Transform StructureRoot { get { return GetRootTransform("@Structure"); } }
     #endregion
 
     public T Spawn<T>(Vector3 position, int templateID, Transform parent = null) where T : BaseObject
@@ -62,17 +53,6 @@ public class ObjectManager
                     Monsters.Add(monster);
                     monster.SetInfo(templateID);
                     break;
-                case ECreatureType.Boss:
-                    obj.transform.parent = (parent == null) ? BossRoot : parent;
-                    //TODO Eung 보스 소환 코드 수정 필요
-                    Monster boss2 = creature as Monster;
-                    // Boss boss = creature as Boss;
-                    //TODO Eung 몬스터 통합하면 boss 수정
-                    Monsters.Add(boss2);
-                    boss2.SetInfo(templateID);
-                    break;
-                
-                //TODO Eung ECreatureType.Boss의 경우 코드 작성 
             }
         }
         else if (obj.ObjectType == EObjectType.Projectile)
@@ -92,13 +72,6 @@ public class ObjectManager
             Items.Add(item);
 
             item.SetInfo(templateID);
-        }
-        else if (obj.ObjectType == EObjectType.Structure)
-        {
-            obj.transform.parent = (parent == null) ? StructureRoot : parent;
-            
-            Structure structure = go.GetComponent<Structure>();
-            Structures.Add(structure);
         }
 
         return obj as T;

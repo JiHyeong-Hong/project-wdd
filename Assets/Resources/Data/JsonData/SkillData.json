@@ -1529,24 +1529,6 @@
       "Duration": 0.0,
       "KnockbackPower": 0,
       "StunTime": 0.0
-    },
-	{
-      "DataId": 9999,
-      "Name": "마취총",
-      "ClassName": "StunBullet",
-      "skillType": 1,
-      "Level": 5,
-      "Projectile": 1,
-      "CastAngle": 10.0,
-      "Damage": 25,
-      "AttackSpeed": 1.0,
-      "AttackRange": 0.0,
-      "ConditionRange": 0.9,
-      "CoolTime": 3.0,
-      "CastCount": 0,
-      "Duration": 3.0,
-      "KnockbackPower": 0,
-      "StunTime": 0.0
     }
   ]
 }

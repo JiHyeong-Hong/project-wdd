@@ -22,14 +22,8 @@ public abstract class SkillBase
     public virtual void LevelUp(SkillData data)
     {
         SkillData = data;
-
         Clear();
         _cooldownTick = SkillData.CoolTime;
-    }
-
-    public void SetPassive(int operatorValue)
-    {
-        PassiveHelper.Instance.SetPassive(SkillData, operatorValue);
     }
 
     protected float _cooldownTick = 0f;
@@ -40,7 +34,7 @@ public abstract class SkillBase
         
         _cooldownTick += deltaTime;
         
-        if (_cooldownTick <= SkillData.CoolTime - PassiveHelper.Instance.GetPassiveValue(Define.PassiveSkillStatusType.CoolTimeDown))
+        if (_cooldownTick <= SkillData.CoolTime)
             return;
         
         _cooldownTick = 0.0f;

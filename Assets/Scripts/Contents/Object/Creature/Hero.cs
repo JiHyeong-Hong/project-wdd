@@ -19,8 +19,8 @@ public class Hero : Creature
 	public float ItemAcquireRange { get; set; }
 	public float ResistDisorder { get; set; }
 
-	private float _exp = 0;
-	public float Exp
+	private int _exp = 0;
+	public int Exp
 	{
 		get
 		{
@@ -35,11 +35,9 @@ public class Hero : Creature
 		}
 	}
 
-    private bool isInvincible = false;	//jh
-
     #endregion
 
-    public Transform Pivot { get; private set; }
+	public Transform Pivot { get; private set; }
 	public Transform Destination { get; private set; }
 
 
@@ -73,10 +71,8 @@ public class Hero : Creature
 		Level = heroData.Level;
 		MaxExp = heroData.MaxExp;
 		Exp = 0;
-		MaxHp = heroData.MaxHp + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Hp);
-		Hp = heroData.MaxHp + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Hp);
-		ItemAcquireRange = heroData.ItemAcquireRange + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Farming);
-		ResistDisorder = heroData.ResistDisorder + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.DamageCare);
+		ItemAcquireRange = heroData.ItemAcquireRange;
+		ResistDisorder = heroData.ResistDisorder;
 
 		// foreach (int skillID in hereData.SkillIdList)
 		// 	AddSkill(skillID);
@@ -89,19 +85,19 @@ public class Hero : Creature
 		if (IsValid(this) == false)
 			return;
 
-		SetRigidbodyVelocity(_moveDir * MoveSpeed);
+		SetRigidbodyVelocity(_moveDir * 10);
+		// SetRigidbodyVelocity(_moveDir * MoveSpeed);
 
 		// 테스트 용
 		if (Input.GetKeyDown(KeyCode.S))
 		{
-			//몬스터 출현 갯수 수정
-			// for (int i = 0; i < 1; ++i)
-			// 	Managers.Object.Spawn<Monster>(new Vector3(-2f + i, -1f, 0f), Define.MONSTER_SECURITY1_ID);
+			for (int i = 0; i < 5; ++i)
+				Managers.Object.Spawn<Monster>(new Vector3(-2f + i, -1f, 0f), Define.MONSTER_SECURITY1_ID);
 
-			// for (int i = 0; i < 1; ++i)
-			// 	Managers.Object.Spawn<Monster>(new Vector3(-2f + i, 0f, 0f), Define.MONSTER_SECURITY2_ID);
+			for (int i = 0; i < 5; ++i)
+				Managers.Object.Spawn<Monster>(new Vector3(-2f + i, 0f, 0f), Define.MONSTER_SECURITY2_ID);
 
-			for (int i = 0; i < 1; ++i)
+			for (int i = 0; i < 5; ++i)
 				Managers.Object.Spawn<Monster>(new Vector3(-2f + i, 1f, 0f), Define.MONSTER_SECURITY3_ID);
 		}
 	}
@@ -139,10 +135,7 @@ public class Hero : Creature
 
 	public override void OnDamaged(BaseObject attacker, SkillBase skill)
 	{
-        if (isInvincible)
-            return; // 무적 상태일 때는 아무런 처리를 하지 않음
-
-        base.OnDamaged(attacker, skill);	
+		base.OnDamaged(attacker, skill);
 
 		Managers.Game.RefreshUI();
 	}
@@ -164,40 +157,17 @@ public class Hero : Creature
 
 		Level += 1;
 		Data.HeroLevelData heroLevelData = Managers.Data.HeroLevelDic[DataID + Level];
-		
+
 		Exp = 0;
-		MaxHp = heroLevelData.MaxHp + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Hp);
-		Hp = heroLevelData.MaxHp + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Hp);
+		MaxHp = heroLevelData.MaxHp;
+		Hp = heroLevelData.MaxHp;
 		MaxExp = heroLevelData.Exp;
-		MoveSpeed = ((heroLevelData.MoveSpeed + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.MoveSpeed)) / 100.0f) * Define.DEFAULT_SPEED;
-		ItemAcquireRange = heroLevelData.ItemAcquireRange + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Farming);
-		ResistDisorder = heroLevelData.ResistDisorder + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.DamageCare);
+		MoveSpeed = (heroLevelData.MoveSpeed / 100.0f) * Define.DEFAULT_SPEED;
+		ItemAcquireRange = heroLevelData.ItemAcquireRange;
+		ResistDisorder = heroLevelData.ResistDisorder;
 
 		Managers.Game.OnLevelUp?.Invoke();
 	}
-
-    /// jh 부스터 발판 밟았을 시 속도 변화
-    public IEnumerator SpeedBoost(float duration, float multiplier)
-    {
-        float originalSpeed = MoveSpeed; 
-        MoveSpeed *= multiplier; // 속도 증가
-
-        isInvincible = true; // 무적 상태 설정
-
-        // duration 시간만큼 대기
-        yield return new WaitForSeconds(duration);
-
-        // 서서히 속도를 원래대로 돌려놓음
-        float elapsed = 0;
-        while (elapsed < duration)
-        {
-            MoveSpeed = Mathf.Lerp(MoveSpeed, originalSpeed, elapsed / duration);
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        MoveSpeed = originalSpeed; // 부스트 끝나면 다시 원래 속도로 설정
-    }
 
     #endregion
 }

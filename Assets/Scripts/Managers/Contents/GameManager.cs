@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class GameManager
 {
@@ -82,42 +81,5 @@ public class GameManager
     }
 
     public Action OnLevelUp;
-    enum BossCountState
-    {
-        Counting,
-        Warning,
-        Barricade,
-        Appear
-    }
-    public IEnumerator BossCount()
-    {
-        BossCountState test = BossCountState.Counting;
-        while (true)
-        {
-            if (CurrentTime >= 1f && test == BossCountState.Counting)
-            {
-                Managers.UI.ShowPopupUI<UI_Warning>();
-                test = BossCountState.Warning;
-            }
-            else if (CurrentTime >= 2f && test == BossCountState.Warning)
-            {
-                test = BossCountState.Barricade;
-                //TODO Eung 바리게이트 오브젝트만들어서 생성하면 될듯 - 바리게이트 Spawn으로 바꾸면 될듯
-                Managers.Object.Spawn<Structure>(Managers.Object.Hero.transform.position, 0);
-                Debug.Log("바리게이트 생성");
-            }
-            else if(CurrentTime >= 3f && test == BossCountState.Barricade) 
-            {
-                //TODO Eung 보스 오브젝트만들어서 생성하면 될듯 - 보스 Spawn으로 바꾸면 될듯
-                
-                Managers.Object.Spawn<Boss>(Managers.Object.Hero.transform.position * 2, Define.MONSTER_SECURITY2_ID);
-                Debug.Log("보스 생성");
-                break;
-            }
-
-            yield return new WaitForFixedUpdate();
-            
-        }
-    }
     #endregion
 }

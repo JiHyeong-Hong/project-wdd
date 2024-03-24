@@ -40,7 +40,6 @@ public static class Define
 		Projectile,
 		Env,
 		Item,
-		Structure,
 	}
 
 	public enum ECreatureType
@@ -48,7 +47,6 @@ public static class Define
 		None,
 		Hero,
 		Monster,
-		Boss,
 		Npc,
 	}
 
@@ -60,7 +58,6 @@ public static class Define
 		Attack = 3,
 		Hit = 4,
 		Dead = 5,
-		Pattern = 6,
 	}
 
 	public enum ELayer
@@ -85,25 +82,7 @@ public static class Define
 		Breakthrogh = 3
 	}
 
-	public enum PassiveSkillStatusType
-	{
-		CoolTimeDown = 1,
-		Farming = 2,
-		Exp = 3,
-		Gold = 4,
-		Duration = 5,
-		Recovery = 6,
-		Hp = 7,
-		MoveSpeed = 8,
-		Attack = 9,
-		AttackSpeed = 10,
-		AttackRange = 11,
-		DamageCare = 12,
-		CastPer = 13,
-    }
-
-
-    public const float DEFAULT_SPEED = 3;
+	public const float DEFAULT_SPEED = 3;
 	public const int MAX_SKILL_LEVEL = 5;
 	public const int MAX_LEVEL = 60;
 
@@ -112,10 +91,6 @@ public static class Define
 	public const int MONSTER_SECURITY1_ID = 411;
 	public const int MONSTER_SECURITY2_ID = 412;
 	public const int MONSTER_SECURITY3_ID = 413;
-
-	// 현재 임시 테스트용. @홍지형 240323
-    public const int MONSTER_SHOOTER_ID = 414; // 길리슈터. @홍지형
-    public const int SKILL_STUNBULLET_ID = 20000; // 길리슈터 마취총알. @홍지형 TODO: 무기 Enum 체계 변경점 적용 필요. 240219
 }
 
 public static class SortingLayers

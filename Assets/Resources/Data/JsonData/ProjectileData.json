@@ -27,13 +27,6 @@
       "ClassName": "Tiger",
       "Disorder": 0,
       "DisorderDuration": 0.0
-    },
-	{
-      "DataId": 5,
-      "Name": "마취총알",
-      "ClassName": "StunBullet",
-      "Disorder": 0,
-      "DisorderDuration": 1.0
     }
   ]
 }

@@ -11,7 +11,7 @@
       "DescriptionTextID": "사육사",
       "MaxHp": 100,
       "Atk": 2,
-      "MoveSpeed": 200.0,
+      "MoveSpeed": 100.0,
       "ResistDisorder": 0.0,
       "AnimatorDataID": "Animations/Hero/hero"
     }

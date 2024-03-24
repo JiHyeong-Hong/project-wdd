@@ -17,7 +17,7 @@ public class ParrotSkill : SkillBase
         if (isTimeActive)
         {
             durationTick += deltaTime;
-            if (durationTick >= SkillData.Duration + PassiveHelper.Instance.GetPassiveValue(Define.PassiveSkillStatusType.Duration))
+            if (durationTick >= SkillData.Duration)
             {
                 ClearSatellites();
                 isTimeActive = false;

@@ -18,15 +18,13 @@ public class LionSkill : SkillBase
 	{
 		targetChecker = Managers.Resource.Instantiate("Area/InvisibleCircle", Owner.transform).GetOrAddComponent<LionRange>();
 		targetChecker.transform.localPosition = Vector3.zero;
-		targetChecker.SetData(SkillData.AttackRange + PassiveHelper.Instance.GetPassiveValue(Define.PassiveSkillStatusType.AttackRange),
-			SkillData.ConditionRange + PassiveHelper.Instance.GetPassiveValue(Define.PassiveSkillStatusType.AttackRange));
+		targetChecker.SetData(SkillData.AttackRange, SkillData.ConditionRange);
 	}
 
 	public override void LevelUp(SkillData data)
 	{
 		base.LevelUp(data);
-		targetChecker.SetData(SkillData.AttackRange + PassiveHelper.Instance.GetPassiveValue(Define.PassiveSkillStatusType.AttackRange),
-			SkillData.ConditionRange + PassiveHelper.Instance.GetPassiveValue(Define.PassiveSkillStatusType.AttackRange));
+		targetChecker.SetData(SkillData.AttackRange, SkillData.ConditionRange);
 	}
 
 	public override void DoSkill()

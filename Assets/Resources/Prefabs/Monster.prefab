@@ -122,8 +122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   temp: 0
-  cooltime: 0
-  Atk_chk: 0
 --- !u!50 &2136970318261523128
 Rigidbody2D:
   serializedVersion: 4

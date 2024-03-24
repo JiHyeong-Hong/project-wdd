@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Data;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using SkillType = Define.SkillType;
@@ -27,11 +28,9 @@ public class SkillManager
 			usingSkillDic.Add(skillType, new List<SkillBase>());
 		}
 
-		RegisterPassiveSkill();
 		RegisterAllSkills();
-
-        Managers.Game.OnLevelUp += CreateRandomSkills;
-
+		Managers.Game.OnLevelUp += CreateRandomSkills;
+		
 		isInit = true;
 	}
 
@@ -132,13 +131,9 @@ public class SkillManager
 			ownSkill.SetInfo(Managers.Data.SkillDic[skillID]);
 			ownSkill.SetOwner(Managers.Object.Hero);
 
-			if (ownSkill.SkillData.skillType == Define.SkillType.Passive) ownSkill.DoSkill();
-
-
-            usingSkillDic[ownSkill.SkillData.skillType].Add(ownSkill);
+			usingSkillDic[ownSkill.SkillData.skillType].Add(ownSkill);
 		}
-
-    }
+	}
 
 	/// <summary>
 	/// 스킬 3개 랜덤 뽑기
@@ -201,36 +196,29 @@ public class SkillManager
 
 		bool hasSkill = false;
 
-        foreach (var skill in usingSkillDic[skillType])
-        {
-            if (className.Equals(skill.SkillData.ClassName))
-            {
-                skill.LevelUp(allSkillDic[className][skill.SkillData.Level + 1].SkillData);
-                hasSkill = true;
+		if (skillType == SkillType.Active)
+		{
+			foreach (var skill in usingSkillDic[skillType])
+			{
+				if (className.Equals(skill.SkillData.ClassName))
+				{
+					skill.LevelUp(allSkillDic[className][skill.SkillData.Level + 1].SkillData);
+					hasSkill = true;
 
-                //만렙이면 뽑을 수 있는 스킬목록에서 삭제
-                if (skill.SkillData.Level == Define.MAX_SKILL_LEVEL)
-                {
-                    canPickSkillList.Remove(skill.SkillData.ClassName);
-                }
-                break;
-            }
-        }
+					//만렙이면 뽑을 수 있는 스킬목록에서 삭제
+					if (skill.SkillData.Level == Define.MAX_SKILL_LEVEL)
+					{
+						canPickSkillList.Remove(skill.SkillData.ClassName);
+					}
+					break;
+				}
+			}
+		}
 
-
-
-        // 업그레이드 할 스킬이 없음 => 스킬 추가
-        if (!hasSkill)
+		// 업그레이드 할 스킬이 없음 => 스킬 추가
+		if (!hasSkill)
 		{
 			AddSkill(skillData);
 		}
 	}
-
-	private void RegisterPassiveSkill()
-	{
-		foreach (var item in usingSkillDic[SkillType.Passive])
-		{
-			PassiveHelper.Instance.SetPassive(item.SkillData);
-        }
-    }
 }

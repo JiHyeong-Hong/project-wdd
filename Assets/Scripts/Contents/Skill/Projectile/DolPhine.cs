@@ -89,13 +89,13 @@ public class DolPhine : BaseObject
         Owner = owner;
 		Skill = skill;
 
-		duration = skill.SkillData.Duration + +PassiveHelper.Instance.GetPassiveValue(Define.PassiveSkillStatusType.Duration);
+		duration = skill.SkillData.Duration;
 
         hitMonsters.Clear();
 		hitMonsterKeys.Clear();
 		removeList.Clear();
 
-		radius = skill.SkillData.AttackRange + PassiveHelper.Instance.GetPassiveValue(Define.PassiveSkillStatusType.AttackRange);
+		radius = skill.SkillData.AttackRange;
 		transform.localScale = Vector3.one * radius;
 	}
 
