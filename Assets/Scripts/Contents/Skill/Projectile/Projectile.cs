@@ -35,11 +35,13 @@ public class Projectile : BaseObject
 		Owner = owner;
 		Skill = skill;
 
-		duration = skill.SkillData.Duration + PassiveHelper.Instance.GetPassiveValue(Define.PassiveSkillStatusType.Duration);
-
-        Debug.Log($"[Projectile] SetSpawnInfo called. Duration set to: {duration}, SkillData Duration: {skill.SkillData.Duration}");
-
-        float angle = Util.VectorToAngle(direction);
+		if (skill != null)
+		{
+			duration = skill.SkillData.Duration + PassiveHelper.Instance.GetPassiveValue(Define.PassiveSkillStatusType.Duration);
+			Debug.Log($"[Projectile] SetSpawnInfo called. Duration set to: {duration}, SkillData Duration: {skill.SkillData.Duration}");
+		}
+		
+		float angle = Util.VectorToAngle(direction);
 		transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
 	}
 	

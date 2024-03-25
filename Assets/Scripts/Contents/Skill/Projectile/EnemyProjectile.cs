@@ -9,6 +9,7 @@ public class EnemyProjectile : Projectile
     private Vector2 dir;
     private CircleCollider2D col;
     private float moveSpeed = 5f;
+    private int type;
     public override bool Init()
     {
         if (!base.Init())
@@ -16,8 +17,9 @@ public class EnemyProjectile : Projectile
 		
         if (col == null)
             col = GetComponent<CircleCollider2D>();
-		
-        Renderer = GetComponentInChildren<SpriteRenderer>();
+        
+        //TODO 투사체 테이블의 이미지를 넣는방식으로 변경
+        Renderer = GetComponent<SpriteRenderer>();
         isInfinityDuration = true;
 		
         return true;
@@ -26,33 +28,30 @@ public class EnemyProjectile : Projectile
     public void SetTarget(Hero target)
     {
         this.target = target;
-        col.enabled = target == null;
+        // col.enabled = target == null;
         dir = (target.transform.position - transform.position).normalized;
     }
     
     protected override void Move()
     {
-        if (target != null)
+        //TODO 투사체 idx or type 넘버로 투사체 구분하여 이동 구현
+        switch (type)
         {
-            transform.Translate(dir * moveSpeed * Time.deltaTime);
-
-            if (Vector2.SqrMagnitude(dir) <= Mathf.Pow(0.5f,2))
-            {
-                target.OnDamaged(Owner,Skill);
-                Managers.Object.Despawn(this);
-            }
-        }
-        else
-        {
-            transform.Translate(Vector2.up * (moveSpeed* Time.deltaTime));
+            case 1:
+                transform.Translate(Vector2.up * (moveSpeed* Time.deltaTime));
+                break;
+            
+            default:
+                transform.Translate(Vector2.up * (moveSpeed* Time.deltaTime));
+                break;
         }
         if(!Util.CheckTargetInScreen(transform.position))
             Managers.Object.Despawn(this);
     }
-
+    
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (((1 << (int)Define.ELayer.Monster) & (1 << col.gameObject.layer)) != 0)
+        if (((1 << (int)Define.ELayer.Hero) & (1 << col.gameObject.layer)) != 0)
         {
             col.GetComponent<Hero>().OnDamaged(Owner,Skill);
             Managers.Object.Despawn(this);

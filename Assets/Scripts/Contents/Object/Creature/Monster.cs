@@ -100,14 +100,9 @@ public class Monster : Creature
             {
                 Vector2 direction = (_hero.transform.position - this.transform.position).normalized;
                 Debug.Log("원거리 공격!!");
-                var proj = Managers.Object.Spawn<Projectile>(transform.position, 1);
-                
-                Debug.Log(transform.position);
-               
+                var proj = Managers.Object.Spawn<EnemyProjectile>(transform.position, 1);
                 proj.SetSpawnInfo(this, null, direction);
-                // proj.SetSpawnInfo2(this, Util.RotateVectorByAngle(direction, 0));
-                // Debug.Log(proj);
-                
+                proj.SetTarget(_hero);
                 
                 cotest = null;
                 CreatureState = ECreatureState.Idle;
@@ -124,50 +119,11 @@ public class Monster : Creature
         {
             cotest = StartCoroutine(Attack());
         }
-        /* 공격 기능 주석 처리 - Searching 기능으로 구별
-        distance = Vector2.Distance(_hero.transform.position, this.transform.position);
         
-        if (_hero.IsValid())
-        {
-            Vector2 dest = (_hero.transform.position - transform.position).normalized;
-
-            switch (CreatureData.Atktype)
-            {
-                case 1:
-                    SetRigidbodyVelocity(dest * MoveSpeed);
-                    Debug.Log("근접 공격!!");
-                    break;
-                case 2:
-                    if(!Atk_chk)
-                        if (distance >= 5)
-                            // Debug.Log("근접 공격!!");
-                            CreatureState = ECreatureState.Move;
-                        else
-                        {
-                            Atk_chk = !Atk_chk;
-                            CreatureState = ECreatureState.Idle;
-                        }
-                    
-                    else
-                    {
-                        if (distance >= 6)
-                        {
-                            Atk_chk = !Atk_chk;
-                        }
-                        else
-                        {
-                            //TODO Eung 원거리 공격 코루틴 작성 필요 - 원거리 공격중 Creature.UpdateAITick 시간 변경후 루프 시간 설정할 예정
-                            CreatureState = ECreatureState.Idle;
-                            SetImageDirecton(dest);
-                            // StartCoroutine(Attack());
-                        }
-                    }
-                    break;
-            }
-        }
-        else
-            SetRigidbodyVelocity(Vector2.zero);
-            */
+        Vector2 dest = (_hero.transform.position - transform.position).normalized;
+        SetRigidbodyVelocity(dest * 0);
+        SetImageDirecton(dest);
+        
     }
     protected override void UpdateMove()
     {
@@ -180,8 +136,6 @@ public class Monster : Creature
                 Vector2 dest = (_hero.transform.position - transform.position).normalized;
 
                 SetRigidbodyVelocity(dest * MoveSpeed);
-                // SetRigidbodyVelocity(dest * 0);
-                Debug.Log("이동중!!");
             }
             else
                 SetRigidbodyVelocity(Vector2.zero);
