@@ -62,6 +62,9 @@ public class Shooter : Creature
         // 길리슈터 객체를 시각적으로 숨긴다.
         _spriteRenderer.enabled = false;
         _lineRenderer.enabled = false;
+        
+        GetComponentInChildren<TargetCrosshair>().enabled = false;     // 조준점의 이동을 멈춘다.
+
         // 동작 정지
         StopCoroutine(AimAndFireCycle());    
     }
