@@ -12,16 +12,16 @@ namespace Data
 	public class CreatureData
 	{
 		public int DataId;
-		//TODO Eung 몬스터 타입 - 테이블에 따라 변경필요
-		public int type;
 		public string DescriptionTextID;
 		public int MaxHp;
-		//TODO Eung 공격 타입 - 테이블에 따라 변경필요
-		public int Atktype;
 		public int Atk;
 		public float MoveSpeed;
 		public float ResistDisorder;
 		public string AnimatorDataID;
+		// //TODO Eung 몬스터 타입 - 테이블에 따라 변경필요
+		// public int type;
+		// //TODO Eung 공격 타입 - 테이블에 따라 변경필요
+		// public int Atktype;
 	}
 
     #endregion
@@ -34,6 +34,10 @@ namespace Data
 		public int DropItemID;
 		public int DropPersent;
 		public float AtkRange;
+		//TODO Eung 몬스터 타입 - 테이블에 따라 변경필요
+		public int type;
+		//TODO Eung 공격 타입 - 테이블에 따라 변경필요
+		public int Atktype;
 	}
 
 	[Serializable]

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Data;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -23,24 +24,27 @@ public class Monster : Creature
         return true;
     }
 
+    protected MonsterData monsterData;
     public override void SetInfo(int templateID)
     {
         base.SetInfo(templateID);
 
-        CreatureState = ECreatureState.Move;
-
         Renderer.sortingOrder = SortingLayers.MONSTER;
         _hero = Managers.Object.Hero;
         
-        Data.MonsterData monsterData = CreatureData as Data.MonsterData;
+        monsterData = CreatureData as MonsterData;
         //몬스터 클래스에서 몬스터와 보스 타입 재분류
         switch (monsterData.type)
         {
             case 1:
-                CreatureType = ECreatureType.Monster;
+                CreatureState = ECreatureState.Move;
                 break;
             case 2:
-                CreatureType = ECreatureType.Boss;
+                CreatureType = ECreatureType.MiddleBoss;
+                CreatureState = ECreatureState.Move;
+                break;
+            case 3:
+                CreatureState = ECreatureState.Move;
                 break;
         }
         
@@ -83,12 +87,12 @@ public class Monster : Creature
     #endregion
 
     #region AI
-    private Hero _hero;
+    protected Hero _hero;
     private float distance = 0f;
     public float cooltime = 0f;
     public bool Atk_chk;
 
-    IEnumerator Attack()
+    protected virtual IEnumerator Attack()
     {
         //공격 주기
         cooltime = 2f;
@@ -128,7 +132,7 @@ public class Monster : Creature
     protected override void UpdateMove()
     {
         bool searching = HeroSearching();
-        UpdateAITick = 0.1f;
+        // UpdateAITick = 0.1f;
         if (!searching)
         {
             if (_hero.IsValid())
@@ -167,12 +171,12 @@ public class Monster : Creature
 
     protected override void UpdateHit()
     {
-        // CreatureState = ECreatureState.Move;
+        CreatureState = ECreatureState.Idle;
     }
 
     public bool HeroSearching()
     {
-        if (CreatureData.Atktype == 1)
+        if (monsterData.Atktype == 1 || monsterData.Atktype == 3)
             return false;
         
         distance = Vector2.Distance(_hero.transform.position, this.transform.position);
@@ -245,5 +249,12 @@ public class Monster : Creature
             yield return new WaitForFixedUpdate();
         }
     }
+
+
+    protected virtual IEnumerator Skill1()
+    {
+        yield return null;
+    }
+
     #endregion
 }

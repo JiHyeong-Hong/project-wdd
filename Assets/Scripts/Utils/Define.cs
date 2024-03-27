@@ -48,6 +48,7 @@ public static class Define
 		None,
 		Hero,
 		Monster,
+		MiddleBoss,
 		Boss,
 		Npc,
 	}
@@ -60,7 +61,12 @@ public static class Define
 		Attack = 3,
 		Hit = 4,
 		Dead = 5,
-		Pattern = 6,
+		Skill1 = 6,
+		Skill2 = 7,
+		Skill3 = 8,
+		Pattern1 = 9,
+		Pattern2 = 10,
+		Pattern3 = 11,
 	}
 
 	public enum ELayer

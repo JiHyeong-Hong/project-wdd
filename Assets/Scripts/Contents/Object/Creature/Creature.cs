@@ -51,10 +51,19 @@ public class Creature : BaseObject
     {
         DataTemplateID = templateID;
 
-        if (CreatureType == ECreatureType.Hero)
-            CreatureData = Managers.Data.HeroDic[templateID];
-        else
-            CreatureData = Managers.Data.MonsterDic[templateID];
+        switch (CreatureType)
+        {
+            case ECreatureType.Hero:
+                CreatureData = Managers.Data.HeroDic[templateID];
+                break;
+            case ECreatureType.Monster:
+                CreatureData = Managers.Data.MonsterDic[templateID];
+                break;
+            case ECreatureType.Boss:
+                CreatureData = Managers.Data.MonsterDic[templateID];
+                //TODO 
+                break;
+        }
 
         gameObject.name = $"{CreatureData.DataId}_{CreatureData.DescriptionTextID}";
 
@@ -120,8 +129,14 @@ public class Creature : BaseObject
                 case ECreatureState.Dead:
                     UpdateDead();
                     break;
-                case ECreatureState.Pattern:
-                    UpdatePattern();
+                case ECreatureState.Skill1:
+                    UpdateSkill1();
+                    break;
+                case ECreatureState.Pattern1:
+                    UpdatePattern1();
+                    break;
+                case ECreatureState.Pattern2:
+                    UpdatePattern2();
                     break;
             }
 
@@ -153,9 +168,6 @@ public class Creature : BaseObject
                 case ECreatureState.Dead:
                     UpdateDead();
                     break;
-                case ECreatureState.Pattern:
-                    UpdatePattern();
-                    break;
             }
             // Debug.Log(CreatureState);
             // Debug.Log(UpdateAITick + "후에 재실행");
@@ -171,7 +183,9 @@ public class Creature : BaseObject
     protected virtual void UpdateAttack() { }
     protected virtual void UpdateHit() { }
     protected virtual void UpdateDead() { }
-    protected virtual void UpdatePattern() { }
+    protected virtual void UpdateSkill1() { }
+    protected virtual void UpdatePattern1() { }
+    protected virtual void UpdatePattern2() { }
     #endregion
 
     #region Battle
@@ -187,11 +201,12 @@ public class Creature : BaseObject
             return;
 
         float finalDamage = 0;
+        
         if (skill == null)
             finalDamage = creature.Atk;
         else if(CreatureType == ECreatureType.Hero)
             finalDamage = skill.SkillData.Damage + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Attack);
-        else if(CreatureType == ECreatureType.Monster)
+        else if(CreatureType == ECreatureType.Monster || CreatureType == ECreatureType.MiddleBoss || CreatureType == ECreatureType.Boss)
             finalDamage = skill.SkillData.Damage;
 
         Hp = Mathf.Clamp(Hp - finalDamage, 0, MaxHp);
