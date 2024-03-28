@@ -93,7 +93,7 @@ public class Boss : Monster
     {
         if (WaitTest == null)
         {
-            WaitTest = StartCoroutine(PatternWait());    
+            WaitTest = StartCoroutine(PatternWait());
         }
         if (_hero.IsValid())
         {
@@ -125,7 +125,8 @@ public class Boss : Monster
     {
         if (cotest == null)
         {
-            
+            cotest = StartCoroutine(Skill1());
+            SetRigidbodyVelocity(Vector2.zero);
         }
     }
 
@@ -196,13 +197,16 @@ public class Boss : Monster
         {
             Debug.Log(cotest);
         }
+        if (Input.GetKeyDown(KeyCode.Keypad5))
+        {
+            CreatureState = ECreatureState.Skill1;
+        }
     }
 
     protected override IEnumerator Attack()
     {
         CreatureState = ECreatureState.Attack;
-        SetRigidbodyVelocity(Vector2.zero);
-        
+
         float angle = 90f;
         
         int proj_num = 12;
@@ -229,6 +233,60 @@ public class Boss : Monster
         }
         
     }
+
     
+    protected override IEnumerator Skill1()
+    {
+        
+        bool targeting = false;
+        Vector2 targetPosition = new Vector2();
+        
+        float time = 0f;
+        cooltime = 3f;
+        
+        float add_spd = 0f;
+        
+        while (true)
+        {
+            if (!targeting)
+            {
+                if (time >= cooltime)
+                { 
+                    // Debug.Log("목표 포착 확인!!");
+                    targeting = !targeting;
+                    targetPosition = _hero.transform.position;
+                    time = 0;
+                    yield return new WaitForFixedUpdate();
+                }
+                
+                SetImageDirecton((_hero.transform.position - transform.position).normalized);
+                time += Time.deltaTime;
+                yield return new WaitForFixedUpdate();
+            }
+            else
+            {
+                if (time < cooltime)
+                    add_spd += 0.1f;
+
+                float test_speed = MoveSpeed + add_spd;
+                
+                transform.position = Vector2.MoveTowards(transform.position,
+                    targetPosition, test_speed *  Time.deltaTime);
+
+                if ((Vector2)transform.position == targetPosition)
+                {
+                    // Debug.Log("돌진 패턴 끝");
+                    cotest = null;
+                    SelectPattern(Phase);
+                    yield break;
+                }
+                
+                yield return new WaitForFixedUpdate();
+            }
+        }
+    }
+    #endregion
+    
+    #region CoAI
     #endregion
 }
