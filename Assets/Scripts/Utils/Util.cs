@@ -15,7 +15,13 @@ public static class Util
 		return new Vector2(Mathf.Cos(radianAngle), Mathf.Sin(radianAngle));
 	}
 
-	public static Vector2 RotateVectorByAngle(Vector2 vector, float angle)
+	public static Vector3 ConvertVector2ToVector3(Vector2 vector)
+	{
+		return new Vector3(vector.x, vector.y, 0f);
+	}
+
+
+    public static Vector2 RotateVectorByAngle(Vector2 vector, float angle)
 	{
 		Quaternion rotation = Quaternion.Euler(0f, 0f, angle);
 		Vector2 rotatedVector = rotation * vector;
@@ -106,4 +112,24 @@ public static class Util
 		Vector3 screenPoint = Camera.main.WorldToViewportPoint(position);
 		return screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1 && screenPoint.z > 0;
 	}
+
+
+    public static List<int> SelectRandomElements(List<int> elements, int numberOfSelections)
+    {
+        List<int> selectedElements = new List<int>();
+
+        for (int i = 0; i < numberOfSelections; i++)
+        {
+            // 요소 리스트에서 무작위로 인덱스 선택
+            int randomIndex = Random.Range(0, elements.Count);
+
+            // 선택된 요소 추가
+            selectedElements.Add(elements[randomIndex]);
+
+            // 이미 선택한 요소는 다시 선택하지 않도록 제거
+            elements.RemoveAt(randomIndex);
+        }
+
+        return selectedElements;
+    }
 }
