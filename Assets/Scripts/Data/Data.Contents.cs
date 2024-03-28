@@ -171,6 +171,8 @@ namespace Data
 		public string ClassName;
 		public int Disorder;
 		public float DisorderDuration;
+		public float Damage;
+		public float Speed;
 	}
 
 	[Serializable]

@@ -197,13 +197,27 @@ public class Creature : BaseObject
             return;
 
         Creature creature = attacker as Creature;
+        Projectile projectile;
+
         if (creature == null)
+        {
+            projectile = attacker as Projectile;
+        }
+        else
             return;
+        
+
+
 
         float finalDamage = 0;
-        
+
         if (skill == null)
-            finalDamage = creature.Atk;
+        {
+            if(creature != null)
+                finalDamage = creature.Atk;
+            else
+                finalDamage = projectile.ProjectileData.Damage;
+        }
         else if(CreatureType == ECreatureType.Hero)
             finalDamage = skill.SkillData.Damage + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Attack);
         else if(CreatureType == ECreatureType.Monster || CreatureType == ECreatureType.MiddleBoss || CreatureType == ECreatureType.Boss)

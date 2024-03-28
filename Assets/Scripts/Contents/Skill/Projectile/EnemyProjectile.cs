@@ -8,7 +8,6 @@ public class EnemyProjectile : Projectile
     private Hero target;
     private Vector2 dir;
     private CircleCollider2D col;
-    private float moveSpeed = 5f;
     private int type;
     public override bool Init()
     {
@@ -38,11 +37,11 @@ public class EnemyProjectile : Projectile
         switch (type)
         {
             case 1:
-                transform.Translate(Vector2.up * (moveSpeed* Time.deltaTime));
+                transform.Translate(Vector2.up * (ProjectileData.Speed* Time.deltaTime));
                 break;
             
             default:
-                transform.Translate(Vector2.up * (moveSpeed* Time.deltaTime));
+                transform.Translate(Vector2.up * (ProjectileData.Speed* Time.deltaTime));
                 break;
         }
         if(!Util.CheckTargetInScreen(transform.position))
@@ -53,7 +52,7 @@ public class EnemyProjectile : Projectile
     {
         if (((1 << (int)Define.ELayer.Hero) & (1 << col.gameObject.layer)) != 0)
         {
-            col.GetComponent<Hero>().OnDamaged(Owner,Skill);
+            col.GetComponent<Hero>().OnDamaged(this,Skill);
             Managers.Object.Despawn(this);
         }
     }
