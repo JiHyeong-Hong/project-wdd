@@ -117,17 +117,17 @@ public static class Util
     public static List<int> SelectRandomElements(List<int> elements, int numberOfSelections)
     {
         List<int> selectedElements = new List<int>();
-
+        List<int> elementsPool = new List<int>(elements);
         for (int i = 0; i < numberOfSelections; i++)
         {
             // 요소 리스트에서 무작위로 인덱스 선택
-            int randomIndex = Random.Range(0, elements.Count);
+            int randomIndex = Random.Range(0, elementsPool.Count);
 
             // 선택된 요소 추가
-            selectedElements.Add(elements[randomIndex]);
+            selectedElements.Add(elementsPool[randomIndex]);
 
             // 이미 선택한 요소는 다시 선택하지 않도록 제거
-            elements.RemoveAt(randomIndex);
+            elementsPool.RemoveAt(randomIndex);
         }
 
         return selectedElements;
