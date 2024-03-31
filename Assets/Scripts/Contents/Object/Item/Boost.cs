@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boost : MonoBehaviour
+public class Boost : Footboard
 {
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -11,8 +11,8 @@ public class Boost : MonoBehaviour
             Hero hero = other.GetComponent<Hero>();
             if (hero != null)
             {
-                // 속도를 4배로 증가시키고, 3초 후 원래 속도로 돌아오게 함
-                StartCoroutine(hero.SpeedBoost(3f, 4f));
+                // n칸 이동까지 4배 스피드
+                StartCoroutine(hero.SpeedBoost(2f, 4f));
             }
         }
     }

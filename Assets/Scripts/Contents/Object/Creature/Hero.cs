@@ -12,9 +12,16 @@ public class Hero : Creature
 {
 	private Vector2 _moveDir = Vector2.zero;
 
+	// jh
+    public Vector2 MoveDir
+    {
+        get { return _moveDir; }
+    }
+	//
+
     #region Stat
 
-	public int Level { get; set; }
+    public int Level { get; set; }
 	public int MaxExp { get; set; }
 	public float ItemAcquireRange { get; set; }
 	public float ResistDisorder { get; set; }
@@ -35,7 +42,13 @@ public class Hero : Creature
 		}
 	}
 
-    private bool isInvincible = false;	//jh
+    private bool isInvincible = false;
+    public bool IsInvincible
+    {
+        get { return isInvincible; }
+        set { isInvincible = value; }
+    }
+
 
     #endregion
 
@@ -174,17 +187,24 @@ public class Hero : Creature
 	}
 
     /// jh 부스터 발판 밟았을 시 속도 변화
-    public IEnumerator SpeedBoost(float duration, float multiplier)
+    public IEnumerator SpeedBoost(float targetDistance, float multiplier)
+    //public IEnumerator SpeedBoost(float duration, float multiplier)
     {
         float originalSpeed = MoveSpeed; 
         MoveSpeed *= multiplier; // 속도 증가
-
         isInvincible = true; // 무적 상태 설정
 
-        // duration 시간만큼 대기
-        yield return new WaitForSeconds(duration);
+        Vector3 startPosition = transform.position;
+        float movedDistance = 0;
+
+        while (movedDistance < targetDistance) // 이동 거리가 목표 거리에 도달하면
+        {
+            yield return null; 
+            movedDistance = Vector3.Distance(startPosition, transform.position);
+        }
 
         // 서서히 속도를 원래대로 돌려놓음
+        float duration = 1f; // 일단 테스트용
         float elapsed = 0;
         while (elapsed < duration)
         {
@@ -193,7 +213,8 @@ public class Hero : Creature
             yield return null;
         }
 
-        MoveSpeed = originalSpeed; // 부스트 끝나면 다시 원래 속도로 설정
+        MoveSpeed = originalSpeed; 
+        isInvincible = false; 
     }
 
     #endregion
