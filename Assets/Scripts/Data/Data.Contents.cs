@@ -113,32 +113,32 @@ namespace Data
 	public class SkillData
 	{
 		// Common
-		public int DataId;
+		public int Index;
 		public string Name;
-		public string ClassName;
+		public int AttackPattern;
 		public Define.SkillType skillType;
 		public int Level;
 
         //ActtiveSkill_Stat
-		public int Projectile;
+		public int ProjectileNum;
 		public float CastAngle;
 		public float Damage;
 		public float AttackSpeed;
 		public float AttackRange;
-		public float ConditionRange;
-		public float CoolTime;
-		public int CastCount;
-		public float Duration;
-		public int KnockbackPower;
+		public float KnockbackPower;
 		public float StunTime;
+        public float ConditionRange;
+        public int CastCount;
+		public float Duration;
+		public int SkillTurn; // 일반스킬 몇번 나가야지 발동 가는한지
+		public float CoolTime;
+		public float CastPer;
 
         //PassiveSkill_Stat
         public int StatType;
-		public int StatApply;
 		public float StatValue;
 		public int SkillGetType;
 		public int SkillMaxLv;
-		public string SkillIconImg;
 	}
 
 	[Serializable]
@@ -150,7 +150,7 @@ namespace Data
 		{
 			Dictionary<int, SkillData> dict = new Dictionary<int, SkillData>();
 			foreach (SkillData skill in skills)
-				dict.Add(skill.DataId, skill);
+				dict.Add(skill.Index, skill);
 			return dict;
 		}
 	}

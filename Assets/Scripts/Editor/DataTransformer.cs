@@ -9,6 +9,7 @@ using System;
 using System.Reflection;
 using System.Collections;
 using System.ComponentModel;
+using Unity.VisualScripting;
 
 public class DataTransformer : EditorWindow
 {
@@ -16,12 +17,12 @@ public class DataTransformer : EditorWindow
     [MenuItem("Tools/ParseExcel %#K")]
     public static void ParseExcelDataToJson()
     {
-        ParseExcelDataToJson<MonsterDataLoader, MonsterData>("Monster");
-        ParseExcelDataToJson<HeroDataLoader, HeroData>("Hero");
-        ParseExcelDataToJson<HeroLevelDataLoader, HeroLevelData>("HeroLevel");
+        //ParseExcelDataToJson<MonsterDataLoader, MonsterData>("Monster");
+        //ParseExcelDataToJson<HeroDataLoader, HeroData>("Hero");
+        //ParseExcelDataToJson<HeroLevelDataLoader, HeroLevelData>("HeroLevel");
         ParseExcelDataToJson<SkillDataLoader, SkillData>("Skill");
-        ParseExcelDataToJson<ProjectileDataLoader, ProjectileData>("Projectile");
-        ParseExcelDataToJson<ItemDataLoader, ItemData>("Item");
+        //ParseExcelDataToJson<ProjectileDataLoader, ProjectileData>("Projectile");
+        //ParseExcelDataToJson<ItemDataLoader, ItemData>("Item");
         
         Debug.Log("DataTransformer Completed");
     }
@@ -41,6 +42,7 @@ public class DataTransformer : EditorWindow
     private static List<LoaderData> ParseExcelDataToList<LoaderData>(string filename) where LoaderData : new()
     {
         List<LoaderData> loaderDatas = new List<LoaderData>();
+        int errorIndex = 0;
         try
         {
             string filePath = $"{Application.dataPath}/Resources/Data/ExcelData/{filename}Data.csv";
@@ -55,6 +57,7 @@ public class DataTransformer : EditorWindow
 
             for (int l = 1; l < lines.Length; l++)
             {
+                errorIndex = l;
                 string[] row = lines[l].Replace("\r", "").Split(',');
                 if (row.Length == 0)
                     continue;
@@ -88,7 +91,7 @@ public class DataTransformer : EditorWindow
         }
         catch (Exception ex)
         {
-            Debug.LogError($"파일을 읽는 도중 오류가 발생했습니다: {ex.Message}");
+            Debug.LogError($"파일을 읽는 도중 오류가 발생했습니다: {ex.Message} FileName : {filename} ErrorIndex : {errorIndex} ");
             throw;
         }
         

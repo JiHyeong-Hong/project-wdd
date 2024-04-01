@@ -69,7 +69,7 @@ public class SkillManager
 		// 전체 스킬
 		foreach (var skillID in skillKeys)
 		{
-			string skillName = skillDic[skillID].ClassName + "Skill";
+			string skillName = skillDic[skillID].Name + "Skill";
 
 			Type t = assembly.GetType(skillName);
 
@@ -87,7 +87,7 @@ public class SkillManager
 			var skill = obj as SkillBase;
 			skill.SetInfo(skillDic[skillID]);
 
-			var className = skillDic[skillID].ClassName;
+			var className = skillDic[skillID].Name;
 			if (!allSkillDic.TryGetValue(className, out var list))
 			{
 				allSkillDic.Add(className,new List<SkillBase>());
@@ -96,9 +96,9 @@ public class SkillManager
 			
 			list.Add(skill);
 
-			if (!beforeID.Equals(skill.SkillData.ClassName))
+			if (!beforeID.Equals(skill.SkillData.Name))
 			{
-				beforeID = skill.SkillData.ClassName;
+				beforeID = skill.SkillData.Name;
 				canPickSkillList.Add(beforeID);
 			}
 		}
@@ -114,7 +114,7 @@ public class SkillManager
 
             // 현재 SkillData에 얼룩말 1개만 임의로 넣음. (1091)  @홍지형 임시.
 
-            string className = Managers.Data.SkillDic[skillID].ClassName + "Skill";
+            string className = Managers.Data.SkillDic[skillID].Name + "Skill";
 			Type t = assembly.GetType(className);
 
 			if (t == null)
@@ -186,7 +186,7 @@ public class SkillManager
 		}
 		
 		// 나중에 제대로 동작하는지 체크
-		list.Add(allSkillDic[skillData.ClassName][skillData.Level]);
+		list.Add(allSkillDic[skillData.Name][skillData.Level]);
 
 		int index = list.Count - 1;
 		list[index].SetInfo(skillData);
@@ -196,14 +196,14 @@ public class SkillManager
 	public void IncreaseSkillLevel(int index)
 	{
 		var skillData = sampleSkillList[index].SkillData;
-		string className = skillData.ClassName;
+		string className = skillData.Name;
 		var skillType = skillData.skillType;
 
 		bool hasSkill = false;
 
         foreach (var skill in usingSkillDic[skillType])
         {
-            if (className.Equals(skill.SkillData.ClassName))
+            if (className.Equals(skill.SkillData.Name))
             {
                 skill.LevelUp(allSkillDic[className][skill.SkillData.Level + 1].SkillData);
                 hasSkill = true;
@@ -211,7 +211,7 @@ public class SkillManager
                 //만렙이면 뽑을 수 있는 스킬목록에서 삭제
                 if (skill.SkillData.Level == Define.MAX_SKILL_LEVEL)
                 {
-                    canPickSkillList.Remove(skill.SkillData.ClassName);
+                    canPickSkillList.Remove(skill.SkillData.Name);
                 }
                 break;
             }

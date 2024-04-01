@@ -15,7 +15,7 @@ public class PoisonGasSkill : SkunkSkill
 
     public override void AttackSkunk(Vector2 direction)
     {
-        List<int> spawnPointList = Util.SelectRandomElements(availableQuadrants, SkillData.Projectile);
+        List<int> spawnPointList = Util.SelectRandomElements(availableQuadrants, SkillData.ProjectileNum);
 
         float offsetX = (direction.x >= 0) ? -1f : 1f;
         float offsetY = (direction.y >= 0) ? 1f : -1f;
@@ -25,7 +25,7 @@ public class PoisonGasSkill : SkunkSkill
         if (Mathf.Abs(direction.y) < 0.001f && direction.x < 0)
             offsetY *= -1;
 
-        for (int i = 0; i < SkillData.Projectile; i++)
+        for (int i = 0; i < SkillData.ProjectileNum; i++)
         {
             Skunk skunk = Managers.Object.Spawn<Skunk>(Owner.transform.position + new Vector3(offsetX, offsetY, 0f), 4);
             skunk.quadrant = spawnPointList[0];

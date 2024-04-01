@@ -16,7 +16,7 @@ public class SkunkSkill : SkillBase
 
     public virtual void AttackSkunk(Vector2 direction)
     {
-        List<int> spawnPointList = Util.SelectRandomElements(availableQuadrants, SkillData.Projectile);
+        List<int> spawnPointList = Util.SelectRandomElements(availableQuadrants, SkillData.ProjectileNum);
 
         float offsetX = (direction.x >= 0) ? -1f : 1f;
         float offsetY = (direction.y >= 0) ? 1f : -1f;
@@ -26,9 +26,9 @@ public class SkunkSkill : SkillBase
         if (Mathf.Abs(direction.y) < 0.001f && direction.x < 0)
             offsetY *= -1;
 
-        for (int i = 0; i < SkillData.Projectile; i++)
+        for (int i = 0; i < SkillData.ProjectileNum; i++)
         {
-            Skunk skunk = Managers.Object.Spawn<Skunk>(Owner.transform.position + new Vector3(offsetX, offsetY, 0f), SkillData.Projectile);
+            Skunk skunk = Managers.Object.Spawn<Skunk>(Owner.transform.position + new Vector3(offsetX, offsetY, 0f), SkillData.ProjectileNum);
             skunk.quadrant = spawnPointList[0];
             skunk.SetSpawnInfo(Owner, this, direction);
             spawnPointList.RemoveAt(0);

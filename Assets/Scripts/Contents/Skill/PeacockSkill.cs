@@ -28,7 +28,7 @@ public class PeacockSkill : SkillBase
 			}
 		}
 		
-		for (int i = 0; i < SkillData.Projectile; i++)
+		for (int i = 0; i < SkillData.ProjectileNum; i++)
 		{
 			bool isNull = monsterList.Count == 0;
 
