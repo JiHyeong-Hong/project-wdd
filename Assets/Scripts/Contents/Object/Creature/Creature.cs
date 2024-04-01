@@ -197,17 +197,16 @@ public class Creature : BaseObject
             return;
 
         Creature creature = attacker as Creature;
-        Projectile projectile;
+        Projectile projectile = null;
 
         if (creature == null)
         {
             projectile = attacker as Projectile;
         }
-        else
+
+        if (creature == null && projectile == null)
             return;
         
-
-
 
         float finalDamage = 0;
 
@@ -250,4 +249,19 @@ public class Creature : BaseObject
         return bo.IsValid();
     }
     #endregion
+
+
+    public object test123(object test)
+    {
+        object tt = null;
+
+        tt = test as Creature;
+
+        if (tt == null)
+        {
+           tt = test as Projectile;
+        }
+        
+        return tt;
+    }
 }
