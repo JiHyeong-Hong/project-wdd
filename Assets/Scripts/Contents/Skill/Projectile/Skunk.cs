@@ -52,23 +52,27 @@ public class Skunk : Projectile
             .Append(Renderer.DOFade(1f, 0f))
             .AppendCallback(() =>
             {
-                Animator.SetInteger("state", 1);
+                Animator.SetBool("IsJump",true);
+                //Animator.SetInteger("Jump", 1);
             })
             .Append(transform.DOJump(ChooseJumpPosition(), 0.5f, 1, 0.5f))
              .InsertCallback(1.2f, () =>
              {
-                 Animator.SetInteger("state", 2);
+                 //Animator.SetInteger("state", 2);
              })
             .AppendCallback(() =>
             {
-                Animator.SetInteger("state", 3);
+                //Animator.SetInteger("Jump", 1);
+
+                //Animator.SetInteger("state", 3);
                 Renderer.color = Color.red;
-                poison = Managers.Resource.Instantiate("SkunkPoison", transform).GetOrAddComponent<SkunkPoison>(); ; // 독 장판 spawn                
+                poison = Managers.Resource.Instantiate("SkunkPoison", transform).GetOrAddComponent<SkunkPoison>(); ; // 독 장판 spawn
+                poison.SetInfo(Owner, skill);
             })
             .AppendInterval(0.5f)
             .InsertCallback(2.0f, () =>
             {
-                Animator.SetInteger("state", 4);
+                //Animator.SetInteger("state", 4);
                 Renderer.color = Color.white;
             })
             .Append(Renderer.DOFade(0f, 0.5f).SetEase(Ease.Linear))
@@ -120,14 +124,13 @@ public class Skunk : Projectile
     }
 
     // 스컹크 자체는 공격판정이 없음.
-    void OnTriggerEnter2D(Collider2D other)
+
+    private void OnTriggerStay2D(Collider2D other)
     {
-        //if (((1 << (int)Define.ELayer.Monster) & (1 << other.gameObject.layer)) != 0)
+        //if (LayerMask.NameToLayer("Monster") == other.gameObject.layer)
         //{
         //    Monster monster = other.gameObject.GetComponent<Monster>();
         //    monster.OnDamaged(Owner, Skill);
         //}
     }
-
-
 }

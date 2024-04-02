@@ -57,12 +57,18 @@ public class SkunkPoison : Projectile
 
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    float currentTime = 0.5f;
+    private void OnTriggerStay2D(Collider2D other)
     {
-        if (((1 << (int)Define.ELayer.Monster) & (1 << other.gameObject.layer)) != 0)
+        if (currentTime > 0.1f && LayerMask.NameToLayer("Monster") == other.gameObject.layer)
         {
             Monster monster = other.gameObject.GetComponent<Monster>();
             monster.OnDamaged(Owner, Skill);
+            currentTime = 0;
+        }
+        else
+        {
+            currentTime += Time.deltaTime;
         }
     }
 }

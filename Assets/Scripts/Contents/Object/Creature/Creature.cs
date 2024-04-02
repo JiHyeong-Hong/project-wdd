@@ -189,13 +189,13 @@ public class Creature : BaseObject
         float finalDamage = 0;
         if (skill == null)
             finalDamage = creature.Atk;
-        else if(CreatureType == ECreatureType.Hero)
-            finalDamage = skill.SkillData.Damage + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Attack);
-        else if(CreatureType == ECreatureType.Monster)
+        else if (CreatureType == ECreatureType.Hero)
             finalDamage = skill.SkillData.Damage;
+        else if (CreatureType == ECreatureType.Monster)
+            finalDamage = skill.SkillData.Damage + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Attack);
 
         Hp = Mathf.Clamp(Hp - finalDamage, 0, MaxHp);
-        Debug.Log($"[{gameObject.name}] Hit! HP({Hp}/{MaxHp})"); // 디버깅용. 삭제가능 @홍지형
+        Debug.LogWarning($"[{gameObject.name}] Hit! HP({Hp}/{MaxHp})"); // 디버깅용. 삭제가능 @홍지형
         if (Hp <= 0)
         {
             OnDead(attacker, skill);

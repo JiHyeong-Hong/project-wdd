@@ -99,7 +99,7 @@ public static class Define
 		AttackSpeed = 10,
 		AttackRange = 11,
 		DamageCare = 12,
-		CastPer = 13,
+		CastPer = 13
     }
 
 

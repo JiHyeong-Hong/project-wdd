@@ -44,11 +44,14 @@ public class SkillManager
 		if (!isInit)
 			return;
 
+
+        usingSkillDic[SkillType.Active][0].UpdateCoolTime(deltaTime);
+
 		if (Input.GetKeyDown(KeyCode.A))
 		{
-			usingSkillDic[SkillType.Active][0].DoSkill();
+			usingSkillDic[SkillType.Passive][0].DoSkill();
 		}
-		
+
 		// foreach (var skill in usingSkillDic[SkillType.Active])
 		// {
 		// 	skill?.UpdateCoolTime(deltaTime);

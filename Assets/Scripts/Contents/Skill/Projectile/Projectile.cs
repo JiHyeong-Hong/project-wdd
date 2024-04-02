@@ -1,3 +1,4 @@
+using Data;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,7 +31,13 @@ public class Projectile : BaseObject
 		Renderer.sortingOrder = SortingLayers.PROJECTILE;
 	}
 
-	public virtual void SetSpawnInfo(Creature owner, SkillBase skill, Vector2 direction)
+    public void SetInfo(Creature owner, SkillBase skill)
+    {
+		Owner = owner;
+		Skill = skill;
+    }
+
+    public virtual void SetSpawnInfo(Creature owner, SkillBase skill, Vector2 direction)
 	{
 		Owner = owner;
 		Skill = skill;
