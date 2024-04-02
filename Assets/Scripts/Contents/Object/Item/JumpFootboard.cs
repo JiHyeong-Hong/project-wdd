@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpFootboard : Footboard
+public class JumpFootboard : MonoBehaviour
 {
     private Hero hero;
 
@@ -13,9 +13,12 @@ public class JumpFootboard : Footboard
     public LayerMask enemyLayer; 
     public float blowAwayRadius = 6f; // 적 감지 반경
 
+    private SpriteRenderer spriteRenderer;
+
     private void Start()
     {
         hero = FindObjectOfType<Hero>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -28,25 +31,10 @@ public class JumpFootboard : Footboard
 
     private IEnumerator Jump(Vector2 direction)
     {
-        // hero.IsInvincible = true;
-        //
-        // Vector3 start = hero.transform.position;
-        // Vector3 target = start + new Vector3(direction.x, direction.y, 0) * jumpDistance;
-        // float elapsed = 0;
-        //
-        // while (elapsed < jumpDuration)
-        // {
-        //     // 시간에 따른 점프 진행도 계산
-        //     float t = elapsed / jumpDuration;
-        //     // 현재 위치 업데이트
-        //     hero.transform.position = Vector3.Lerp(start, target, t) + Vector3.up * Mathf.Sin(t * Mathf.PI) * jumpHeight;
-        //     elapsed += Time.deltaTime;
-        //     yield return null;
-        // }
-        //
-        // hero.IsInvincible = false;
-        //
-        // BlowAwayEnemies();
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = new Color(1f, 1f, 1f, 0f); 
+        }
 
         hero.IsInvincible = true;
 
@@ -73,6 +61,8 @@ public class JumpFootboard : Footboard
         hero.IsInvincible = false;
 
         Airborne();
+
+        Destroy(gameObject);
     }
 
     private void Airborne()

@@ -49,6 +49,8 @@ public class Hero : Creature
         set { isInvincible = value; }
     }
 
+    public bool isSpeedBoosted = false;
+
 
     #endregion
 
@@ -192,7 +194,9 @@ public class Hero : Creature
     {
         float originalSpeed = MoveSpeed; 
         MoveSpeed *= multiplier; // 속도 증가
+
         isInvincible = true; // 무적 상태 설정
+        isSpeedBoosted = true;
 
         Vector3 startPosition = transform.position;
         float movedDistance = 0;
@@ -214,8 +218,30 @@ public class Hero : Creature
         }
 
         MoveSpeed = originalSpeed; 
-        isInvincible = false; 
+        isInvincible = false;
+        isSpeedBoosted = false;
     }
 
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (isSpeedBoosted && ((1 << (int)Define.ELayer.Monster) & (1 << collider.gameObject.layer)) != 0)
+        {
+            Rigidbody2D enemyRb = collider.GetComponent<Rigidbody2D>();
+            if (enemyRb != null)
+            {
+                // 플레이어로부터 몬스터까지의 방향을 계산
+                Vector2 blowDirection = (enemyRb.transform.position - transform.position).normalized;
+
+                // 몬스터를 뒤로 밀어내고 약간 위로 향하게...
+                Vector2 force = blowDirection * 10f + Vector2.up * 5f;
+                enemyRb.AddForce(force, ForceMode2D.Impulse);
+
+                // 몬스터가 회전하도록
+                enemyRb.AddTorque(10f, ForceMode2D.Impulse);
+
+                Destroy(collider.gameObject, 2f); // 2초 후 소멸
+            }
+        }
+    }
     #endregion
 }
