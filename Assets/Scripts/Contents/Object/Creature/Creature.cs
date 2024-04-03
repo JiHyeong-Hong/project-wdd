@@ -65,16 +65,16 @@ public class Creature : BaseObject
                 break;
         }
 
-        gameObject.name = $"{CreatureData.DataId}_{CreatureData.DescriptionTextID}";
+        gameObject.name = $"{CreatureData.Index}_{CreatureData.DescriptionTextID}";
 
         AnimatorController animatorController = Managers.Resource.Load<AnimatorController>(CreatureData.AnimatorDataID);
         Animator.runtimeAnimatorController = animatorController;
 
-        DataID = CreatureData.DataId;
+        DataID = CreatureData.Index;
         MaxHp = CreatureData.MaxHp;
         Hp = CreatureData.MaxHp;
         Atk = CreatureData.Atk;
-        MoveSpeed = (CreatureData.MoveSpeed / 100.0f) * Define.DEFAULT_SPEED;
+        MoveSpeed = (CreatureData.MoveSpeed) * Define.DEFAULT_SPEED;
 
         CreatureState = ECreatureState.Idle;
     }

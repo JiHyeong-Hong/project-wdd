@@ -10,11 +10,10 @@ public class Boss : Monster
 {
     public int Phase { get; set; } //현재 보스 페이즈
 
-    public int[] Phase_Percent { get; set; } //패턴 구간 배열 - [체력]
+    public Data.HpConditionData Phase_Percent { get; set; } //패턴 구간 배열 - [체력]
+    public List<Data.PatternPerData> Pattern_Percent_List { get; set; } //패턴 확률 배열 - [페이즈][확률]
 
-    //[70,50,30]
-    public int[,] Pattern_Percent { get; set; } //패턴 확률 배열 - [페이즈][확률] 
-
+    public int[,] Pattern_Percent { get; set; } 
     //[0][50,50,0], [1][20,40,40], [2][10, 45, 45], [3][10, 45, 45]
 
     // public float cooltime;
@@ -27,9 +26,6 @@ public class Boss : Monster
         if (base.Init() == false)
             return false;
         CreatureType = ECreatureType.Boss;
-        Phase_Percent = new[] { 70, 50, 30 };
-        Pattern_Percent = new int[,] { { 50, 50, 0 }, { 20, 40, 40 }, { 10, 45, 45 }, { 10, 45, 45 } };
-        StartCoroutine(CoPhaseCheck());
         return true;
     }
 
@@ -44,13 +40,13 @@ public class Boss : Monster
         int size = Pattern_Percent.GetLength(1);
         int setVal = 0;
         int pattern_idx = 0;
-
+        
         for (int i = 0; i < size; i++)
         {
             if (i != prepatternidx)
             {
                 setVal += Pattern_Percent[Phase, i];
-
+        
                 if (per <= setVal)
                 {
                     pattern_idx = i;
@@ -59,7 +55,7 @@ public class Boss : Monster
                 }
             }
         }
-
+        
         switch (pattern_idx)
         {
             case 0:
@@ -71,7 +67,7 @@ public class Boss : Monster
             case 2:
                 CreatureState = ECreatureState.Skill1;
                 break;
-
+        
             default:
                 CreatureState = ECreatureState.Move;
                 break;
@@ -81,6 +77,28 @@ public class Boss : Monster
     public override void SetInfo(int templateID)
     {
         base.SetInfo(templateID);
+
+        Phase_Percent = Managers.Data.HpConditionDic[templateID];
+        Pattern_Percent_List = new List<PatternPerData>();
+        
+        foreach (var item in Managers.Data.PatternPerDic)
+        {
+            if(item.Value.MonsterID == templateID)
+                Pattern_Percent_List.Add(item.Value);
+        }
+
+        Pattern_Percent = new int[Pattern_Percent_List.Count, 3];
+
+        for (int i = 0; i < Pattern_Percent_List.Count; i++)
+        {
+            Pattern_Percent[Pattern_Percent_List[i].PhaseNum-1, 0] = Pattern_Percent_List[i].Pattern1;
+            Pattern_Percent[Pattern_Percent_List[i].PhaseNum-1, 1] = Pattern_Percent_List[i].Pattern2;
+            Pattern_Percent[Pattern_Percent_List[i].PhaseNum-1, 2] = Pattern_Percent_List[i].Pattern3;
+        }
+        Debug.Log(Pattern_Percent_List[0].PhaseNum);
+        
+        Debug.Log("Test");
+        StartCoroutine(CoPhaseCheck());
     }
 
     #region Battle
@@ -97,9 +115,9 @@ public class Boss : Monster
         }
         if (_hero.IsValid())
         {
-            switch (monsterData.DataId)
+            switch (monsterData.Index)
             {
-                case 415:
+                case 241:
                     Vector2 dest = (_hero.transform.position - transform.position).normalized;
                     SetRigidbodyVelocity(dest * MoveSpeed);
                     break;
@@ -155,19 +173,19 @@ public class Boss : Monster
     {
         while (true)
         {
-            if (Hp / MaxHp * 100 <= 70 && Phase == 0)
+            if (Hp / MaxHp * 100 <= Phase_Percent.Phase1Hp && Phase == 0)
             {
                 Phase++;
                 CreatureState = ECreatureState.Pattern1;
                 Debug.Log("1 페이즈 시작!");
             }
-            else if (Hp / MaxHp * 100 <= 50 && Phase == 1)
+            else if (Hp / MaxHp * 100 <= Phase_Percent.Phase2Hp && Phase == 1)
             {
                 Phase++;
                 CreatureState = ECreatureState.Pattern2;
                 Debug.Log("2 페이즈 시작!");
             }
-            else if (Hp / MaxHp * 100 <= 30 && Phase == 2)
+            else if (Hp / MaxHp * 100 <= Phase_Percent.Phase3Hp && Phase == 2)
             {
                 Phase++;
                 Debug.Log("3 페이즈 시작!");

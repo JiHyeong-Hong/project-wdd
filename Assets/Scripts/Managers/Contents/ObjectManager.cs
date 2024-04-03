@@ -65,11 +65,10 @@ public class ObjectManager
                 case ECreatureType.Boss:
                     obj.transform.parent = (parent == null) ? BossRoot : parent;
                     //TODO Eung 보스 소환 코드 수정 필요
-                    Monster boss2 = creature as Monster;
-                    // Boss boss = creature as Boss;
+                    Boss boss = creature as Boss;
                     //TODO Eung 몬스터 통합하면 boss 수정
-                    Monsters.Add(boss2);
-                    boss2.SetInfo(templateID);
+                    Monsters.Add(boss);
+                    boss.SetInfo(templateID);
                     break;
                 
                 //TODO Eung ECreatureType.Boss의 경우 코드 작성 

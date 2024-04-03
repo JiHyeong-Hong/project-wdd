@@ -34,7 +34,7 @@ public class Monster : Creature
         
         monsterData = CreatureData as MonsterData;
         //몬스터 클래스에서 몬스터와 보스 타입 재분류
-        switch (monsterData.type)
+        switch (monsterData.Type)
         {
             case 1:
                 CreatureState = ECreatureState.Move;
@@ -48,8 +48,9 @@ public class Monster : Creature
                 break;
         }
         
-        DropItemID = monsterData.DropItemID;
-        DropPersent = monsterData.DropPersent;
+        //TODO Eung Drop 데이터 테이블 만들고나서 봐야할듯?
+        // DropItemID = monsterData.DropItemID;
+        // DropPersent = monsterData.DropPersent;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -176,7 +177,7 @@ public class Monster : Creature
 
     public bool HeroSearching()
     {
-        if (monsterData.Atktype == 1 || monsterData.Atktype == 3)
+        if (monsterData.AttackType == 1 || monsterData.AttackType == 3)
             return false;
         
         distance = Vector2.Distance(_hero.transform.position, this.transform.position);

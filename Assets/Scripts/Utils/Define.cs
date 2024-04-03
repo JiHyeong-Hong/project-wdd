@@ -115,9 +115,9 @@ public static class Define
 
 	public const int HERO_ZOOKEEPER_ID = 100;
 
-	public const int MONSTER_SECURITY1_ID = 411;
-	public const int MONSTER_SECURITY2_ID = 412;
-	public const int MONSTER_SECURITY3_ID = 413;
+	public const int MONSTER_SECURITY1_ID = 201;
+	public const int MONSTER_SECURITY2_ID = 202;
+	public const int MONSTER_SECURITY3_ID = 203;
 
 	// 현재 임시 테스트용. @홍지형 240323
     public const int MONSTER_SHOOTER_ID = 414; // 길리슈터. @홍지형
