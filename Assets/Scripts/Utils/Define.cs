@@ -41,6 +41,7 @@ public static class Define
 		Env,
 		Item,
 		Structure,
+		Spawner,
 	}
 
 	public enum ECreatureType
@@ -109,7 +110,8 @@ public static class Define
     }
 
 
-    public const float DEFAULT_SPEED = 3;
+	//TODO Eung 테스트용 더미 데이터 - 모든 테이블이만들어지면 필요없는 부분
+	public const float DEFAULT_SPEED = 3;
 	public const int MAX_SKILL_LEVEL = 5;
 	public const int MAX_LEVEL = 60;
 

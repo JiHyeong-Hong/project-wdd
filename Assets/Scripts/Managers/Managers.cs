@@ -10,9 +10,11 @@ public class Managers : MonoBehaviour
     #region Contents
     private GameManager _game = new GameManager();
     private ObjectManager _object = new ObjectManager();
+    private SpawnManager _spawner = new SpawnManager();
 
     public static GameManager Game { get { return Instance._game; } }
     public static ObjectManager Object { get { return Instance?._object; } }
+    public static SpawnManager Spawner { get { return Instance?._spawner; } }
 	#endregion
 
 	#region Core
@@ -78,6 +80,7 @@ public class Managers : MonoBehaviour
             s_instance._data.Init();
             s_instance._pool.Init();
             s_instance._sound.Init();
+            // s_instance._spawner.Init();
         }
 	}
 }

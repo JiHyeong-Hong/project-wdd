@@ -12,6 +12,7 @@ public class ObjectManager
     public HashSet<Projectile> Projectiles { get; } = new HashSet<Projectile>();
     public HashSet<Item> Items { get; } = new HashSet<Item>();
     public HashSet<Structure> Structures { get; } = new HashSet<Structure>();
+    public HashSet<Spawner> Spawners { get; } = new HashSet<Spawner>();
     #region Roots
     public Transform GetRootTransform(string name)
     {
@@ -33,6 +34,7 @@ public class ObjectManager
     public Transform ProjectileRoot { get { return GetRootTransform("@Projectiles"); } }
     public Transform ItemRoot { get { return GetRootTransform("@Item"); } }
     public Transform StructureRoot { get { return GetRootTransform("@Structure"); } }
+    public Transform SpawnerRoot { get { return GetRootTransform("@Spawners"); } }
     #endregion
 
     public T Spawn<T>(Vector3 position, int templateID, Transform parent = null) where T : BaseObject
@@ -98,6 +100,13 @@ public class ObjectManager
             
             Structure structure = go.GetComponent<Structure>();
             Structures.Add(structure);
+        }
+        else if (obj.ObjectType == EObjectType.Spawner)
+        {
+            obj.transform.parent = (parent == null) ? SpawnerRoot : parent;
+            
+            Spawner spawner = go.GetComponent<Spawner>();
+            Spawners.Add(spawner);
         }
 
         return obj as T;

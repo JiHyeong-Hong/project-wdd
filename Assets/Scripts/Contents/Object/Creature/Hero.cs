@@ -7,6 +7,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using static Define;
 using static Unity.Collections.AllocatorManager;
+using Random = UnityEngine.Random;
 
 public class Hero : Creature
 {
@@ -101,9 +102,18 @@ public class Hero : Creature
 			// for (int i = 0; i < 1; ++i)
 			// 	Managers.Object.Spawn<Monster>(new Vector3(-2f + i, 0f, 0f), Define.MONSTER_SECURITY2_ID);
 
-			for (int i = 0; i < 1; ++i)
-				Managers.Object.Spawn<Monster>(new Vector3(-2f + i, 1f, 0f), Define.MONSTER_SECURITY3_ID);
+			// for (int i = 0; i < 1; ++i)
+			// 	Managers.Object.Spawn<Monster>(new Vector3(-2f + i, 1f, 0f), Define.MONSTER_SECURITY3_ID);
 		}
+		
+		// TODO Eung 스포너 생성 테스트 코드
+		// if (Input.GetKeyDown(KeyCode.Alpha6))
+		// {
+		// 	Debug.Log("Test");
+		// 	int ran = Random.Range(0, Managers.Spawner.spawner_List.Count);
+		// 	
+		// 	Managers.Spawner.spawner_List[ran].Spawn(415);
+		// }
 	}
 	private void HandleOnMoveDirChanged(Vector2 dir)
 	{
