@@ -215,7 +215,7 @@ public class Creature : BaseObject
             if(creature != null)
                 finalDamage = creature.Atk;
             else
-                finalDamage = projectile.ProjectileData.Damage;
+                finalDamage = projectile.ProjectileData.ContactDmg;
         }
         else if(CreatureType == ECreatureType.Hero)
             finalDamage = skill.SkillData.Damage + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Attack);

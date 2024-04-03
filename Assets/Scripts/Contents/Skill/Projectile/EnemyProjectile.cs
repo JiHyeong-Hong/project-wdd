@@ -23,7 +23,11 @@ public class EnemyProjectile : Projectile
 		
         return true;
     }
-    
+
+    public void SetImage()
+    {
+        Renderer.sprite = Managers.Resource.Load<Sprite>(ProjectileData.ImageDataurl);
+    }
     public void SetTarget(Hero target)
     {
         this.target = target;
@@ -37,11 +41,11 @@ public class EnemyProjectile : Projectile
         switch (type)
         {
             case 1:
-                transform.Translate(Vector2.up * (ProjectileData.Speed* Time.deltaTime));
+                transform.Translate(Vector2.up * (ProjectileData.MoveSpeed * Time.deltaTime));
                 break;
             
             default:
-                transform.Translate(Vector2.up * (ProjectileData.Speed* Time.deltaTime));
+                transform.Translate(Vector2.up * (ProjectileData.MoveSpeed * Time.deltaTime));
                 break;
         }
         if(!Util.CheckTargetInScreen(transform.position))

@@ -105,7 +105,8 @@ public class Monster : Creature
             {
                 Vector2 direction = (_hero.transform.position - this.transform.position).normalized;
                 Debug.Log("원거리 공격!!");
-                var proj = Managers.Object.Spawn<EnemyProjectile>(transform.position, 1);
+                var proj = Managers.Object.Spawn<EnemyProjectile>(transform.position, monsterData.ProjectileID);
+                proj.SetImage();
                 proj.SetSpawnInfo(this, null, direction);
                 proj.SetTarget(_hero);
                 

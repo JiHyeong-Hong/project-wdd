@@ -209,13 +209,15 @@ namespace Data
 	[Serializable]
 	public class ProjectileData
 	{
-		public int DataId;
+		public int Index;
+		public int ProjectileId;
 		public string Name;
-		public string ClassName;
-		public int Disorder;
-		public float DisorderDuration;
-		public float Damage;
-		public float Speed;
+		public int MoveSpeed;
+		public int ContactDmg;
+		public int ConditionType;
+		public int SkillLvDown;
+		public int SkillID;
+		public string ImageDataurl;
 	}
 
 	[Serializable]
@@ -227,7 +229,7 @@ namespace Data
 		{
 			Dictionary<int, ProjectileData> dict = new Dictionary<int, ProjectileData>();
 			foreach (ProjectileData projectile in projectiles)
-				dict.Add(projectile.DataId, projectile);
+				dict.Add(projectile.ProjectileId, projectile);
 			return dict;
 		}
 	}
