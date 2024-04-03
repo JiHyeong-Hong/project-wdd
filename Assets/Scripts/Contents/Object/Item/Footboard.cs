@@ -9,7 +9,7 @@ public class Footboard : MonoBehaviour
     public GameObject jumpfab;
     public GameObject boostfab;
     public Transform playerTransform; // 플레이어 위치
-    private float spawnInterval = 5f; 
+    private float spawnInterval = 60f; 
 
         private void Start()
     {
