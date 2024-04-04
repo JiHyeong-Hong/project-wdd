@@ -34,7 +34,7 @@ public class PeacockSkill : SkillBase
 
 			int idx = Random.Range(0, monsterList.Count);
 			Monster target = !isNull ? monsterList[idx] : null;
-			Peacock peacock = Managers.Object.Spawn<Peacock>(Owner.transform.position, 1);
+			Peacock peacock = Managers.Object.Spawn<Peacock>(Owner.transform.position, SkillData.ProjectileNum);
 
 			peacock.SetTarget(target);
 			peacock.SetSpawnInfo(Owner, this, isNull ? Util.GetRandomDir() : Vector2.zero);

@@ -1,2 +1,2 @@
 DataId,DescriptionTextID,MaxHp,Atk,MoveSpeed,ResistDisorder,AnimatorDataID,Level,MaxExp,ItemAcquireRange,SkillIdList
-100,사육사,100,2,100,0,Animations/Hero/hero,1,70,0,2015&1010&2020&1020&1030
+100,사육사,100,2,1,0,Animations/Hero/hero,1,70,0,2015&1011&1031&1071&1081
