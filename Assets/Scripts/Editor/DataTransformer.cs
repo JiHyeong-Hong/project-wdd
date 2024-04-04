@@ -20,9 +20,11 @@ public class DataTransformer : EditorWindow
         //ParseExcelDataToJson<MonsterDataLoader, MonsterData>("Monster");
         //ParseExcelDataToJson<HeroDataLoader, HeroData>("Hero");
         //ParseExcelDataToJson<HeroLevelDataLoader, HeroLevelData>("HeroLevel");
-        ParseExcelDataToJson<SkillDataLoader, SkillData>("Skill");
+        //ParseExcelDataToJson<SkillDataLoader, SkillData>("Skill");
         //ParseExcelDataToJson<ProjectileDataLoader, ProjectileData>("Projectile");
         //ParseExcelDataToJson<ItemDataLoader, ItemData>("Item");
+        //ParseExcelDataToJson<HpConditionDataLoader, HpConditionData>("HpCondition");
+        //ParseExcelDataToJson<PatternPerDataLoader, PatternPerData>("PatternPer");
         
         Debug.Log("DataTransformer Completed");
     }

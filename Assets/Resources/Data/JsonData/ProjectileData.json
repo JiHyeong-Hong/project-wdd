@@ -5,35 +5,36 @@
       "Name": "쿠나이",
       "ClassName": "Kunai",
       "Disorder": 1,
-      "DisorderDuration": 0.0
+      "DisorderDuration": 0.0,
+      "Damage" : 1,
+      "Speed" : 5
     },
     {
       "DataId": 2,
       "Name": "로켓",
       "ClassName": "Rocket",
       "Disorder": 0,
-      "DisorderDuration": 0.0
+      "DisorderDuration": 0.0,
+      "Damage" : 1,
+      "Speed" : 5
     },
     {
       "DataId": 3,
       "Name": "앵무새",
       "ClassName": "Bird",
       "Disorder": 1,
-      "DisorderDuration": 0.0
+      "DisorderDuration": 0.0,
+      "Damage" : 1,
+      "Speed" : 5
     },
     {
       "DataId": 4,
       "Name": "호랑이",
       "ClassName": "Tiger",
       "Disorder": 0,
-      "DisorderDuration": 0.0
-    },
-	{
-      "DataId": 5,
-      "Name": "마취총알",
-      "ClassName": "StunBullet",
-      "Disorder": 0,
-      "DisorderDuration": 1.0
+      "DisorderDuration": 0.0,
+      "Damage" : 1,
+      "Speed" : 5
     }
   ]
 }

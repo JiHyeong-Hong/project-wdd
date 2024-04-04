@@ -11,13 +11,9 @@ namespace Data
 	[Serializable]
 	public class CreatureData
 	{
-		public int DataId;
-		//TODO Eung 몬스터 타입 - 테이블에 따라 변경필요
-		public int type;
+		public int Index;
 		public string DescriptionTextID;
 		public int MaxHp;
-		//TODO Eung 공격 타입 - 테이블에 따라 변경필요
-		public int Atktype;
 		public int Atk;
 		public float MoveSpeed;
 		public float ResistDisorder;
@@ -31,9 +27,48 @@ namespace Data
 	[Serializable]
 	public class MonsterData : CreatureData
 	{
-		public int DropItemID;
-		public int DropPersent;
-		public float AtkRange;
+		/* 기존 테이블 데이터
+		//TODO 몬스터의 드랍 테이블에서 사용햇던 데이터 - 드랍 아이템 관련 이야기를 해봐야함
+		// public int DropItemID;			*****
+		// public int DropPersent;			*****
+		// public float AtkRange;
+		// //TODO Eung 몬스터 타입 - 테이블에 따라 변경필요
+		// public int type;
+		// //TODO Eung 공격 타입 - 테이블에 따라 변경필요
+		// public int Atktype;
+		*/
+		public int Type;
+		public int AttackType;
+		public int CoolTime;
+		public int ProjectileID;
+		public int ProjectileNum;
+		public int CastAngle;
+		public int MinStance;
+		public int MaxStane;
+		public int KnockbackPower;
+		public int ConditionType;
+		public int SkillLvDown;
+		public int ConditionHitType;
+		public int KnockbackPowerHitType;
+	}
+	
+	//TODO Eung 몬스터를 그냥 하나의 객체로 만들때 사용할수도? 아니먄 그냥 기존 구조로 공통 변수 묶어서 CreatureData + MonsterData로 가는 경우 필요없어짐
+	[Serializable]
+	public class MonsterData2
+	{
+		public int Type;
+		public int AttackType;
+		public int CoolTime;
+		public int ProjectileID;
+		public int ProjectileNum;
+		public int CastAngle;
+		public int MinStance;
+		public int MaxStane;
+		public int KnockbackPower;
+		public int ConditionType;
+		public int SkillLvDown;
+		public int ConditionHitType;
+		public int KnockbackPowerHitType;
 	}
 
 	[Serializable]
@@ -44,11 +79,23 @@ namespace Data
 		{
 			Dictionary<int, MonsterData> dict = new Dictionary<int, MonsterData>();
 			foreach (MonsterData monster in monsters)
-				dict.Add(monster.DataId, monster);
+				dict.Add(monster.Index, monster);
 			return dict;
 		}
 	}
-
+	
+	//TODO Eung MonsterDataLoader2 테스트 코드 필요없어지는 경우 삭제할것
+	// public class MonsterDataLoader2 : ILoader<int, MonsterData2>
+	// {
+	// 	public List<MonsterData2> monsters = new List<MonsterData2>();
+	// 	public Dictionary<int, MonsterData2> MakeDict()
+	// 	{
+	// 		Dictionary<int, MonsterData2> dict = new Dictionary<int, MonsterData2>();
+	// 		foreach (MonsterData2 monster in monsters)
+	// 			dict.Add(monster.Index, monster);
+	// 		return dict;
+	// 	}
+	// }
     #endregion
 
     #region HeroData
@@ -70,7 +117,7 @@ namespace Data
 		{
 			Dictionary<int, HeroData> dict = new Dictionary<int, HeroData>();
 			foreach (HeroData hero in heroes)
-				dict.Add(hero.DataId, hero);
+				dict.Add(hero.Index, hero);
 			return dict;
 		}
 	}
@@ -162,11 +209,15 @@ namespace Data
 	[Serializable]
 	public class ProjectileData
 	{
-		public int DataId;
+		public int Index;
+		public int ProjectileId;
 		public string Name;
-		public string ClassName;
-		public int Disorder;
-		public float DisorderDuration;
+		public int MoveSpeed;
+		public int ContactDmg;
+		public int ConditionType;
+		public int SkillLvDown;
+		public int SkillID;
+		public string ImageDataurl;
 	}
 
 	[Serializable]
@@ -178,7 +229,7 @@ namespace Data
 		{
 			Dictionary<int, ProjectileData> dict = new Dictionary<int, ProjectileData>();
 			foreach (ProjectileData projectile in projectiles)
-				dict.Add(projectile.DataId, projectile);
+				dict.Add(projectile.ProjectileId, projectile);
 			return dict;
 		}
 	}
@@ -210,5 +261,64 @@ namespace Data
 		}
 	}
 
+    #endregion
+    
+    #region Boss_Patturn
+
+    [Serializable]
+    public class HpConditionData
+    {
+	    public int Index;
+	    public int MonsterID;
+	    public int Phase1Hp;
+	    public int Phase2Hp;
+	    public int Phase3Hp;
+	    public int Phase4Hp;
+    }
+
+    [Serializable]
+    public class HpConditionDataLoader : ILoader<int, HpConditionData>
+    {
+	    public List<HpConditionData> datas = new List<HpConditionData>();
+
+	    public Dictionary<int, HpConditionData> MakeDict()
+	    {
+		    Dictionary<int, HpConditionData> dict = new Dictionary<int, HpConditionData>();
+		    foreach (HpConditionData item in datas)
+			    dict.Add(item.Index, item);
+		    return dict;
+	    }
+    }
+    
+
+    #endregion
+    
+    #region Boss_Patturn_Per
+
+    [Serializable]
+    public class PatternPerData
+    {
+	    public int Index;
+	    public int MonsterID;
+	    public int PhaseNum;
+	    public int Pattern1;
+	    public int Pattern2;
+	    public int Pattern3;
+    }
+
+    [Serializable]
+    public class PatternPerDataLoader : ILoader<int, PatternPerData>
+    {
+	    public List<PatternPerData> datas = new List<PatternPerData>();
+
+	    public Dictionary<int, PatternPerData> MakeDict()
+	    {
+		    Dictionary<int, PatternPerData> dict = new Dictionary<int, PatternPerData>();
+		    foreach (PatternPerData item in datas)
+			    dict.Add(item.Index, item);
+		    return dict;
+	    }
+    }
+    
     #endregion
 }

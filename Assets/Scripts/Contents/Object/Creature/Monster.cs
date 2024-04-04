@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Data;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -23,29 +24,33 @@ public class Monster : Creature
         return true;
     }
 
+    protected MonsterData monsterData;
     public override void SetInfo(int templateID)
     {
         base.SetInfo(templateID);
 
-        CreatureState = ECreatureState.Move;
-
         Renderer.sortingOrder = SortingLayers.MONSTER;
         _hero = Managers.Object.Hero;
         
-        Data.MonsterData monsterData = CreatureData as Data.MonsterData;
+        monsterData = CreatureData as MonsterData;
         //몬스터 클래스에서 몬스터와 보스 타입 재분류
-        switch (monsterData.type)
+        switch (monsterData.Type)
         {
             case 1:
-                CreatureType = ECreatureType.Monster;
+                CreatureState = ECreatureState.Move;
                 break;
             case 2:
-                CreatureType = ECreatureType.Boss;
+                CreatureType = ECreatureType.MiddleBoss;
+                CreatureState = ECreatureState.Move;
+                break;
+            case 3:
+                CreatureState = ECreatureState.Move;
                 break;
         }
         
-        DropItemID = monsterData.DropItemID;
-        DropPersent = monsterData.DropPersent;
+        //TODO Eung Drop 데이터 테이블 만들고나서 봐야할듯?
+        // DropItemID = monsterData.DropItemID;
+        // DropPersent = monsterData.DropPersent;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -83,12 +88,12 @@ public class Monster : Creature
     #endregion
 
     #region AI
-    private Hero _hero;
+    protected Hero _hero;
     private float distance = 0f;
     public float cooltime = 0f;
     public bool Atk_chk;
 
-    IEnumerator Attack()
+    protected virtual IEnumerator Attack()
     {
         //공격 주기
         cooltime = 2f;
@@ -100,14 +105,10 @@ public class Monster : Creature
             {
                 Vector2 direction = (_hero.transform.position - this.transform.position).normalized;
                 Debug.Log("원거리 공격!!");
-                var proj = Managers.Object.Spawn<Projectile>(transform.position, 1);
-                
-                Debug.Log(transform.position);
-               
+                var proj = Managers.Object.Spawn<EnemyProjectile>(transform.position, monsterData.ProjectileID);
+                proj.SetImage();
                 proj.SetSpawnInfo(this, null, direction);
-                // proj.SetSpawnInfo2(this, Util.RotateVectorByAngle(direction, 0));
-                // Debug.Log(proj);
-                
+                proj.SetTarget(_hero);
                 
                 cotest = null;
                 CreatureState = ECreatureState.Idle;
@@ -124,55 +125,16 @@ public class Monster : Creature
         {
             cotest = StartCoroutine(Attack());
         }
-        /* 공격 기능 주석 처리 - Searching 기능으로 구별
-        distance = Vector2.Distance(_hero.transform.position, this.transform.position);
         
-        if (_hero.IsValid())
-        {
-            Vector2 dest = (_hero.transform.position - transform.position).normalized;
-
-            switch (CreatureData.Atktype)
-            {
-                case 1:
-                    SetRigidbodyVelocity(dest * MoveSpeed);
-                    Debug.Log("근접 공격!!");
-                    break;
-                case 2:
-                    if(!Atk_chk)
-                        if (distance >= 5)
-                            // Debug.Log("근접 공격!!");
-                            CreatureState = ECreatureState.Move;
-                        else
-                        {
-                            Atk_chk = !Atk_chk;
-                            CreatureState = ECreatureState.Idle;
-                        }
-                    
-                    else
-                    {
-                        if (distance >= 6)
-                        {
-                            Atk_chk = !Atk_chk;
-                        }
-                        else
-                        {
-                            //TODO Eung 원거리 공격 코루틴 작성 필요 - 원거리 공격중 Creature.UpdateAITick 시간 변경후 루프 시간 설정할 예정
-                            CreatureState = ECreatureState.Idle;
-                            SetImageDirecton(dest);
-                            // StartCoroutine(Attack());
-                        }
-                    }
-                    break;
-            }
-        }
-        else
-            SetRigidbodyVelocity(Vector2.zero);
-            */
+        Vector2 dest = (_hero.transform.position - transform.position).normalized;
+        SetRigidbodyVelocity(dest * 0);
+        SetImageDirecton(dest);
+        
     }
     protected override void UpdateMove()
     {
         bool searching = HeroSearching();
-        UpdateAITick = 0.1f;
+        // UpdateAITick = 0.1f;
         if (!searching)
         {
             if (_hero.IsValid())
@@ -180,8 +142,6 @@ public class Monster : Creature
                 Vector2 dest = (_hero.transform.position - transform.position).normalized;
 
                 SetRigidbodyVelocity(dest * MoveSpeed);
-                // SetRigidbodyVelocity(dest * 0);
-                Debug.Log("이동중!!");
             }
             else
                 SetRigidbodyVelocity(Vector2.zero);
@@ -213,12 +173,12 @@ public class Monster : Creature
 
     protected override void UpdateHit()
     {
-        // CreatureState = ECreatureState.Move;
+        CreatureState = ECreatureState.Idle;
     }
 
     public bool HeroSearching()
     {
-        if (CreatureData.Atktype == 1)
+        if (monsterData.AttackType == 1 || monsterData.AttackType == 3)
             return false;
         
         distance = Vector2.Distance(_hero.transform.position, this.transform.position);
@@ -291,5 +251,12 @@ public class Monster : Creature
             yield return new WaitForFixedUpdate();
         }
     }
+
+
+    protected virtual IEnumerator Skill1()
+    {
+        yield return null;
+    }
+
     #endregion
 }
