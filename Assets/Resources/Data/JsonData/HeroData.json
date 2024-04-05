@@ -5,13 +5,17 @@
       "MaxExp": 70,
       "ItemAcquireRange": 0.0,
       "SkillIdList": [
-        1083
+        2015,
+        1011,
+        1031,
+        1071,
+        1081
       ],
-      "DataId": 100,
+      "Index": 100,
       "DescriptionTextID": "사육사",
       "MaxHp": 100,
       "Atk": 2,
-      "MoveSpeed": 200.0,
+      "MoveSpeed": 1.0,
       "ResistDisorder": 0.0,
       "AnimatorDataID": "Animations/Hero/hero"
     }

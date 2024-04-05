@@ -238,8 +238,15 @@ public class Creature : BaseObject
 
 
         // 넉백
-        if (skill.SkillData.KnockbackPower != 0)
+        if (skill != null && skill.SkillData.KnockbackPower != 0)
+        {
             StartCoroutine(knockbackUpdate(transform.position - attacker.transform.position, skill.SkillData.KnockbackPower * 0.01f, 0.5f));
+        }
+        else
+        {
+            // skill이 null인 경우 예외 처리
+            Debug.LogError("Skill is null or KnockbackPower is zero.");
+        }
 
         _freezeStateOneFrame = true;
     }

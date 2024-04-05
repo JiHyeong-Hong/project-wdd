@@ -1,0 +1,68 @@
+{
+  "datas": [
+    {
+      "Index": 241,
+      "MonsterID": 241,
+      "PhaseNum": 1,
+      "Pattern1": 50,
+      "Pattern2": 50,
+      "Pattern3": 0
+    },
+    {
+      "Index": 242,
+      "MonsterID": 241,
+      "PhaseNum": 2,
+      "Pattern1": 20,
+      "Pattern2": 40,
+      "Pattern3": 40
+    },
+    {
+      "Index": 243,
+      "MonsterID": 241,
+      "PhaseNum": 3,
+      "Pattern1": 10,
+      "Pattern2": 45,
+      "Pattern3": 45
+    },
+    {
+      "Index": 244,
+      "MonsterID": 241,
+      "PhaseNum": 4,
+      "Pattern1": 10,
+      "Pattern2": 45,
+      "Pattern3": 45
+    },
+    {
+      "Index": 245,
+      "MonsterID": 242,
+      "PhaseNum": 1,
+      "Pattern1": 50,
+      "Pattern2": 50,
+      "Pattern3": 0
+    },
+    {
+      "Index": 246,
+      "MonsterID": 242,
+      "PhaseNum": 2,
+      "Pattern1": 20,
+      "Pattern2": 40,
+      "Pattern3": 40
+    },
+    {
+      "Index": 247,
+      "MonsterID": 242,
+      "PhaseNum": 3,
+      "Pattern1": 10,
+      "Pattern2": 45,
+      "Pattern3": 45
+    },
+    {
+      "Index": 248,
+      "MonsterID": 242,
+      "PhaseNum": 4,
+      "Pattern1": 10,
+      "Pattern2": 45,
+      "Pattern3": 45
+    }
+  ]
+}

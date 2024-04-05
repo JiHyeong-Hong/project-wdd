@@ -1,40 +1,169 @@
 {
   "projectiles": [
     {
-      "DataId": 1,
-      "Name": "쿠나이",
-      "ClassName": "Kunai",
-      "Disorder": 1,
-      "DisorderDuration": 0.0,
-      "Damage" : 1,
-      "Speed" : 5
+      "Index": 1,
+      "ProjectileId": 601,
+      "Name": "Bullet1",
+      "MoveSpeed": 1,
+      "ContactDmg": 10,
+      "ConditionType": 0,
+      "SkillLvDown": 0,
+      "SkillID": 0,
+      "ImageDataurl": "Art/Projectile/Bullet1"
     },
     {
-      "DataId": 2,
-      "Name": "로켓",
-      "ClassName": "Rocket",
-      "Disorder": 0,
-      "DisorderDuration": 0.0,
-      "Damage" : 1,
-      "Speed" : 5
+      "Index": 2,
+      "ProjectileId": 602,
+      "Name": "Bullet2",
+      "MoveSpeed": 1,
+      "ContactDmg": 12,
+      "ConditionType": 0,
+      "SkillLvDown": 0,
+      "SkillID": 0,
+      "ImageDataurl": "Art/Projectile/Bullet2"
     },
     {
-      "DataId": 3,
-      "Name": "앵무새",
-      "ClassName": "Bird",
-      "Disorder": 1,
-      "DisorderDuration": 0.0,
-      "Damage" : 1,
-      "Speed" : 5
+      "Index": 3,
+      "ProjectileId": 603,
+      "Name": "Bullet3",
+      "MoveSpeed": 1,
+      "ContactDmg": 14,
+      "ConditionType": 0,
+      "SkillLvDown": 0,
+      "SkillID": 0,
+      "ImageDataurl": "Art/Projectile/Bullet3"
     },
     {
-      "DataId": 4,
-      "Name": "호랑이",
-      "ClassName": "Tiger",
-      "Disorder": 0,
-      "DisorderDuration": 0.0,
-      "Damage" : 1,
-      "Speed" : 5
+      "Index": 4,
+      "ProjectileId": 701,
+      "Name": "Boss_Bullet1",
+      "MoveSpeed": 1,
+      "ContactDmg": 40,
+      "ConditionType": 0,
+      "SkillLvDown": 0,
+      "SkillID": 0,
+      "ImageDataurl": null
+    },
+    {
+      "Index": 5,
+      "ProjectileId": 702,
+      "Name": "Boss_Bullet2",
+      "MoveSpeed": 1,
+      "ContactDmg": 0,
+      "ConditionType": 0,
+      "SkillLvDown": 0,
+      "SkillID": 4021,
+      "ImageDataurl": null
+    },
+    {
+      "Index": 6,
+      "ProjectileId": 703,
+      "Name": "Boss_Bullet3",
+      "MoveSpeed": 1,
+      "ContactDmg": 0,
+      "ConditionType": 0,
+      "SkillLvDown": 0,
+      "SkillID": 0,
+      "ImageDataurl": null
+    },
+    {
+      "Index": 7,
+      "ProjectileId": 801,
+      "Name": "Ghillie_Bullet",
+      "MoveSpeed": 1,
+      "ContactDmg": 10,
+      "ConditionType": 1,
+      "SkillLvDown": 1,
+      "SkillID": 0,
+      "ImageDataurl": null
+    },
+    {
+      "Index": 8,
+      "ProjectileId": 1,
+      "Name": "Dummy",
+      "MoveSpeed": 1,
+      "ContactDmg": 1,
+      "ConditionType": 0,
+      "SkillLvDown": 0,
+      "SkillID": 0,
+      "ImageDataurl": null
+    },
+    {
+      "Index": 9,
+      "ProjectileId": 2,
+      "Name": "Dummy",
+      "MoveSpeed": 1,
+      "ContactDmg": 1,
+      "ConditionType": 0,
+      "SkillLvDown": 0,
+      "SkillID": 0,
+      "ImageDataurl": null
+    },
+    {
+      "Index": 10,
+      "ProjectileId": 3,
+      "Name": "Dummy",
+      "MoveSpeed": 1,
+      "ContactDmg": 1,
+      "ConditionType": 0,
+      "SkillLvDown": 0,
+      "SkillID": 0,
+      "ImageDataurl": null
+    },
+    {
+      "Index": 11,
+      "ProjectileId": 4,
+      "Name": "Dummy",
+      "MoveSpeed": 1,
+      "ContactDmg": 1,
+      "ConditionType": 0,
+      "SkillLvDown": 0,
+      "SkillID": 0,
+      "ImageDataurl": null
+    },
+    {
+      "Index": 12,
+      "ProjectileId": 5,
+      "Name": "Dummy",
+      "MoveSpeed": 1,
+      "ContactDmg": 1,
+      "ConditionType": 0,
+      "SkillLvDown": 0,
+      "SkillID": 0,
+      "ImageDataurl": null
+    },
+    {
+      "Index": 13,
+      "ProjectileId": 6,
+      "Name": "Dummy",
+      "MoveSpeed": 1,
+      "ContactDmg": 1,
+      "ConditionType": 0,
+      "SkillLvDown": 0,
+      "SkillID": 0,
+      "ImageDataurl": null
+    },
+    {
+      "Index": 14,
+      "ProjectileId": 12,
+      "Name": "Dummy",
+      "MoveSpeed": 1,
+      "ContactDmg": 1,
+      "ConditionType": 0,
+      "SkillLvDown": 0,
+      "SkillID": 0,
+      "ImageDataurl": null
+    },
+    {
+      "Index": 15,
+      "ProjectileId": 13,
+      "Name": "Dummy",
+      "MoveSpeed": 1,
+      "ContactDmg": 1,
+      "ConditionType": 0,
+      "SkillLvDown": 0,
+      "SkillID": 0,
+      "ImageDataurl": null
     }
   ]
 }
