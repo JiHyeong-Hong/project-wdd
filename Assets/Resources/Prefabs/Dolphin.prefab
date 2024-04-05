@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 7679981828266210025}
   - component: {fileID: 4999916785813389270}
   m_Layer: 0
-  m_Name: DolPhine
+  m_Name: Dolphin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
