@@ -1,109 +1,105 @@
-using Data;
+ï»¿using Data;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Define;
 
-// ±æ¸®½´ÅÍ @È«ÁöÇü
-public class Shooter : Creature 
+// ê¸¸ë¦¬ìŠˆí„° @í™ì§€í˜•
+public class Shooter : Monster
 {
     private Transform _target;
     private LineRenderer _lineRenderer;
-    private SpriteRenderer _spriteRenderer;
-    private StunBulletSkill _skill;
-
     private bool _isFired = false;
 
     public override bool Init()
     {
         if (base.Init() == false)
             return false;
+        CreatureType = ECreatureType.Monster;
 
-        // ½ºÇÁ¶óÀÌÆ®
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-
-        // ·¹ÀÌÀú ½Ã°¢È­
+        // ë ˆì´ì € ì‹œê°í™”
         _lineRenderer = GetComponent<LineRenderer>(); 
         _lineRenderer.positionCount = 2;
-        _lineRenderer.startWidth = 0.05f; // ³Êºñ ¼³Á¤
+        _lineRenderer.startWidth = 0.05f; // ë„ˆë¹„ ì„¤ì •
         _lineRenderer.endWidth = 0.05f;
 
-        _target = Managers.Object.Hero?.transform; // Å¸°Ù À§Ä¡ ÃÊ±âÈ­
+        _target = Managers.Object.Hero?.transform; // íƒ€ê²Ÿ ìœ„ì¹˜ ì´ˆê¸°í™”
         StartCoroutine(AimAndFireCycle());
         StartCoroutine(CoUpdateAI());
         return true;
     }
+
+    protected MonsterData monsterData;
+    protected Hero _hero;
+    public override void SetInfo(int templateID)
+    {
+        base.SetInfo(templateID);
+
+        Renderer.sortingOrder = SortingLayers.MONSTER;
+        _hero = Managers.Object.Hero;
+
+        monsterData = CreatureData as MonsterData;
+    }
+
     void Update()
     {
         if (!_isFired && _target != null)
         {            
             Aim();
         }
-
-        // 1¹ß ½î¸é ´õÀÌ»ó ½îÁö ¾Ê°Ô ¸ØÃá´Ù.
-        if (_isFired == true) 
-        {
-            if(_skill.StunBullet == null) // ¹ß»ç ÈÄ ¸¶ÃëÃÑ¾ËÀÌ »ç¶óÁ³À¸¸é
-                Destroy(gameObject);      // shooter Á¦°ÅÇÑ´Ù.
-        }        
     }
 
-    // ÀÏÁ¤½Ã°£ Á¶ÁØ ÈÄ ¹ß»ç ÇÑ´Ù.
+    // ì¼ì •ì‹œê°„ ì¡°ì¤€ í›„ ë°œì‚¬ í•œë‹¤.
     IEnumerator AimAndFireCycle()
     {
-        // ¸ÅÃÊ ¹ß»ç ´ë±â
+        // ë§¤ì´ˆ ë°œì‚¬ ëŒ€ê¸°
         for (int i = 0; i < 3; i++)
         {
-            Debug.Log("[±æ¸®½´ÅÍ] Á¶ÁØ Áß... " + (i + 1) + "ÃÊ °æ°ú");
+            Debug.Log("[ê¸¸ë¦¬ìŠˆí„°] ì¡°ì¤€ ì¤‘... " + (i + 1) + "ì´ˆ ê²½ê³¼");
             yield return new WaitForSeconds(1f);
         }
         StartCoroutine(Fire());
         StopCoroutine(Fire());
-
-        // ±æ¸®½´ÅÍ °´Ã¼¸¦ ½Ã°¢ÀûÀ¸·Î ¼û±ä´Ù.
-        _spriteRenderer.enabled = false;
-        _lineRenderer.enabled = false;
         
-        GetComponentInChildren<TargetCrosshair>().enabled = false;     // Á¶ÁØÁ¡ÀÇ ÀÌµ¿À» ¸ØÃá´Ù.
+        GetComponentInChildren<TargetCrosshair>().enabled = false;     // ì¡°ì¤€ì ì˜ ì´ë™ì„ ë©ˆì¶˜ë‹¤.
 
-        // µ¿ÀÛ Á¤Áö
-        StopCoroutine(AimAndFireCycle());    
+        // ë™ì‘ ì •ì§€
+        StopCoroutine(AimAndFireCycle());
+
+        Managers.Object.Despawn(this);
     }
 
-    // ¸¶ÃëÃÑ ¹ß»ç
+    // ë§ˆì·¨ì´ ë°œì‚¬
     IEnumerator Fire()
     {       
-        // Á¶ÁØ ·¹ÀÌÀú ½Ã°¢È­
-        //_lineRenderer.startColor = Color.red;
-        //_lineRenderer.endColor = Color.red;
+        // íˆ¬ì‚¬ì²´ ë°œì‚¬
+        Debug.Log("[ê¸¸ë¦¬ìŠˆí„°] ë°œì‚¬!");
+        
+        // ë§ˆì·¨ì´ì•Œ í´ë˜ìŠ¤ ìƒì„±
+        Vector2 direction = (_hero.transform.position - this.transform.position).normalized;
+        Debug.Log("ì›ê±°ë¦¬ ê³µê²©!!");
+        var proj = Managers.Object.Spawn<GullieBullet>(transform.position, 801); // í•˜ë“œì½”ë”© í…ŒìŠ¤íŠ¸ìš©. ì¶”í›„ì— csvì—ì„œ ë¶ˆëŸ¬ì˜¤ëŠ” ë°©ë²• ì•Œì•„ë‚¼ê²ƒ
+        proj.SetImage();
+        proj.SetSpawnInfo(this, null, direction);
+        proj.SetTarget(_hero);
 
-        // Åõ»çÃ¼ ¹ß»ç
-        Debug.Log("[±æ¸®½´ÅÍ] ¹ß»ç!");
-
-        // ¸¶ÃëÃÑ¾Ë Å¬·¡½º »ı¼º
-        _skill = new StunBulletSkill();
-        _skill.SetInfo(Managers.Data.SkillDic[9999]); // ÀÓ½Ã ½ºÅ³ ¹øÈ£. @È«ÁöÇü 240324
-        _skill.SetOwner(this);
-        _skill.DoSkill();
-        //
-
-
-        yield return new WaitForSeconds(1f);  // ÃÑ¾Ë °´Ã¼°¡ »ı¼ºµÇ±â¸¦ ±â´Ù¸°´Ù.
+        yield return new WaitForSeconds(1f);  // ì´ì•Œ ê°ì²´ê°€ ìƒì„±ë˜ê¸°ë¥¼ ê¸°ë‹¤ë¦°ë‹¤.
       
-        _isFired = true; // ¹ß»ç »óÅÂ·Î º¯°æ
+        _isFired = true; // ë°œì‚¬ ìƒíƒœë¡œ ë³€ê²½
     }
 
-    // Àú°İ¼ö°¡ ÇÃ·¹ÀÌ¾î¸¦ Á¶ÁØÇÑ´Ù.
+    // ì €ê²©ìˆ˜ê°€ í”Œë ˆì´ì–´ë¥¼ ì¡°ì¤€í•œë‹¤.
     void Aim()
     {
-        // Àú°İ¼ö È¸Àü
+        // ì €ê²©ìˆ˜ íšŒì „
         Vector2 dir = _target.position - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         if (dir != Vector2.zero)
-            Direction = dir;    // À§Ä¡Á¤º¸ ÀúÀå
+            Direction = dir;    // ìœ„ì¹˜ì •ë³´ ì €ì¥
 
-        // Á¶ÁØ ·¹ÀÌÀú ½Ã°¢È­
+        // ì¡°ì¤€ ë ˆì´ì € ì‹œê°í™”
         _lineRenderer.startColor = Color.red;
         _lineRenderer.endColor = Color.red;
         _lineRenderer.SetPosition(0, transform.position);
