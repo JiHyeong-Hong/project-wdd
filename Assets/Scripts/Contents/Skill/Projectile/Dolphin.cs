@@ -5,7 +5,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class DolPhine : BaseObject
+public class Dolphin : BaseObject
 {
 	private class InCircleMonster
 	{

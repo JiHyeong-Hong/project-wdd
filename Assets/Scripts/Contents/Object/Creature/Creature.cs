@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Animations;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Rendering;
 using static Define;
@@ -234,6 +236,11 @@ public class Creature : BaseObject
             CreatureState = ECreatureState.Hit;
         }
 
+
+        // 넉백
+        if (skill.SkillData.KnockbackPower != 0)
+            StartCoroutine(knockbackUpdate(transform.position - attacker.transform.position, skill.SkillData.KnockbackPower * 0.01f, 0.5f));
+
         _freezeStateOneFrame = true;
     }
 
@@ -241,6 +248,35 @@ public class Creature : BaseObject
     {
         base.OnDead(attacker, skill);
     }
+
+    private IEnumerator knockbackUpdate(Vector3 dir, float knockbackDistance, float knockback)
+    {
+        // 현재까지 넉백 시간
+        float currentknockbackTime = 0f;
+        // 이전 Frame에 이동한 거리
+        float prevknockbackDistance = 0f;
+
+        while (true)
+        {
+            currentknockbackTime += Time.deltaTime;
+
+            float timePoint = currentknockbackTime / knockback;
+            // Easing InOutSine https://easings.net/ko#easeOutCirc
+            float easeOutCirc = Mathf.Sqrt(1 - Mathf.Pow(timePoint - 1, 2));
+            float currentknockbackDistance = Mathf.Lerp(0f, knockbackDistance, easeOutCirc);
+            // 이번 Frame에 움직여야할 거리를 구함
+            float deltaValue = currentknockbackDistance - prevknockbackDistance;
+
+            transform.position += (dir * deltaValue);
+            prevknockbackDistance = currentknockbackDistance;
+
+            if (currentknockbackTime >= knockback)
+                break;
+            else
+                yield return null;
+        }
+    }
+
     #endregion
 
     #region Misc
