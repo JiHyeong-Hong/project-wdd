@@ -132,4 +132,57 @@ public static class Util
 
         return selectedElements;
     }
+    public static Collider2D[] SearchCollidersInRadius(Vector3 position , float range)
+    {
+        // 지정된 중심점 주변에 있는 모든 콜라이더를 반환
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(position, range, 1 << (int)Define.ELayer.Monster);
+        return colliders;
+    }
+
+    public static IEnumerator DrawCircle(Vector3 position, float radius, int segments, Color color, float duration)
+    {
+		float currentTime = 0f;
+
+		while (currentTime <= duration)
+		{
+			currentTime += Time.deltaTime;
+			
+			// Single segment of the circle covers (360 / number of segments) degrees
+			float angleStep = (360.0f / segments);
+
+			// Result is multiplied by Mathf.Deg2Rad constant which transforms degrees to radians
+			// which are required by Unity's Mathf class trigonometry methods
+
+			angleStep *= Mathf.Deg2Rad;
+
+			// lineStart and lineEnd variables are declared outside of the following for loop
+			Vector3 lineStart = Vector3.zero;
+			Vector3 lineEnd = Vector3.zero;
+
+			for (int i = 0; i < segments; i++)
+			{
+				// Line start is defined as starting angle of the current segment (i)
+				lineStart.x = Mathf.Cos(angleStep * i);
+				lineStart.y = Mathf.Sin(angleStep * i);
+
+				// Line end is defined by the angle of the next segment (i+1)
+				lineEnd.x = Mathf.Cos(angleStep * (i + 1));
+				lineEnd.y = Mathf.Sin(angleStep * (i + 1));
+
+				// Results are multiplied so they match the desired radius
+				lineStart *= radius;
+				lineEnd *= radius;
+
+				// Results are offset by the desired position/origin 
+				lineStart += position;
+				lineEnd += position;
+
+				// Points are connected using DrawLine method and using the passed color
+				Debug.DrawLine(lineStart, lineEnd, color);
+			}
+			
+			yield return null;
+		}
+    }
+    
 }
