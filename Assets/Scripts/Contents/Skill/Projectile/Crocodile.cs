@@ -8,7 +8,7 @@ public class Crocodile : Projectile
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
 
-    public float speed = 4f; 
+    public float speed = 4f;
 
     private Vector2 moveDirection;
     private Hero hero;
@@ -20,7 +20,7 @@ public class Crocodile : Projectile
 
         hero = FindObjectOfType<Hero>();
 
-        InitializeDirectionAndPosition();
+        Direction();
 
         // 충돌하지 않은 인스턴스는 자동으로 Despawn되도록 함
         StartCoroutine(DespawnAfterTime(5f));
@@ -28,21 +28,21 @@ public class Crocodile : Projectile
 
     public override bool Init()
     {
-         if (!base.Init())
-             return false;
+        if (!base.Init())
+            return false;
 
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         if (animator == null)
-         {
-             return false;
-         }
+        {
+            return false;
+        }
 
         isInfinityDuration = true;
 
-        return true; 
+        return true;
     }
 
     void FixedUpdate()
@@ -50,21 +50,22 @@ public class Crocodile : Projectile
         Move();
     }
 
-    private void InitializeDirectionAndPosition()
+    private void Direction()
     {
-        // Hero의 바라보는 방향을 기준으로 Crocodile의 소환 위치와 이동 방향 설정
-        Vector3 heroDirection = (hero.Destination.position - hero.transform.position).normalized;
-        transform.position = hero.Destination.position + new Vector3(0, crocodileHeightOffset, 0);
+        transform.right = Managers.Object.Hero.Destination.position - Owner.transform.position;
+        if (transform.right.x < 0)
+        {
+            spriteRenderer.flipY = true;
+        }
 
-        // 이동 방향 설정
-        moveDirection = new Vector2(heroDirection.x, heroDirection.y).normalized * speed;
+        moveDirection = transform.right.normalized * speed;
     }
 
     protected override void Move()
     {
         if (canMove)
         {
-            rb.velocity = moveDirection; 
+            rb.velocity = moveDirection;
         }
         else
         {
@@ -80,11 +81,28 @@ public class Crocodile : Projectile
 
             if (monster != null)
             {
-                canMove = false; 
-                rb.velocity = Vector2.zero; 
+                canMove = false;
+                rb.velocity = Vector2.zero;
+
 
                 animator.SetTrigger("CollisionDetected"); // 충돌 애니메이션 실행
-                monster.OnDamaged(Owner, Skill); // 몬스터에게 데미지 적용
+
+
+                Collider2D[] targets = Util.SearchCollidersInRadius(transform.position, Skill.SkillData.AttackRange); // 충돌한 몬스터 주변에 있는 몬스터들을 찾음
+                for (int i = 0; i < targets.Length; i++) { }
+
+                StartCoroutine(Util.DrawCircle(transform.position, Skill.SkillData.AttackRange, 16, Color.red, 5f)); // 공격 범위를 시각적으로 표시
+
+                foreach (var target in targets)
+                {
+                    Monster targetMonster = target.GetComponent<Monster>();
+                    if (targetMonster == null)
+                        continue;
+
+                    targetMonster.OnDamaged(Owner, Skill); // 몬스터에게 데미지 적용
+
+                }
+
 
                 StartCoroutine(DestroyAfterAnimation());
             }
@@ -94,7 +112,7 @@ public class Crocodile : Projectile
     IEnumerator DestroyAfterAnimation()
     {
         yield return new WaitForSeconds(1f); // 애니메이션이 재생되는 시간을 기다림 일단 1초로...
-       
+
         Managers.Object.Despawn(this);
     }
 

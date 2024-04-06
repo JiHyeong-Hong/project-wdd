@@ -16,7 +16,10 @@ public class SkillManager
     public List<SkillBase> sampleSkillList { get; }  = new List<SkillBase>();
     public List<string> canPickSkillList { get; } = new List<string>(); //만랩이 아닌 스킬들 이름 저장한 리스트 (레벨업 가능)
 	
-	private bool isInit;
+	public Dictionary<int,int> BreakthroghDic { get; } = new Dictionary<int, int>(); //인덱스를 키 벨류로 가지는 딕셔너리 (액티브, 돌파)
+
+
+    private bool isInit;
 
 	public IEnumerator CoInit()
 	{
@@ -50,10 +53,10 @@ public class SkillManager
 			usingSkillDic[SkillType.Active][i].UpdateCoolTime(deltaTime);
 		}
 		
-		if (Input.GetKeyDown(KeyCode.A))
-		{
-			usingSkillDic[SkillType.Passive][0].DoSkill();
-		}
+		//if (Input.GetKeyDown(KeyCode.A))
+		//{
+		//	usingSkillDic[SkillType.Passive][0].DoSkill();
+		//}
 
 		// foreach (var skill in usingSkillDic[SkillType.Active])
 		// {
@@ -91,7 +94,15 @@ public class SkillManager
 			}
 
 			var skill = obj as SkillBase;
-			skill.SetInfo(skillDic[skillID]);
+			try
+			{
+                skill.SetInfo(skillDic[skillID]);
+            }
+            catch (Exception ex)
+			{
+				Debug.Assert(false, $"{ex.Message} {skillID} 스킬 정보 설정 실패");
+				throw;
+			}
 
 			var className = skillDic[skillID].Name;
 			if (!allSkillDic.TryGetValue(className, out var list))
@@ -192,7 +203,7 @@ public class SkillManager
 		}
 		
 		// 나중에 제대로 동작하는지 체크
-		list.Add(allSkillDic[skillData.Name][skillData.Level]);
+		list.Add(allSkillDic[skillData.Name][skillData.Level-1]);
 
 		int index = list.Count - 1;
 		list[index].SetInfo(skillData);
@@ -205,15 +216,18 @@ public class SkillManager
 		string className = skillData.Name;
 		var skillType = skillData.skillType;
 
+		// 데이터 테이블 상의해봐야함.
+		int targetID = -1;
+
 		bool hasSkill = false;
 
         foreach (var skill in usingSkillDic[skillType])
         {
             if (className.Equals(skill.SkillData.Name))
             {
-                skill.LevelUp(allSkillDic[className][skill.SkillData.Level + 1].SkillData);
+                skill.LevelUp(allSkillDic[className][skill.SkillData.Level].SkillData);
+				targetID = skill.SkillData.Index;
                 hasSkill = true;
-
                 //만렙이면 뽑을 수 있는 스킬목록에서 삭제
                 if (skill.SkillData.Level == Define.MAX_SKILL_LEVEL)
                 {
@@ -230,7 +244,10 @@ public class SkillManager
 		{
 			AddSkill(skillData);
 		}
-	}
+
+        targetID = (targetID == -1) ? skillData.Index : targetID;
+		BreakthroghAdd(skillType, targetID);
+    }
 
 	private void RegisterPassiveSkill()
 	{
@@ -238,5 +255,82 @@ public class SkillManager
 		{
 			PassiveHelper.Instance.SetPassive(item.SkillData);
         }
+    }
+
+	private void BreakthroghAdd(SkillType skillType, int skillIndex)
+	{
+        int [] activePassiveGetSkill = BreakthroghChecker(skillType, skillIndex);
+        int activeSkillIndex = activePassiveGetSkill[0];
+        int passiveSkillIndex = activePassiveGetSkill[1];
+        int getSkillIndex = activePassiveGetSkill[2];
+
+        if (usingSkillDic[SkillType.Active].Exists(x => x.SkillData.Index == activeSkillIndex) &&
+            usingSkillDic[SkillType.Passive].Exists(x => x.SkillData.Index == passiveSkillIndex))
+		{
+			Debug.Log($"<color=green>돌파스킬 추가{Managers.Data.SkillDic[getSkillIndex].Name}</color>");
+			AddSkill(Managers.Data.SkillDic[getSkillIndex]);
+			BreakthroghDic.Add(activeSkillIndex, getSkillIndex);
+
+        }
+    }
+
+	private int[] BreakthroghChecker(SkillType skillType, int skillIndex)
+	{
+        int activeSkillIndex = -1;
+        int passiveSkillIndex = -1;
+        int getSkillIndex = -1;
+
+        foreach ((_, BreakthroghData data) in Managers.Data.BreakthroghDic)
+        {
+            if ((skillType == SkillType.Active && data.G_Skill_ID1 == skillIndex) ||
+            (skillType == SkillType.Passive && data.G_Skill_ID2 == skillIndex))
+            {
+                activeSkillIndex = data.G_Skill_ID1;
+                passiveSkillIndex = data.G_Skill_ID2;
+                getSkillIndex = data.C_Skill_ID1;
+                break;
+            }
+        }
+
+		return new int[] { activeSkillIndex, passiveSkillIndex, getSkillIndex };
+    }
+
+
+    public bool Breakthrogh(int activeSkillIndex, int count)
+	{
+        if (BreakthroghDic.TryGetValue(activeSkillIndex, out int BTIndex))
+		{
+			foreach (var item in usingSkillDic[SkillType.Breakthrogh])
+			{
+                if(item.SkillData.Index == BTIndex)
+				{
+					if (item.SkillData.SkillTurn <= count && IsActivated(item.SkillData.CastPer))
+					{
+                        //스킬 발동
+						item.UpdateCoolTime(0);
+                        return true;
+                    }
+					return false;
+                }
+            }
+		}
+		return false;
+	}
+
+    public bool IsActivated(float ActivationProbability)
+    {
+        // 랜덤한 확률을 생성
+        float randomValue = Random.Range(0f, 1f); // 0 ~ 1 사이의 랜덤한 값
+
+        // 스킬이 발동되는지 여부를 판단
+        return randomValue <= ActivationProbability;
+    }
+
+
+	/////////////
+	public void Test(int getSkillIndex)
+	{
+		AddSkill(Managers.Data.SkillDic[getSkillIndex]);
+        BreakthroghDic.Add(1015, getSkillIndex);
     }
 }

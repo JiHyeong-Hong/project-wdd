@@ -19,6 +19,7 @@ public class DataManager
     public Dictionary<int, Data.ItemData> ItemDic { get; private set; } = new Dictionary<int, Data.ItemData>();
     public Dictionary<int, Data.HpConditionData> HpConditionDic { get; private set; } = new Dictionary<int, Data.HpConditionData>();
     public Dictionary<int, Data.PatternPerData> PatternPerDic { get; private set; } = new Dictionary<int, Data.PatternPerData>();
+    public Dictionary<int ,Data.BreakthroghData> BreakthroghDic { get; private set; } = new Dictionary<int, Data.BreakthroghData>();
 
 
 
@@ -32,6 +33,7 @@ public class DataManager
         ItemDic = LoadJson<Data.ItemDataLoader, int, Data.ItemData>("ItemData").MakeDict();
         HpConditionDic = LoadJson<Data.HpConditionDataLoader, int, Data.HpConditionData>("HpConditionData").MakeDict();
         PatternPerDic = LoadJson<Data.PatternPerDataLoader, int, Data.PatternPerData>("PatternPerData").MakeDict();
+        BreakthroghDic = LoadJson<Data.BreakthroghDataLoader, int, Data.BreakthroghData>("BreakthroghData").MakeDict();
     }
 
     Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>

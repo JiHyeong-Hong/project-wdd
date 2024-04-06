@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Data;
 using UnityEngine;
+using static Define;
 
 public abstract class SkillBase
 {
@@ -40,11 +41,23 @@ public abstract class SkillBase
         
         _cooldownTick += deltaTime;
         
-        if (_cooldownTick <= SkillData.CoolTime - PassiveHelper.Instance.GetPassiveValue(Define.PassiveSkillStatusType.CoolTimeDown))
+        if (_cooldownTick < SkillData.CoolTime - PassiveHelper.Instance.GetPassiveValue(Define.PassiveSkillStatusType.CoolTimeDown))
             return;
         
         _cooldownTick = 0.0f;
         DoSkill();
+    }
+
+    private int checkCount = 0;
+    public bool CheckBTSkill()
+    {
+        checkCount++;
+        if(Managers.Skill.Breakthrogh(SkillData.Index, checkCount))
+        {
+            checkCount = 0;
+            return true;
+        }
+        return false;
     }
 
     public abstract void DoSkill();
