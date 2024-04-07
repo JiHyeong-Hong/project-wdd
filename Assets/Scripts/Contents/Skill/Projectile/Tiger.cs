@@ -6,7 +6,7 @@ using UnityEngine;
 public class Tiger : Projectile
 {
     private CapsuleCollider2D _collider;
-
+    public bool isBTSkill = false;
     public override bool Init()
     {
         if (base.Init() == false)
