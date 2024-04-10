@@ -184,5 +184,13 @@ public static class Util
 			yield return null;
 		}
     }
+
+	public static float TimeForOneRotation(float speed)
+	{
+        float degreesPerSecond = speed * Mathf.Rad2Deg;
+        float timeForOneRotation = 360f / degreesPerSecond;
+
+        return timeForOneRotation;
+	}
     
 }

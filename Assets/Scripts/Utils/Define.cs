@@ -89,7 +89,7 @@ public static class Define
 	{
 		Active = 1,
 		Passive = 2,
-		Breakthrogh = 3
+		Breakthrough = 3
 	}
 
 	public enum PassiveSkillStatusType

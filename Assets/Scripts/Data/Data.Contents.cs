@@ -347,7 +347,7 @@ namespace Data
         {
             Dictionary<int, BreakthroghData> dict = new Dictionary<int, BreakthroghData>();
             foreach (BreakthroghData item in breakthroghData)
-                dict.Add(item.Index, item);
+                dict.Add(item.C_Skill_ID1, item);
             return dict;
         }
     }

@@ -1,10 +1,8 @@
-using Cysharp.Threading.Tasks.Triggers;
 using DG.Tweening;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParrotSkill : SkillBase
+public class AwakeningParrotSkill : SkillBase
 {
     private GameObject birdPool;
     private float orbitRadius = 1f;
@@ -14,15 +12,19 @@ public class ParrotSkill : SkillBase
     {
         ClearSatellites();
 
-        if (!GameObject.Find("BirdPool"))
+        if (birdPool == null)
         {
-            birdPool = new GameObject("BirdPool");
-            birdPool.transform.parent = Owner.transform;
+            if (!GameObject.Find("BirdPool"))
+            {
+                birdPool = new GameObject("BirdPool");
+                birdPool.transform.parent = Owner.transform;
+            }
+            else
+            {
+                birdPool = GameObject.Find("BirdPool");
+            }
+            
         }
-
-        if (BreakthroughHelper.Instance.CheckBreakthrough(SkillData.Index))
-            return;
-
 
         for (int i = 0; i < SkillData.ProjectileNum; ++i)
         {
@@ -30,7 +32,7 @@ public class ParrotSkill : SkillBase
             Vector2 spawnPosition = GetCirclePosition(angle, orbitRadius);
             Bird bird = Managers.Object.Spawn<Bird>(spawnPosition, SkillData.ProjectileNum, birdPool.transform);
             bird.SetSpawnInfo(Owner, this, Vector2.up);
-            bird.Animator.SetTrigger("Normal");
+            bird.Animator.SetTrigger("Breakthrogh");
             birds.Add(bird);
         }
         RotateSatellites();
@@ -76,4 +78,5 @@ public class ParrotSkill : SkillBase
     {
         ClearSatellites();
     }
+
 }

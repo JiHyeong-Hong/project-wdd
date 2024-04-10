@@ -48,18 +48,6 @@ public abstract class SkillBase
         DoSkill();
     }
 
-    private int checkCount = 0;
-    public bool CheckBTSkill()
-    {
-        checkCount++;
-        if(Managers.Skill.Breakthrogh(SkillData.Index, checkCount))
-        {
-            checkCount = 0;
-            return true;
-        }
-        return false;
-    }
-
     public abstract void DoSkill();
     public abstract void Clear();
 }
