@@ -6,7 +6,8 @@ public class TigerSkill : SkillBase
 {
     public override void DoSkill()
     {
-        if (CheckBTSkill()) return;
+        if (BreakthroughHelper.Instance.CheckBreakthrough(SkillData.Index))
+            return;
 
         Vector2 direction = Owner.Direction;
         AttackTiger(direction);

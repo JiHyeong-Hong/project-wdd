@@ -1,14 +1,12 @@
+using Data;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CrocodileSkill : SkillBase
+public class GluttonyKingSkill : SkillBase
 {
     public override void DoSkill()
     {
-        if (BreakthroughHelper.Instance.CheckBreakthrough(SkillData.Index))
-            return;
-
         Attack();
     }
 
@@ -16,6 +14,8 @@ public class CrocodileSkill : SkillBase
     {
         Crocodile crocodile = Managers.Object.Spawn<Crocodile>(Owner.transform.position, SkillData.ProjectileNum);
         crocodile.SetSpawnInfo(Owner, this, Vector2.zero);
+        crocodile.canGravity = true;
+        crocodile.skill2 = BreakthroughHelper.Instance.FindBreakthroughSkill(SkillData.Index);
     }
 
     public override void Clear()

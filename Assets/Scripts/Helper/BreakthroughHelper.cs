@@ -119,6 +119,20 @@ public class BreakthroughHelper
         return false;
     }
 
+    public SkillBase FindBreakthroughSkill(int index)
+    {
+        foreach (var item in Managers.Data.BreakthroghDic)
+        {
+            if (item.Value.C_Skill_ID1 == index)
+            {
+                Managers.Skill.allSkillDic.TryGetValue(item.Value.Name, out List<SkillBase> findSkillList);
+                return findSkillList[1];
+            }
+        }
+
+        return null;
+    }
+
     public bool IsActivated(float ActivationProbability)
     {
         // ·£´ýÇÑ È®·üÀ» »ý¼º

@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -12,7 +9,11 @@ public class BearSkill : SkillBase
 
 	public override void DoSkill()
 	{
-		var hero = Managers.Object.Hero;
+        if (BreakthroughHelper.Instance.CheckBreakthrough(SkillData.Index))
+            return;
+
+
+        var hero = Managers.Object.Hero;
 		var dir = Owner.Direction;
 		bool isFlip = dir.x < 0;
 
