@@ -69,7 +69,8 @@ public class Creature : BaseObject
 
         gameObject.name = $"{CreatureData.Index}_{CreatureData.DescriptionTextID}";
 
-        AnimatorController animatorController = Managers.Resource.Load<AnimatorController>(CreatureData.AnimatorDataID);
+        var animatorController = Managers.Resource.Load<AnimatorOverrideController>(CreatureData.AnimatorDataID);
+
         Animator.runtimeAnimatorController = animatorController;
 
         DataID = CreatureData.Index;
@@ -88,6 +89,7 @@ public class Creature : BaseObject
 
     protected override void PlayAnimation(Define.ECreatureState state)
     {
+        // Debug.Log($"현재 타입 : {CreatureType}, 현재 상태 : {state}");
         Animator.SetInteger("state", (int)state);
     }
 
@@ -108,7 +110,7 @@ public class Creature : BaseObject
     }
 
     #region AI
-    public float UpdateAITick { get; protected set; } = 0.0f;
+    public float UpdateAITick { get; protected set; } = 0.01f;
 
     protected IEnumerator CoUpdateAI()
     {

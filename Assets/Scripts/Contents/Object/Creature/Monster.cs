@@ -96,11 +96,12 @@ public class Monster : Creature
     protected virtual IEnumerator Attack()
     {
         //공격 주기
-        cooltime = 2f;
+        cooltime = monsterData.CoolTime/2;
         float time = 0f;
-
+        
         while (true)
         {
+            // Debug.Log(Animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
             if (time >= cooltime)
             {
                 Vector2 direction = (_hero.transform.position - this.transform.position).normalized;
@@ -173,7 +174,8 @@ public class Monster : Creature
 
     protected override void UpdateHit()
     {
-        CreatureState = ECreatureState.Idle;
+        if(CreatureType != ECreatureType.Boss)
+            CreatureState = ECreatureState.Idle;
     }
 
     public bool HeroSearching()
@@ -190,7 +192,7 @@ public class Monster : Creature
             if(!Atk_chk)
                 //TODO Eung 5,6 상수는 min / max 거리 데이터로 치환
                 //처음 탐색할때 거리가 min이하로 접근 해야함 min = 5
-                if (distance > 5)
+                if (distance > monsterData.MinStance)
                     return false;
                 else
                 {
@@ -204,7 +206,7 @@ public class Monster : Creature
             else
             {
                 //공격 가능한 상태에서 거리가 min보다 거리가 멀어지는경우 max초과의 거리로 벗어난 경우 다시 재탐색
-                if (distance > 6)
+                if (distance > monsterData.MaxStane)
                 {
                     //max 초과인 경우 공격 불능 상태로 변경
                     Atk_chk = !Atk_chk;
@@ -226,7 +228,7 @@ public class Monster : Creature
 
     IEnumerator CAttackWait()
     {
-        cooltime = 2f;
+        cooltime = monsterData.CoolTime/2;
         float time = 0f;
         while (true)
         {
