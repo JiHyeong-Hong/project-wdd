@@ -9,6 +9,9 @@ public class SkunkSkill : SkillBase
 
     public override void DoSkill()
     {
+        if (BreakthroughHelper.Instance.CheckBreakthrough(SkillData.Index))
+            return;
+
         Vector2 direction = Owner.Direction;
         direction = Util.RotateVectorByAngle(direction, 45f);        
         AttackSkunk(direction);

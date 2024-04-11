@@ -9,7 +9,10 @@ public class PeacockSkill : SkillBase
 
 	public override void DoSkill()
 	{
-		monsterList.Clear();
+        if (BreakthroughHelper.Instance.CheckBreakthrough(SkillData.Index))
+            return;
+
+        monsterList.Clear();
 		GetTargets();
 	}
 
