@@ -153,8 +153,6 @@ public class Dolphin : BaseObject
 	{
 		elapsedTime += Time.deltaTime;
 
-        Debug.Log($"[DolPhine] elapsedTime: {elapsedTime}, duration: {duration}");
-
         if (elapsedTime > duration)
 		{
 			Managers.Object.Despawn(this);
