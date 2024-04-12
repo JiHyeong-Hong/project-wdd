@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Boost : MonoBehaviour
 {
+    private SpriteRenderer spriteRenderer;
+
+    private void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -11,9 +18,21 @@ public class Boost : MonoBehaviour
             Hero hero = other.GetComponent<Hero>();
             if (hero != null)
             {
-                // 속도를 4배로 증가시키고, 3초 후 원래 속도로 돌아오게 함
-                StartCoroutine(hero.SpeedBoost(3f, 4f));
+                if (spriteRenderer != null)
+                {
+                    spriteRenderer.color = new Color(1f, 1f, 1f, 0f); 
+                }
+
+                StartCoroutine(WaitForSpeedBoostToEnd(hero));
             }
         }
+    }
+
+    IEnumerator WaitForSpeedBoostToEnd(Hero hero)
+    {
+        // n칸 이동까지 4배 스피드
+        yield return StartCoroutine(hero.SpeedBoost(3f, 4f));
+
+        Destroy(gameObject);
     }
 }

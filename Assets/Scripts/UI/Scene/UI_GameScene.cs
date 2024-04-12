@@ -32,6 +32,11 @@ public class UI_GameScene : UI_Scene
     // 골드 획득량 (수정 가능성 있음 우선순위 제일 뒤)
     private TextMeshProUGUI _goldText;
 
+    public float GetCurrentTimer()
+    {
+        return _timeElapsed;
+    }
+
     public override bool Init()
     {
         if (base.Init() == false)

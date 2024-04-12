@@ -59,9 +59,28 @@ public class Monster : Creature
         if (target.IsValid() == false)
             return;
 
+        //  Creature creature = target as Creature;
+        //  if (creature == null || creature.CreatureType != Define.ECreatureType.Hero)
+        //      return;
+        /// jh 무적 상태 플레이어와 닿으면 날아가 사라진다
         Creature creature = target as Creature;
         if (creature == null || creature.CreatureType != Define.ECreatureType.Hero)
-            return;
+        {
+            Hero hero = creature as Hero;
+            if (hero != null && hero.IsInvincible)
+            {
+                // 날아가는 애니메이션 실행
+                Rigidbody2D rb = GetComponent<Rigidbody2D>();
+
+                if (rb != null)
+                {
+                    rb.AddForce(new Vector2(0, 500)); // 방향, 힘
+                }
+
+                Destroy(gameObject);
+                return; 
+            }
+        }
 
         // TODO Eung
         target.OnDamaged(this, null);
