@@ -9,26 +9,37 @@ public class Footboard : MonoBehaviour
     public GameObject jumpfab;
     public GameObject boostfab;
     public Transform playerTransform; // 플레이어 위치
-    private float spawnInterval = 60f; 
 
-        private void Start()
+    private UI_GameScene uiGameScene;
+    private float lastSpawnMinute = -1f;
+
+    private void Start()
     {
         playerTransform = GameObject.FindWithTag("Player").transform;
 
-        StartCoroutine(SpawnObjectsWithDelay(spawnInterval));
+        uiGameScene = FindObjectOfType<UI_GameScene>();
     }
 
-    private IEnumerator SpawnObjectsWithDelay(float interval)
+    private void Update()
     {
-        // 시작 후 첫 1분 대기
-        yield return new WaitForSeconds(interval);
+        if (uiGameScene == null)
+            return;
 
-        while (true)
+        float currentTime = uiGameScene.GetCurrentTimer();
+        float currentMinute = Mathf.Floor(currentTime / 60);
+        float currentSecond = currentTime % 60;
+
+        if (currentMinute >= 1 && currentSecond <= 15 && lastSpawnMinute != currentMinute)
         {
-            TrySpawnObject(jumpfab);
-            TrySpawnObject(boostfab);
-
-            yield return new WaitForSeconds(interval);
+            if (Random.Range(0, 100) < 70) 
+            {
+                TrySpawnObject(jumpfab);
+            }
+            if (Random.Range(0, 100) < 70)
+            {
+                TrySpawnObject(boostfab);
+            }
+            lastSpawnMinute = currentMinute;
         }
     }
 
