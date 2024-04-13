@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6667636869117813595}
   - component: {fileID: 345006918570857207}
   - component: {fileID: 3968058067561610122}
-  - component: {fileID: 4982966303048467267}
+  - component: {fileID: 7785322998483935853}
   m_Layer: 10
   m_Name: GullieBullet
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -120,9 +120,9 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.012824178, y: 0.0107729435}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.65, y: 1.04}
+    border: {x: 0, y: 0, z: 0, w: 0.03125}
+    pivot: {x: 0.5222222, y: 0.3539683}
+    oldSize: {x: 0.15625, y: 0.4375}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -131,7 +131,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.6704307, y: 3.5461092}
   m_EdgeRadius: 0
---- !u!114 &4982966303048467267
+--- !u!114 &7785322998483935853
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,6 +140,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 927016374451658559}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1d59128c7d7f9c458c3d114a9f471c7, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f4cd288244557f459f5fd32ab582d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

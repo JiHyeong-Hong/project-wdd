@@ -5,7 +5,7 @@ Index,ProjectileId,Name,MoveSpeed,ContactDmg,ConditionType,SkillLvDown,SkillID,A
 4,701,Boss_Bullet1,1,40,0,0,0,
 5,702,Boss_Bullet2,1,0,0,0,4021,
 6,703,Boss_Bullet3,1,0,0,0,0,
-7,801,Ghillie_Bullet,1,10,1,1,0,Art/Projectile/GullieBullet
+7,801,Ghillie_Bullet,5,10,1,1,0,Art/Projectile/GullieBullet
 8,1,Dummy,1,1,0,0,0,
 9,2,Dummy,1,1,0,0,0,
 10,3,Dummy,1,1,0,0,0,

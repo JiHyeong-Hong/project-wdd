@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/Resources/Art/Projectile.meta
 guid: 9cb391c99c64c054d8a09a980f7f8d29
+========
+guid: bd6c4be531a373641b066af5bc7261b3
+>>>>>>>> Stashed changes:Assets/Scripts/Contents/Skill/Breakthrogh.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
