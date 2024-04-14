@@ -1,13 +1,7 @@
 using Data;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using static Define;
-using static Unity.Collections.AllocatorManager;
-using Random = UnityEngine.Random;
 
 public class Hero : Creature
 {

@@ -57,6 +57,7 @@ public class ObjectManager
                     Hero hero = creature as Hero;
                     Hero = hero;
                     hero.SetInfo(templateID);
+                    hero.transform.position = Vector3.zero;
                     break;
                 case ECreatureType.Monster:
                     obj.transform.parent = (parent == null) ? MonsterRoot : parent;

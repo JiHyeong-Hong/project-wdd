@@ -32,16 +32,11 @@ public class Bear : Projectile
 	
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		BaseObject target = other.GetComponent<BaseObject>();
-		if (target.IsValid() == false)
-			return;
-
-		Creature creature = target as Creature;
-		
-		if (creature.CreatureType != Define.ECreatureType.Monster)
-			return;
-		
-		creature.OnDamaged(Owner, Skill);
+        if (((1 << (int)Define.ELayer.Monster) & (1 << other.gameObject.layer)) != 0)
+		{
+            Monster monster = other.gameObject.GetComponent<Monster>();
+			monster.OnDamaged(Owner, Skill);
+        }
 	}
 	private async UniTaskVoid Despawn()
 	{

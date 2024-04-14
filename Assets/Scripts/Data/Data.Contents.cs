@@ -319,6 +319,38 @@ namespace Data
 		    return dict;
 	    }
     }
-    
+
+    #endregion
+
+    #region BreakthroghData
+    [Serializable]
+    public class BreakthroghData
+	{
+		public int Index;
+		public int SkillID;
+		public string Name;
+		public int Type;
+		public int Lv;
+		public int C_Skill_ID1;
+		public int C_Skill_ID2;
+		public int G_Skill_ID1;
+		public int Skill_Lv;
+		public int G_Skill_ID2;
+		public int Skill_Lv2;
+    }
+    [Serializable]
+    public class BreakthroghDataLoader : ILoader<int, BreakthroghData>
+    {
+        public List<BreakthroghData> breakthroghData = new List<BreakthroghData>();
+
+        public Dictionary<int, BreakthroghData> MakeDict()
+        {
+            Dictionary<int, BreakthroghData> dict = new Dictionary<int, BreakthroghData>();
+            foreach (BreakthroghData item in breakthroghData)
+                dict.Add(item.C_Skill_ID1, item);
+            return dict;
+        }
+    }
+
     #endregion
 }

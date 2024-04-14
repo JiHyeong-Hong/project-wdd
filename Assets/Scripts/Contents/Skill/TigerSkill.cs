@@ -6,6 +6,9 @@ public class TigerSkill : SkillBase
 {
     public override void DoSkill()
     {
+        if (BreakthroughHelper.Instance.CheckBreakthrough(SkillData.Index))
+            return;
+
         Vector2 direction = Owner.Direction;
         AttackTiger(direction);
 
@@ -16,7 +19,7 @@ public class TigerSkill : SkillBase
         }
     }
 
-    private void AttackTiger(Vector2 direction)
+    public virtual void AttackTiger(Vector2 direction)
     {
         float offsetX = (direction.x >= 0) ? -13f : 13f;
         float offsetY = (direction.y >= 0) ? 2f : -2;

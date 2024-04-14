@@ -1,53 +1,39 @@
+using Cysharp.Threading.Tasks.Triggers;
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ParrotSkill : SkillBase
 {
-    private bool isTimeActive = false;
-    private float durationTick = 0.0f;
-    
-    public override void UpdateCoolTime(float deltaTime)
-    {
-        if (SkillData.Level < 1)
-            return;
-        
-        RotateSatellites();
-    
-        if (isTimeActive)
-        {
-            durationTick += deltaTime;
-            if (durationTick >= SkillData.Duration + PassiveHelper.Instance.GetPassiveValue(Define.PassiveSkillStatusType.Duration))
-            {
-                ClearSatellites();
-                isTimeActive = false;
-                durationTick = 0.0f;
-            }
-        }
-    
-        base.UpdateCoolTime(deltaTime);
-    }
-
+    private GameObject birdPool;
     private float orbitRadius = 1f;
-    private float rotationSpeed = 200f;
     private List<Bird> birds = new List<Bird>();
 
     public override void DoSkill()
     {
         ClearSatellites();
 
-        for (int i = 0; i < SkillData.CastCount; ++i)
+        if (!GameObject.Find("BirdPool"))
         {
-            float angle = i * 360f / SkillData.CastCount;
-            Vector2 spawnPosition = GetCirclePosition(angle, orbitRadius);
-
-            Bird bird = Managers.Object.Spawn<Bird>(spawnPosition, SkillData.ProjectileNum, Owner.transform);
-            bird.SetSpawnInfo(Owner, this, Vector2.up);
-
-            birds.Add(bird);
+            birdPool = new GameObject("BirdPool");
+            birdPool.transform.parent = Owner.transform;
         }
 
-        isTimeActive = true;
+        if (BreakthroughHelper.Instance.CheckBreakthrough(SkillData.Index))
+            return;
+
+
+        for (int i = 0; i < SkillData.ProjectileNum; ++i)
+        {
+            float angle = i * 360f / SkillData.ProjectileNum;
+            Vector2 spawnPosition = GetCirclePosition(angle, orbitRadius);
+            Bird bird = Managers.Object.Spawn<Bird>(spawnPosition, SkillData.ProjectileNum, birdPool.transform);
+            bird.SetSpawnInfo(Owner, this, Vector2.up);
+            bird.Animator.SetTrigger("Normal");
+            birds.Add(bird);
+        }
+        RotateSatellites();
     }
 
     private Vector2 GetCirclePosition(float angle, float radius)
@@ -62,10 +48,16 @@ public class ParrotSkill : SkillBase
 
     private void RotateSatellites()
     {
-        foreach (Bird bird in birds)
-        {
-            bird.transform.RotateAround(Owner.transform.position, Vector3.forward, rotationSpeed * Time.deltaTime);
-        }
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(DOTween.To(() => birdPool.transform.localRotation.eulerAngles,
+                  x => birdPool.transform.localRotation = Quaternion.Euler(x),
+                  new Vector3(0, 0, 360 * SkillData.CastCount),
+                  3)
+             .SetEase(Ease.Linear))
+            .AppendCallback(() =>
+            {
+                ClearSatellites();
+            });
     }
 
     private void ClearSatellites()
@@ -83,7 +75,5 @@ public class ParrotSkill : SkillBase
     public override void Clear()
     {
         ClearSatellites();
-        isTimeActive = false;
-        durationTick = 0.0f;
     }
 }

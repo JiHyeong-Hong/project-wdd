@@ -15,8 +15,8 @@ public class SkillManager
 
     public List<SkillBase> sampleSkillList { get; }  = new List<SkillBase>();
     public List<string> canPickSkillList { get; } = new List<string>(); //만랩이 아닌 스킬들 이름 저장한 리스트 (레벨업 가능)
-	
-	private bool isInit;
+
+    private bool isInit;
 
 	public IEnumerator CoInit()
 	{
@@ -50,10 +50,10 @@ public class SkillManager
 			usingSkillDic[SkillType.Active][i].UpdateCoolTime(deltaTime);
 		}
 		
-		if (Input.GetKeyDown(KeyCode.A))
-		{
-			usingSkillDic[SkillType.Passive][0].DoSkill();
-		}
+		//if (Input.GetKeyDown(KeyCode.A))
+		//{
+		//	usingSkillDic[SkillType.Passive][0].DoSkill();
+		//}
 
 		// foreach (var skill in usingSkillDic[SkillType.Active])
 		// {
@@ -91,7 +91,15 @@ public class SkillManager
 			}
 
 			var skill = obj as SkillBase;
-			skill.SetInfo(skillDic[skillID]);
+			try
+			{
+                skill.SetInfo(skillDic[skillID]);
+            }
+            catch (Exception ex)
+			{
+				Debug.Assert(false, $"{ex.Message} {skillID} 스킬 정보 설정 실패");
+				throw;
+			}
 
 			var className = skillDic[skillID].Name;
 			if (!allSkillDic.TryGetValue(className, out var list))
@@ -142,7 +150,10 @@ public class SkillManager
 
 
             usingSkillDic[ownSkill.SkillData.skillType].Add(ownSkill);
-		}
+
+			BreakthroughHelper.Instance.GetBreakthroughBaseSkill(ownSkill.SkillData.skillType, ownSkill.SkillData.Index);
+
+        }
 
     }
 
@@ -192,12 +203,28 @@ public class SkillManager
 		}
 		
 		// 나중에 제대로 동작하는지 체크
-		list.Add(allSkillDic[skillData.Name][skillData.Level]);
+		list.Add(allSkillDic[skillData.Name][skillData.Level-1]);
 
 		int index = list.Count - 1;
 		list[index].SetInfo(skillData);
 		list[index].SetOwner(Managers.Object.Hero);
+
+		BreakthroughHelper.Instance.GetBreakthroughBaseSkill(skillData.skillType, skillData.Index);
 	}
+
+	public void BreakthroughAdd(int breakthroghIndex)
+	{
+        var list = usingSkillDic[SkillType.Breakthrough];
+		SkillData skillData= allSkillDic[Managers.Data.BreakthroghDic[breakthroghIndex].Name][0].SkillData;
+
+		list.Add(allSkillDic[Managers.Data.BreakthroghDic[breakthroghIndex].Name][0]);
+
+        int index = list.Count - 1;
+        list[index].SetInfo(skillData);
+        list[index].SetOwner(Managers.Object.Hero);
+    }
+
+
 
 	public void IncreaseSkillLevel(int index)
 	{
@@ -205,20 +232,23 @@ public class SkillManager
 		string className = skillData.Name;
 		var skillType = skillData.skillType;
 
+
 		bool hasSkill = false;
 
         foreach (var skill in usingSkillDic[skillType])
         {
             if (className.Equals(skill.SkillData.Name))
             {
-                skill.LevelUp(allSkillDic[className][skill.SkillData.Level + 1].SkillData);
+                skill.LevelUp(allSkillDic[className][skill.SkillData.Level].SkillData);
                 hasSkill = true;
-
                 //만렙이면 뽑을 수 있는 스킬목록에서 삭제
                 if (skill.SkillData.Level == Define.MAX_SKILL_LEVEL)
                 {
                     canPickSkillList.Remove(skill.SkillData.Name);
                 }
+
+                BreakthroughHelper.Instance.GetBreakthroughBaseSkill(skillData.skillType, skillData.Index);
+
                 break;
             }
         }
@@ -230,7 +260,8 @@ public class SkillManager
 		{
 			AddSkill(skillData);
 		}
-	}
+
+    }
 
 	private void RegisterPassiveSkill()
 	{

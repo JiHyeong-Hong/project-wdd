@@ -6,7 +6,7 @@ using UnityEngine;
 public class Tiger : Projectile
 {
     private CapsuleCollider2D _collider;
-
+    public bool isBTSkill = false;
     public override bool Init()
     {
         if (base.Init() == false)
@@ -19,7 +19,7 @@ public class Tiger : Projectile
     {
         base.SetSpawnInfo(owner, skill, direction);
 
-        _collider = GetComponent<CapsuleCollider2D>();
+            _collider = GetComponent<CapsuleCollider2D>();
         _collider.enabled = false;
 
         int minus = (direction.x >= 0) ? 1 : -1;
@@ -31,37 +31,83 @@ public class Tiger : Projectile
 
         LookLeft = (minus == 1);
 
+        if (isBTSkill)
+            BTTigerDOTween(minus);
+        else
+            NormalTigerDOTween(minus);
+
+    }
+
+    private void NormalTigerDOTween(int minus)
+    {
         Sequence sequence = DOTween.Sequence()
-            .Append(Renderer.DOFade(1f, 0f))
-            .Append(transform.DOMoveX(10f * minus, 1f).SetRelative().SetEase(Ease.Linear))
-            .AppendCallback(() =>
-            {
-                Animator.SetInteger("state", 1);
-            })
-            .Append(transform.DOLocalJump(new Vector3(5f * minus, 0, 0), 1, 1, 0.5f).SetRelative())
-            .InsertCallback(1.2f, () =>
-            {
-                Animator.SetInteger("state", 2);
-            })
-            .AppendCallback(() =>
-            {
-                Animator.SetInteger("state", 3);
-                _collider.enabled = true;
-            })
-            .AppendInterval(0.5f)
-            .InsertCallback(2.0f, () =>
-            {
-                _collider.enabled = false;
-                Animator.SetInteger("state", 4);
-            })
-            .Append(Renderer.DOFade(0f, 0.5f).SetEase(Ease.Linear))
-            .Join(transform.DOMoveX(0.5f * minus, 0.5f).SetRelative().SetEase(Ease.Linear))
-            .InsertCallback(2.5f, () =>
-            {
-                Managers.Object.Despawn(this);
-            });
+        .AppendCallback(() =>
+        {
+            Renderer.DOFade(1f, 0f);
+            Animator.SetBool("isNormal", true);
+            Animator.SetInteger("state", 1);
+        })
+        .Append(transform.DOMoveX(10f * minus, 1f).SetRelative().SetEase(Ease.Linear))
+        .AppendCallback(() =>
+        {
+            Animator.SetInteger("state", 2);
+            transform.DOLocalJump(new Vector3(5f * minus, 0, 0), 1, 1, 1).SetRelative();
+
+        })
+        .AppendInterval(0.5f)
+        .AppendCallback(() =>
+        {
+            Animator.SetInteger("state", 3);
+            _collider.enabled = true;
+        })
+        .AppendInterval(0.5f)
+        .AppendCallback(() =>
+        {
+            _collider.enabled = false;
+            Animator.SetInteger("state", 4);
+            DoDamage();
+        })
+        .Append(Renderer.DOFade(0f, 0.5f).SetEase(Ease.Linear))
+        .Join(transform.DOMoveX(0.5f * minus, 0.5f).SetRelative().SetEase(Ease.Linear))
+        .AppendCallback(() =>
+        {
+            Managers.Object.Despawn(this);
+        });
         sequence.Restart();
 
+    }
+
+    private void BTTigerDOTween(int minus)
+    {
+        transform.position += new Vector3(10f * minus, 0, 0);
+        Animator.SetInteger("state", 5);
+
+        Sequence sequence = DOTween.Sequence()
+        .AppendCallback(() =>
+        {
+            Renderer.DOFade(1f, 0f);
+            transform.DOLocalJump(new Vector3(5f * minus, 0, 0), 1, 1, 1f).SetRelative();
+        })
+        .AppendInterval(0.5f)
+        .AppendCallback(() =>
+        {
+            _collider.enabled = true;
+            Animator.SetInteger("state", 6);
+        })
+        .AppendInterval(0.5f)
+        .AppendCallback(() =>
+        {
+            _collider.enabled = false;
+            Animator.SetInteger("state", 7);
+            DoDamage();
+        })
+        .Append(Renderer.DOFade(0f, 0.5f).SetEase(Ease.Linear))
+        .Join(transform.DOMoveX(0.5f * minus, 0.5f).SetRelative().SetEase(Ease.Linear))
+        .AppendCallback(() =>
+        {
+            Managers.Object.Despawn(this);
+        });
+        sequence.Restart();
     }
 
     private void Update()
@@ -69,12 +115,23 @@ public class Tiger : Projectile
         transform.rotation = Quaternion.identity;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    //void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    if (((1 << (int)Define.ELayer.Monster) & (1 << other.gameObject.layer)) != 0)
+    //    {
+    //        Monster monster = other.gameObject.GetComponent<Monster>();
+    //        monster.OnDamaged(Owner, Skill);
+    //    }
+    //}
+
+    void DoDamage()
     {
-        if (((1 << (int)Define.ELayer.Monster) & (1 << other.gameObject.layer)) != 0)
+        
+        Collider2D[] targets = Util.SearchCollidersInRadius(transform.position, Skill.SkillData.AttackRange); // 충돌한 몬스터 주변에 있는 몬스터들을 찾음
+        foreach (var target in targets)
         {
-            Monster monster = other.gameObject.GetComponent<Monster>();
-            monster.OnDamaged(Owner, Skill);
+            Debug.Log("Tiger DoDamage");
+            target.GetComponent<Monster>().OnDamaged(Owner, Skill);
         }
     }
 }

@@ -80,6 +80,8 @@ public class Managers : MonoBehaviour
             s_instance._data.Init();
             s_instance._pool.Init();
             s_instance._sound.Init();
+
+            BreakthroughHelper.Instance.Init();
             // s_instance._spawner.Init();
         }
 	}
