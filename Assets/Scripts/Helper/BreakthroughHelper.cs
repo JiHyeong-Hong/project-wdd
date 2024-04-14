@@ -88,7 +88,9 @@ public class BreakthroughHelper
 
     public bool CheckBreakthrough(int index)
     {
-        int breakthroghIndex = nomalSkillToBTSkill[index];
+        if (!nomalSkillToBTSkill.TryGetValue(index, out int breakthroghIndex))
+            return false;
+
         CompositeData data = compositeSkillTable[breakthroghIndex];
         if (data.Active.Item2 == true && data.Passive.Item2 == true)
         {
