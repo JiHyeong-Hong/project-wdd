@@ -5,7 +5,7 @@ using UnityEngine;
 using static Define;
 
 // 길리슈터 @홍지형
-public class Shooter : Monster
+public class GhillieShooter : Monster
 {
     private Transform _target;
     private LineRenderer _lineRenderer;

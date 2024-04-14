@@ -1,0 +1,28 @@
+{
+  "datas": [
+    {
+      "Index": 241,
+      "MonsterID": 241,
+      "Phase1Hp": 70,
+      "Phase2Hp": 50,
+      "Phase3Hp": 30,
+      "Phase4Hp": 30
+    },
+    {
+      "Index": 242,
+      "MonsterID": 242,
+      "Phase1Hp": 70,
+      "Phase2Hp": 50,
+      "Phase3Hp": 30,
+      "Phase4Hp": 30
+    },
+    {
+      "Index": 243,
+      "MonsterID": 243,
+      "Phase1Hp": 70,
+      "Phase2Hp": 50,
+      "Phase3Hp": 30,
+      "Phase4Hp": 30
+    }
+  ]
+}

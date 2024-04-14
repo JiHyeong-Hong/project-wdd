@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1236702769478648627}
   - component: {fileID: 4643620914030751521}
   m_Layer: 7
-  m_Name: Shooter
+  m_Name: GhillieShooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

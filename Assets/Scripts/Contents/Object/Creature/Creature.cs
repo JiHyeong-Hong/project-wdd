@@ -238,8 +238,8 @@ public class Creature : BaseObject
 
 
         // 넉백
-        if (skill.SkillData.KnockbackPower != 0)
-            StartCoroutine(knockbackUpdate(transform.position - attacker.transform.position, skill.SkillData.KnockbackPower * 0.01f, 0.5f));
+        //if (skill.SkillData.KnockbackPower != 0)
+        //    StartCoroutine(knockbackUpdate(transform.position - attacker.transform.position, skill.SkillData.KnockbackPower * 0.01f, 0.5f));
 
         _freezeStateOneFrame = true;
     }

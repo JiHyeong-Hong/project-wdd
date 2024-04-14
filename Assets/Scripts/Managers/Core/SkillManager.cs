@@ -45,15 +45,16 @@ public class SkillManager
 			return;
 
 		//TODO Eung 보유한 모든스킬 공격
-		for (int i = 0; i < usingSkillDic[SkillType.Active].Count; i++)
-		{
-			usingSkillDic[SkillType.Active][i].UpdateCoolTime(deltaTime);
-		}
+		// 주석처리. @홍지형
+		//for (int i = 0; i < usingSkillDic[SkillType.Active].Count; i++)
+		//{
+		//	usingSkillDic[SkillType.Active][i].UpdateCoolTime(deltaTime);
+		//}
 		
-		if (Input.GetKeyDown(KeyCode.A))
-		{
-			usingSkillDic[SkillType.Passive][0].DoSkill();
-		}
+		//if (Input.GetKeyDown(KeyCode.A))
+		//{
+		//	usingSkillDic[SkillType.Passive][0].DoSkill();
+		//}
 
 		// foreach (var skill in usingSkillDic[SkillType.Active])
 		// {

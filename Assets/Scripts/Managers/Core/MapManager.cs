@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 // (무한맵) 맵 재배치 기능 클래스. @홍지형
-public class Reposition : MonoBehaviour
+public class MapManager : MonoBehaviour
 {
     private void OnTriggerExit2D(Collider2D collision)
     {

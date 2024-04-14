@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Tiger : Projectile
 {
@@ -30,7 +31,7 @@ public class Tiger : Projectile
             minus = -1;
 
         LookLeft = (minus == 1);
-
+        
         Sequence sequence = DOTween.Sequence()
             .Append(Renderer.DOFade(1f, 0f))
             .Append(transform.DOMoveX(10f * minus, 1f).SetRelative().SetEase(Ease.Linear))
