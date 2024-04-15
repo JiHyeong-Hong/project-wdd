@@ -49,7 +49,7 @@ public class GullieBullet : Projectile
                 transform.Translate(Vector2.up * (ProjectileData.MoveSpeed * Time.deltaTime));
                 break;
         }
-        if (!Util.CheckTargetInScreen(transform.position))
+        if (!Util.CheckTargetInScreen(transform.position)) // TODO: 240415 현재 인게임 화면 밖에서 발사하지 않게 되어 있음.
             Managers.Object.Despawn(this);
     }
 

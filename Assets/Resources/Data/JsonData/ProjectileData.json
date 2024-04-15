@@ -70,12 +70,12 @@
       "Index": 7,
       "ProjectileId": 801,
       "Name": "Ghillie_Bullet",
-      "MoveSpeed": 1,
+      "MoveSpeed": 5,
       "ContactDmg": 10,
       "ConditionType": 1,
       "SkillLvDown": 1,
       "SkillID": 0,
-      "ImageDataurl": null
+      "ImageDataurl": "Art/Projectile/GullieBullet"
     },
     {
       "Index": 8,

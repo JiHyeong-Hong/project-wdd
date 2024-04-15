@@ -77,7 +77,6 @@ public class GhillieShooter : Monster
         
         // 마취총알 클래스 생성
         Vector2 direction = (_hero.transform.position - this.transform.position).normalized;
-        Debug.Log("원거리 공격!!");
         var proj = Managers.Object.Spawn<GullieBullet>(transform.position, 801); // 하드코딩 테스트용. 추후에 csv에서 불러오는 방법 알아낼것
         proj.SetImage();
         proj.SetSpawnInfo(this, null, direction);

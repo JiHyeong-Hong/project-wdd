@@ -1,7 +1,11 @@
-﻿using System.Collections;
+﻿using Cysharp.Threading.Tasks;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 // 회피패턴(탄막) Manager 클래스. @홍지형
 public class EscapePatternManager : MonoBehaviour
@@ -21,21 +25,21 @@ public class EscapePatternManager : MonoBehaviour
         {
             root = new GameObject { name = "@EscapePattern" };
             Object.DontDestroyOnLoad(root);
-
-
-          
         }
     }
-
-    public Coroutine Test = null;
 
     // 회피패턴을 생성한다.
     public void SpawnEscapePattern()
     {
-        // 길리슈터 생성 테스트용. @홍지형
-        // Managers.Object.Spawn<Shooter>(new Vector3(-5f, 5f, 0f), Define.MONSTER_SHOOTER_ID);
-
+        // TODO: 상황과 조건에 따라서 회피패턴이 스폰되도록 조정할것. 240415
+        SpawnGhillieShooter();
         SpawnNet();
+    }
+
+    public void SpawnGhillieShooter()
+    {
+        // 길리슈터 생성 테스트용. @홍지형
+        Managers.Object.Spawn<GhillieShooter>(new Vector3(-5f, 5f, 0f), 251); // TODO: 길리슈터 번호 하드코딩
     }
 
     public void SpawnNet()
@@ -44,27 +48,21 @@ public class EscapePatternManager : MonoBehaviour
         warningPrefab = Resources.Load<GameObject>("Prefabs/warning");
         netPrefab = Resources.Load<GameObject>("Prefabs/Net");
 
-        Test = StartCoroutine(SpawnNetPattern());
-        // StartCoroutine(SpawnNetPattern());
-    }
-    
-    public void SpawnGhillieShooter()
-    {
-
+        SpawnNetPattern().Forget();
     }
 
-
-    #region 길리슈터
+    #region 그물망
     // 무작위로 그물망 패턴 생성.
-    IEnumerator SpawnNetPattern()
+    private async UniTaskVoid SpawnNetPattern()
     {
         Vector2 _targetPos = (Vector2)Managers.Object.Hero?.transform.position; // 그물망 생성 시점의 타겟 위치 가져오기
 
         for (int i = 0; i < netCount; i++)
         {
             Vector2 spawnPosition = GetRandomPosition(_targetPos);
-            StartCoroutine(SpawnWarning(spawnPosition));
-            yield return new WaitForSeconds(spawnInterval);
+            // StartCoroutine(SpawnWarning(spawnPosition));
+            SpawnWarning(spawnPosition).Forget();
+            await UniTask.Delay(TimeSpan.FromSeconds(spawnInterval));
         }
     }
 
@@ -84,13 +82,13 @@ public class EscapePatternManager : MonoBehaviour
     }
 
     // 스폰 전 경고표시
-    IEnumerator SpawnWarning(Vector2 position)
+    private async UniTaskVoid SpawnWarning(Vector2 position)    
     {
-        GameObject warning = Instantiate(warningPrefab, position, Quaternion.identity);
-        yield return new WaitForSeconds(1f); // 경고 표시 지속 시간
+        GameObject warning = Instantiate(warningPrefab, position, Quaternion.identity);       
+        await UniTask.Delay(TimeSpan.FromSeconds(1f)); // 경고 표시 지속 시간
         Destroy(warning);
 
-        Managers.Object.Spawn<Net>(position, 241); // 그물망 스폰. Net 번호 하드코딩.
+        Managers.Object.Spawn<Net>(position, 271); // 그물망 스폰. Net 번호 하드코딩.
     }
     #endregion
 
