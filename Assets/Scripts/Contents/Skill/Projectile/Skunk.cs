@@ -38,16 +38,6 @@ public class Skunk : Projectile
     {        
         base.SetSpawnInfo(owner, skill, direction);
 
-        int minus = (direction.x >= 0) ? 1 : -1;
-
-        if (Mathf.Abs(direction.x) < 0.001f && direction.y < 0)
-            minus = -1;
-        if (Mathf.Abs(direction.y) < 0.001f && direction.x < 0)
-            minus = -1;
-
-        LookLeft = (minus == 1);
-
-
         Sequence sequence = DOTween.Sequence()
             .Append(Renderer.DOFade(1f, 0f))
             .AppendCallback(() =>
