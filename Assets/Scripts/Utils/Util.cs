@@ -192,5 +192,19 @@ public static class Util
 
         return timeForOneRotation;
 	}
-    
+
+    public static Sprite Load(string imagePath, string spriteName)
+    {
+        Sprite[] all = Resources.LoadAll<Sprite>(imagePath);
+
+        foreach (var s in all)
+        {
+            if (s.name == spriteName)
+            {
+                return s;
+            }
+        }
+        return null;
+    }
+
 }

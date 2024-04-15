@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using UnityEngine;
 
 public class Crocodile : Projectile
 {
-    private Animator animator;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
+    private SpriteRenderer swampRenderer;
 
     public float speed = 4f;
 
@@ -18,20 +19,21 @@ public class Crocodile : Projectile
 
     [SerializeField]
     private GameObject gravityPoint;
-    public bool canGravity = false;
+    public bool isBreakthrough = false;
 
     public SkillBase skill2;
 
     void Start()
     {
-        animator.ResetTrigger("CollisionDetected");
-
         hero = FindObjectOfType<Hero>();
 
         Direction();
 
         // 충돌하지 않은 인스턴스는 자동으로 Despawn되도록 함
         StartCoroutine(DespawnAfterTime(5f));
+
+        SizeControl(0.7f);
+        swampRenderer = Util.FindChild<Transform>(transform.gameObject, "Swamp").GetComponent<SpriteRenderer>();
     }
 
     public override bool Init()
@@ -39,14 +41,8 @@ public class Crocodile : Projectile
         if (!base.Init())
             return false;
 
-        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
-        if (animator == null)
-        {
-            return false;
-        }
 
         isInfinityDuration = true;
 
@@ -81,6 +77,63 @@ public class Crocodile : Projectile
         }
     }
 
+    public Sprite testSp;
+    private async UniTask DetectedMonster()
+    {
+        #region 천천히 없어지는 애니메이션
+
+        spriteRenderer.DOFade(0, 1);
+        #endregion
+
+        await UniTask.Delay(TimeSpan.FromSeconds(1));
+
+        transform.rotation = Quaternion.Euler(0, 0, 0); // 충돌 시 회전값 초기화
+        if (spriteRenderer.flipY)
+        {
+            spriteRenderer.flipY = false;
+            spriteRenderer.flipX = true;
+        }
+
+        spriteRenderer.DOFade(1, 0);
+
+        if (isBreakthrough)
+        {
+            SizeControl(2);
+            swampRenderer.sprite = Resources.Load<Sprite>("Art/Effects/SwampBT");// 충돌 이펙트 생성
+            spriteRenderer.sprite = Util.Load("Art/Skills/CrocodileBT", "CrocodileBT_0");
+
+            StartCoroutine(ApplyGravityWell());
+        }
+        else
+        {
+            #region nomalAttack
+            SizeControl(1);
+            swampRenderer.sprite = Resources.Load<Sprite>("Art/Effects/Swamp");// 충돌 이펙트 생성
+            spriteRenderer.sprite = Util.Load("Art/Skills/Crocodile", "Crocodile_4");
+
+            Collider2D[] targets = Util.SearchCollidersInRadius(transform.position, Skill.SkillData.AttackRange); // 충돌한 몬스터 주변에 있는 몬스터들을 찾음
+
+            StartCoroutine(Util.DrawCircle(transform.position, Skill.SkillData.AttackRange, 16, Color.red, 5f)); // 공격 범위를 시각적으로 표시
+
+            foreach (var target in targets)
+            {
+                Monster targetMonster = target.GetComponent<Monster>();
+                if (targetMonster == null)
+                    continue;
+
+                targetMonster.OnDamaged(Owner, Skill); // 몬스터에게 데미지 적용
+            }
+            #endregion
+        }
+        StartCoroutine(DestroyAfterAnimation(Skill.SkillData.Duration));
+    }
+
+    private void SizeControl(float size)
+    {
+        transform.localScale = new Vector3(size, size, 1);
+    }
+
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (!canMove) return;
@@ -94,30 +147,7 @@ public class Crocodile : Projectile
                 canMove = false;
                 rb.velocity = Vector2.zero;
 
-                animator.SetTrigger("CollisionDetected"); // 충돌 애니메이션 실행
-
-                if (canGravity)
-                {
-                    StartCoroutine(ApplyGravityWell());
-                }
-                else
-                {
-                    #region nomalAttack
-                    Collider2D[] targets = Util.SearchCollidersInRadius(transform.position, Skill.SkillData.AttackRange); // 충돌한 몬스터 주변에 있는 몬스터들을 찾음
-
-                    StartCoroutine(Util.DrawCircle(transform.position, Skill.SkillData.AttackRange, 16, Color.red, 5f)); // 공격 범위를 시각적으로 표시
-
-                    foreach (var target in targets)
-                    {
-                        Monster targetMonster = target.GetComponent<Monster>();
-                        if (targetMonster == null)
-                            continue;
-
-                        targetMonster.OnDamaged(Owner, Skill); // 몬스터에게 데미지 적용
-                    }
-                    #endregion
-                }
-                StartCoroutine(DestroyAfterAnimation(Skill.SkillData.Duration));
+                DetectedMonster().Forget();
             }
         }
     }
@@ -125,13 +155,16 @@ public class Crocodile : Projectile
 
     IEnumerator ApplyGravityWell()
     {
+        Collider2D[] targets = null;
         float elapsedTime = 0; // 경과 시간
 
-        while (elapsedTime <= skill2.SkillData.Duration)
+        swampRenderer.transform.DOScale(new Vector3(0.5f, 0.5f, 1), skill2.SkillData.AttackRange);
+        swampRenderer.transform.DOMove(gravityPoint.transform.position, skill2.SkillData.AttackRange);
+
+        while (elapsedTime <= 2)
         {
             elapsedTime+= Time.deltaTime;
-            Debug.Log("???");
-            Collider2D[] targets = Util.SearchCollidersInRadius(transform.position, skill2.SkillData.AttackRange); // 충돌한 몬스터 주변에 있는 몬스터들을 찾음
+            targets = Util.SearchCollidersInRadius(transform.position, skill2.SkillData.AttackRange); // 충돌한 몬스터 주변에 있는 몬스터들을 찾음
 
             foreach (var item in targets)
             {
@@ -142,6 +175,14 @@ public class Crocodile : Projectile
             }
 
             yield return null;
+        }
+
+        if(targets != null)
+        {
+            foreach (var item in targets)
+            {
+                item.GetComponent<Monster>().OnDamaged(Owner, skill2);
+            }
         }
     }
 
@@ -159,4 +200,10 @@ public class Crocodile : Projectile
 
         Managers.Object.Despawn(this);
     }
+
+    private void OnDestroy()
+    {
+        swampRenderer.transform.localScale = new Vector3(1, 1, 1);
+    }
+
 }
