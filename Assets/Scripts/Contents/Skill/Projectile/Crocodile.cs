@@ -177,7 +177,9 @@ public class Crocodile : Projectile
             yield return null;
         }
 
-        if(targets != null)
+        spriteRenderer.sprite = Util.Load("Art/Skills/CrocodileBT", "CrocodileBT_1");
+
+        if (targets != null)
         {
             foreach (var item in targets)
             {
