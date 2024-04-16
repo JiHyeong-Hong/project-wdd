@@ -32,7 +32,7 @@ public class SkunkSkill : SkillBase
         {
             Skunk skunk = Managers.Object.Spawn<Skunk>(Owner.transform.position + new Vector3(offsetX, offsetY, 0f), SkillData.ProjectileNum);
             skunk.quadrant = spawnPointList[0];
-            skunk.SetSpawnInfo(Owner, this, Vector2.up);
+            skunk.SetSpawnInfo(Owner, this, Vector2.up, false);
             skunk.LookLeft = (direction.x < 0);
             spawnPointList.RemoveAt(0);
         }

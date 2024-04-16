@@ -7,6 +7,7 @@ using UnityEngine;
 public class StormFeatherSkill : SkillBase
 {
     private List<Monster> monsterList = new List<Monster>();
+    private GameObject peacockEffect;
     public override void DoSkill()
     {
         DoSkillAsync().Forget();
@@ -28,7 +29,7 @@ public class StormFeatherSkill : SkillBase
             }
         }
 
-        
+
     }
 
     public async UniTask DoSkillAsync()
@@ -41,25 +42,47 @@ public class StormFeatherSkill : SkillBase
         Monster target = !isNull ? monsterList[idx] : null;
 
         Vector3 lastPos;
-        lastPos = target.transform.position;
-
-        Vector3 dir = (lastPos - Owner.transform.position).normalized;
+        Vector3 dir;
+        if (target != null)
+        {
+            lastPos = target.transform.position;
+            dir = (lastPos - Owner.transform.position).normalized;
+        }
+        else
+        {
+            dir = Owner.Direction;
+        }
+        PeacockEffectFindSetActive(true, 0.1f * SkillData.CastCount);
 
         for (int i = 0; i < SkillData.CastCount; i++)
         {
-            Peacock peacock = Managers.Object.Spawn<Peacock>(Owner.transform.position, SkillData.ProjectileNum);
+            Peacock peacock = Managers.Object.Spawn<Peacock>(Owner.transform.position, 1);
 
             peacock.SetTarget(target);
-            peacock.SetLastPos(lastPos);
 
-            peacock.SetSpawnInfo(Owner, this, dir);
-            //isNull? Util.GetRandomDir() :
+            peacock.SetSpawnInfo(Owner, this, dir, true);
 
-            await UniTask.WaitForSeconds(0.2f);
+            await UniTask.WaitForSeconds(0.1f);
         }
     }
 
+    private void PeacockEffectFindSetActive(bool active, float time)
+    {
+        Hero hero = Managers.Object.Hero;
 
+        // 이미 피콕 효과가 존재하는지 확인
+        peacockEffect = hero.gameObject.transform.Find("PeacockEffect")?.gameObject;
+
+        if (peacockEffect == null)
+        {
+            peacockEffect = new GameObject("PeacockEffect");
+            peacockEffect.transform.SetParent(hero.transform);
+            peacockEffect.AddComponent<SpriteRenderer>().sprite = Managers.Resource.Load<Sprite>("Art/PeacockEffect");
+        }
+        peacockEffect.transform.localPosition = Vector3.zero;
+
+        BreakthroughHelper.Instance.SetActiveObject(peacockEffect, active, time);
+    }
 
     public override void Clear()
     {

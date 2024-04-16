@@ -7,10 +7,8 @@ public class Peacock : Projectile
 	[SerializeField]
 	private Vector3 dir;
 	private CircleCollider2D col;
-	private float moveSpeed = 5f;
-	[SerializeField]
-	private Vector3 lastPos;
-	public override bool Init()
+
+    public override bool Init()
 	{
 		if (!base.Init())
 			return false;
@@ -29,11 +27,23 @@ public class Peacock : Projectile
 		this.target = target;
 		col.enabled = target == null;
 	}
-	public void SetLastPos(Vector3 lastPos)
-	{
-		this.lastPos = lastPos;
+
+    public override void SetSpawnInfo(Creature owner, SkillBase skill, Vector2 direction)
+    {
+        base.SetSpawnInfo(owner, skill, direction);
     }
-	protected override void Move()
+
+	public void SetSpawnInfo (Creature owner, SkillBase skill, Vector2 direction, bool isBTSkill)
+	{
+        if (isBTSkill)
+        {
+            Renderer.sprite = Managers.Resource.Load<Sprite>("Art/PeacockFeather(skil)");
+        }
+
+        SetSpawnInfo(owner, skill, direction);
+    }
+
+    protected override void Move()
 	{
 		if (target != null)
 		{

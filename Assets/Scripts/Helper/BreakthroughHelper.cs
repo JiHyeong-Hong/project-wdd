@@ -1,6 +1,8 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using UnityEngine;
 using static Define;
 
@@ -38,10 +40,31 @@ public class BreakthroughHelper
 
     public Dictionary<int, CompositeData> compositeSkillTable = new Dictionary<int, CompositeData>();
 
-    public Dictionary<int,int> nomalSkillToBTSkill = new Dictionary<int, int>();
+    public Dictionary<int, int> nomalSkillToBTSkill = new Dictionary<int, int>();
     public Dictionary<int, int> passiveSkillToBTSkill = new Dictionary<int, int>();
     public Dictionary<int, int> nomalSkillCastCount = new Dictionary<int, int>();
 
+
+    private CancellationTokenSource cancellationTokenSource;
+    public async void SetActiveObject(GameObject target, bool active, float activeTime)
+    {
+        cancellationTokenSource?.Cancel();
+        cancellationTokenSource = new CancellationTokenSource();
+
+        target.SetActive(active);
+        try
+        {
+            // activeTime 이후에 gameObject를 비활성화하기 위해 일정 시간 동안 대기합니다.
+            await UniTask.Delay((int)(activeTime * 1000), cancellationToken: cancellationTokenSource.Token);
+        }
+        catch (OperationCanceledException)
+        {
+            // UniTask가 취소되었습니다. 이는 SetActiveObject 함수가 다시 호출되어 이전 작업이 취소되었음을 나타냅니다.
+            return;
+        }
+
+        target.SetActive(false);
+    }
     public void Init()
     {
         foreach (var item in Managers.Data.BreakthroghDic)
