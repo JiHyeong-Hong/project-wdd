@@ -54,10 +54,28 @@ public class EnemyProjectile : Projectile
     
     private void OnTriggerEnter2D(Collider2D col)
     {
+        //if (((1 << (int)Define.ELayer.Hero) & (1 << col.gameObject.layer)) != 0)
+        //{
+        //    col.GetComponent<Hero>().OnDamaged(this,Skill);
+        //    Managers.Object.Despawn(this);
+        //}
+
         if (((1 << (int)Define.ELayer.Hero) & (1 << col.gameObject.layer)) != 0)
         {
-            col.GetComponent<Hero>().OnDamaged(this,Skill);
-            Managers.Object.Despawn(this);
+            Hero hero = col.GetComponent<Hero>();
+            if (hero != null)
+            {
+                if (hero.IsInvincible) 
+                {
+                    // Hero가 무적 상태일 때의 처리
+                    hero.OnHitByProjectile(); // 보호 횟수 감소 
+                    Managers.Object.Despawn(this); // 투사체 제거
+                    return; // 추가 피해 처리 방지
+                }
+                // 무적 상태가 아니면 일반적인 피해 처리
+                hero.OnDamaged(this, Skill); // 공격자 정보와 스킬 정보를 넘겨줌
+                Managers.Object.Despawn(this); // 투사체 제거
+            }
         }
     }
 }

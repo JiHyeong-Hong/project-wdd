@@ -49,7 +49,12 @@ public class BulletproofVest : Item
             Renderer.material.color = color;
         }
 
-        hero.AddProtection(this);  // Suppose Hero has a method to handle protection effects
+        else
+        {
+            Debug.LogError("Renderer not found on BulletproofVest object!");
+        }
+
+        hero.AddProtection(this); 
 
         Invoke(nameof(EndProtection), protectionDuration);
     }
