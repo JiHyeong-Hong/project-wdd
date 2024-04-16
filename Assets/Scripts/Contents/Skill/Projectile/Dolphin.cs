@@ -85,7 +85,6 @@ public class Dolphin : BaseObject
 
 	public void SetSpawnInfo(Creature owner, SkillBase skill)
 	{
-        Debug.Log("[DolPhine] SetSpawnInfo called.");
         Owner = owner;
 		Skill = skill;
 
