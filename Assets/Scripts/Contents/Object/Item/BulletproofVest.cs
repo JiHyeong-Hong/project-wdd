@@ -4,45 +4,59 @@ using UnityEngine;
 
 public class BulletproofVest : Item
 {
-    public int protectionCount = 5; // 방어 가능한 횟수. 아직 미정
+    public int maxProtectionHits = 5; // 방어 가능한 횟수. 아직 미정
     public float protectionDuration = 10f; // 방탄조끼 지속 시간
+    private float usedTransparency = 0f;
 
-    private SpriteRenderer spriteRenderer; 
+    private int currentProtectionHits;
+    private float protectionEndTime;
+    private bool isProtecting;
 
     public override bool Init()
     {
         if (!base.Init())
             return false;
 
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        currentProtectionHits = maxProtectionHits;
+        protectionEndTime = Time.time + protectionDuration;
+        isProtecting = true;
 
         return true;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void Update()
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (isProtecting && Time.time >= protectionEndTime)
         {
-            Hero hero = other.GetComponent<Hero>();
-            if (hero != null)
-            {
-                StartCoroutine(ActivateProtection(hero));
-            }
+            EndProtection();
         }
     }
 
-    private IEnumerator ActivateProtection(Hero hero)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (spriteRenderer != null)
+        BaseObject target = other.GetComponent<BaseObject>();
+        if (target.IsValid() == false)
+            return;
+
+        Hero hero = target as Hero;
+        if (hero == null)
+            return;
+
+        if (Renderer != null)
         {
-            spriteRenderer.color = new Color(1f, 1f, 1f, 0f); 
+            Color color = Renderer.material.color;
+            color.a = usedTransparency;
+            Renderer.material.color = color;
         }
 
-        // 방탄효과 함수 넣어야
-        // 투사체? 총알? 얘네가 어디에 있는지 모르겠다
+        hero.AddProtection(this);  // Suppose Hero has a method to handle protection effects
 
-        yield return new WaitForSeconds(protectionDuration);
+        Invoke(nameof(EndProtection), protectionDuration);
+    }
 
-        Destroy(gameObject);
+    private void EndProtection()
+    {
+        isProtecting = false;
+        Managers.Object.Despawn(this);
     }
 }
