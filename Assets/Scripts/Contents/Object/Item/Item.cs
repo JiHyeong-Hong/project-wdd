@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Item : BaseObject
+    /// 경험치 구슬 스크립트
 {
     public Data.ItemData ItemData { get; private set; }
 
