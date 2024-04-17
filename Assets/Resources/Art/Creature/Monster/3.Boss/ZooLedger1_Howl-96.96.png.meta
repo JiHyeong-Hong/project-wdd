@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: de056ff05446a477d97c7d68b4153594
+guid: 7a1f9104b129d419892d551269dbd547
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 30
+  spritePixelsToUnits: 40
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hunter1_Move_0
+      name: ZooLedger1_Howl-96.96_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 28
-        width: 28
-        height: 28
+        y: 192
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c049942e6af9f4195ac785a954644e69
-      internalID: 1229805230
+      spriteID: cbe69ffa14fe04cbd82421058a6aa259
+      internalID: -1066432836
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hunter1_Move_1
+      name: ZooLedger1_Howl-96.96_1
       rect:
         serializedVersion: 2
-        x: 28
-        y: 28
-        width: 28
-        height: 28
+        x: 96
+        y: 192
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7290aa98d0b054244891d2d8e749fa8a
-      internalID: 720285260
+      spriteID: 865ea5109ad0747e2b3b8883a74639dc
+      internalID: 1441917737
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hunter1_Move_2
+      name: ZooLedger1_Howl-96.96_2
       rect:
         serializedVersion: 2
-        x: 56
-        y: 28
-        width: 28
-        height: 28
+        x: 192
+        y: 192
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,20 +179,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 53baeb48624254ad58dc9476941a6577
-      internalID: -365929185
+      spriteID: 6443d8748344f4e558ddc6b44c4d9e18
+      internalID: -1314022341
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hunter1_Move_3
+      name: ZooLedger1_Howl-96.96_3
       rect:
         serializedVersion: 2
-        x: 84
-        y: 28
-        width: 28
-        height: 28
+        x: 288
+        y: 192
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,20 +200,104 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49febcffe383f4d1d8115d1251e2fa44
-      internalID: -743033242
+      spriteID: 8e9c7fed232d04bb39000c457689c60b
+      internalID: -1932869558
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hunter1_Move_4
+      name: ZooLedger1_Howl-96.96_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 623fbc1cc22e24e95a5ed977a642fff2
+      internalID: -601008487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZooLedger1_Howl-96.96_5
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93989ae97afa7437fa3d08f2a32aa014
+      internalID: -1961556917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZooLedger1_Howl-96.96_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 96
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7d6404fb1bad4fe1a5f2087ae1f716d
+      internalID: 897585704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZooLedger1_Howl-96.96_7
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 96
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b046e7ce634f64f58b8f1b8e2f7a1931
+      internalID: 1080055883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZooLedger1_Howl-96.96_8
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 28
-        height: 28
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,20 +305,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e2a3e0c149f94340beb4695f80e5e74
-      internalID: 1088286306
+      spriteID: b8cfa5ef924af4346b3ee29c3a1a624d
+      internalID: -1369923493
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hunter1_Move_5
+      name: ZooLedger1_Howl-96.96_9
       rect:
         serializedVersion: 2
-        x: 28
+        x: 96
         y: 0
-        width: 28
-        height: 28
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -242,20 +326,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3e633b098e4848608604c110513922e
-      internalID: -1012138921
+      spriteID: fd8baeedbf5394d0cbb1e6dc36f54aa3
+      internalID: -819383481
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hunter1_Move_6
+      name: ZooLedger1_Howl-96.96_10
       rect:
         serializedVersion: 2
-        x: 56
+        x: 192
         y: 0
-        width: 28
-        height: 28
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -263,8 +347,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92deb6034c2dc4a1fb7ae9ca7930758c
-      internalID: -420839635
+      spriteID: b7e358e95e9a94a22b3fa97c35a8f2bc
+      internalID: -1077704973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZooLedger1_Howl-96.96_11
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2558908a0c5440409ffd85e301187f9
+      internalID: -493567147
       vertices: []
       indices: 
       edges: []
@@ -280,13 +385,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      hunter1_Move_0: 1229805230
-      hunter1_Move_1: 720285260
-      hunter1_Move_2: -365929185
-      hunter1_Move_3: -743033242
-      hunter1_Move_4: 1088286306
-      hunter1_Move_5: -1012138921
-      hunter1_Move_6: -420839635
+      ZooLedger1_Howl-96.96_0: -1066432836
+      ZooLedger1_Howl-96.96_1: 1441917737
+      ZooLedger1_Howl-96.96_10: -1077704973
+      ZooLedger1_Howl-96.96_11: -493567147
+      ZooLedger1_Howl-96.96_2: -1314022341
+      ZooLedger1_Howl-96.96_3: -1932869558
+      ZooLedger1_Howl-96.96_4: -601008487
+      ZooLedger1_Howl-96.96_5: -1961556917
+      ZooLedger1_Howl-96.96_6: 897585704
+      ZooLedger1_Howl-96.96_7: 1080055883
+      ZooLedger1_Howl-96.96_8: -1369923493
+      ZooLedger1_Howl-96.96_9: -819383481
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

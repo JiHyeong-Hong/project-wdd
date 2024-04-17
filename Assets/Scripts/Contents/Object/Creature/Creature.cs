@@ -142,6 +142,9 @@ public class Creature : BaseObject
                 case ECreatureState.Pattern2:
                     UpdatePattern2();
                     break;
+                case ECreatureState.ChangePhase:
+                    UpdateChangePhase();
+                    break;
             }
 
             if (UpdateAITick > 0)
@@ -190,6 +193,7 @@ public class Creature : BaseObject
     protected virtual void UpdateSkill1() { }
     protected virtual void UpdatePattern1() { }
     protected virtual void UpdatePattern2() { }
+    protected virtual void UpdateChangePhase() { }
     #endregion
 
     #region Battle
@@ -227,7 +231,7 @@ public class Creature : BaseObject
             finalDamage = skill.SkillData.Damage + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Attack);
 
         Hp = Mathf.Clamp(Hp - finalDamage, 0, MaxHp);
-        Debug.LogWarning($"[{gameObject.name}] Hit! HP({Hp}/{MaxHp})"); // 디버깅용. 삭제가능 @홍지형
+        // Debug.LogWarning($"[{gameObject.name}] Hit! HP({Hp}/{MaxHp})"); // 디버깅용. 삭제가능 @홍지형
         if (Hp <= 0)
         {
             OnDead(attacker, skill);
@@ -235,13 +239,14 @@ public class Creature : BaseObject
         }
         else
         {
-            CreatureState = ECreatureState.Hit;
+            if(CreatureType != ECreatureType.Boss)
+                CreatureState = ECreatureState.Hit;
         }
 
 
         // 넉백
-        if (skill.SkillData.KnockbackPower != 0)
-            StartCoroutine(knockbackUpdate(transform.position - attacker.transform.position, skill.SkillData.KnockbackPower * 0.01f, 0.5f));
+        // if (skill.SkillData.KnockbackPower != 0)
+        //     StartCoroutine(knockbackUpdate(transform.position - attacker.transform.position, skill.SkillData.KnockbackPower * 0.01f, 0.5f));
 
         _freezeStateOneFrame = true;
     }

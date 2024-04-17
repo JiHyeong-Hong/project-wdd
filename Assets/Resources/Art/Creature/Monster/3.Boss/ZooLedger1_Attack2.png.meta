@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2e089c4947f2a490088bf72905aa874b
+guid: 7046692defeed4664b07ff125f1562a1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 30
+  spritePixelsToUnits: 40
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -123,43 +123,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hunter1_Hit_0
+      name: ZooLedger1_Attack end- 120.96_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 28
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 96
+        width: 120
+        height: 96
+      alignment: 9
+      pivot: {x: 0.61, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0dbda7c41d54342599b56243bcf10ab0
-      internalID: 717592207
+      spriteID: 47371486d147b4cddaae8c276d5f618d
+      internalID: -684451522
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hunter1_Hit_1
+      name: ZooLedger1_Attack end- 120.96_1
       rect:
         serializedVersion: 2
-        x: 28
-        y: 0
-        width: 28
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 120
+        y: 96
+        width: 120
+        height: 96
+      alignment: 9
+      pivot: {x: 0.61, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b7206ec6b4da47189c01db3c4353451
-      internalID: 683670138
+      spriteID: 308bc8f5743d644c1a7c33508a1b3c69
+      internalID: -402849307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZooLedger1_Attack end- 120.96_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 120
+        height: 96
+      alignment: 9
+      pivot: {x: 0.61, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b16fac4e20ec44fb8a7b78d6cc4b844
+      internalID: -1713642569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZooLedger1_Attack end- 120.96_3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 0
+        width: 120
+        height: 96
+      alignment: 9
+      pivot: {x: 0.6, y: 0.49999997}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 341264b61402b43e993969d8270e3b4f
+      internalID: -528196231
       vertices: []
       indices: 
       edges: []
@@ -175,8 +217,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      hunter1_Hit_0: 717592207
-      hunter1_Hit_1: 683670138
+      ZooLedger1_Attack end- 120.96_0: -684451522
+      ZooLedger1_Attack end- 120.96_1: -402849307
+      ZooLedger1_Attack end- 120.96_2: -1713642569
+      ZooLedger1_Attack end- 120.96_3: -528196231
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2e089c4947f2a490088bf72905aa874b
+guid: 7630a2fbe82264ea0966ea698136fb87
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 30
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -123,43 +123,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hunter1_Hit_0
+      name: Bullet5
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 28
-        height: 28
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0dbda7c41d54342599b56243bcf10ab0
-      internalID: 717592207
+      spriteID: eab12f6b511804047a88d8c5516484fb
+      internalID: 181934805
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hunter1_Hit_1
+      name: Bullet5_1
       rect:
         serializedVersion: 2
-        x: 28
-        y: 0
-        width: 28
-        height: 28
+        x: 32
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b7206ec6b4da47189c01db3c4353451
-      internalID: 683670138
+      spriteID: 7f388e0327d5d4be0888a1e80cca74d3
+      internalID: 1774628769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bullet5_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d6a8d748f776490682b0879ae8c2f0c
+      internalID: -1319584356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bullet5_3
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2715adb909d7544c3af316e0481bc0fd
+      internalID: -353464711
       vertices: []
       indices: 
       edges: []
@@ -175,8 +217,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      hunter1_Hit_0: 717592207
-      hunter1_Hit_1: 683670138
+      Bullet5: 181934805
+      Bullet5_1: 1774628769
+      Bullet5_2: -1319584356
+      Bullet5_3: -353464711
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

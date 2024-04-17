@@ -88,7 +88,7 @@ public class Monster : Creature
     #endregion
 
     #region AI
-    protected Hero _hero;
+    public Hero _hero;
     private float distance = 0f;
     public float cooltime = 0f;
     public bool Atk_chk;
@@ -174,6 +174,7 @@ public class Monster : Creature
 
     protected override void UpdateHit()
     {
+        Debug.Log("보스 맞음");
         if(CreatureType != ECreatureType.Boss)
             CreatureState = ECreatureState.Idle;
     }
