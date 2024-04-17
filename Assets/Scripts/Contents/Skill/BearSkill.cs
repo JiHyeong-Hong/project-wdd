@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BearSkill : SkillBase
 {
-	private readonly float DISTANCE_OFFSET = 3f;
+	private readonly float DISTANCE_OFFSET = 2f;
 	private readonly float ANGLE_OFFSET = 70f;
 
 	public override void DoSkill()
@@ -20,8 +20,10 @@ public class BearSkill : SkillBase
 		var angle = hero.Pivot.eulerAngles.z;
 		angle += isFlip ? -ANGLE_OFFSET : ANGLE_OFFSET;
 
-		Bear bear = Managers.Object.Spawn<Bear>((Vector2)Owner.transform.position + Owner.Direction * DISTANCE_OFFSET, SkillData.ProjectileNum);
-		bear.SetSpawnInfo(Owner, this, Vector3.zero);
+		Bear bear = Managers.Object.Spawn<Bear>((Vector2)Owner.transform.position + Owner.Direction.normalized * DISTANCE_OFFSET, SkillData.ProjectileNum);
+		bear.Skills[0].SetActive(true);
+
+        bear.SetSpawnInfo(Owner, this, Vector3.zero);
 		bear.transform.localScale = isFlip ? new Vector3(-1, 1, 1) : Vector3.one;
 		bear.transform.eulerAngles = new Vector3(0, 0, angle);
 
@@ -38,8 +40,8 @@ public class BearSkill : SkillBase
 
 		Bear bear2 = Managers.Object.Spawn<Bear>((Vector2)Owner.transform.position + Owner.Direction * (-1 * DISTANCE_OFFSET),
 			SkillData.ProjectileNum);
-
-		bear2.transform.localScale = isFlip ? new Vector3(-1, 1, 1) : Vector3.one;
+        bear2.Skills[0].SetActive(true);
+        bear2.transform.localScale = isFlip ? new Vector3(-1, 1, 1) : Vector3.one;
 		bear2.SetSpawnInfo(Owner, this, Vector3.zero);
 		bear2.transform.eulerAngles = new Vector3(0, 0, isFlip ? angle + (ANGLE_OFFSET * 0.5f) : angle - (ANGLE_OFFSET * 0.5f));
 	}

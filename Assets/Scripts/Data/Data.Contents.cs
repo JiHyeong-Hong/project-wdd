@@ -322,9 +322,9 @@ namespace Data
 
     #endregion
 
-    #region BreakthroghData
+    #region BreakthroughData
     [Serializable]
-    public class BreakthroghData
+    public class BreakthroughData
 	{
 		public int Index;
 		public int SkillID;
@@ -339,14 +339,14 @@ namespace Data
 		public int Skill_Lv2;
     }
     [Serializable]
-    public class BreakthroghDataLoader : ILoader<int, BreakthroghData>
+    public class BreakthroughDataLoader : ILoader<int, BreakthroughData>
     {
-        public List<BreakthroghData> breakthroghData = new List<BreakthroghData>();
+        public List<BreakthroughData> breakthroughData = new List<BreakthroughData>();
 
-        public Dictionary<int, BreakthroghData> MakeDict()
+        public Dictionary<int, BreakthroughData> MakeDict()
         {
-            Dictionary<int, BreakthroghData> dict = new Dictionary<int, BreakthroghData>();
-            foreach (BreakthroghData item in breakthroghData)
+            Dictionary<int, BreakthroughData> dict = new Dictionary<int, BreakthroughData>();
+            foreach (BreakthroughData item in breakthroughData)
                 dict.Add(item.C_Skill_ID1, item);
             return dict;
         }

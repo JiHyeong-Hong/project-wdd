@@ -25,7 +25,7 @@ public class DataTransformer : EditorWindow
         ParseExcelDataToJson<ItemDataLoader, ItemData>("Item");
         ParseExcelDataToJson<HpConditionDataLoader, HpConditionData>("HpCondition");
         ParseExcelDataToJson<PatternPerDataLoader, PatternPerData>("PatternPer");
-        ParseExcelDataToJson<BreakthroghDataLoader, BreakthroghData>("Breakthrogh");
+        ParseExcelDataToJson<BreakthroughDataLoader, BreakthroughData>("Breakthrough");
 
         Debug.Log("DataTransformer Completed");
     }

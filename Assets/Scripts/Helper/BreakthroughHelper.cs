@@ -67,7 +67,7 @@ public class BreakthroughHelper
     }
     public void Init()
     {
-        foreach (var item in Managers.Data.BreakthroghDic)
+        foreach (var item in Managers.Data.BreakthroughDic)
         {
             compositeSkillTable.Add(item.Value.C_Skill_ID1, new CompositeData 
             { 
@@ -111,26 +111,26 @@ public class BreakthroughHelper
 
     public bool CheckBreakthrough(int index)
     {
-        if (!nomalSkillToBTSkill.TryGetValue(index, out int breakthroghIndex))
+        if (!nomalSkillToBTSkill.TryGetValue(index, out int breakthroughIndex))
             return false;
 
-        CompositeData data = compositeSkillTable[breakthroghIndex];
+        CompositeData data = compositeSkillTable[breakthroughIndex];
         if (data.Active.Item2 == true && data.Passive.Item2 == true)
         {
-            SkillBase breakthroghSkill = null;
+            SkillBase breakthroughSkill = null;
             foreach (var item in Managers.Skill.usingSkillDic[SkillType.Breakthrough])
             {
-                if (item.SkillData.Index == breakthroghIndex)
+                if (item.SkillData.Index == breakthroughIndex)
                 {
-                    breakthroghSkill = item;
+                    breakthroughSkill = item;
                     break;
                 }
             }
 
-            if (nomalSkillCastCount.ContainsKey(index) && nomalSkillCastCount[index] >= breakthroghSkill.SkillData.SkillTurn && IsActivated(breakthroghSkill.SkillData.CastPer))
+            if (nomalSkillCastCount.ContainsKey(index) && nomalSkillCastCount[index] >= breakthroughSkill.SkillData.SkillTurn && IsActivated(breakthroughSkill.SkillData.CastPer))
             {
                 nomalSkillCastCount[index] = 0;
-                breakthroghSkill.DoSkill();
+                breakthroughSkill.DoSkill();
                 return true;
             }
         }
@@ -146,7 +146,7 @@ public class BreakthroughHelper
 
     public SkillBase FindBreakthroughSkill(int index)
     {
-        foreach (var item in Managers.Data.BreakthroghDic)
+        foreach (var item in Managers.Data.BreakthroughDic)
         {
             if (item.Value.C_Skill_ID1 == index)
             {

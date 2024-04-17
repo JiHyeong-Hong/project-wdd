@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 01c962f57a4fcfd4081d9b2ebfada0a1
+guid: 88f4d24bfbb29bb4b8e15368a47d1b78
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bear_0
+      name: Bear effect_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 18
-        width: 48
-        height: 54
+        x: 10
+        y: 63
+        width: 27
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,41 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7eb0ae8e9a67c748a6f1a0d5f364ed3
-      internalID: -1370894865
+      spriteID: 1725c9cdfb8a9fb47b3e5dcabec52c75
+      internalID: 765737506
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bear_1
+      name: Bear effect_1
       rect:
         serializedVersion: 2
-        x: 60
-        y: 18
-        width: 57
-        height: 41
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0202bc9f7323d5441bdcee8162ad50b2
-      internalID: -1158864652
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bear_2
-      rect:
-        serializedVersion: 2
-        x: 119
-        y: 1
+        x: 56
+        y: 35
         width: 41
-        height: 58
+        height: 44
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,8 +158,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0129f471515b796479d45389bcf03bab
-      internalID: 1357779157
+      spriteID: 593344afc1573ee4faf34eb86c20bd7b
+      internalID: 2066921736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bear effect_2
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 1
+        width: 42
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0a7f804f64411449941527fb641fe3b
+      internalID: 1963581597
       vertices: []
       indices: 
       edges: []
@@ -196,9 +196,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Bear_0: -1370894865
-      Bear_1: -1158864652
-      Bear_2: 1357779157
+      Bear effect_0: 765737506
+      Bear effect_1: 2066921736
+      Bear effect_2: 1963581597
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

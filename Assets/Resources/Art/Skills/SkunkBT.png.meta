@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 01c962f57a4fcfd4081d9b2ebfada0a1
+guid: 252e6bd94849e164abdb8e5f0ab91975
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -123,64 +123,148 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bear_0
+      name: SkunkBT_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 18
+        x: 7
+        y: 79
+        width: 46
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 045c5064b4c4b5447a726b2e2e78d867
+      internalID: -1324929686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkunkBT_1
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 80
+        width: 46
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e4d43423696cb34ba24083ba1d54f45
+      internalID: 1210322822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkunkBT_2
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 79
+        width: 51
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3997c584166f4c42ae197ac9a66f9a0
+      internalID: -1354193216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkunkBT_5
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 13
+        width: 51
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab04928cc1b1c9747aa7a8f6e5060a7b
+      internalID: 593470115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkunkBT_6
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 11
         width: 48
-        height: 54
+        height: 49
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7eb0ae8e9a67c748a6f1a0d5f364ed3
-      internalID: -1370894865
+      spriteID: 229d346bf8d80e6449facf8681948b1b
+      internalID: 689851897
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bear_1
+      name: SkunkBT_3
       rect:
         serializedVersion: 2
-        x: 60
-        y: 18
-        width: 57
-        height: 41
+        x: 11
+        y: 20
+        width: 15
+        height: 9
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0202bc9f7323d5441bdcee8162ad50b2
-      internalID: -1158864652
+      spriteID: 41ef87ce1ed2ccf4f8899065a3daaa4c
+      internalID: -1643165204
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bear_2
+      name: SkunkBT_4
       rect:
         serializedVersion: 2
-        x: 119
-        y: 1
-        width: 41
-        height: 58
+        x: 55
+        y: 19
+        width: 19
+        height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0129f471515b796479d45389bcf03bab
-      internalID: 1357779157
+      spriteID: a182ea34d60c5df4abe43f23464df390
+      internalID: 64763025
       vertices: []
       indices: 
       edges: []
@@ -196,9 +280,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Bear_0: -1370894865
-      Bear_1: -1158864652
-      Bear_2: 1357779157
+      SkunkBT_0: -1324929686
+      SkunkBT_1: 1210322822
+      SkunkBT_2: -1354193216
+      SkunkBT_3: -1643165204
+      SkunkBT_4: 64763025
+      SkunkBT_5: 593470115
+      SkunkBT_6: 689851897
+      SkunkBT_8: -346797164
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

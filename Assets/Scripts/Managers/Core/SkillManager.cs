@@ -212,12 +212,12 @@ public class SkillManager
 		BreakthroughHelper.Instance.GetBreakthroughBaseSkill(skillData.skillType, skillData.Index);
 	}
 
-	public void BreakthroughAdd(int breakthroghIndex)
+	public void BreakthroughAdd(int breakthroughIndex)
 	{
         var list = usingSkillDic[SkillType.Breakthrough];
-		SkillData skillData= allSkillDic[Managers.Data.BreakthroghDic[breakthroghIndex].Name][0].SkillData;
+		SkillData skillData= allSkillDic[Managers.Data.BreakthroughDic[breakthroughIndex].Name][0].SkillData;
 
-		list.Add(allSkillDic[Managers.Data.BreakthroghDic[breakthroghIndex].Name][0]);
+		list.Add(allSkillDic[Managers.Data.BreakthroughDic[breakthroughIndex].Name][0]);
 
         int index = list.Count - 1;
         list[index].SetInfo(skillData);

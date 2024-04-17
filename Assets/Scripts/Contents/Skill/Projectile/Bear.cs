@@ -7,16 +7,19 @@ using UnityEngine;
 
 public class Bear : Projectile
 {
+	public GameObject[] Skills;
+	public CircleCollider2D myCollider2D;
+
 	public override bool Init()
 	{
 		if (base.Init() == false)
 			return false;
 
 		canMove = false;
-		Animator = transform.GetChild(0).GetComponent<Animator>();
-		Renderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
-
-		///
+		Animator = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
+		Renderer = transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>();
+        myCollider2D = GetComponent<CircleCollider2D>();
+        ///
         isInfinityDuration = true;
 		///
 

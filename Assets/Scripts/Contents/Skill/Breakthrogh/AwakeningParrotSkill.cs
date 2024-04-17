@@ -32,7 +32,7 @@ public class AwakeningParrotSkill : SkillBase
             Vector2 spawnPosition = GetCirclePosition(angle, orbitRadius);
             Bird bird = Managers.Object.Spawn<Bird>(spawnPosition, SkillData.ProjectileNum, birdPool.transform);
             bird.SetSpawnInfo(Owner, this, Vector2.up);
-            bird.Animator.SetTrigger("Breakthrogh");
+            bird.Animator.SetTrigger("Breakthrough");
             birds.Add(bird);
         }
         RotateSatellites();

@@ -1,9 +1,9 @@
 {
-  "breakthroghData": [
+  "breakthroughData": [
     {
       "Index": 401,
       "SkillID": 3010,
-      "Name": "Guardian Of Mountain ",
+      "Name": "GuardianOfMountain",
       "Type": 3,
       "Lv": 1,
       "C_Skill_ID1": 1,
@@ -29,7 +29,7 @@
     {
       "Index": 403,
       "SkillID": 3030,
-      "Name": "Hungry Bear",
+      "Name": "HungryBear",
       "Type": 3,
       "Lv": 1,
       "C_Skill_ID1": 3,
@@ -94,7 +94,7 @@
     {
       "Index": 408,
       "SkillID": 3080,
-      "Name": "Storm Feather",
+      "Name": "StormFeather",
       "Type": 3,
       "Lv": 1,
       "C_Skill_ID1": 9,
