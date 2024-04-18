@@ -112,6 +112,9 @@ public class Creature : BaseObject
     #region AI
     public float UpdateAITick { get; protected set; } = 0.01f;
 
+    //TODO Eung 몬스터 AI 코루틴 변수 - 변경 필요
+    public Coroutine test = null;
+
     protected IEnumerator CoUpdateAI()
     {
         while (true)
@@ -235,7 +238,7 @@ public class Creature : BaseObject
         if (Hp <= 0)
         {
             OnDead(attacker, skill);
-            CreatureState = ECreatureState.Dead;
+            // CreatureState = ECreatureState.Dead;
         }
         else
         {

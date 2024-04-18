@@ -59,7 +59,8 @@ public class ObjectManager
                     hero.SetInfo(templateID);
                     break;
                 case ECreatureType.Monster:
-                    obj.transform.parent = (parent == null) ? MonsterRoot : parent;
+                    //TODO Eung Pool사용시 Root 설정 변경
+                    obj.transform.parent = (obj.transform.parent == null) ? MonsterRoot : obj.transform.parent;
                     Monster monster = creature as Monster;
                     Monsters.Add(monster);
                     monster.SetInfo(templateID);
@@ -134,7 +135,10 @@ public class ObjectManager
         else if (obj.ObjectType == EObjectType.Projectile)
         {
             Projectile projectile = obj as Projectile;
-            Projectiles.Remove(projectile);
+            if (projectile.GetComponent<Poolable>() != null)
+                Managers.Pool.Push(projectile.GetComponent<Poolable>());
+            else
+                Projectiles.Remove(projectile);
         }
         else if (obj.ObjectType == EObjectType.Item)
         {

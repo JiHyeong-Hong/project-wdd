@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Data;
@@ -5,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using static Define;
+using Random = UnityEngine.Random;
 
 public class Monster : Creature
 {
@@ -19,7 +21,6 @@ public class Monster : Creature
             return false;
 
         CreatureType = ECreatureType.Monster;
-        StartCoroutine(CoUpdateAI());
 
         return true;
     }
@@ -48,6 +49,7 @@ public class Monster : Creature
                 break;
         }
         
+        test = StartCoroutine(CoUpdateAI());
         //TODO Eung Drop 데이터 테이블 만들고나서 봐야할듯?
         // DropItemID = monsterData.DropItemID;
         // DropPersent = monsterData.DropPersent;
@@ -78,12 +80,16 @@ public class Monster : Creature
         base.OnDead(attacker, skill);
 
         int rand = Random.Range(0, 100);
-        if (rand <= DropPersent)
-        {
-            Managers.Object.Spawn<Item>(transform.position, DropItemID);
-        }
+        // if (rand <= DropPersent)
+        // {
+        //     Managers.Object.Spawn<Item>(transform.position, DropItemID);
+        // }
+        
 
-        Managers.Object.Despawn(this);
+        if(test != null)
+            StopCoroutine(test);
+        test = null;
+        Managers.Resource.Destroy(gameObject);
     }
     #endregion
 
