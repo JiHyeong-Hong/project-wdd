@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -30,10 +27,25 @@ public class Bear : Projectile
 
 	public float GetAnimLength()
 	{
+		if(!IsAnimationPlaying()) return 0;
+
 		return Animator.GetCurrentAnimatorStateInfo(0).length;
 	}
-	
-	void OnTriggerEnter2D(Collider2D other)
+
+	private bool IsAnimationPlaying()
+	{
+		if (Animator == null) return false;
+		if (Animator.isActiveAndEnabled == false) return false;
+
+		AnimatorStateInfo stateInfo = Animator.GetCurrentAnimatorStateInfo(0);
+		float animTime = stateInfo.normalizedTime;
+		if (animTime > 0 && animTime < 1.0f) return true;
+
+
+		return false;
+	}
+
+    void OnTriggerEnter2D(Collider2D other)
 	{
         if (((1 << (int)Define.ELayer.Monster) & (1 << other.gameObject.layer)) != 0)
 		{
