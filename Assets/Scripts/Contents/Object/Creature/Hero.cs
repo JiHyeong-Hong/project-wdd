@@ -1,11 +1,12 @@
 using Data;
+using System;
 using System.Collections;
 using UnityEngine;
 using static Define;
 
 public class Hero : Creature
 {
-	private Vector2 _moveDir = Vector2.zero;
+    private Vector2 _moveDir = Vector2.zero;
 
 	// jh
     public Vector2 MoveDir
@@ -67,6 +68,9 @@ public class Hero : Creature
 
 		Pivot = Util.FindChild<Transform>(gameObject, "Pivot", true);
 		Destination = Util.FindChild<Transform>(gameObject, "Destination", true);
+
+
+		gameObject.AddComponent<Stats>();
 
 		return true;
 	}
@@ -250,5 +254,33 @@ public class Hero : Creature
             }
         }
     }
+
+    public void OnChangeValue(string statName, int add)
+    {
+        switch (statName)
+        {
+            case "Level":
+                Level += add;
+                break;
+            case "MaxExp":
+                MaxExp += add;
+                break;
+            case "ItemAcquireRange":
+                ItemAcquireRange += add;
+                break;
+            case "Exp":
+                Exp += add;
+                break;
+            case "Hp":
+                Hp += add;
+                break;
+            case "MoveSpeed":
+                MoveSpeed += add;
+                break;
+            default:
+                break;
+        }
+    }
+
     #endregion
 }

@@ -48,9 +48,14 @@ public class Entity : MonoBehaviour
     {
 
         #region 6-13
+        
+        #endregion
+    }
+
+    private void Start()
+    {
         Stats = GetComponent<Stats>();
         Stats.Setup(this);
-        #endregion
     }
 
     #region 6-14
