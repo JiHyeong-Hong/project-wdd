@@ -3,7 +3,7 @@
     {
       "Index": 401,
       "SkillID": 3010,
-      "Name": "GuardianOfMountain",
+      "Name": "Guardian Of Mountain ",
       "Type": 3,
       "Lv": 1,
       "C_Skill_ID1": 1,
@@ -29,7 +29,7 @@
     {
       "Index": 403,
       "SkillID": 3030,
-      "Name": "HungryBear",
+      "Name": "Hungry Bear",
       "Type": 3,
       "Lv": 1,
       "C_Skill_ID1": 3,
@@ -94,7 +94,7 @@
     {
       "Index": 408,
       "SkillID": 3080,
-      "Name": "StormFeather",
+      "Name": "Storm Feather",
       "Type": 3,
       "Lv": 1,
       "C_Skill_ID1": 9,

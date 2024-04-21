@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Data;
 using Unity.VisualScripting;
@@ -31,7 +31,7 @@ public class Monster : Creature
 
         Renderer.sortingOrder = SortingLayers.MONSTER;
         _hero = Managers.Object.Hero;
-        
+
         monsterData = CreatureData as MonsterData;
         //몬스터 클래스에서 몬스터와 보스 타입 재분류
         switch (monsterData.Type)
@@ -47,7 +47,7 @@ public class Monster : Creature
                 CreatureState = ECreatureState.Move;
                 break;
         }
-        
+
         //TODO Eung Drop 데이터 테이블 만들고나서 봐야할듯?
         // DropItemID = monsterData.DropItemID;
         // DropPersent = monsterData.DropPersent;
@@ -62,23 +62,23 @@ public class Monster : Creature
         //  Creature creature = target as Creature;
         //  if (creature == null || creature.CreatureType != Define.ECreatureType.Hero)
         //      return;
-        /// jh ���� ���� �÷��̾�� ������ ���ư� �������
+        /// jh ���� ���� �÷��̾�� ������ ���ư� �������
         Creature creature = target as Creature;
         if (creature == null || creature.CreatureType != Define.ECreatureType.Hero)
         {
             Hero hero = creature as Hero;
             if (hero != null && hero.IsInvincible)
             {
-                // ���ư��� �ִϸ��̼� ����
+                // ���ư��� �ִϸ��̼� ����
                 Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
                 if (rb != null)
                 {
-                    rb.AddForce(new Vector2(0, 500)); // ����, ��
+                    rb.AddForce(new Vector2(0, 500)); // ����, ��
                 }
 
                 Destroy(gameObject);
-                return; 
+                return;
             }
         }
 
@@ -128,7 +128,7 @@ public class Monster : Creature
                 proj.SetImage();
                 proj.SetSpawnInfo(this, null, direction);
                 proj.SetTarget(_hero);
-                
+
                 cotest = null;
                 CreatureState = ECreatureState.Idle;
                 break;
@@ -137,18 +137,18 @@ public class Monster : Creature
             yield return new WaitForFixedUpdate();
         }
     }
-    
+
     protected override void UpdateAttack()
     {
         if (cotest == null)
         {
             cotest = StartCoroutine(Attack());
         }
-        
+
         Vector2 dest = (_hero.transform.position - transform.position).normalized;
         SetRigidbodyVelocity(dest * 0);
         SetImageDirecton(dest);
-        
+
     }
     protected override void UpdateMove()
     {
@@ -182,11 +182,11 @@ public class Monster : Creature
         {
             cotest = StartCoroutine(CAttackWait());
         }
-        
+
         Vector2 dest = (_hero.transform.position - transform.position).normalized;
         SetRigidbodyVelocity(dest * 0);
         SetImageDirecton(dest);
-        
+
         //TODO Eung 공격 코루틴 필요
     }
 
@@ -199,14 +199,14 @@ public class Monster : Creature
     {
         if (monsterData.AttackType == 1 || monsterData.AttackType == 3)
             return false;
-        
+
         distance = Vector2.Distance(_hero.transform.position, this.transform.position);
-        
+
         if (_hero.IsValid())
         {
             Vector2 dest = (_hero.transform.position - transform.position).normalized;
 
-            if(!Atk_chk)
+            if (!Atk_chk)
                 //TODO Eung 5,6 상수는 min / max 거리 데이터로 치환
                 //처음 탐색할때 거리가 min이하로 접근 해야함 min = 5
                 if (distance > 5)
@@ -219,7 +219,7 @@ public class Monster : Creature
                     CreatureState = ECreatureState.Idle;
                     return true;
                 }
-                    
+
             else
             {
                 //공격 가능한 상태에서 거리가 min보다 거리가 멀어지는경우 max초과의 거리로 벗어난 경우 다시 재탐색
@@ -257,7 +257,7 @@ public class Monster : Creature
                 cotest = null;
                 break;
             }
-            
+
             if (time > cooltime)
             {
                 CreatureState = ECreatureState.Attack;
