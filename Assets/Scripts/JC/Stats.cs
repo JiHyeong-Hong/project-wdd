@@ -1,7 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using System.Reflection;
+using System;
 
 [RequireComponent(typeof(Entity))]
 public class Stats : MonoBehaviour
@@ -54,33 +54,61 @@ public class Stats : MonoBehaviour
         plusButtonRect = new Rect(textRect.x + textRect.width + 150, textRect.y, 80, 80);
         minusButtonRect = plusButtonRect;
         minusButtonRect.x += spacing +20 + plusButtonRect.width;
+        
+        SetLabelAndButton(textRect, spacing, "Hp", Managers.Object.Hero.Hp);
 
-        SetLabeAndButton(textRect, spacing, "MAX_HP", Managers.Object.Hero.MaxHp);
-        SetLabeAndButton(textRect, spacing, "HP", Managers.Object.Hero.Hp);
-        SetLabeAndButton(textRect, spacing, "Level", Managers.Object.Hero.Level);
-        SetLabeAndButton(textRect, spacing, "MoveSpeed", Managers.Object.Hero.MoveSpeed);
+        SetLabelAndButton(textRect, spacing, "Level", Managers.Object.Hero.Level);
+
+        SetLabelAndButton(textRect, spacing, "MoveSpeed", Managers.Object.Hero.MoveSpeed);
+
+
     }
 
-
     // 텍스트 크기를 조절합니다.
-    private void SetLabeAndButton(Rect textRect, float spacing, string statName, float stat)
+    private void SetLabelAndButton(Rect textRect, float spacing, string statName, float stat)
     {
         style.fontSize = labelSize;
         GUIStyle buttonTextStyle = new GUISkin().button;
-        
+
         buttonTextStyle.alignment = TextAnchor.MiddleCenter;
         buttonTextStyle.fontSize = 80;
 
         GUI.Label(textRect, $"{statName}: {stat}", style);
+
         if (GUI.Button(plusButtonRect, "+", buttonTextStyle))
-            stat += 1;
-        
-        if(GUI.Button(minusButtonRect, "-", buttonTextStyle))
-            stat -= 1;
+        {
+            Managers.Object.Hero.OnChangeValue(statName, 1);
+        }
+
+        if (GUI.Button(minusButtonRect, "-", buttonTextStyle))
+        {
+            Managers.Object.Hero.OnChangeValue(statName, -1);
+        }
 
         SpacingTextAndButton();
     }
+    private void SetLabelAndButton(Rect textRect, float spacing, string statName, ref int stat)
+    {
+        style.fontSize = labelSize;
+        GUIStyle buttonTextStyle = new GUISkin().button;
 
+        buttonTextStyle.alignment = TextAnchor.MiddleCenter;
+        buttonTextStyle.fontSize = 80;
+
+        GUI.Label(textRect, $"{statName}: {stat}", style);
+
+        if (GUI.Button(plusButtonRect, "+", buttonTextStyle))
+        {
+            stat += 1;
+        }
+
+        if (GUI.Button(minusButtonRect, "-", buttonTextStyle))
+        {
+            stat -= 1;
+        }
+
+        SpacingTextAndButton();
+    }
     private void SpacingTextAndButton()
     {
         textRect.y += textRect.height + spacing + labelSize;
