@@ -111,7 +111,6 @@ public class Monster : Creature
             if (time >= cooltime)
             {
                 Vector2 direction = (_hero.transform.position - this.transform.position).normalized;
-                Debug.Log("원거리 공격!!");
                 var proj = Managers.Object.Spawn<EnemyProjectile>(transform.position, monsterData.ProjectileID);
                 proj.SetImage();
                 proj.SetSpawnInfo(this, null, direction);
@@ -180,7 +179,6 @@ public class Monster : Creature
 
     protected override void UpdateHit()
     {
-        Debug.Log("보스 맞음");
         if(CreatureType != ECreatureType.Boss)
             CreatureState = ECreatureState.Idle;
     }
@@ -239,7 +237,6 @@ public class Monster : Creature
         float time = 0f;
         while (true)
         {
-            Debug.Log((int)time + "초 공격 대기중");
             bool searching = HeroSearching();
             if (!searching)
             {
