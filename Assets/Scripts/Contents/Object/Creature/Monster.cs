@@ -51,8 +51,8 @@ public class Monster : Creature
         
         test = StartCoroutine(CoUpdateAI());
         //TODO Eung Drop 데이터 테이블 만들고나서 봐야할듯?
-        // DropItemID = monsterData.DropItemID;
-        // DropPersent = monsterData.DropPersent;
+        DropItemID = monsterData.DropItemID;
+        DropPersent = monsterData.DropPersent;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -99,10 +99,10 @@ public class Monster : Creature
         base.OnDead(attacker, skill);
 
         int rand = Random.Range(0, 100);
-        // if (rand <= DropPersent)
-        // {
-        //     Managers.Object.Spawn<Item>(transform.position, DropItemID);
-        // }
+        if (rand <= DropPersent)
+        {
+            Managers.Object.Spawn<Item>(transform.position, DropItemID);
+        }
         
 
         if(test != null)

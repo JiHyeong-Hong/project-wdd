@@ -1,6 +1,8 @@
-Index,Name,HP,ContactDmg,MoveSpeed,ResistDisorder,AnimatorDataID,Type,AttackType,CoolTime,ProjectileID,ProjectileNum,CastAngle,MinStance,MaxStane,KnockbackPower,ConditionType,SkillLvDown,ConditionHitType,KnockbackPowerHitType
-201,Security1,20,3,0.5,0,Animations/Monster/security1,1,1,0,0,0,0,0,0,0,0,0,4,1
-202,Hound3,20,3,0.5,0,Animations/Monster/hound3,1,1,0,0,0,0,0,0,0,0,0,4,1
-203,Hunter,40,3,0.5,0,Animations/Monster/hunter1,1,2,3,601,0,0,5,7,0,0,0,4,1
-204,Security_Leader1,500,3,0.5,0,Animations/Monster/security_leader,2,3,0,0,0,0,0,0,0,0,0,4,1
-241,ZooLedger1,1000,3,0.5,0,Animations/Monster/ZooLedger1,3,1,3,701,13,0,5,7,0,0,0,4,1
+Index,Name,HP,ContactDmg,MoveSpeed,ResistDisorder,AnimatorDataID,Type,AttackType,CoolTime,ProjectileID,ProjectileNum,CastAngle,MinStance,MaxStane,KnockbackPower,ConditionType,SkillLvDown,ConditionHitType,KnockbackPowerHitType,DropItemID,DropPersent
+201,Security1,20,3,0.5,0,Animations/Monster/security1,1,1,0,0,0,0,0,0,0,0,0,4,1,41,100
+202,Hound3,20,3,0.5,0,Animations/Monster/hound3,1,1,0,0,0,0,0,0,0,0,0,4,1,41,100
+203,Hunter,40,3,0.5,0,Animations/Monster/hunter1,1,2,3,601,0,0,5,7,0,0,0,4,1,41,100
+204,Security_Leader1,500,3,0.5,0,Animations/Monster/security_leader,2,3,0,0,0,0,0,0,0,0,0,4,1,42,100
+241,ZooLedger1,1000,3,0.5,0,Animations/Monster/ZooLedger1,3,1,3,701,13,0,5,7,0,0,0,4,1,43,100
+251,GhillieShooter,0,0,0,0,,4,2,20,801,1,0,0,0,0,0,0,3,0,,0
+271,Net,0,0,0,0,,4,3,35,0,5,0,0,0,0,2,0,0,0,,0
