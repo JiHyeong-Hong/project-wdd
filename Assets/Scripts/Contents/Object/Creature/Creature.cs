@@ -69,7 +69,8 @@ public class Creature : BaseObject
 
         gameObject.name = $"{CreatureData.Index}_{CreatureData.DescriptionTextID}";
 
-        AnimatorController animatorController = Managers.Resource.Load<AnimatorController>(CreatureData.AnimatorDataID);
+        var animatorController = Managers.Resource.Load<AnimatorOverrideController>(CreatureData.AnimatorDataID);
+
         Animator.runtimeAnimatorController = animatorController;
 
         DataID = CreatureData.Index;
@@ -108,7 +109,10 @@ public class Creature : BaseObject
     }
 
     #region AI
-    public float UpdateAITick { get; protected set; } = 0.0f;
+    public float UpdateAITick { get; protected set; } = 0.01f;
+
+    //TODO Eung 몬스터 AI 코루틴 변수 - 변경 필요
+    public Coroutine test = null;
 
     protected IEnumerator CoUpdateAI()
     {
@@ -139,6 +143,9 @@ public class Creature : BaseObject
                     break;
                 case ECreatureState.Pattern2:
                     UpdatePattern2();
+                    break;
+                case ECreatureState.ChangePhase:
+                    UpdateChangePhase();
                     break;
             }
 
@@ -188,6 +195,7 @@ public class Creature : BaseObject
     protected virtual void UpdateSkill1() { }
     protected virtual void UpdatePattern1() { }
     protected virtual void UpdatePattern2() { }
+    protected virtual void UpdateChangePhase() { }
     #endregion
 
     #region Battle
@@ -229,11 +237,12 @@ public class Creature : BaseObject
         if (Hp <= 0)
         {
             OnDead(attacker, skill);
-            CreatureState = ECreatureState.Dead;
+            // CreatureState = ECreatureState.Dead;
         }
         else
         {
-            CreatureState = ECreatureState.Hit;
+            if(CreatureType != ECreatureType.Boss)
+                CreatureState = ECreatureState.Hit;
         }
 
 
