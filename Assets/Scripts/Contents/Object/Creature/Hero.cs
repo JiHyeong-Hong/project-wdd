@@ -43,6 +43,8 @@ public class Hero : Creature
 		}
 	}
 
+	public int Gold { get; set; }
+
     private bool isInvincible = false;
     public bool IsInvincible
     {

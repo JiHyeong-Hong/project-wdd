@@ -24,7 +24,7 @@ public class BulletproofVest : BaseObject
         if (!base.Init())
             return false;
 
-        ObjectType = Define.EObjectType.Item;
+       // ObjectType = Define.EObjectType.Item;
 
         currentProtectionHits = maxProtectionHits;
         protectionEndTime = Time.time + protectionDuration;
