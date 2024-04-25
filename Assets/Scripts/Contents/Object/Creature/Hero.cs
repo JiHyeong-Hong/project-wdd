@@ -8,7 +8,7 @@ public class Hero : Creature
 {
     private Vector2 _moveDir = Vector2.zero;
 
-	// jh
+	// 
     public Vector2 MoveDir
     {
         get { return _moveDir; }
@@ -38,6 +38,8 @@ public class Hero : Creature
 		}
 	}
 
+	public int Gold { get; set; }
+
     private bool isInvincible = false;
     public bool IsInvincible
     {
@@ -46,7 +48,7 @@ public class Hero : Creature
     }
 
     public bool isSpeedBoosted = false;
-
+    public int protectionHits = 0;
 
     #endregion
 
@@ -199,7 +201,7 @@ public class Hero : Creature
 		Managers.Game.OnLevelUp?.Invoke();
 	}
 
-    /// jh 부스터 발판 밟았을 시 속도 변화
+    /// 부스터 발판 밟았을 시 속도 변화
     public IEnumerator SpeedBoost(float targetDistance, float multiplier)
     //public IEnumerator SpeedBoost(float duration, float multiplier)
     {
@@ -279,6 +281,40 @@ public class Hero : Creature
                 break;
             default:
                 break;
+        }
+    }
+	
+	// hero가 방탄조끼 획득 시 실행되는 함수
+    public void AddProtection(BulletproofVest vest)
+    {
+        StartCoroutine(ActivateProtection(vest.maxProtectionHits, vest.protectionDuration));
+    }
+
+    private IEnumerator ActivateProtection(int maxHits, float duration)
+    {
+        int protectionHits = maxHits;
+        float endTime = Time.time + duration;
+        isInvincible = true;  
+
+        while (Time.time < endTime && protectionHits > 0)
+        {
+            yield return null;
+        }
+
+        isInvincible = false;  
+    }
+	
+	// enemyprojectile에 맞았을 시 호출되는 함수
+    public void OnHitByProjectile()
+    {
+        if (isInvincible)
+        {
+            protectionHits--; // 보호 횟수 감소
+            if (protectionHits <= 0)
+            {
+                isInvincible = false; // 보호 횟수가 모두 소진되면 무적 상태 해제
+            }
+            return; // 무적 상태에서는 추가 피해 처리를 하지 않고 함수를 종료
         }
     }
 

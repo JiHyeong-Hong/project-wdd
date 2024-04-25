@@ -3,14 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : BaseObject
-    /// 경험치 구슬 스크립트
+public class Magnet : BaseObject
 {
-    public Data.ItemData ItemData { get; private set; }
-
     public override bool Init()
     {
-        if (base.Init() == false)
+        if (!base.Init())
             return false;
 
         ObjectType = Define.EObjectType.Item;
@@ -18,31 +15,28 @@ public class Item : BaseObject
         return true;
     }
 
-   public void SetInfo(int dataTemplateID)
-   {
-       ItemData = Managers.Data.ItemDic[dataTemplateID];
-       Renderer.sortingOrder = SortingLayers.ITEM;
-   
-       Sprite sprite = Managers.Resource.Load<Sprite>(ItemData.IconPath);
-       Renderer.sprite = sprite;
-   }
-   
     private void OnTriggerEnter2D(Collider2D other)
     {
         BaseObject target = other.GetComponent<BaseObject>();
-    
         if (target.IsValid() == false)
             return;
-    
+
         Hero hero = target as Hero;
         if (hero == null)
             return;
 
-        if (ItemData == null)
-            return;
+        // 씬에 있는 모든 경험치 구슬을 찾아서 모은다
+        Item[] items = FindObjectsOfType<Item>();
+        
+        foreach (Item item in items)
+        {
+            if (item != null && item.ItemData != null)
+            {
+                hero.Exp += item.ItemData.Value; 
+                Managers.Object.Despawn(item);  
+            }
+        }
 
-        hero.Exp += ItemData.Value;
-    
         Managers.Object.Despawn(this);
     }
 }

@@ -34,7 +34,7 @@ public class Monster : Creature
         _hero = Managers.Object.Hero;
         
         monsterData = CreatureData as MonsterData;
-        //몬스터 클래스에서 몬스터와 보스 타입 재분류
+        //ëª¬ìŠ¤???´ëž˜?¤ì—??ëª¬ìŠ¤?°ì? ë³´ìŠ¤ ?€???¬ë¶„ë¥?
         switch (monsterData.Type)
         {
             case 1:
@@ -50,9 +50,12 @@ public class Monster : Creature
         }
         
         test = StartCoroutine(CoUpdateAI());
-        //TODO Eung Drop 데이터 테이블 만들고나서 봐야할듯?
+        //TODO Eung Drop ë°ì´í„° í…Œì´ë¸” ë§Œë“¤ê³ ë‚˜ì„œ ë´ì•¼í• ë“¯?
         DropItemID = monsterData.DropItemID;
         DropPersent = monsterData.DropPersent;
+        //TODO Eung Drop ?°ì´???Œì´ë¸?ë§Œë“¤ê³ ë‚˜??ë´ì•¼? ë“¯?
+        // DropItemID = monsterData.DropItemID;
+        // DropPersent = monsterData.DropPersent;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -64,19 +67,19 @@ public class Monster : Creature
         //  Creature creature = target as Creature;
         //  if (creature == null || creature.CreatureType != Define.ECreatureType.Hero)
         //      return;
-        /// jh ���� ���� �÷��̾�� ������ ���ư� �������
+        /// jh ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         Creature creature = target as Creature;
         if (creature == null || creature.CreatureType != Define.ECreatureType.Hero)
         {
             Hero hero = creature as Hero;
             if (hero != null && hero.IsInvincible)
             {
-                // ���ư��� �ִϸ��̼� ����
+                // ï¿½ï¿½ï¿½Æ°ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
                 Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
                 if (rb != null)
                 {
-                    rb.AddForce(new Vector2(0, 500)); // ����, ��
+                    rb.AddForce(new Vector2(0, 500)); // ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½
                 }
 
                 Destroy(gameObject);
@@ -120,7 +123,7 @@ public class Monster : Creature
 
     protected virtual IEnumerator Attack()
     {
-        //공격 주기
+        //ê³µê²© ì£¼ê¸°
         cooltime = monsterData.CoolTime/2;
         float time = 0f;
 
@@ -129,6 +132,7 @@ public class Monster : Creature
             if (time >= cooltime)
             {
                 Vector2 direction = (_hero.transform.position - this.transform.position).normalized;
+                Debug.Log("?ê±°ë¦?ê³µê²©!!");
                 var proj = Managers.Object.Spawn<EnemyProjectile>(transform.position, monsterData.ProjectileID);
                 proj.SetImage();
                 proj.SetSpawnInfo(this, null, direction);
@@ -172,13 +176,13 @@ public class Monster : Creature
         }
         else
         {
-            //Hero search가 된 경우 idle 상태로 변경
+            //Hero searchê°€ ??ê²½ìš° idle ?íƒœë¡?ë³€ê²?
             CreatureState = ECreatureState.Idle;
         }
     }
 
     public Coroutine cotest = null;
-    //공격 대기상태
+    //ê³µê²© ?€ê¸°ìƒ??
     protected override void UpdateIdle()
     {
         // UpdateAITick = 100f;
@@ -192,7 +196,7 @@ public class Monster : Creature
         SetRigidbodyVelocity(dest * 0);
         SetImageDirecton(dest);
         
-        //TODO Eung 공격 코루틴 필요
+        //TODO Eung ê³µê²© ì½”ë£¨???„ìš”
     }
 
     protected override void UpdateHit()
@@ -213,25 +217,35 @@ public class Monster : Creature
             Vector2 dest = (_hero.transform.position - transform.position).normalized;
 
             if(!Atk_chk)
-                //TODO Eung 5,6 상수는 min / max 거리 데이터로 치환
-                //처음 탐색할때 거리가 min이하로 접근 해야함 min = 5
+                //TODO Eung 5,6 ìƒìˆ˜ëŠ” min / max ê±°ë¦¬ ë°ì´í„°ë¡œ ì¹˜í™˜
+                //ì²˜ìŒ íƒìƒ‰í• ë•Œ ê±°ë¦¬ê°€ minì´í•˜ë¡œ ì ‘ê·¼ í•´ì•¼í•¨ min = 5
                 if (distance > monsterData.MinStance)
+
+                //TODO Eung 5,6 ?ìˆ˜??min / max ê±°ë¦¬ ?°ì´?°ë¡œ ì¹˜í™˜
+                //ì²˜ìŒ ?ìƒ‰? ë•Œ ê±°ë¦¬ê°€ min?´í•˜ë¡??‘ê·¼ ?´ì•¼??min = 5
+                if (distance > 5)
+
                     return false;
                 else
                 {
-                    //min이하의 거리에 접근한경우 공격 가능상태로 변경
+                    //min?´í•˜??ê±°ë¦¬???‘ê·¼?œê²½??ê³µê²© ê°€?¥ìƒ?œë¡œ ë³€ê²?
                     Atk_chk = !Atk_chk;
-                    //공격 대기상ㅌ인 Idle 상태 변경
+                    //ê³µê²© ?€ê¸°ìƒ?Œì¸ Idle ?íƒœ ë³€ê²?
                     CreatureState = ECreatureState.Idle;
                     return true;
                 }
                     
             else
             {
-                //공격 가능한 상태에서 거리가 min보다 거리가 멀어지는경우 max초과의 거리로 벗어난 경우 다시 재탐색
+
+                //ê³µê²© ê°€ëŠ¥í•œ ìƒíƒœì—ì„œ ê±°ë¦¬ê°€ minë³´ë‹¤ ê±°ë¦¬ê°€ ë©€ì–´ì§€ëŠ”ê²½ìš° maxì´ˆê³¼ì˜ ê±°ë¦¬ë¡œ ë²—ì–´ë‚œ ê²½ìš° ë‹¤ì‹œ ìž¬íƒìƒ‰
                 if (distance > monsterData.MaxStane)
+
+                //ê³µê²© ê°€?¥í•œ ?íƒœ?ì„œ ê±°ë¦¬ê°€ minë³´ë‹¤ ê±°ë¦¬ê°€ ë©€?´ì??”ê²½??maxì´ˆê³¼??ê±°ë¦¬ë¡?ë²—ì–´??ê²½ìš° ?¤ì‹œ ?¬íƒ??
+                if (distance > 6)
+
                 {
-                    //max 초과인 경우 공격 불능 상태로 변경
+                    //max ì´ˆê³¼??ê²½ìš° ê³µê²© ë¶ˆëŠ¥ ?íƒœë¡?ë³€ê²?
                     Atk_chk = !Atk_chk;
                     return false;
                 }
@@ -255,6 +269,9 @@ public class Monster : Creature
         float time = 0f;
         while (true)
         {
+
+            Debug.Log((int)time + "ì´?ê³µê²© ?€ê¸°ì¤‘");
+
             bool searching = HeroSearching();
             if (!searching)
             {

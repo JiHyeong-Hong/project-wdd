@@ -45,7 +45,6 @@ public class Projectile : BaseObject
 		if (skill != null)
 		{
 			duration = skill.SkillData.Duration + PassiveHelper.Instance.GetPassiveValue(Define.PassiveSkillStatusType.Duration);
-			Debug.Log($"[Projectile] SetSpawnInfo called. Duration set to: {duration}, SkillData Duration: {skill.SkillData.Duration}");
 		}
 		
 		float angle = Util.VectorToAngle(direction);

@@ -85,7 +85,6 @@ public class Dolphin : BaseObject
 
 	public void SetSpawnInfo(Creature owner, SkillBase skill)
 	{
-        Debug.Log("[DolPhine] SetSpawnInfo called.");
         Owner = owner;
 		Skill = skill;
 
@@ -152,8 +151,6 @@ public class Dolphin : BaseObject
 	private void UpdateDuration()
 	{
 		elapsedTime += Time.deltaTime;
-
-        Debug.Log($"[DolPhine] elapsedTime: {elapsedTime}, duration: {duration}");
 
         if (elapsedTime > duration)
 		{
