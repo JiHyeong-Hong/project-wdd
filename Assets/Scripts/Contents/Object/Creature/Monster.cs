@@ -33,7 +33,7 @@ public class Monster : Creature
         _hero = Managers.Object.Hero;
         
         monsterData = CreatureData as MonsterData;
-        //몬스터 클래스에서 몬스터와 보스 타입 재분류
+        //몬스???�래?�에??몬스?��? 보스 ?�???�분�?
         switch (monsterData.Type)
         {
             case 1:
@@ -48,7 +48,7 @@ public class Monster : Creature
                 break;
         }
         
-        //TODO Eung Drop 데이터 테이블 만들고나서 봐야할듯?
+        //TODO Eung Drop ?�이???�이�?만들고나??봐야?�듯?
         // DropItemID = monsterData.DropItemID;
         // DropPersent = monsterData.DropPersent;
     }
@@ -123,7 +123,7 @@ public class Monster : Creature
             if (time >= cooltime)
             {
                 Vector2 direction = (_hero.transform.position - this.transform.position).normalized;
-                Debug.Log("원거리 공격!!");
+                Debug.Log("?�거�?공격!!");
                 var proj = Managers.Object.Spawn<EnemyProjectile>(transform.position, monsterData.ProjectileID);
                 proj.SetImage();
                 proj.SetSpawnInfo(this, null, direction);
@@ -167,13 +167,13 @@ public class Monster : Creature
         }
         else
         {
-            //Hero search가 된 경우 idle 상태로 변경
+            //Hero search가 ??경우 idle ?�태�?변�?
             CreatureState = ECreatureState.Idle;
         }
     }
 
     public Coroutine cotest = null;
-    //공격 대기상태
+    //공격 ?�기상??
     protected override void UpdateIdle()
     {
         // UpdateAITick = 100f;
@@ -187,7 +187,7 @@ public class Monster : Creature
         SetRigidbodyVelocity(dest * 0);
         SetImageDirecton(dest);
         
-        //TODO Eung 공격 코루틴 필요
+        //TODO Eung 공격 코루???�요
     }
 
     protected override void UpdateHit()
@@ -207,25 +207,25 @@ public class Monster : Creature
             Vector2 dest = (_hero.transform.position - transform.position).normalized;
 
             if(!Atk_chk)
-                //TODO Eung 5,6 상수는 min / max 거리 데이터로 치환
-                //처음 탐색할때 거리가 min이하로 접근 해야함 min = 5
+                //TODO Eung 5,6 ?�수??min / max 거리 ?�이?�로 치환
+                //처음 ?�색?�때 거리가 min?�하�??�근 ?�야??min = 5
                 if (distance > 5)
                     return false;
                 else
                 {
-                    //min이하의 거리에 접근한경우 공격 가능상태로 변경
+                    //min?�하??거리???�근?�경??공격 가?�상?�로 변�?
                     Atk_chk = !Atk_chk;
-                    //공격 대기상ㅌ인 Idle 상태 변경
+                    //공격 ?�기상?�인 Idle ?�태 변�?
                     CreatureState = ECreatureState.Idle;
                     return true;
                 }
                     
             else
             {
-                //공격 가능한 상태에서 거리가 min보다 거리가 멀어지는경우 max초과의 거리로 벗어난 경우 다시 재탐색
+                //공격 가?�한 ?�태?�서 거리가 min보다 거리가 멀?��??�경??max초과??거리�?벗어??경우 ?�시 ?�탐??
                 if (distance > 6)
                 {
-                    //max 초과인 경우 공격 불능 상태로 변경
+                    //max 초과??경우 공격 불능 ?�태�?변�?
                     Atk_chk = !Atk_chk;
                     return false;
                 }
@@ -249,7 +249,7 @@ public class Monster : Creature
         float time = 0f;
         while (true)
         {
-            Debug.Log((int)time + "초 공격 대기중");
+            Debug.Log((int)time + "�?공격 ?�기중");
             bool searching = HeroSearching();
             if (!searching)
             {
