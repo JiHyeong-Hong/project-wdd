@@ -168,9 +168,10 @@ namespace Data
 		public int AttackPattern;
 		public Define.SkillType skillType;
 		public int Level;
+		public string Description;
 
         //ActtiveSkill_Stat
-		public int ProjectileNum;
+        public int ProjectileNum;
 		public float CastAngle;
 		public float Damage;
 		public float AttackSpeed;

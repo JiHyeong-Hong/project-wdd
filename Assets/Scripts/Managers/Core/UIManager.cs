@@ -1,13 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using static Define;
 
 public class UIManager
 {
     int _order = 10;
 
+    public Dictionary<Define.UIWindowType, UIWindow> windowDic = new();
+    Stack<MonoBehaviour> windowStack = new Stack<MonoBehaviour>();
     Stack<UI_Popup> _popupStack = new Stack<UI_Popup>();
     UI_Scene _sceneUI = null;
+
+    Dictionary<string, GameObject> _prefabs = new Dictionary<string, GameObject>();
+
+    public GameObject Joystick { get; private set; }
 
     public GameObject Root
     {
@@ -18,6 +26,10 @@ public class UIManager
 				root = new GameObject { name = "@UI_Root" };
             return root;
 		}
+    }
+    public void SetJoyStick(GameObject joyStick)
+    {
+        Joystick = joyStick;
     }
 
     public void SetCanvas(GameObject go, bool sort = true)
@@ -106,6 +118,34 @@ public class UIManager
 		return popup;
     }
 
+    public T ShowWindowUI<T>(Define.UIWindowType type) where T : UIWindow
+    {
+        if (!windowDic.ContainsKey(type))
+        {
+            GameObject go = Managers.Resource.Instantiate($"Window/{typeof(T).Name}", _sceneUI.transform);
+            T window = Util.GetOrAddComponent<T>(go);
+            windowDic.Add(type, window);
+        }
+
+        return windowDic[type] as T;
+    }
+
+    public T ShowWindowUI<T>(string name = null) where T : MonoBehaviour
+    {
+        // 작업중 05.03 
+        // window가 dictionary에 없으면 생성작업중
+        if (string.IsNullOrEmpty(name))
+            name = typeof(T).Name;
+
+        GameObject go = Managers.Resource.Instantiate($"Window/{name}", _sceneUI.transform);
+        T window = Util.GetOrAddComponent<T>(go);
+        windowStack.Push(window);
+
+        //go.transform.SetParent(Root.transform);
+
+        return window;
+    }
+
     public void ClosePopupUI(UI_Popup popup)
     {
 		if (_popupStack.Count == 0)
@@ -142,4 +182,53 @@ public class UIManager
         CloseAllPopupUI();
         _sceneUI = null;
     }
+
+    //--------------------------------------------------------------------------------
+
+    public void RegisterWindow(UIWindowType windowType, UIWindow window)
+    {
+        if (!windowDic.ContainsKey(windowType))
+        {
+            windowDic.Add(windowType, window);
+        }
+        else
+        {
+            Debug.LogWarning($"[UIWindowManager::RegisterWindow] {windowType} is already registered.");
+        }
+    }
+
+
+    private Dictionary<string, IView> viewDictionary = new Dictionary<string, IView>();
+    private Dictionary<string, Presenter> presenterDictionary = new Dictionary<string, Presenter>();
+    public void RegisterView(string key, IView view, Presenter presenter)
+    {
+        if (!viewDictionary.ContainsKey(key))
+        {
+            viewDictionary.Add(key, view);
+            presenterDictionary.Add(key, presenter);
+        }
+        else
+        {
+            Debug.LogWarning($"UI with key '{key}' already registered.");
+        }
+    }
+
+    public void ShowUI(string key)
+    {
+        if (viewDictionary.ContainsKey(key))
+        {
+            IView view = viewDictionary[key];
+            Presenter presenter = presenterDictionary[key];
+
+            //view.gameObject.SetActive(true);
+            presenter.InitializePresenter();
+        }
+        else
+        {
+            Debug.LogWarning($"UI with key '{key}' not found.");
+        }
+    }
+
+
+
 }

@@ -1,9 +1,5 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Dolphin : BaseObject
 {
@@ -85,7 +81,7 @@ public class Dolphin : BaseObject
 
 	public void SetSpawnInfo(Creature owner, SkillBase skill)
 	{
-        Debug.Log("[DolPhine] SetSpawnInfo called.");
+        //Debug.Log("[DolPhine] SetSpawnInfo called.");
         Owner = owner;
 		Skill = skill;
 
@@ -153,7 +149,7 @@ public class Dolphin : BaseObject
 	{
 		elapsedTime += Time.deltaTime;
 
-        Debug.Log($"[DolPhine] elapsedTime: {elapsedTime}, duration: {duration}");
+        //Debug.Log($"[DolPhine] elapsedTime: {elapsedTime}, duration: {duration}");
 
         if (elapsedTime > duration)
 		{

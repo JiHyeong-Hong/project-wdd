@@ -110,9 +110,35 @@ public static class Define
 		CastPer = 13
     }
 
+	public enum UIWindowType
+	{
+		None = 0,
+		Loading = 1,
+		Title = 2,
+		Game = 3,
+		Option = 4,
+		Shop = 5,
+		Inventory = 6,
+        SkillLevelUp = 7,
+	}
 
-	//TODO Eung 테스트용 더미 데이터 - 모든 테이블이만들어지면 필요없는 부분
-	public const float DEFAULT_SPEED = 3;
+	public enum UIDialogType
+	{
+        None = 0,
+        MessageBox = 1,
+        YesNoDialog = 2,
+        LevelUpDialog = 3,
+        ShopDialog = 4,
+        InventoryDialog = 5,
+        OptionDialog = 6,
+        LoadingDialog = 7,
+    }
+
+	
+	public const string SKILL_LEVEL_UP_WINDOW = "SkillLevelUpWindow";
+
+    //TODO Eung 테스트용 더미 데이터 - 모든 테이블이만들어지면 필요없는 부분
+    public const float DEFAULT_SPEED = 3;
 	public const int MAX_SKILL_LEVEL = 5;
 	public const int MAX_LEVEL = 60;
 

@@ -45,7 +45,27 @@ public static class Util
 		return transform.gameObject;
 	}
 
-	public static T FindChild<T>(GameObject go, string name = null, bool recursive = false) where T : UnityEngine.Object
+	public static T FindParent<T>(GameObject go, string name = null) where T : UnityEngine.Object
+    {
+        if (go == null)
+            return null;
+
+        Transform transform = go.transform;
+        while (transform.parent != null)
+        {
+            transform = transform.parent;
+            if (string.IsNullOrEmpty(name) || transform.name == name)
+            {
+                T component = transform.GetComponent<T>();
+                if (component != null)
+                    return component;
+            }
+        }
+
+        return null;
+    }
+
+    public static T FindChild<T>(GameObject go, string name = null, bool recursive = false) where T : UnityEngine.Object
 	{
 		if (go == null)
 			return null;
@@ -205,6 +225,24 @@ public static class Util
             }
         }
         return null;
+    }
+
+    public static List<T> SelectUniqueElements<T>(List<T> lst, int n)
+    {
+        List<T> uniqueElements = new List<T>();
+        List<T> remainingElements = new List<T>(lst);
+
+        System.Random random = new System.Random();
+
+        while (uniqueElements.Count < n && remainingElements.Count > 0)
+        {
+            int randomIndex = random.Next(remainingElements.Count);
+            T element = remainingElements[randomIndex];
+            uniqueElements.Add(element);
+            remainingElements.RemoveAt(randomIndex);
+        }
+
+        return uniqueElements;
     }
 
 }
