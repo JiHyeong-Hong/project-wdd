@@ -1,0 +1,3 @@
+YES = 예
+NO = 아니요
+UI_LABEL_CombinationSkill = 조합스킬

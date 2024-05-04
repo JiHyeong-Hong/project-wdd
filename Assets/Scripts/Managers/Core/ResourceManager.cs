@@ -52,4 +52,10 @@ public class ResourceManager
 
         Object.Destroy(go);
     }
+
+    internal Sprite GetSkillSprite(int skillName)
+    {
+        Sprite sprite = Load<Sprite>($"Textures/Skill/{skillName}");
+        return sprite;
+    }
 }

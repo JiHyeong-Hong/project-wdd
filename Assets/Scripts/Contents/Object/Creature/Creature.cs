@@ -1,10 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Animations;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.Rendering;
 using static Define;
 
 public class Creature : BaseObject
@@ -16,6 +11,7 @@ public class Creature : BaseObject
 
     #region Stats
     public int DataID { get; set; }
+
     public float Hp { get; set; }
     public float MaxHp { get; set; }
     public float Atk { get; set; }
@@ -69,8 +65,8 @@ public class Creature : BaseObject
 
         gameObject.name = $"{CreatureData.Index}_{CreatureData.DescriptionTextID}";
 
-        AnimatorController animatorController = Managers.Resource.Load<AnimatorController>(CreatureData.AnimatorDataID);
-        Animator.runtimeAnimatorController = animatorController;
+        //AnimatorController animatorController = Managers.Resource.Load<AnimatorController>(CreatureData.AnimatorDataID);
+        //Animator.runtimeAnimatorController = animatorController;
 
         DataID = CreatureData.Index;
         MaxHp = CreatureData.MaxHp;
@@ -106,6 +102,7 @@ public class Creature : BaseObject
         else if (velocity.x > 0)
             LookLeft = false;
     }
+
 
     #region AI
     public float UpdateAITick { get; protected set; } = 0.0f;
@@ -245,7 +242,7 @@ public class Creature : BaseObject
         else
         {
             // skill이 null인 경우 예외 처리
-            Debug.LogError("Skill is null or KnockbackPower is zero.");
+            //Debug.LogError("Skill is null or KnockbackPower is zero.");
         }
 
         _freezeStateOneFrame = true;

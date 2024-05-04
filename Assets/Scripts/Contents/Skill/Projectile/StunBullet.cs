@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 // 길리슈터가 쏘는 마취총알 발사체 클래스. TODO: 발사체 아트 추가 필요함. @홍지형
