@@ -26,7 +26,7 @@ public class Managers : MonoBehaviour
     UIManager _ui = new UIManager();
     SkillManager _skill = new SkillManager();
     EscapePatternManager _escapePattern = new EscapePatternManager(); // @홍지형 추가.
-    LocalizationManager _localizationManager = new LocalizationManager();
+    //LocalizationManager _localizationManager = new LocalizationManager();
 
     public static DataManager Data { get { return Instance._data; } }
     public static PoolManager Pool { get { return Instance._pool; } }
@@ -36,7 +36,7 @@ public class Managers : MonoBehaviour
     public static UIManager UI { get { return Instance._ui; } }
     public static EscapePatternManager EscapePattern { get { return Instance._escapePattern; } }
 
-    public static LocalizationManager Localization { get { return Instance._localizationManager; } }
+    //public static LocalizationManager Localization { get { return Instance._localizationManager; } }
 
     public static SkillManager Skill => s_instance._skill;
 
