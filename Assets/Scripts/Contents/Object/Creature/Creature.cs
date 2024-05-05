@@ -65,8 +65,8 @@ public class Creature : BaseObject
 
         gameObject.name = $"{CreatureData.Index}_{CreatureData.DescriptionTextID}";
 
-        //AnimatorController animatorController = Managers.Resource.Load<AnimatorController>(CreatureData.AnimatorDataID);
-        //Animator.runtimeAnimatorController = animatorController;
+        var animatorController = Managers.Resource.Load<AnimatorOverrideController>(CreatureData.AnimatorDataID);
+        Animator.runtimeAnimatorController = animatorController;
 
         DataID = CreatureData.Index;
         MaxHp = CreatureData.MaxHp;
