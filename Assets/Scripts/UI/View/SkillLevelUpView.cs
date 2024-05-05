@@ -25,9 +25,11 @@ public class SkillLevelUpView : MonoBehaviour, IView
     {
         if (data is SkillBase)
         {
-            skillName.text = ((SkillBase)data).SkillData.Name;
+            string name = Managers.Localization.GetLocalizedText(((SkillBase)data).SkillData.Name);
+            //string description = Managers.Localization.GetLocalizedText(((SkillBase)data).SkillData.Description);
+            skillName.text = name;
             skillLevel.text = $"Level {((SkillBase)data).SkillData.Level}";
-            skillDescription.text = ((SkillBase)data).SkillData.Description;
+            //skillDescription.text = description;
         }
     }
 

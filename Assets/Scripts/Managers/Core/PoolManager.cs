@@ -53,7 +53,7 @@ public class PoolManager
 
             // DontDestroyOnLoad 해제 용도
             if (parent == null)
-                poolable.transform.parent = Root.transform;
+                poolable.transform.SetParent(Root.transform);
 
             // poolable.transform.parent = parent;
             poolable.IsUsing = true;
@@ -92,7 +92,7 @@ public class PoolManager
             GameObject.Destroy(poolable.gameObject);
             return;
         }
-
+        poolable.gameObject.SetActive(false);
         _pool[name].Push(poolable);
     }
 
@@ -101,7 +101,9 @@ public class PoolManager
         if (_pool.ContainsKey(original.name) == false)
             CreatePool(original);
 
-        return _pool[original.name].Pop(parent);
+        Poolable obj = _pool[original.name].Pop(parent);
+        obj.gameObject.SetActive(true);
+        return obj;
     }
 
     public GameObject GetOriginal(string name)

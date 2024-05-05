@@ -1,0 +1,12 @@
+YES = 예
+NO = 아니요
+UI_LABEL_CombinationSkill = 조합스킬
+UI_LABEL_HasSkill = 보유
+UI_LABEL_NotHasSkill = 미보유
+
+
+Tiger = 호랑이
+Crown = 왕관
+Bear = 곰
+Parrot = 앵무새
+Eagle = 독수리
