@@ -44,16 +44,14 @@ public class Managers : MonoBehaviour
         Init();
         StartCoroutine(s_instance._skill.CoInit());
         //TODO Eung 보스 출현 카운트
-        // StartCoroutine(Game.BossCount());
-
-        s_instance._escapePattern.SpawnEscapePattern(); // @홍지형, 테스트용
+        // StartCoroutine(Game.BossCount());        
     }
 
     public bool boss;
 
     void Update()
     {
-        s_instance._skill.UpdateSkillCoolTime(Time.deltaTime);
+       //  s_instance._skill.UpdateSkillCoolTime(Time.deltaTime); // @홍지형 240424
 
 
         // if (!boss && Game.CurrentTime >= 5f)
@@ -85,7 +83,7 @@ public class Managers : MonoBehaviour
             s_instance._data.Init();
             s_instance._pool.Init();
             s_instance._sound.Init();
-            s_instance._escapePattern.Init();
+            // s_instance._escapePattern.Init();            
             // s_instance._spawner.Init();
         }
     }

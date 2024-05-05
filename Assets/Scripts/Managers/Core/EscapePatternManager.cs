@@ -2,6 +2,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Object = UnityEngine.Object;
@@ -17,23 +20,61 @@ public class EscapePatternManager : MonoBehaviour
     public float spawnInterval = 0.4f; // 그물망이 떨어지는 시간 간격
     private float spawnAreaSize = 3f; // 스폰 영역 크기
     private List<Vector2> usedPositions = new List<Vector2>(); // 이미 사용된 위치 목록
-
+    private float spawnRadius = 0.7f; // 스폰 반경
+    private Vector3 initialDirection; // 첫 몬스터의 이동 방향
+    private bool isDirectionSet = false; // 방향 설정 여부
     public void Init()
-    {
+    {        
         GameObject root = GameObject.Find("@EscapePattern");
         if (root == null)
         {
             root = new GameObject { name = "@EscapePattern" };
             Object.DontDestroyOnLoad(root);
-        }
+        }        
     }
 
     // 회피패턴을 생성한다.
     public void SpawnEscapePattern()
     {
         // TODO: 상황과 조건에 따라서 회피패턴이 스폰되도록 조정할것. 240415
-        SpawnGhillieShooter();
-        SpawnNet();
+        //SpawnGhillieShooter();
+        //SpawnNet();
+
+
+
+        
+
+
+        SpawnTourist();
+    }
+
+    public void SpawnTourist()
+    {
+        // TODO: 출현 경고 UI 필요.
+
+        Vector3 camPos = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane)); // 인게임 카메라의 오른쪽 상단 위치        
+
+        // 관광객 생성 테스트용. @홍지형
+        for (int i = 0; i < 20; i++) // TODO: 관광객 수 하드코딩됨.
+        {            
+            Vector3 spawnPosition = (Vector3)Random.insideUnitCircle * spawnRadius + camPos; // 랜덤 위치 하드코딩됨. 
+            Managers.Object.Spawn<Tourist>(spawnPosition, 261); // TODO: 관광객 번호 하드코딩
+
+            if (!isDirectionSet)
+            {
+                // 첫 몬스터가 생성되면 플레이어를 향하는 방향을 계산한다.
+                initialDirection = (Managers.Object.Hero.transform.position - spawnPosition).normalized;
+                isDirectionSet = true;
+            }
+        }
+        // 생성된 몬스터에게 이동 방향을 설정한다.
+        Tourist[] monsters = FindObjectsOfType<Tourist>();
+        foreach (Tourist tourist in monsters)
+        {
+            // 각 몬스터 인스턴스에 대해 실행할 코드
+            tourist.SetDirection(initialDirection); // TODO:
+
+        }
     }
 
     public void SpawnGhillieShooter()
@@ -84,9 +125,15 @@ public class EscapePatternManager : MonoBehaviour
     // 스폰 전 경고표시
     private async UniTaskVoid SpawnWarning(Vector2 position)    
     {
-        GameObject warning = Instantiate(warningPrefab, position, Quaternion.identity);       
+        // 백업
+        GameObject warning = Instantiate(warningPrefab, position, Quaternion.identity);
         await UniTask.Delay(TimeSpan.FromSeconds(1f)); // 경고 표시 지속 시간
         Destroy(warning);
+
+        // TODO: 프리팹생성하지 않고, 이미지만 바꿀것.
+        //GameObject warning = Instantiate(warningPrefab, position, Quaternion.identity);
+        //await UniTask.Delay(TimeSpan.FromSeconds(1f)); // 경고 표시 지속 시간
+        //Destroy(warning);
 
         Managers.Object.Spawn<Net>(position, 271); // 그물망 스폰. Net 번호 하드코딩.
     }

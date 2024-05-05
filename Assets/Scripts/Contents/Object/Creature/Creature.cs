@@ -245,7 +245,7 @@ public class Creature : BaseObject
         else
         {
             // skill이 null인 경우 예외 처리
-            Debug.LogError("Skill is null or KnockbackPower is zero.");
+            // Debug.LogError("Skill is null or KnockbackPower is zero."); @홍지형 240424
         }
 
         _freezeStateOneFrame = true;

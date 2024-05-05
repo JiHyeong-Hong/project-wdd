@@ -14,11 +14,15 @@ public class GameScene : BaseScene
 
         Managers.UI.ShowSceneUI<UI_GameScene>();
 
-        Managers.Object.Spawn<Hero>(new Vector3(0f, -5f, 0f), Define.HERO_ZOOKEEPER_ID);
+        Managers.Object.Spawn<Hero>(new Vector3(0f, -15f, 0f), Define.HERO_ZOOKEEPER_ID);
         Camera.main.GetOrAddComponent<FollowCamera>();
         //TODO 게임씬을만들때 스포너 생성/스폰시작
         Managers.Spawner.Init();
-        StartCoroutine(Managers.Spawner.Spawn());
+        // StartCoroutine(Managers.Spawner.Spawn()); // 홍지형 임시.
+
+        Managers.EscapePattern.Init();
+        Managers.EscapePattern.SpawnEscapePattern();
+
         //for (int i = 0; i < 5; ++i)
         //    Managers.Object.Spawn<Monster>(new Vector3(-2f + i, -1f, 0f), Define.MONSTER_SECURITY1_ID);
 
