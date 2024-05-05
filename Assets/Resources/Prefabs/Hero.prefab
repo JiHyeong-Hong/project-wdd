@@ -202,6 +202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3c3ad02d6d2f5444837db0eea59337f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSpeedBoosted: 0
 --- !u!50 &1154252604108547079
 Rigidbody2D:
   serializedVersion: 4
@@ -326,7 +327,7 @@ Animator:
   m_GameObject: {fileID: 2273499089557444868}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3a0a3057f60a6f14998038fe3c2e6833, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
