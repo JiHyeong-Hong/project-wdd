@@ -8,7 +8,6 @@ public class SkillLevelUpPresenter
 {
     private readonly SkillLevelUpModel model;
     private readonly IView view;
-    private SkillData skillData;
 
     public SkillLevelUpPresenter(IView view, SkillManager skillManager)
     {
@@ -24,7 +23,7 @@ public class SkillLevelUpPresenter
 
     public void HandleLevelUpSkill()
     {
-        model.LevelUpSkillAsync().Forget();
+        model.LevelUpSkill();
     }
 
     public void ToggleView(bool enable)
