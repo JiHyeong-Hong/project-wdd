@@ -245,4 +245,21 @@ public static class Util
         return uniqueElements;
     }
 
+	public static Vector2 LimitScreenConverter(Vector2 target, Vector2 uiSize)
+	{
+        // 해상도를 구한다.
+        float width = Screen.width;
+        float height = Screen.height;
+        
+		// 화면밖으로 나가지 않도록 제한
+        Vector2 screenPos = Camera.main.WorldToScreenPoint(target);
+
+		if (Mathf.Abs(screenPos.x) >= width - uiSize.x || Mathf.Abs(screenPos.y) >= height - uiSize.y)
+		{
+			screenPos.x = Mathf.Clamp(screenPos.x, uiSize.x, width - uiSize.x);
+			screenPos.y = Mathf.Clamp(screenPos.y, uiSize.y, height - uiSize.y);
+		}
+
+        return screenPos;
+    }
 }
