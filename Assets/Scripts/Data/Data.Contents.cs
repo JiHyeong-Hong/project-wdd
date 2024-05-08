@@ -50,6 +50,9 @@ namespace Data
 		public int SkillLvDown;
 		public int ConditionHitType;
 		public int KnockbackPowerHitType;
+		public int DropItemID;
+		public int DropPersent;
+		
 	}
 	
 	//TODO Eung 몬스터를 그냥 하나의 객체로 만들때 사용할수도? 아니먄 그냥 기존 구조로 공통 변수 묶어서 CreatureData + MonsterData로 가는 경우 필요없어짐
@@ -319,6 +322,38 @@ namespace Data
 		    return dict;
 	    }
     }
-    
+
+    #endregion
+
+    #region BreakthroughData
+    [Serializable]
+    public class BreakthroughData
+	{
+		public int Index;
+		public int SkillID;
+		public string Name;
+		public int Type;
+		public int Lv;
+		public int C_Skill_ID1;
+		public int C_Skill_ID2;
+		public int G_Skill_ID1;
+		public int Skill_Lv;
+		public int G_Skill_ID2;
+		public int Skill_Lv2;
+    }
+    [Serializable]
+    public class BreakthroughDataLoader : ILoader<int, BreakthroughData>
+    {
+        public List<BreakthroughData> breakthroughData = new List<BreakthroughData>();
+
+        public Dictionary<int, BreakthroughData> MakeDict()
+        {
+            Dictionary<int, BreakthroughData> dict = new Dictionary<int, BreakthroughData>();
+            foreach (BreakthroughData item in breakthroughData)
+                dict.Add(item.C_Skill_ID1, item);
+            return dict;
+        }
+    }
+
     #endregion
 }

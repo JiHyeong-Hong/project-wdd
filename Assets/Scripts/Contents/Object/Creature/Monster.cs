@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Data;
@@ -5,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using static Define;
+using Random = UnityEngine.Random;
 
 public class Monster : Creature
 {
@@ -19,7 +21,6 @@ public class Monster : Creature
             return false;
 
         CreatureType = ECreatureType.Monster;
-        StartCoroutine(CoUpdateAI());
 
         return true;
     }
@@ -48,9 +49,10 @@ public class Monster : Creature
                 break;
         }
         
+        test = StartCoroutine(CoUpdateAI());
         //TODO Eung Drop 데이터 테이블 만들고나서 봐야할듯?
-        // DropItemID = monsterData.DropItemID;
-        // DropPersent = monsterData.DropPersent;
+        DropItemID = monsterData.DropItemID;
+        DropPersent = monsterData.DropPersent;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -62,23 +64,23 @@ public class Monster : Creature
         //  Creature creature = target as Creature;
         //  if (creature == null || creature.CreatureType != Define.ECreatureType.Hero)
         //      return;
-        /// jh ���� ���� �÷��̾�� ������ ���ư� �������
+        /// jh ���� ���� �÷��̾�� ������ ���ư� �������
         Creature creature = target as Creature;
         if (creature == null || creature.CreatureType != Define.ECreatureType.Hero)
         {
             Hero hero = creature as Hero;
             if (hero != null && hero.IsInvincible)
             {
-                // ���ư��� �ִϸ��̼� ����
+                // ���ư��� �ִϸ��̼� ����
                 Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
                 if (rb != null)
                 {
-                    rb.AddForce(new Vector2(0, 500)); // ����, ��
+                    rb.AddForce(new Vector2(0, 500)); // ����, ��
                 }
 
                 Destroy(gameObject);
-                return; 
+                return;
             }
         }
 
@@ -101,13 +103,17 @@ public class Monster : Creature
         {
             Managers.Object.Spawn<Item>(transform.position, DropItemID);
         }
+        
 
-        Managers.Object.Despawn(this);
+        if(test != null)
+            StopCoroutine(test);
+        test = null;
+        Managers.Resource.Destroy(gameObject);
     }
     #endregion
 
     #region AI
-    protected Hero _hero;
+    public Hero _hero;
     private float distance = 0f;
     public float cooltime = 0f;
     public bool Atk_chk;
@@ -115,7 +121,7 @@ public class Monster : Creature
     protected virtual IEnumerator Attack()
     {
         //공격 주기
-        cooltime = 2f;
+        cooltime = monsterData.CoolTime/2;
         float time = 0f;
 
         while (true)
@@ -123,7 +129,6 @@ public class Monster : Creature
             if (time >= cooltime)
             {
                 Vector2 direction = (_hero.transform.position - this.transform.position).normalized;
-                Debug.Log("원거리 공격!!");
                 var proj = Managers.Object.Spawn<EnemyProjectile>(transform.position, monsterData.ProjectileID);
                 proj.SetImage();
                 proj.SetSpawnInfo(this, null, direction);
@@ -192,7 +197,8 @@ public class Monster : Creature
 
     protected override void UpdateHit()
     {
-        CreatureState = ECreatureState.Idle;
+        if(CreatureType != ECreatureType.Boss)
+            CreatureState = ECreatureState.Idle;
     }
 
     public bool HeroSearching()
@@ -209,7 +215,7 @@ public class Monster : Creature
             if(!Atk_chk)
                 //TODO Eung 5,6 상수는 min / max 거리 데이터로 치환
                 //처음 탐색할때 거리가 min이하로 접근 해야함 min = 5
-                if (distance > 5)
+                if (distance > monsterData.MinStance)
                     return false;
                 else
                 {
@@ -223,7 +229,7 @@ public class Monster : Creature
             else
             {
                 //공격 가능한 상태에서 거리가 min보다 거리가 멀어지는경우 max초과의 거리로 벗어난 경우 다시 재탐색
-                if (distance > 6)
+                if (distance > monsterData.MaxStane)
                 {
                     //max 초과인 경우 공격 불능 상태로 변경
                     Atk_chk = !Atk_chk;
@@ -245,11 +251,10 @@ public class Monster : Creature
 
     IEnumerator CAttackWait()
     {
-        cooltime = 2f;
+        cooltime = monsterData.CoolTime/2;
         float time = 0f;
         while (true)
         {
-            Debug.Log((int)time + "초 공격 대기중");
             bool searching = HeroSearching();
             if (!searching)
             {

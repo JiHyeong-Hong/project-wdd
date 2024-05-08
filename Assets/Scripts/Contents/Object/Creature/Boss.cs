@@ -29,7 +29,7 @@ public class Boss : Monster
         return true;
     }
 
-    public Coroutine PlayCo;
+    // public Coroutine PlayCo;
 
     public void SelectPattern(int Phase)
     {
@@ -47,6 +47,7 @@ public class Boss : Monster
             {
                 setVal += Pattern_Percent[Phase, i];
         
+                if (per <= setVal)
                 if (per <= setVal)
                 {
                     pattern_idx = i;
@@ -109,6 +110,7 @@ public class Boss : Monster
 
     protected override void UpdateMove()
     {
+        Debug.Log("추적중");
         if (WaitTest == null)
         {
             WaitTest = StartCoroutine(PatternWait());
@@ -129,6 +131,7 @@ public class Boss : Monster
 
     protected override void UpdateAttack()
     {
+        Debug.Log("원거리 공격중");
         if (cotest == null)
         {
             cotest = StartCoroutine(Attack());
@@ -148,9 +151,61 @@ public class Boss : Monster
         }
     }
 
-    public Hero _hero;
-    
+    protected override void UpdatePattern1()
+    {
+        
+    }
+
+    protected override void UpdatePattern2()
+    {
+        if (cotest == null)
+        {
+            cotest = StartCoroutine(Pattern2());
+        }
+    }
+
+    protected override void UpdateChangePhase()
+    {
+        if (cotest == null)
+        {
+            cotest = StartCoroutine(ChangePhase());
+        }
+        SetRigidbodyVelocity(Vector2.zero);
+    }
+
     public Coroutine WaitTest = null;
+    IEnumerator ChangePhase()
+    {
+        float time = 0f;
+        while (true)
+        {
+            Debug.Log($"현재 상태 : {CreatureState}");
+            if (Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "ChangePhase")
+            {
+                cooltime = Animator.GetCurrentAnimatorClipInfo(0)[0].clip.length;
+                
+                if (time >= cooltime)
+                {
+                    switch (Phase)
+                    {
+                        case 1:
+                            SelectPattern(Phase);
+                            break;
+                        case 2:
+                            CreatureState = ECreatureState.Pattern2;
+                            break;
+                        case 3:
+                            SelectPattern(Phase);
+                            break;
+                    }
+                    cotest = null;
+                    break;
+                }
+                time += Time.deltaTime;
+            }
+            yield return new WaitForFixedUpdate();
+        }
+    }
     IEnumerator PatternWait()
     {
         cooltime = Random.Range(3f, 5f);
@@ -176,19 +231,40 @@ public class Boss : Monster
             if (Hp / MaxHp * 100 <= Phase_Percent.Phase1Hp && Phase == 0)
             {
                 Phase++;
-                CreatureState = ECreatureState.Pattern1;
-                Debug.Log("1 페이즈 시작!");
+                if (cotest != null)
+                {
+                    StopCoroutine(cotest);
+                    cotest = null;
+                }
+
+                if (WaitTest != null)
+                {
+                    StopCoroutine(WaitTest);
+                    WaitTest = null;
+                }
+                CreatureState = ECreatureState.ChangePhase;
+                
             }
             else if (Hp / MaxHp * 100 <= Phase_Percent.Phase2Hp && Phase == 1)
             {
                 Phase++;
-                CreatureState = ECreatureState.Pattern2;
-                Debug.Log("2 페이즈 시작!");
+                if (cotest != null)
+                {
+                    StopCoroutine(cotest);
+                    cotest = null;
+                }
+
+                if (WaitTest != null)
+                {
+                    StopCoroutine(WaitTest);
+                    WaitTest = null;
+                }
+                CreatureState = ECreatureState.ChangePhase;
             }
             else if (Hp / MaxHp * 100 <= Phase_Percent.Phase3Hp && Phase == 2)
             {
                 Phase++;
-                Debug.Log("3 페이즈 시작!");
+                CreatureState = ECreatureState.ChangePhase;
             }
             
             yield return new WaitForFixedUpdate();
@@ -203,22 +279,40 @@ public class Boss : Monster
             Hp-= 10;
         }
         
+        // if (Input.GetKeyDown(KeyCode.Keypad1))
+        // {
+        //     CreatureState = ECreatureState.Move;
+        // }
+        // if (Input.GetKeyDown(KeyCode.Keypad2))
+        // {
+        //     cotest = StartCoroutine(Attack());
+        // }
+        // if (Input.GetKeyDown(KeyCode.Keypad3))
+        // {
+        //     Debug.Log(cotest);
+        // }
+        // if (Input.GetKeyDown(KeyCode.Keypad5))
+        // {
+        //     CreatureState = ECreatureState.Skill1;
+        // }
+
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
-            CreatureState = ECreatureState.Move;
+            Debug.Log(MaxHp * ((float)Phase_Percent.Phase1Hp / 100f));
+            Hp = MaxHp * (Phase_Percent.Phase1Hp / 100f);
+            Phase = 0;
         }
         if (Input.GetKeyDown(KeyCode.Keypad2))
         {
-            cotest = StartCoroutine(Attack());
+            Hp = MaxHp * (Phase_Percent.Phase2Hp / 100f);
+            Phase = 1;
         }
         if (Input.GetKeyDown(KeyCode.Keypad3))
         {
-            Debug.Log(cotest);
+            Hp = MaxHp * (Phase_Percent.Phase2Hp / 100f);
+            Phase = 2;
         }
-        if (Input.GetKeyDown(KeyCode.Keypad5))
-        {
-            CreatureState = ECreatureState.Skill1;
-        }
+        
     }
 
     protected override IEnumerator Attack()
@@ -227,35 +321,53 @@ public class Boss : Monster
 
         float angle = 90f;
         
-        int proj_num = 12;
-        float m_angle = (angle/2) * -1;
-        float M_angle = (angle/2);
         
-        for (int i = 1; i <= proj_num; i++)
+        float m_angle = (angle/5) * -1;
+        float M_angle = (angle/5);
+        
+        for (int i = 1; i <= monsterData.ProjectileNum; i++)
         {
-            var proj = Managers.Object.Spawn<EnemyProjectile>(transform.position, 1);
+            var proj = Managers.Object.Spawn<EnemyProjectile>(transform.position, monsterData.ProjectileID);
             Vector2 direction = (_hero.transform.position - this.transform.position).normalized;
             float ran_angle = Random.Range(m_angle, M_angle + 1);
+            proj.SetImage();
             proj.SetSpawnInfo(this, null, Util.RotateVectorByAngle(direction, ran_angle));
             proj.SetTarget(_hero);
             
-            if(i % 3 == 0)
-                yield return new WaitForSeconds(0.5f);
-            if (i == proj_num)
+            if (i == monsterData.ProjectileNum)
             {
                 cotest = null;
                 SelectPattern(Phase);
                 yield break;    
             }
-            yield return new WaitForFixedUpdate();
+            yield return new WaitForSeconds(0.3f);
         }
         
     }
 
+    IEnumerator Pattern2()
+    {
+        Debug.Log("2 페이즈 시작!!");
+        float cooltime = 20f;
+        float time = 0f;
+        while (true)
+        {
+            //TODO Eung 탄막 공격 코드 구현
+            Debug.Log("턴먹 공격 중!!!");
+            if (time >= cooltime)
+            {
+                SelectPattern(Phase);
+                cotest = null;
+                break;
+            }
+            time += Time.deltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+    }
     
     protected override IEnumerator Skill1()
     {
-        
+        Debug.Log("돌진 공격중");
         bool targeting = false;
         Vector2 targetPosition = new Vector2();
         

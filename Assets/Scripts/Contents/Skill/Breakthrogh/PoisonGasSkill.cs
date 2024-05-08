@@ -29,7 +29,7 @@ public class PoisonGasSkill : SkunkSkill
         {
             Skunk skunk = Managers.Object.Spawn<Skunk>(Owner.transform.position + new Vector3(offsetX, offsetY, 0f), 4);
             skunk.quadrant = spawnPointList[0];
-            skunk.SetSpawnInfo(Owner, this, direction);
+            skunk.SetSpawnInfo(Owner, this, direction, true);
             spawnPointList.RemoveAt(0);
         }
     }

@@ -9,8 +9,10 @@ public class SkunkSkill : SkillBase
 
     public override void DoSkill()
     {
+        if (BreakthroughHelper.Instance.CheckBreakthrough(SkillData.Index))
+            return;
+
         Vector2 direction = Owner.Direction;
-        direction = Util.RotateVectorByAngle(direction, 45f);        
         AttackSkunk(direction);
     }
 
@@ -30,7 +32,8 @@ public class SkunkSkill : SkillBase
         {
             Skunk skunk = Managers.Object.Spawn<Skunk>(Owner.transform.position + new Vector3(offsetX, offsetY, 0f), SkillData.ProjectileNum);
             skunk.quadrant = spawnPointList[0];
-            skunk.SetSpawnInfo(Owner, this, direction);
+            skunk.SetSpawnInfo(Owner, this, Vector2.up, false);
+            skunk.LookLeft = (direction.x < 0);
             spawnPointList.RemoveAt(0);
         }
 

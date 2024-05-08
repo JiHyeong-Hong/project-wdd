@@ -1,17 +1,12 @@
 using Data;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using static Define;
-using static Unity.Collections.AllocatorManager;
-using Random = UnityEngine.Random;
 
 public class Hero : Creature
 {
-	private Vector2 _moveDir = Vector2.zero;
+    private Vector2 _moveDir = Vector2.zero;
 
 	// 
     public Vector2 MoveDir
@@ -73,6 +68,9 @@ public class Hero : Creature
 
 		Pivot = Util.FindChild<Transform>(gameObject, "Pivot", true);
 		Destination = Util.FindChild<Transform>(gameObject, "Destination", true);
+
+
+		gameObject.AddComponent<Stats>();
 
 		return true;
 	}
@@ -291,5 +289,33 @@ public class Hero : Creature
             return; // 무적 상태에서는 추가 피해 처리를 하지 않고 함수를 종료
         }
     }
+
+    public void OnChangeValue(string statName, int add)
+    {
+        switch (statName)
+        {
+            case "Level":
+                Level += add;
+                break;
+            case "MaxExp":
+                MaxExp += add;
+                break;
+            case "ItemAcquireRange":
+                ItemAcquireRange += add;
+                break;
+            case "Exp":
+                Exp += add;
+                break;
+            case "Hp":
+                Hp += add;
+                break;
+            case "MoveSpeed":
+                MoveSpeed += add;
+                break;
+            default:
+                break;
+        }
+    }
+
     #endregion
 }

@@ -177,8 +177,8 @@ public class SpawnManager
                 case 1:
                     monster_List.Add(item.Value);
                     break;
-                case 2:
-                    monster_List.Add(item.Value);
+                // case 2:
+                //     monster_List.Add(item.Value);
                     break;
                 default:
                     break;

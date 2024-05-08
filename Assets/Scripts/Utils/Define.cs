@@ -68,6 +68,7 @@ public static class Define
 		Pattern1 = 9,
 		Pattern2 = 10,
 		Pattern3 = 11,
+		ChangePhase = 12,
 	}
 
 	public enum ELayer
@@ -89,7 +90,7 @@ public static class Define
 	{
 		Active = 1,
 		Passive = 2,
-		Breakthrogh = 3
+		Breakthrough = 3
 	}
 
 	public enum PassiveSkillStatusType

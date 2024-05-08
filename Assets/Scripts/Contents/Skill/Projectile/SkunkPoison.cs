@@ -6,12 +6,15 @@ using UnityEngine;
 // 스컹크 지속 데미지 장판 스킬 클래스. @홍지형
 public class SkunkPoison : Projectile
 {
-    private CapsuleCollider2D _collider;
+    private SpriteRenderer spriteRenderer;
+    private Sprite[] sprites; //3~6까지 사용
 
     public override bool Init()
     {
         if (base.Init() == false)
             return false;
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         return true;
     }
@@ -20,35 +23,37 @@ public class SkunkPoison : Projectile
     {
         base.SetSpawnInfo(owner, skill, direction);
 
-        _collider = GetComponent<CapsuleCollider2D>();
-        _collider.enabled = true;
-
-        Sequence sequence = DOTween.Sequence()
-            .Append(Renderer.DOFade(1f, 0.75f))
-            .AppendCallback(() =>
-            {
-                Animator.SetInteger("state", 1);
-            })
-             .InsertCallback(1.2f, () =>
-             {
-                 Animator.SetInteger("state", 2);
-             })
-            .AppendCallback(() =>
-            {
-                Animator.SetInteger("state", 3);
-            })
-            .AppendInterval(0.5f)
-            .InsertCallback(2.0f, () =>
-            {
-                Animator.SetInteger("state", 4);
-            })
-            .Append(Renderer.DOFade(0f, 0.75f).SetEase(Ease.Linear))
-            .InsertCallback(2.5f, () =>
-            {
-                Managers.Object.Despawn(this);
-            });
-
+        StartCoroutine(LoopAnimation());
     }
+
+    public void SetSpawnInfo(Creature owner, SkillBase skill, Vector2 direction, bool isBTSkill)
+    {
+        if (isBTSkill)
+        {
+            sprites = Resources.LoadAll<Sprite>("Art/Skills/SkunkBT");
+            transform.localScale = new Vector3(2.6f, 2.6f, 2.6f);
+        }
+        else
+        {
+            sprites = Resources.LoadAll<Sprite>("Art/Skills/Skunk");
+        }
+
+        SetSpawnInfo(owner, skill, direction);
+    }
+
+    private IEnumerator LoopAnimation()
+    {
+        WaitForSeconds wait = new WaitForSeconds(0.2f);
+        int index = 0;
+        while (true)
+        {
+            spriteRenderer.sprite = sprites[3 + index];
+
+            index = (index + 1) % 4;
+            yield return wait;
+        }
+    }
+
 
 
     private void Update()
