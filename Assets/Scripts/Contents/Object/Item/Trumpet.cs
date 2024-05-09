@@ -1,9 +1,8 @@
-using Data;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Magnet : BaseObject
+public class Trumpet : BaseObject
 {
     private float usedTransparency = 0f;
 
@@ -34,17 +33,9 @@ public class Magnet : BaseObject
             Renderer.material.color = color;
         }
 
-        // 씬에 있는 모든 경험치 구슬 찾음
-        Item[] items = FindObjectsOfType<Item>();
-
-        foreach (Item item in items)
-        {
-            if (item != null && item.ItemData != null)
-            {
-                hero.Exp += item.ItemData.Value;
-                Managers.Object.Despawn(item);
-            }
-        }
+        //
+        //트럼펫 기능 채우기
+        ///
 
         Managers.Object.Despawn(this);
     }

@@ -37,7 +37,7 @@ public class Item : BaseObject
             return;
 
         hero.Exp += ItemData.Value;
-        Debug.Log($"경험치 {ItemData.Value}만큼 획득. 총 경험치 : {hero.Exp}");
+        //Debug.Log($"경험치 {ItemData.Value}만큼 획득. 총 경험치 : {hero.Exp}");
 
         Managers.Object.Despawn(this);
     }

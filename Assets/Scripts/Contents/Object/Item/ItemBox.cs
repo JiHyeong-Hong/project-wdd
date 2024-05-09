@@ -1,15 +1,14 @@
-using Data;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Magnet : BaseObject
+public class ItemBox : BaseObject
 {
     private float usedTransparency = 0f;
 
     public override bool Init()
     {
-        if (!base.Init())
+        if (base.Init() == false)
             return false;
 
         ObjectType = Define.EObjectType.Item;
@@ -27,23 +26,13 @@ public class Magnet : BaseObject
         if (hero == null)
             return;
 
+        /// 아이템박스 로직
+
         if (Renderer != null)
         {
             Color color = Renderer.material.color;
             color.a = usedTransparency;
             Renderer.material.color = color;
-        }
-
-        // 씬에 있는 모든 경험치 구슬 찾음
-        Item[] items = FindObjectsOfType<Item>();
-
-        foreach (Item item in items)
-        {
-            if (item != null && item.ItemData != null)
-            {
-                hero.Exp += item.ItemData.Value;
-                Managers.Object.Despawn(item);
-            }
         }
 
         Managers.Object.Despawn(this);
