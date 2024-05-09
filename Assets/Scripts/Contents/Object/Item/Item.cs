@@ -37,6 +37,7 @@ public class Item : BaseObject
             return;
 
         hero.Exp += ItemData.Value;
+        Debug.Log($"°æÇèÄ¡ {ItemData.Value}¸¸Å­ È¹µæ. ÃÑ °æÇèÄ¡ : {hero.Exp}");
 
         Managers.Object.Despawn(this);
     }
