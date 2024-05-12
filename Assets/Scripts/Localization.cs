@@ -28,7 +28,7 @@ public class Localization : MonoBehaviour
 
     private void SetLocalizeText(string key)
     {
-        TEXT.text = Test.Instance.localizationManager.GetLocalizedText(key);
+        TEXT.text = Managers.Localization.GetLocalizedText(key);
     }
 
 }
