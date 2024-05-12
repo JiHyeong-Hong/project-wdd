@@ -115,11 +115,22 @@ public class UIManager
 		return popup;
     }
 
+    public T ShowMessageBox<T>(string name = null) where T : MonoBehaviour
+    {
+        if (string.IsNullOrEmpty(name))
+            name = typeof(T).Name;
+
+        GameObject go = Managers.Resource.Instantiate($"UI/Common/{name}", _sceneUI.transform);
+        T messageBox = Util.GetOrAddComponent<T>(go);
+       
+        return messageBox;
+    }
+
     public T ShowWindowUI<T>(Define.UIWindowType type) where T : UIWindow
     {
         if (!windowDic.ContainsKey(type))
         {
-            GameObject go = Managers.Resource.Instantiate($"Window/{typeof(T).Name}", _sceneUI.transform);
+            GameObject go = Managers.Resource.Instantiate($"UI/Window/{typeof(T).Name}", _sceneUI.transform);
             T window = Util.GetOrAddComponent<T>(go);
             windowDic.Add(type, window);
         }

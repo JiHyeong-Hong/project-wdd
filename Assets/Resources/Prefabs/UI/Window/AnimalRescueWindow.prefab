@@ -37,7 +37,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1381, y: -100}
+  m_AnchoredPosition: {x: 201, y: 765}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2509801855668693723
@@ -94,6 +94,7 @@ MonoBehaviour:
   arrowImage: {fileID: 7263085316310027715}
   canvas: {fileID: 0}
   rotBase: {fileID: 2314664704517204692}
+  thumbnailRect: {fileID: 6711690447553654574}
 --- !u!1 &2150250184342787799
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,7 +186,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1396107223477588024
 RectTransform:
   m_ObjectHideFlags: 0

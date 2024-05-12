@@ -10,6 +10,8 @@ public class UI_Joystick : UI_Base
         JoystickCursor,
     }
 
+    [SerializeField]
+    private GameObject Joystick;
     private GameObject _background;
     private GameObject _cursor;
     private float _radius;
@@ -28,6 +30,9 @@ public class UI_Joystick : UI_Base
         gameObject.BindEvent(OnPointerDown, type: Define.EUIEvent.PointerDown);
         gameObject.BindEvent(OnPointerUp, type: Define.EUIEvent.PointerUp);
         gameObject.BindEvent(OnDrag, type: Define.EUIEvent.Drag);
+
+        Joystick = transform.Find("TouchPanel").Find("Joystick").gameObject;
+
         return true;
     }
 
@@ -40,6 +45,8 @@ public class UI_Joystick : UI_Base
         _touchPos = eventData.position;
 
         Managers.Game.JoystickState = EJoystickState.PointerDown;
+
+        Joystick.SetActive(true);
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -48,6 +55,8 @@ public class UI_Joystick : UI_Base
 
         Managers.Game.MoveDir = Vector2.zero;
         Managers.Game.JoystickState = EJoystickState.PointerUp;
+
+        Joystick.SetActive(false);
     }
 
     public void OnDrag(PointerEventData eventData)

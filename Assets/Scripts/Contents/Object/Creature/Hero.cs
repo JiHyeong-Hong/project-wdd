@@ -174,10 +174,11 @@ public class Hero : Creature
 	{
 		base.OnDead(attacker, skill);
 
-		SetRigidbodyVelocity(Vector2.zero);
 		Managers.Game.OnMoveDirChanged -= HandleOnMoveDirChanged;
 		Managers.Game.OnJoystickStateChanged -= HandleOnJoystickStateChanged;
+		SetRigidbodyVelocity(Vector2.zero);
 
+		Managers.Game.GameOver();
 	}
 
 	private void LevelUp()
