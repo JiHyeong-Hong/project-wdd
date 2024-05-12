@@ -38,6 +38,15 @@ public class Hero : Creature
 		}
 	}
 
+    public int Gold { get; private set; } = 0;
+
+    public void AddGold(int amount)
+    {
+        Gold += amount;
+		Debug.Log($"골드 획득 : {amount}");
+		Debug.Log($"총 골드 : {Gold}");
+    }
+
     private bool isInvincible = false;
     public bool IsInvincible
     {
