@@ -245,7 +245,7 @@ public static class Util
         return uniqueElements;
     }
 
-	public static Vector2 LimitScreenConverter(Vector2 target, Vector2 uiSize)
+	public static Vector2 LimitScreenConverter(Vector2 target, Vector2 uiSize, GameObject invisibleObject)
 	{
         // 해상도를 구한다.
         float width = Screen.width;
@@ -256,10 +256,17 @@ public static class Util
 
 		if (Mathf.Abs(screenPos.x) >= width - uiSize.x || Mathf.Abs(screenPos.y) >= height - uiSize.y)
 		{
+			if(invisibleObject.activeSelf == false ) invisibleObject.SetActive(true);
+			
 			screenPos.x = Mathf.Clamp(screenPos.x, uiSize.x, width - uiSize.x);
 			screenPos.y = Mathf.Clamp(screenPos.y, uiSize.y, height - uiSize.y);
 		}
+		else
+		{
+            if (invisibleObject.activeSelf == true) invisibleObject.SetActive(false);
+        }
 
         return screenPos;
     }
+
 }
