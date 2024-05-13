@@ -47,6 +47,8 @@ public class Managers : MonoBehaviour
         // StartCoroutine(Game.BossCount());
 
         s_instance._escapePattern.SpawnEscapePattern(); // @홍지형, 테스트용
+
+        FootboardManager();
     }
 
     public bool boss;
@@ -88,5 +90,11 @@ public class Managers : MonoBehaviour
             s_instance._escapePattern.Init();
             // s_instance._spawner.Init();
         }
+    }
+
+    void FootboardManager()
+    {
+        GameObject footboardManager = new GameObject("FootboardManager");
+        footboardManager.AddComponent<Footboard>();
     }
 }

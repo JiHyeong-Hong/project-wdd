@@ -18,6 +18,9 @@ public class Footboard : MonoBehaviour
         playerTransform = GameObject.FindWithTag("Player").transform;
 
         uiGameScene = FindObjectOfType<UI_GameScene>();
+
+        jumpfab = Resources.Load<GameObject>("Prefabs/JumpFootboard");
+        boostfab = Resources.Load<GameObject>("Prefabs/BoostFootboard");
     }
 
     private void Update()
