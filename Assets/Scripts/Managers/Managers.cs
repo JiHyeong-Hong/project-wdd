@@ -28,9 +28,9 @@ public class Managers : MonoBehaviour
     EscapePatternManager _escapePattern = new EscapePatternManager(); // @홍지형 추가.
     LocalizationManager _localizationManager = new LocalizationManager();
 
-    public static DataManager Data { get { return Instance._data; } }
+    public static DataManager Data { get { return DataManager.Instance; } }
     public static PoolManager Pool { get { return Instance._pool; } }
-    public static ResourceManager Resource { get { return Instance._resource; } }
+    public static ResourceManager Resource { get { return ResourceManager.Instance; } }
     public static SceneManagerEx Scene { get { return Instance._scene; } }
     public static SoundManager Sound { get { return Instance._sound; } }
     public static UIManager UI { get { return Instance._ui; } }
@@ -40,6 +40,7 @@ public class Managers : MonoBehaviour
 
     public static SkillManager Skill => s_instance._skill;
 
+    
     #endregion
 
     void Start()
@@ -50,6 +51,7 @@ public class Managers : MonoBehaviour
         // StartCoroutine(Game.BossCount());
 
         s_instance._escapePattern.SpawnEscapePattern(); // @홍지형, 테스트용
+
     }
 
     public bool boss;
@@ -85,7 +87,7 @@ public class Managers : MonoBehaviour
             DontDestroyOnLoad(go);
             s_instance = go.GetComponent<Managers>();
 
-            s_instance._data.Init();
+            //s_instance._data.Init();
             s_instance._pool.Init();
             s_instance._sound.Init();
             s_instance._escapePattern.Init();

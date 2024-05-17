@@ -9,7 +9,7 @@ public interface ILoader<Key, Value>
     Dictionary<Key, Value> MakeDict();
 }
 
-public class DataManager
+public class DataManager : SingletonMonoBehaviour<DataManager>
 {
     public Dictionary<int, Data.MonsterData> MonsterDic { get; private set; } = new Dictionary<int, Data.MonsterData>();
     public Dictionary<int, Data.HeroData> HeroDic { get; private set; } = new Dictionary<int, Data.HeroData>();
@@ -20,11 +20,18 @@ public class DataManager
     public Dictionary<int, Data.HpConditionData> HpConditionDic { get; private set; } = new Dictionary<int, Data.HpConditionData>();
     public Dictionary<int, Data.PatternPerData> PatternPerDic { get; private set; } = new Dictionary<int, Data.PatternPerData>();
     public Dictionary<int ,Data.BreakthroughData> BreakthroughDic { get; private set; } = new Dictionary<int, Data.BreakthroughData>();
+    public Dictionary<int, Data.StageData> StageDataDic { get; private set; } = new Dictionary<int, Data.StageData>();
+
+    //Test
+    public Dictionary<int, Data.Stage> StageDic { get; private set; } = new Dictionary<int, Data.Stage>();
 
 
 
-    public void Init()
+
+    protected override void Init()
     {
+        base.Init();
+
         MonsterDic = LoadJson<Data.MonsterDataLoader, int, Data.MonsterData>("MonsterData").MakeDict();
         HeroDic = LoadJson<Data.HeroDataLoader, int, Data.HeroData>("HeroData").MakeDict();
         HeroLevelDic = LoadJson<Data.HeroLevelDataLoader, int, Data.HeroLevelData>("HeroLevelData").MakeDict();
@@ -34,6 +41,9 @@ public class DataManager
         HpConditionDic = LoadJson<Data.HpConditionDataLoader, int, Data.HpConditionData>("HpConditionData").MakeDict();
         PatternPerDic = LoadJson<Data.PatternPerDataLoader, int, Data.PatternPerData>("PatternPerData").MakeDict();
         BreakthroughDic = LoadJson<Data.BreakthroughDataLoader, int, Data.BreakthroughData>("BreakthroughData").MakeDict();
+        StageDataDic = LoadJson<Data.StageDataLoader, int, Data.StageData>("StageData").MakeDict();
+
+        //StageDic = LoadJson<Data.StageLoader, int, Data.Stage>("Stage").MakeDict();
     }
 
     Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>
