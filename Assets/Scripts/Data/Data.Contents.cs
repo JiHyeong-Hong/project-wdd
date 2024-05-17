@@ -168,7 +168,6 @@ namespace Data
 		public int AttackPattern;
 		public Define.SkillType skillType;
 		public int Level;
-		public string Description;
 
         //ActtiveSkill_Stat
         public int ProjectileNum;
@@ -355,6 +354,100 @@ namespace Data
             return dict;
         }
     }
+
+    #endregion
+
+    #region StageData
+
+    public class StageData
+    {
+        public int Index;
+        public int Stage_ID;
+        public int Phase;
+        public int Time;
+        public int GroupA;
+        public int GroupB;
+        public int Cage;
+        public int SpecialCage;
+        public int AnimalNumSign;
+        public int SkillSign;
+        public int ItemBox;
+        public int MoveGimmick;
+        public int Bargainite;
+
+    }
+
+    [Serializable]
+    public class StageDataLoader : ILoader<int, StageData>
+    {
+        public List<StageData> stageDatas = new List<StageData>();
+
+        public Dictionary<int, StageData> MakeDict()
+        {
+            Dictionary<int, StageData> dict = new Dictionary<int, StageData>();
+            foreach (StageData stageData in stageDatas)
+                dict.Add(stageData.Index, stageData);
+            return dict;
+        }
+    }
+
+
+    //----------------------------------------
+    [Serializable]
+    public class Stage
+    {
+		public int StageID;
+		public string Name;
+        public int Lv;
+        public string Info;
+        public bool Locked;
+        public string IcoUrl;
+
+		public List<StageLevel> StageLevels;
+		//public List<IngameData> IngameDataList { get; set; }
+		//public List<Spawn> Spawns { get; set; }
+	}
+
+	[Serializable]
+    public class StageLoader : ILoader<int, Stage>
+    {
+		public List<Stage> stages = new List<Stage>();
+        public Dictionary<int, Stage> MakeDict()
+        {
+            Dictionary<int, Stage> dict = new Dictionary<int, Stage>();
+            foreach (Stage stage in stages)
+                dict.Add(stage.StageID, stage);
+            return dict;
+        }
+    }
+
+    public class StageLevel
+    {
+        public int StageLvID { get; set; }
+        public int StageID { get; set; }
+        public float Phase1Time { get; set; }
+        public float Phase2Time { get; set; }
+        public float Phase3Time { get; set; }
+        public float Phase4Time { get; set; }
+
+        public Stage Stage { get; set; }
+    }
+
+    [Serializable]
+    public class StageLevelLoader : ILoader<int, StageLevel>
+	{
+		public List<StageLevel> stageLevels = new List<StageLevel>();
+        public Dictionary<int, StageLevel> MakeDict()
+        {
+            Dictionary<int, StageLevel> dict = new Dictionary<int, StageLevel>();
+            foreach (StageLevel stageLevel in stageLevels)
+                dict.Add(stageLevel.StageLvID, stageLevel);
+            return dict;
+        }
+    }
+
+
+
 
     #endregion
 }
