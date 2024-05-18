@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ZooLedger1
+  m_Controller: {fileID: 9100000, guid: a84f8496a0bd64f31a49a566da3949ec, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 9bbef05898b0b450093431d62d591dcd, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: fd8bb5e8921754af8844a4ff75088a94, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 3f88ebdc4cefe4d1d8edfa36c22d69b0, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 57aa5248a72124ad49ed5d9d123451d6, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: dacb24ffa9c4046449d145a3ea5ebbfa, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: dacb24ffa9c4046449d145a3ea5ebbfa, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: dc56c350036c94fffb94fc3cac4a683a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: dc56c350036c94fffb94fc3cac4a683a, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 5381262cbcaa543ffa4b71a03f41a416, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 5381262cbcaa543ffa4b71a03f41a416, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 6c50dfceefc36498aa740a4c88bd0544, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6c50dfceefc36498aa740a4c88bd0544, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: e74a61bdbde44450fbeba4a2757f2c79, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e74a61bdbde44450fbeba4a2757f2c79, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 4c9eccb3341b1434b80f89a64d449bbc, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4c9eccb3341b1434b80f89a64d449bbc, type: 2}

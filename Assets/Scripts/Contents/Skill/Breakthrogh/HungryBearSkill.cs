@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class HungryBearSkill : SkillBase
 {
-    private readonly float DISTANCE_OFFSET = 3f;
-    private readonly float ANGLE_OFFSET = 70f;
-
     public override void DoSkill()
     {
         var dir = Owner.Direction;

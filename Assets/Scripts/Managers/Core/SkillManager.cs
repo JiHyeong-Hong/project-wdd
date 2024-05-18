@@ -49,11 +49,12 @@ public class SkillManager
 		{
 			usingSkillDic[SkillType.Active][i].UpdateCoolTime(deltaTime);
 		}
-		
-		//if (Input.GetKeyDown(KeyCode.A))
-		//{
-		//	usingSkillDic[SkillType.Passive][0].DoSkill();
-		//}
+
+		if (Input.GetKeyDown(KeyCode.A))
+		{
+			Hero hero = Managers.Object.Hero;
+			hero.Exp += 1000;
+		}
 
 		// foreach (var skill in usingSkillDic[SkillType.Active])
 		// {
@@ -64,7 +65,7 @@ public class SkillManager
 	/// <summary>
 	/// 전체 스킬 캐싱
 	/// </summary>
-	private void RegisterAllSkills()
+	public void RegisterAllSkills()
 	{
 		var skillDic = Managers.Data.SkillDic;
 		var skillKeys = skillDic.Keys.ToList();
@@ -164,32 +165,35 @@ public class SkillManager
 	{
 		sampleSkillList.Clear();
 
-		List<string> tempList = new List<string>();
-		tempList.AddRange(canPickSkillList);
-		
-		// 칸이 가득 찼는지 체크 (나중에 추가)
-		bool isFullActive = usingSkillDic[SkillType.Active].Count == 6;
-		bool isFullPassive = usingSkillDic[SkillType.Passive].Count == 6;
-		
-		int pick = 0;
-		while (pick < 3)
-		{
-			if (tempList.Count == 0)
-			{
-				var randomName = canPickSkillList[Random.Range(0, canPickSkillList.Count)];
-				sampleSkillList.Add(allSkillDic[randomName][0]);
-			}
-			else
-			{
-				var randomIndex = Random.Range(0, tempList.Count);
-				sampleSkillList.Add(allSkillDic[tempList[randomIndex]][0]);
-				tempList.RemoveAt(randomIndex);
-			}
-			
-			pick++;
-		}
-		
-		Managers.UI.ShowPopupUI<UI_LevelUp>().SetInfo(sampleSkillList);
+		//List<string> tempList = new List<string>();
+		//tempList.AddRange(canPickSkillList);
+
+		//// 칸이 가득 찼는지 체크 (나중에 추가)
+		//bool isFullActive = usingSkillDic[SkillType.Active].Count == 6;
+		//bool isFullPassive = usingSkillDic[SkillType.Passive].Count == 6;
+
+		//int pick = 0;
+		//while (pick < 3)
+		//{
+		//	if (tempList.Count == 0)
+		//	{
+		//		var randomName = canPickSkillList[Random.Range(0, canPickSkillList.Count)];
+		//		sampleSkillList.Add(allSkillDic[randomName][0]);
+		//	}
+		//	else
+		//	{
+		//		var randomIndex = Random.Range(0, tempList.Count);
+		//		sampleSkillList.Add(allSkillDic[tempList[randomIndex]][0]);
+		//		tempList.RemoveAt(randomIndex);
+		//	}
+
+		//	pick++;
+		//}
+
+		//Managers.UI.ShowWindowUI<MonoBehaviour>("SkillWindow");
+		//Managers.UI.ShowPopupUI<UI_LevelUp>().SetInfo(sampleSkillList);
+		Managers.UI.ShowWindowUI<SkillLevelUpWindow>(Define.UIWindowType.SkillLevelUp).Open();
+		//Managers.UI.ShowWindowUI<SkillLevelUpWindow>("SkillLevelUpWindow");
 	}
 
 	private void AddSkill(SkillData skillData)
@@ -241,11 +245,6 @@ public class SkillManager
             {
                 skill.LevelUp(allSkillDic[className][skill.SkillData.Level].SkillData);
                 hasSkill = true;
-                //만렙이면 뽑을 수 있는 스킬목록에서 삭제
-                if (skill.SkillData.Level == Define.MAX_SKILL_LEVEL)
-                {
-                    canPickSkillList.Remove(skill.SkillData.Name);
-                }
 
                 BreakthroughHelper.Instance.GetBreakthroughBaseSkill(skillData.skillType, skillData.Index);
 

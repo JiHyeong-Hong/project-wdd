@@ -69,6 +69,27 @@ public class GameManager
             OnJoystickStateChanged?.Invoke(_joystickState);
         }
     }
+
+    public void GameOver()
+    {
+        IsGamePaused = true;
+
+        MessageBoxHelper.ShowMessageBox_TwoButton("GameOver", "Retry?", "Yes", "No", (button, data) =>
+        {
+            if (button == 0)
+            {
+                IsGamePaused = false;
+                Debug.Log("게임 재시작");
+                //Managers.Scene.LoadScene(Define.Scene.Game);
+            }
+            else if (button == 1)
+            {
+                IsGamePaused = false;
+                Debug.Log("게임종료");
+                //Managers.Scene.LoadScene(Define.Scene.Lobby);
+            }
+        }, "StartTimer");
+    }
     #endregion
 
     #region Action

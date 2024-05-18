@@ -50,6 +50,9 @@ namespace Data
 		public int SkillLvDown;
 		public int ConditionHitType;
 		public int KnockbackPowerHitType;
+		public int DropItemID;
+		public int DropPersent;
+		
 	}
 	
 	//TODO Eung 몬스터를 그냥 하나의 객체로 만들때 사용할수도? 아니먄 그냥 기존 구조로 공통 변수 묶어서 CreatureData + MonsterData로 가는 경우 필요없어짐
@@ -165,9 +168,10 @@ namespace Data
 		public int AttackPattern;
 		public Define.SkillType skillType;
 		public int Level;
+		public string Description;
 
         //ActtiveSkill_Stat
-		public int ProjectileNum;
+        public int ProjectileNum;
 		public float CastAngle;
 		public float Damage;
 		public float AttackSpeed;

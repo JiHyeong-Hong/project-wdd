@@ -45,7 +45,27 @@ public static class Util
 		return transform.gameObject;
 	}
 
-	public static T FindChild<T>(GameObject go, string name = null, bool recursive = false) where T : UnityEngine.Object
+	public static T FindParent<T>(GameObject go, string name = null) where T : UnityEngine.Object
+    {
+        if (go == null)
+            return null;
+
+        Transform transform = go.transform;
+        while (transform.parent != null)
+        {
+            transform = transform.parent;
+            if (string.IsNullOrEmpty(name) || transform.name == name)
+            {
+                T component = transform.GetComponent<T>();
+                if (component != null)
+                    return component;
+            }
+        }
+
+        return null;
+    }
+
+    public static T FindChild<T>(GameObject go, string name = null, bool recursive = false) where T : UnityEngine.Object
 	{
 		if (go == null)
 			return null;
@@ -205,6 +225,48 @@ public static class Util
             }
         }
         return null;
+    }
+
+    public static List<T> SelectUniqueElements<T>(List<T> lst, int n)
+    {
+        List<T> uniqueElements = new List<T>();
+        List<T> remainingElements = new List<T>(lst);
+
+        System.Random random = new System.Random();
+
+        while (uniqueElements.Count < n && remainingElements.Count > 0)
+        {
+            int randomIndex = random.Next(remainingElements.Count);
+            T element = remainingElements[randomIndex];
+            uniqueElements.Add(element);
+            remainingElements.RemoveAt(randomIndex);
+        }
+
+        return uniqueElements;
+    }
+
+	public static Vector2 LimitScreenConverter(Vector2 target, Vector2 uiSize, GameObject invisibleObject)
+	{
+        // 해상도를 구한다.
+        float width = Screen.width;
+        float height = Screen.height;
+        
+		// 화면밖으로 나가지 않도록 제한
+        Vector2 screenPos = Camera.main.WorldToScreenPoint(target);
+
+		if (Mathf.Abs(screenPos.x) >= width - uiSize.x || Mathf.Abs(screenPos.y) >= height - uiSize.y)
+		{
+			if(invisibleObject.activeSelf == false ) invisibleObject.SetActive(true);
+			
+			screenPos.x = Mathf.Clamp(screenPos.x, uiSize.x, width - uiSize.x);
+			screenPos.y = Mathf.Clamp(screenPos.y, uiSize.y, height - uiSize.y);
+		}
+		else
+		{
+            if (invisibleObject.activeSelf == true) invisibleObject.SetActive(false);
+        }
+
+        return screenPos;
     }
 
 }

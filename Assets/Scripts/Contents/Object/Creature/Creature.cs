@@ -1,10 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Animations;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.Rendering;
 using static Define;
 
 public class Creature : BaseObject
@@ -16,6 +11,7 @@ public class Creature : BaseObject
 
     #region Stats
     public int DataID { get; set; }
+
     public float Hp { get; set; }
     public float MaxHp { get; set; }
     public float Atk { get; set; }
@@ -69,7 +65,7 @@ public class Creature : BaseObject
 
         gameObject.name = $"{CreatureData.Index}_{CreatureData.DescriptionTextID}";
 
-        AnimatorController animatorController = Managers.Resource.Load<AnimatorController>(CreatureData.AnimatorDataID);
+        var animatorController = Managers.Resource.Load<AnimatorOverrideController>(CreatureData.AnimatorDataID);
         Animator.runtimeAnimatorController = animatorController;
 
         DataID = CreatureData.Index;
@@ -107,8 +103,12 @@ public class Creature : BaseObject
             LookLeft = false;
     }
 
+
     #region AI
-    public float UpdateAITick { get; protected set; } = 0.0f;
+    public float UpdateAITick { get; protected set; } = 0.01f;
+
+    //TODO Eung 몬스터 AI 코루틴 변수 - 변경 필요
+    public Coroutine test = null;
 
     protected IEnumerator CoUpdateAI()
     {
@@ -139,6 +139,9 @@ public class Creature : BaseObject
                     break;
                 case ECreatureState.Pattern2:
                     UpdatePattern2();
+                    break;
+                case ECreatureState.ChangePhase:
+                    UpdateChangePhase();
                     break;
             }
 
@@ -188,6 +191,7 @@ public class Creature : BaseObject
     protected virtual void UpdateSkill1() { }
     protected virtual void UpdatePattern1() { }
     protected virtual void UpdatePattern2() { }
+    protected virtual void UpdateChangePhase() { }
     #endregion
 
     #region Battle
@@ -229,11 +233,12 @@ public class Creature : BaseObject
         if (Hp <= 0)
         {
             OnDead(attacker, skill);
-            CreatureState = ECreatureState.Dead;
+            // CreatureState = ECreatureState.Dead;
         }
         else
         {
-            CreatureState = ECreatureState.Hit;
+            if(CreatureType != ECreatureType.Boss)
+                CreatureState = ECreatureState.Hit;
         }
 
 
@@ -245,7 +250,7 @@ public class Creature : BaseObject
         else
         {
             // skill이 null인 경우 예외 처리
-            // Debug.LogError("Skill is null or KnockbackPower is zero."); @홍지형 240424
+            //Debug.LogError("Skill is null or KnockbackPower is zero.");
         }
 
         _freezeStateOneFrame = true;

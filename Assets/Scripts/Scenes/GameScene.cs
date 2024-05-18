@@ -35,7 +35,7 @@ public class GameScene : BaseScene
         // 길리슈터 생성 테스트용. @홍지형
         // Managers.Object.Spawn<Shooter>(new Vector3(-5f, 5f, 0f), Define.MONSTER_SHOOTER_ID);
 
-        Managers.UI.ShowBaseUI<UI_Joystick>();
+        Managers.UI.SetJoyStick(Managers.UI.ShowBaseUI<UI_Joystick>().gameObject);
 
         return true;
     }
