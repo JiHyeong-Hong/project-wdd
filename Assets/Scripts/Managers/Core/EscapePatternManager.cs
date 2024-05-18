@@ -20,7 +20,7 @@ public class EscapePatternManager : MonoBehaviour
     public float spawnInterval = 0.4f; // 그물망이 떨어지는 시간 간격
     private float spawnAreaSize = 3f; // 스폰 영역 크기
     private List<Vector2> usedPositions = new List<Vector2>(); // 이미 사용된 위치 목록
-    private float spawnRadius = 0.7f; // 스폰 반경
+    private float spawnRadius = 1.2f; // 스폰 반경
     private Vector3 initialDirection; // 첫 몬스터의 이동 방향
     private bool isDirectionSet = false; // 방향 설정 여부
     public void Init()
@@ -40,11 +40,6 @@ public class EscapePatternManager : MonoBehaviour
         //SpawnGhillieShooter();
         //SpawnNet();
 
-
-
-        
-
-
         SpawnTourist();
     }
 
@@ -52,28 +47,32 @@ public class EscapePatternManager : MonoBehaviour
     {
         // TODO: 출현 경고 UI 필요.
 
-        Vector3 camPos = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane)); // 인게임 카메라의 오른쪽 상단 위치        
+        Vector2 camPos = Camera.main.ViewportToWorldPoint(new Vector2(1, 1)); // 인게임 카메라의 오른쪽 상단 위치        
 
-        // 관광객 생성 테스트용. @홍지형
+        // 여러 관광객을 동시에 spawn한다.
         for (int i = 0; i < 20; i++) // TODO: 관광객 수 하드코딩됨.
-        {            
-            Vector3 spawnPosition = (Vector3)Random.insideUnitCircle * spawnRadius + camPos; // 랜덤 위치 하드코딩됨. 
+        {
+            // 관광객 spawn 범위: 타원의 가로축과 세로축 길이 설정
+            float horizontalScale = 0.8f;
+            float verticalScale = 1.5f;
+            Vector2 ovalRandom = new Vector3(Random.insideUnitCircle.x * horizontalScale, Random.insideUnitCircle.y * verticalScale); // 랜덤 타원 범위            
+            Vector3 spawnPosition = ovalRandom * spawnRadius + camPos;
+
             Managers.Object.Spawn<Tourist>(spawnPosition, 261); // TODO: 관광객 번호 하드코딩
 
             if (!isDirectionSet)
             {
                 // 첫 몬스터가 생성되면 플레이어를 향하는 방향을 계산한다.
-                initialDirection = (Managers.Object.Hero.transform.position - spawnPosition).normalized;
+                initialDirection = (Managers.Object.Hero.transform.position - spawnPosition).normalized; 
+                // initialDirection = (spawnPosition - Managers.Object.Hero.transform.position).normalized; // 반대방향
                 isDirectionSet = true;
             }
         }
-        // 생성된 몬스터에게 이동 방향을 설정한다.
-        Tourist[] monsters = FindObjectsOfType<Tourist>();
-        foreach (Tourist tourist in monsters)
-        {
-            // 각 몬스터 인스턴스에 대해 실행할 코드
-            tourist.SetDirection(initialDirection); // TODO:
-
+        // 생성된 관광객들에게 이동 방향을 설정한다.
+        Tourist[] Tourists = FindObjectsOfType<Tourist>();
+        foreach (Tourist tourist in Tourists)
+        {            
+            tourist.SetDirection(initialDirection);
         }
     }
 
