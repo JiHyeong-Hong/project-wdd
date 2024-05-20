@@ -8,7 +8,7 @@ using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 // 회피패턴(탄막) Manager 클래스. @홍지형
-public class EscapePatternManager : MonoBehaviour
+public class EscapePatternManager : SingletonMonoBehaviour<EscapePatternManager>
 {
     private Data.MonsterData monsterData; // ??
     public GameObject warningPrefab; // 경고 표시 프리팹
@@ -17,16 +17,6 @@ public class EscapePatternManager : MonoBehaviour
     public float spawnInterval = 0.4f; // 그물망이 떨어지는 시간 간격
     private float spawnAreaSize = 3f; // 스폰 영역 크기
     private List<Vector2> usedPositions = new List<Vector2>(); // 이미 사용된 위치 목록
-
-    public void Init()
-    {
-        GameObject root = GameObject.Find("@EscapePattern");
-        if (root == null)
-        {
-            root = new GameObject { name = "@EscapePattern" };
-            Object.DontDestroyOnLoad(root);
-        }
-    }
 
     // 회피패턴을 생성한다.
     public void SpawnEscapePattern()

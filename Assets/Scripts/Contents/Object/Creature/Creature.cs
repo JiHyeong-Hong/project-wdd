@@ -84,6 +84,8 @@ public class Creature : BaseObject
 
     protected override void PlayAnimation(Define.ECreatureState state)
     {
+        if (Animator.runtimeAnimatorController == null) return;
+
         Animator.SetInteger("state", (int)state);
     }
 
@@ -229,7 +231,7 @@ public class Creature : BaseObject
             finalDamage = skill.SkillData.Damage + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Attack);
 
         Hp = Mathf.Clamp(Hp - finalDamage, 0, MaxHp);
-        Debug.LogWarning($"[{gameObject.name}] Hit! HP({Hp}/{MaxHp})"); // 디버깅용. 삭제가능 @홍지형
+        //Debug.LogWarning($"[{gameObject.name}] Hit! HP({Hp}/{MaxHp})"); // 디버깅용. 삭제가능 @홍지형
         if (Hp <= 0)
         {
             OnDead(attacker, skill);

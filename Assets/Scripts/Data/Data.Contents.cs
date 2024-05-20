@@ -402,10 +402,6 @@ namespace Data
         public string Info;
         public bool Locked;
         public string IcoUrl;
-
-		public List<StageLevel> StageLevels;
-		//public List<IngameData> IngameDataList { get; set; }
-		//public List<Spawn> Spawns { get; set; }
 	}
 
 	[Serializable]
@@ -421,16 +417,15 @@ namespace Data
         }
     }
 
+    [Serializable]
     public class StageLevel
     {
-        public int StageLvID { get; set; }
-        public int StageID { get; set; }
-        public float Phase1Time { get; set; }
-        public float Phase2Time { get; set; }
-        public float Phase3Time { get; set; }
-        public float Phase4Time { get; set; }
-
-        public Stage Stage { get; set; }
+		public int StageLvID;
+		public int StageID;
+		public float Phase1Time;
+		public float Phase2Time;
+		public float Phase3Time;
+		public float Phase4Time;
     }
 
     [Serializable]
