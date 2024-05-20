@@ -12,7 +12,7 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
     protected override void Init()
     {
         base.Init();
-        stageDic = DataManager.Instance.StageDic;
+        stageDic = Managers.Data.StageDic;
         currentStageId = GetFirstUnlockedStageId();
         CurrentStage = GetStage(currentStageId);
     }

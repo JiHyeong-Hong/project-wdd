@@ -1682,7 +1682,7 @@
     },
     {
       "Index": 1,
-      "Name": "Guardian Of Mountain ",
+      "Name": "GuardianOfMountain ",
       "AttackPattern": 11,
       "skillType": 0,
       "Level": 1,
@@ -1706,7 +1706,7 @@
     },
     {
       "Index": 2,
-      "Name": "Awakening Parrot",
+      "Name": "AwakeningParrot",
       "AttackPattern": 12,
       "skillType": 0,
       "Level": 1,
@@ -1730,7 +1730,7 @@
     },
     {
       "Index": 3,
-      "Name": "Hungry Bear",
+      "Name": "HungryBear",
       "AttackPattern": 1,
       "skillType": 0,
       "Level": 1,
@@ -1754,7 +1754,7 @@
     },
     {
       "Index": 4,
-      "Name": "Gluttony King",
+      "Name": "GluttonyKing",
       "AttackPattern": 1,
       "skillType": 0,
       "Level": 1,
@@ -1778,7 +1778,7 @@
     },
     {
       "Index": 5,
-      "Name": "Gluttony King",
+      "Name": "GluttonyKing",
       "AttackPattern": 21,
       "skillType": 0,
       "Level": 1,
@@ -1802,7 +1802,7 @@
     },
     {
       "Index": 6,
-      "Name": "Sky Predator",
+      "Name": "SkyPredator",
       "AttackPattern": 11,
       "skillType": 0,
       "Level": 1,
@@ -1826,7 +1826,7 @@
     },
     {
       "Index": 7,
-      "Name": "Poison Gas",
+      "Name": "PoisonGas",
       "AttackPattern": 12,
       "skillType": 0,
       "Level": 1,
@@ -1850,7 +1850,7 @@
     },
     {
       "Index": 8,
-      "Name": "Dolphin Show",
+      "Name": "DolphinShow",
       "AttackPattern": 12,
       "skillType": 0,
       "Level": 1,
@@ -1874,7 +1874,7 @@
     },
     {
       "Index": 9,
-      "Name": "Storm Feather",
+      "Name": "StormFeather",
       "AttackPattern": 4,
       "skillType": 0,
       "Level": 1,
@@ -1898,7 +1898,7 @@
     },
     {
       "Index": 10,
-      "Name": "Zebra Mayhem",
+      "Name": "ZebraMayhem",
       "AttackPattern": 11,
       "skillType": 0,
       "Level": 1,
@@ -1922,7 +1922,7 @@
     },
     {
       "Index": 11,
-      "Name": "Thorn Bomb",
+      "Name": "ThornBomb",
       "AttackPattern": 2,
       "skillType": 0,
       "Level": 1,
@@ -1946,7 +1946,7 @@
     },
     {
       "Index": 12,
-      "Name": "Thorn Bomb",
+      "Name": "ThornBomb",
       "AttackPattern": 21,
       "skillType": 0,
       "Level": 1,
@@ -1970,7 +1970,7 @@
     },
     {
       "Index": 13,
-      "Name": "Penguin Moving",
+      "Name": "PenguinMoving",
       "AttackPattern": 11,
       "skillType": 0,
       "Level": 1,
@@ -1994,7 +1994,7 @@
     },
     {
       "Index": 14,
-      "Name": "King Roar",
+      "Name": "KingRoar",
       "AttackPattern": 11,
       "skillType": 0,
       "Level": 1,
@@ -2018,7 +2018,7 @@
     },
     {
       "Index": 15,
-      "Name": "Lover Kong",
+      "Name": "LoverKong",
       "AttackPattern": 11,
       "skillType": 0,
       "Level": 1,
@@ -2042,7 +2042,7 @@
     },
     {
       "Index": 16,
-      "Name": "Tunnel Owner",
+      "Name": "TunnelOwner",
       "AttackPattern": 31,
       "skillType": 0,
       "Level": 1,

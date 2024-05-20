@@ -17,15 +17,17 @@ public class DataTransformer : EditorWindow
     [MenuItem("Tools/ParseExcel %#K")]
     public static void ParseExcelDataToJson()
     {
-        ParseExcelDataToJson<MonsterDataLoader, MonsterData>("Monster");
-        ParseExcelDataToJson<HeroDataLoader, HeroData>("Hero");
-        ParseExcelDataToJson<HeroLevelDataLoader, HeroLevelData>("HeroLevel");
-        ParseExcelDataToJson<SkillDataLoader, SkillData>("Skill");
-        ParseExcelDataToJson<ProjectileDataLoader, ProjectileData>("Projectile");
-        ParseExcelDataToJson<ItemDataLoader, ItemData>("Item");
-        ParseExcelDataToJson<HpConditionDataLoader, HpConditionData>("HpCondition");
-        ParseExcelDataToJson<PatternPerDataLoader, PatternPerData>("PatternPer");
-        ParseExcelDataToJson<BreakthroughDataLoader, BreakthroughData>("Breakthrough");
+        //ParseExcelDataToJson<MonsterDataLoader, MonsterData>("Monster");
+        //ParseExcelDataToJson<HeroDataLoader, HeroData>("Hero");
+        //ParseExcelDataToJson<HeroLevelDataLoader, HeroLevelData>("HeroLevel");
+        //ParseExcelDataToJson<SkillDataLoader, SkillData>("Skill");
+        //ParseExcelDataToJson<ProjectileDataLoader, ProjectileData>("Projectile");
+        //ParseExcelDataToJson<ItemDataLoader, ItemData>("Item");
+        //ParseExcelDataToJson<HpConditionDataLoader, HpConditionData>("HpCondition");
+        //ParseExcelDataToJson<PatternPerDataLoader, PatternPerData>("PatternPer");
+        //ParseExcelDataToJson<BreakthroughDataLoader, BreakthroughData>("Breakthrough");
+        ParseExcelDataToJson<StageDataLoader, StageData>("Stage");
+
 
         Debug.Log("DataTransformer Completed");
     }
@@ -46,6 +48,7 @@ public class DataTransformer : EditorWindow
     {
         List<LoaderData> loaderDatas = new List<LoaderData>();
         int errorIndex = 0;
+        int errorFieldIndex = 0;
         try
         {
             string filePath = $"{Application.dataPath}/Resources/Data/ExcelData/{filename}Data.csv";
@@ -72,6 +75,7 @@ public class DataTransformer : EditorWindow
 
                 for (int f = 0; f < fields.Count; f++)
                 {
+                    errorFieldIndex = f;
                     FieldInfo field = loaderData.GetType().GetField(fields[f].Name);
                     Type type = field.FieldType;
 
@@ -94,7 +98,7 @@ public class DataTransformer : EditorWindow
         }
         catch (Exception ex)
         {
-            Debug.LogError($"파일을 읽는 도중 오류가 발생했습니다: {ex.Message} FileName : {filename} ErrorIndex : {errorIndex} ");
+            Debug.LogError($"파일을 읽는 도중 오류가 발생했습니다: {ex.Message} FileName : {filename} ErrorIndex : {errorIndex} ErrorFieldIndex : {errorFieldIndex}");
             throw;
         }
         
