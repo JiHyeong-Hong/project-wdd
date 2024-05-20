@@ -52,4 +52,11 @@ public class ResourceManager
 
         Object.Destroy(go);
     }
+
+    internal Sprite GetSkillSprite(string skillName)
+    {
+        Sprite sprite = Load<Sprite>($"Art/Skills/{skillName}");
+        if(sprite == null) Debug.LogWarning($"Failed to load sprite : {skillName}");
+        return sprite;
+    }
 }

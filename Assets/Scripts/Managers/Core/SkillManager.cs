@@ -15,8 +15,8 @@ public class SkillManager
 
     public List<SkillBase> sampleSkillList { get; }  = new List<SkillBase>();
     public List<string> canPickSkillList { get; } = new List<string>(); //만랩이 아닌 스킬들 이름 저장한 리스트 (레벨업 가능)
-	
-	private bool isInit;
+
+    private bool isInit;
 
 	public IEnumerator CoInit()
 	{
@@ -44,11 +44,18 @@ public class SkillManager
 		if (!isInit)
 			return;
 
+		//TODO Eung 보유한 모든스킬 공격
+		for (int i = 0; i < usingSkillDic[SkillType.Active].Count; i++)
+		{
+			usingSkillDic[SkillType.Active][i].UpdateCoolTime(deltaTime);
+		}
+
 		if (Input.GetKeyDown(KeyCode.A))
 		{
-			usingSkillDic[SkillType.Active][0].DoSkill();
+			Hero hero = Managers.Object.Hero;
+			hero.Exp += 1000;
 		}
-		
+
 		// foreach (var skill in usingSkillDic[SkillType.Active])
 		// {
 		// 	skill?.UpdateCoolTime(deltaTime);
@@ -58,7 +65,7 @@ public class SkillManager
 	/// <summary>
 	/// 전체 스킬 캐싱
 	/// </summary>
-	private void RegisterAllSkills()
+	public void RegisterAllSkills()
 	{
 		var skillDic = Managers.Data.SkillDic;
 		var skillKeys = skillDic.Keys.ToList();
@@ -69,7 +76,7 @@ public class SkillManager
 		// 전체 스킬
 		foreach (var skillID in skillKeys)
 		{
-			string skillName = skillDic[skillID].ClassName + "Skill";
+			string skillName = skillDic[skillID].Name + "Skill";
 
 			Type t = assembly.GetType(skillName);
 
@@ -85,9 +92,17 @@ public class SkillManager
 			}
 
 			var skill = obj as SkillBase;
-			skill.SetInfo(skillDic[skillID]);
+			try
+			{
+                skill.SetInfo(skillDic[skillID]);
+            }
+            catch (Exception ex)
+			{
+				Debug.Assert(false, $"{ex.Message} {skillID} 스킬 정보 설정 실패");
+				throw;
+			}
 
-			var className = skillDic[skillID].ClassName;
+			var className = skillDic[skillID].Name;
 			if (!allSkillDic.TryGetValue(className, out var list))
 			{
 				allSkillDic.Add(className,new List<SkillBase>());
@@ -96,9 +111,9 @@ public class SkillManager
 			
 			list.Add(skill);
 
-			if (!beforeID.Equals(skill.SkillData.ClassName))
+			if (!beforeID.Equals(skill.SkillData.Name))
 			{
-				beforeID = skill.SkillData.ClassName;
+				beforeID = skill.SkillData.Name;
 				canPickSkillList.Add(beforeID);
 			}
 		}
@@ -114,7 +129,7 @@ public class SkillManager
 
             // 현재 SkillData에 얼룩말 1개만 임의로 넣음. (1091)  @홍지형 임시.
 
-            string className = Managers.Data.SkillDic[skillID].ClassName + "Skill";
+            string className = Managers.Data.SkillDic[skillID].Name + "Skill";
 			Type t = assembly.GetType(className);
 
 			if (t == null)
@@ -136,7 +151,10 @@ public class SkillManager
 
 
             usingSkillDic[ownSkill.SkillData.skillType].Add(ownSkill);
-		}
+
+			BreakthroughHelper.Instance.GetBreakthroughBaseSkill(ownSkill.SkillData.skillType, ownSkill.SkillData.Index);
+
+        }
 
     }
 
@@ -147,32 +165,35 @@ public class SkillManager
 	{
 		sampleSkillList.Clear();
 
-		List<string> tempList = new List<string>();
-		tempList.AddRange(canPickSkillList);
-		
-		// 칸이 가득 찼는지 체크 (나중에 추가)
-		bool isFullActive = usingSkillDic[SkillType.Active].Count == 6;
-		bool isFullPassive = usingSkillDic[SkillType.Passive].Count == 6;
-		
-		int pick = 0;
-		while (pick < 3)
-		{
-			if (tempList.Count == 0)
-			{
-				var randomName = canPickSkillList[Random.Range(0, canPickSkillList.Count)];
-				sampleSkillList.Add(allSkillDic[randomName][0]);
-			}
-			else
-			{
-				var randomIndex = Random.Range(0, tempList.Count);
-				sampleSkillList.Add(allSkillDic[tempList[randomIndex]][0]);
-				tempList.RemoveAt(randomIndex);
-			}
-			
-			pick++;
-		}
-		
-		Managers.UI.ShowPopupUI<UI_LevelUp>().SetInfo(sampleSkillList);
+		//List<string> tempList = new List<string>();
+		//tempList.AddRange(canPickSkillList);
+
+		//// 칸이 가득 찼는지 체크 (나중에 추가)
+		//bool isFullActive = usingSkillDic[SkillType.Active].Count == 6;
+		//bool isFullPassive = usingSkillDic[SkillType.Passive].Count == 6;
+
+		//int pick = 0;
+		//while (pick < 3)
+		//{
+		//	if (tempList.Count == 0)
+		//	{
+		//		var randomName = canPickSkillList[Random.Range(0, canPickSkillList.Count)];
+		//		sampleSkillList.Add(allSkillDic[randomName][0]);
+		//	}
+		//	else
+		//	{
+		//		var randomIndex = Random.Range(0, tempList.Count);
+		//		sampleSkillList.Add(allSkillDic[tempList[randomIndex]][0]);
+		//		tempList.RemoveAt(randomIndex);
+		//	}
+
+		//	pick++;
+		//}
+
+		//Managers.UI.ShowWindowUI<MonoBehaviour>("SkillWindow");
+		//Managers.UI.ShowPopupUI<UI_LevelUp>().SetInfo(sampleSkillList);
+		Managers.UI.ShowWindowUI<SkillLevelUpWindow>(Define.UIWindowType.SkillLevelUp).Open();
+		//Managers.UI.ShowWindowUI<SkillLevelUpWindow>("SkillLevelUpWindow");
 	}
 
 	private void AddSkill(SkillData skillData)
@@ -186,33 +207,47 @@ public class SkillManager
 		}
 		
 		// 나중에 제대로 동작하는지 체크
-		list.Add(allSkillDic[skillData.ClassName][skillData.Level]);
+		list.Add(allSkillDic[skillData.Name][skillData.Level-1]);
 
 		int index = list.Count - 1;
 		list[index].SetInfo(skillData);
 		list[index].SetOwner(Managers.Object.Hero);
+
+		BreakthroughHelper.Instance.GetBreakthroughBaseSkill(skillData.skillType, skillData.Index);
 	}
+
+	public void BreakthroughAdd(int breakthroughIndex)
+	{
+        var list = usingSkillDic[SkillType.Breakthrough];
+		SkillData skillData= allSkillDic[Managers.Data.BreakthroughDic[breakthroughIndex].Name][0].SkillData;
+
+		list.Add(allSkillDic[Managers.Data.BreakthroughDic[breakthroughIndex].Name][0]);
+
+        int index = list.Count - 1;
+        list[index].SetInfo(skillData);
+        list[index].SetOwner(Managers.Object.Hero);
+    }
+
+
 
 	public void IncreaseSkillLevel(int index)
 	{
 		var skillData = sampleSkillList[index].SkillData;
-		string className = skillData.ClassName;
+		string className = skillData.Name;
 		var skillType = skillData.skillType;
+
 
 		bool hasSkill = false;
 
         foreach (var skill in usingSkillDic[skillType])
         {
-            if (className.Equals(skill.SkillData.ClassName))
+            if (className.Equals(skill.SkillData.Name))
             {
-                skill.LevelUp(allSkillDic[className][skill.SkillData.Level + 1].SkillData);
+                skill.LevelUp(allSkillDic[className][skill.SkillData.Level].SkillData);
                 hasSkill = true;
 
-                //만렙이면 뽑을 수 있는 스킬목록에서 삭제
-                if (skill.SkillData.Level == Define.MAX_SKILL_LEVEL)
-                {
-                    canPickSkillList.Remove(skill.SkillData.ClassName);
-                }
+                BreakthroughHelper.Instance.GetBreakthroughBaseSkill(skillData.skillType, skillData.Index);
+
                 break;
             }
         }
@@ -224,7 +259,8 @@ public class SkillManager
 		{
 			AddSkill(skillData);
 		}
-	}
+
+    }
 
 	private void RegisterPassiveSkill()
 	{

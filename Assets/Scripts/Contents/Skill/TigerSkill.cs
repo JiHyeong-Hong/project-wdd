@@ -6,6 +6,9 @@ public class TigerSkill : SkillBase
 {
     public override void DoSkill()
     {
+        if (BreakthroughHelper.Instance.CheckBreakthrough(SkillData.Index))
+            return;
+
         Vector2 direction = Owner.Direction;
         AttackTiger(direction);
 
@@ -16,7 +19,7 @@ public class TigerSkill : SkillBase
         }
     }
 
-    private void AttackTiger(Vector2 direction)
+    public virtual void AttackTiger(Vector2 direction)
     {
         float offsetX = (direction.x >= 0) ? -13f : 13f;
         float offsetY = (direction.y >= 0) ? 2f : -2;
@@ -26,7 +29,7 @@ public class TigerSkill : SkillBase
         if (Mathf.Abs(direction.y) < 0.001f && direction.x < 0)
             offsetY *= -1;
 
-        Tiger tiger = Managers.Object.Spawn<Tiger>(Owner.transform.position + new Vector3(offsetX, offsetY, 0f), SkillData.Projectile);
+        Tiger tiger = Managers.Object.Spawn<Tiger>(Owner.transform.position + new Vector3(offsetX, offsetY, 0f), SkillData.ProjectileNum);
         tiger.SetSpawnInfo(Owner, this, direction);
     }
 

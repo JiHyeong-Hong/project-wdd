@@ -9,7 +9,10 @@ public class PeacockSkill : SkillBase
 
 	public override void DoSkill()
 	{
-		monsterList.Clear();
+        if (BreakthroughHelper.Instance.CheckBreakthrough(SkillData.Index))
+            return;
+
+        monsterList.Clear();
 		GetTargets();
 	}
 
@@ -28,7 +31,7 @@ public class PeacockSkill : SkillBase
 			}
 		}
 		
-		for (int i = 0; i < SkillData.Projectile; i++)
+		for (int i = 0; i < SkillData.ProjectileNum; i++)
 		{
 			bool isNull = monsterList.Count == 0;
 
@@ -37,7 +40,7 @@ public class PeacockSkill : SkillBase
 			Peacock peacock = Managers.Object.Spawn<Peacock>(Owner.transform.position, 1);
 
 			peacock.SetTarget(target);
-			peacock.SetSpawnInfo(Owner, this, isNull ? Util.GetRandomDir() : Vector2.zero);
+			peacock.SetSpawnInfo(Owner, this, isNull ? Util.GetRandomDir() : Vector2.zero, false);
 	
 			if (!isNull)
 				monsterList.RemoveAt(idx);

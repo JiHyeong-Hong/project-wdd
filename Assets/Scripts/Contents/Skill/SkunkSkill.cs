@@ -6,24 +6,20 @@ using UnityEngine;
 public class SkunkSkill : SkillBase
 {
     public List<int> availableQuadrants = new List<int> { 1, 2, 3, 4 }; // 사용 가능한 사분면 목록
-    public int lastQuadrant = 0; // 마지막으로 선택된 사분면
 
     public override void DoSkill()
     {
-        Vector2 direction = Owner.Direction;
-        direction = Util.RotateVectorByAngle(direction, 45f);        
-        AttackSkunk(direction);
+        if (BreakthroughHelper.Instance.CheckBreakthrough(SkillData.Index))
+            return;
 
-        
-        //for (int i = 2; i <= SkillData.CastCount; ++i)
-        //{
-        //    direction = Util.RotateVectorByAngle(direction, SkillData.CastAngle); // TODO:
-            
-        //}
+        Vector2 direction = Owner.Direction;
+        AttackSkunk(direction);
     }
 
-    private void AttackSkunk(Vector2 direction)
+    public virtual void AttackSkunk(Vector2 direction)
     {
+        List<int> spawnPointList = Util.SelectRandomElements(availableQuadrants, SkillData.ProjectileNum);
+
         float offsetX = (direction.x >= 0) ? -1f : 1f;
         float offsetY = (direction.y >= 0) ? 1f : -1f;
 
@@ -32,8 +28,15 @@ public class SkunkSkill : SkillBase
         if (Mathf.Abs(direction.y) < 0.001f && direction.x < 0)
             offsetY *= -1;
 
-        Skunk skunk = Managers.Object.Spawn<Skunk>(Owner.transform.position + new Vector3(offsetX, offsetY, 0f), SkillData.Projectile);
-        skunk.SetSpawnInfo(Owner, this, direction);
+        for (int i = 0; i < SkillData.ProjectileNum; i++)
+        {
+            Skunk skunk = Managers.Object.Spawn<Skunk>(Owner.transform.position + new Vector3(offsetX, offsetY, 0f), SkillData.ProjectileNum);
+            skunk.quadrant = spawnPointList[0];
+            skunk.SetSpawnInfo(Owner, this, Vector2.up, false);
+            skunk.LookLeft = (direction.x < 0);
+            spawnPointList.RemoveAt(0);
+        }
+
     }
     public override void Clear()
     {

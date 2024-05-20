@@ -19,7 +19,7 @@ public class RocketSkill : SkillBase
 
     private void AttackRocket(float angle)
     {
-        Rocket proj = Managers.Object.Spawn<Rocket>(Owner.transform.position, SkillData.Projectile);
+        Rocket proj = Managers.Object.Spawn<Rocket>(Owner.transform.position, SkillData.ProjectileNum);
         proj.SetSpawnInfo(Owner, this, Util.RotateVectorByAngle(Owner.Direction, angle));
     }
 

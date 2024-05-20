@@ -23,7 +23,7 @@ public class StunBulletSkill : SkillBase
 
         if (Util.CheckTargetInScreen(_target.transform.position) == false)
         {
-            Debug.Log("[StunBulletSkill] Hero not found!");
+            // Debug.Log("[StunBulletSkill] Hero not found!");
             return;
         }
 

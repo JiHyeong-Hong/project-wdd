@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using Data;
-using UnityEngine;
+using static Define;
 
 public abstract class SkillBase
 {
@@ -25,6 +23,10 @@ public abstract class SkillBase
 
         Clear();
         _cooldownTick = SkillData.CoolTime;
+
+        //만렙이면 뽑을 수 있는 스킬목록에서 삭제
+        if (data.Level == MAX_SKILL_LEVEL)
+            Managers.Skill.canPickSkillList.Remove(data.Name);
     }
 
     public void SetPassive(int operatorValue)
@@ -40,7 +42,7 @@ public abstract class SkillBase
         
         _cooldownTick += deltaTime;
         
-        if (_cooldownTick <= SkillData.CoolTime - PassiveHelper.Instance.GetPassiveValue(Define.PassiveSkillStatusType.CoolTimeDown))
+        if (_cooldownTick < SkillData.CoolTime - PassiveHelper.Instance.GetPassiveValue(Define.PassiveSkillStatusType.CoolTimeDown))
             return;
         
         _cooldownTick = 0.0f;

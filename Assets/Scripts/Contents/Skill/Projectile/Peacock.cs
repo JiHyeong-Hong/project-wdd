@@ -1,15 +1,14 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Peacock : Projectile
 {
+	[SerializeField]
 	private Monster target;
-	private Vector2 dir;
+	[SerializeField]
+	private Vector3 dir;
 	private CircleCollider2D col;
-	private float moveSpeed = 5f;
-	public override bool Init()
+
+    public override bool Init()
 	{
 		if (!base.Init())
 			return false;
@@ -29,13 +28,28 @@ public class Peacock : Projectile
 		col.enabled = target == null;
 	}
 
-	protected override void Move()
+    public override void SetSpawnInfo(Creature owner, SkillBase skill, Vector2 direction)
+    {
+        base.SetSpawnInfo(owner, skill, direction);
+    }
+
+	public void SetSpawnInfo (Creature owner, SkillBase skill, Vector2 direction, bool isBTSkill)
+	{
+        if (isBTSkill)
+        {
+            Renderer.sprite = Managers.Resource.Load<Sprite>("Art/PeacockFeather(skil)");
+        }
+
+        SetSpawnInfo(owner, skill, direction);
+    }
+
+    protected override void Move()
 	{
 		if (target != null)
 		{
-			var dir = target.transform.position - transform.position;
+			dir = target.transform.position - transform.position;
 			var position = Vector2.MoveTowards(transform.position,
-				target.transform.position, moveSpeed * Time.deltaTime);
+				target.transform.position, Skill.SkillData.AttackSpeed * Time.deltaTime);
 
 			float angle = Util.VectorToAngle(dir);
 			transform.SetPositionAndRotation(position,Quaternion.Euler(new Vector3(0f, 0f, angle)));
@@ -48,8 +62,9 @@ public class Peacock : Projectile
 		}
 		else
 		{
-			transform.Translate(Vector2.up * (moveSpeed* Time.deltaTime));
+            transform.Translate(Vector3.up * (Skill.SkillData.AttackSpeed * Time.deltaTime));
 		}
+
 		if(!Util.CheckTargetInScreen(transform.position))
 			Managers.Object.Despawn(this);
 	}

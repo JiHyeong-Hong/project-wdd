@@ -47,9 +47,14 @@ public class UI_LevelUp : UI_Popup
         GetText((int)Texts.SecondName).text = skills[1].SkillData.Name;
         GetText((int)Texts.ThirdName).text = skills[2].SkillData.Name;
 
-        GetText((int)Texts.FirstLevel).text = (skills[0].SkillData.Level == 0) ? "New!" : "Lv. " + (skills[0].SkillData.Level + 1);
-        GetText((int)Texts.SecondLevel).text = (skills[1].SkillData.Level == 0) ? "New!" : "Lv. " + (skills[1].SkillData.Level + 1);
-        GetText((int)Texts.ThirdLevel).text = (skills[2].SkillData.Level == 0) ? "New!" : "Lv. " + (skills[2].SkillData.Level + 1);
+
+
+        GetText((int)Texts.FirstLevel).text = 
+            (!Managers.Skill.usingSkillDic[skills[0].SkillData.skillType].Contains(skills[0])) ? "New!" : "Lv. " + (skills[0].SkillData.Level + 1);
+        GetText((int)Texts.SecondLevel).text = 
+            (!Managers.Skill.usingSkillDic[skills[1].SkillData.skillType].Contains(skills[1])) ? "New!" : "Lv. " + (skills[1].SkillData.Level + 1);
+        GetText((int)Texts.ThirdLevel).text = 
+            (!Managers.Skill.usingSkillDic[skills[2].SkillData.skillType].Contains(skills[2])) ? "New!" : "Lv. " + (skills[2].SkillData.Level + 1);
     }
 
     public void OnClickFirst(PointerEventData evt)

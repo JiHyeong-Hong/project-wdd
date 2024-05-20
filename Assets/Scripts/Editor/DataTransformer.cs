@@ -9,6 +9,7 @@ using System;
 using System.Reflection;
 using System.Collections;
 using System.ComponentModel;
+using Unity.VisualScripting;
 
 public class DataTransformer : EditorWindow
 {
@@ -22,7 +23,10 @@ public class DataTransformer : EditorWindow
         ParseExcelDataToJson<SkillDataLoader, SkillData>("Skill");
         ParseExcelDataToJson<ProjectileDataLoader, ProjectileData>("Projectile");
         ParseExcelDataToJson<ItemDataLoader, ItemData>("Item");
-        
+        ParseExcelDataToJson<HpConditionDataLoader, HpConditionData>("HpCondition");
+        ParseExcelDataToJson<PatternPerDataLoader, PatternPerData>("PatternPer");
+        ParseExcelDataToJson<BreakthroughDataLoader, BreakthroughData>("Breakthrough");
+
         Debug.Log("DataTransformer Completed");
     }
 
@@ -41,40 +45,59 @@ public class DataTransformer : EditorWindow
     private static List<LoaderData> ParseExcelDataToList<LoaderData>(string filename) where LoaderData : new()
     {
         List<LoaderData> loaderDatas = new List<LoaderData>();
-        string[] lines = File.ReadAllText($"{Application.dataPath}/Resources/Data/ExcelData/{filename}Data.csv").Split("\n");
-
-        for (int l = 1; l < lines.Length; l++)
+        int errorIndex = 0;
+        try
         {
-            string[] row = lines[l].Replace("\r", "").Split(',');
-            if (row.Length == 0)
-                continue;
-            if (string.IsNullOrEmpty(row[0]))
-                continue;
+            string filePath = $"{Application.dataPath}/Resources/Data/ExcelData/{filename}Data.csv";
 
-            LoaderData loaderData = new LoaderData();
-            var fields = GetFieldsInBase(typeof(LoaderData));
-
-            for (int f = 0; f < fields.Count; f++)
+            if (!File.Exists(filePath))
             {
-                FieldInfo field = loaderData.GetType().GetField(fields[f].Name);
-                Type type = field.FieldType;
-
-                if (type.IsGenericType)
-                {
-                    object value = ConvertList(row[f], type);
-                    field.SetValue(loaderData, value);
-                }
-                else
-                {
-                    object value = ConvertValue(row[f], field.FieldType);
-                    field.SetValue(loaderData, value);
-                }
+                Debug.LogWarning($"파일이 존재하지 않습니다:{filename}");
+                return loaderDatas; // 파일이 없으면 빈 리스트 반환
             }
 
-            loaderDatas.Add(loaderData);
-        }
+            string[] lines = File.ReadAllText(filePath).Split("\n");
 
-        return loaderDatas;
+            for (int l = 1; l < lines.Length; l++)
+            {
+                errorIndex = l;
+                string[] row = lines[l].Replace("\r", "").Split(',');
+                if (row.Length == 0)
+                    continue;
+                if (string.IsNullOrEmpty(row[0]))
+                    continue;
+
+                LoaderData loaderData = new LoaderData();
+                var fields = GetFieldsInBase(typeof(LoaderData));
+
+                for (int f = 0; f < fields.Count; f++)
+                {
+                    FieldInfo field = loaderData.GetType().GetField(fields[f].Name);
+                    Type type = field.FieldType;
+
+                    if (type.IsGenericType)
+                    {
+                        object value = ConvertList(row[f], type);
+                        field.SetValue(loaderData, value);
+                    }
+                    else
+                    {
+                        object value = ConvertValue(row[f], field.FieldType);
+                        field.SetValue(loaderData, value);
+                    }
+                }
+
+                loaderDatas.Add(loaderData);
+            }
+
+            return loaderDatas;
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"파일을 읽는 도중 오류가 발생했습니다: {ex.Message} FileName : {filename} ErrorIndex : {errorIndex} ");
+            throw;
+        }
+        
     }
 
     private static object ConvertValue(string value, Type type)

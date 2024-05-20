@@ -41,6 +41,7 @@ public static class Define
 		Env,
 		Item,
 		Structure,
+		Spawner,
 	}
 
 	public enum ECreatureType
@@ -48,6 +49,7 @@ public static class Define
 		None,
 		Hero,
 		Monster,
+		MiddleBoss,
 		Boss,
 		Npc,
 	}
@@ -60,7 +62,13 @@ public static class Define
 		Attack = 3,
 		Hit = 4,
 		Dead = 5,
-		Pattern = 6,
+		Skill1 = 6,
+		Skill2 = 7,
+		Skill3 = 8,
+		Pattern1 = 9,
+		Pattern2 = 10,
+		Pattern3 = 11,
+		ChangePhase = 12,
 	}
 
 	public enum ELayer
@@ -82,7 +90,7 @@ public static class Define
 	{
 		Active = 1,
 		Passive = 2,
-		Breakthrogh = 3
+		Breakthrough = 3
 	}
 
 	public enum PassiveSkillStatusType
@@ -99,19 +107,46 @@ public static class Define
 		AttackSpeed = 10,
 		AttackRange = 11,
 		DamageCare = 12,
-		CastPer = 13,
+		CastPer = 13
     }
 
+	public enum UIWindowType
+	{
+		None = 0,
+		Loading = 1,
+		Title = 2,
+		Game = 3,
+		Option = 4,
+		Shop = 5,
+		Inventory = 6,
+        SkillLevelUp = 7,
+	}
 
+	public enum UIDialogType
+	{
+        None = 0,
+        MessageBox = 1,
+        YesNoDialog = 2,
+        LevelUpDialog = 3,
+        ShopDialog = 4,
+        InventoryDialog = 5,
+        OptionDialog = 6,
+        LoadingDialog = 7,
+    }
+
+	
+	public const string SKILL_LEVEL_UP_WINDOW = "SkillLevelUpWindow";
+
+    //TODO Eung 테스트용 더미 데이터 - 모든 테이블이만들어지면 필요없는 부분
     public const float DEFAULT_SPEED = 3;
 	public const int MAX_SKILL_LEVEL = 5;
 	public const int MAX_LEVEL = 60;
 
 	public const int HERO_ZOOKEEPER_ID = 100;
 
-	public const int MONSTER_SECURITY1_ID = 411;
-	public const int MONSTER_SECURITY2_ID = 412;
-	public const int MONSTER_SECURITY3_ID = 413;
+	public const int MONSTER_SECURITY1_ID = 201;
+	public const int MONSTER_SECURITY2_ID = 202;
+	public const int MONSTER_SECURITY3_ID = 203;
 
 	// 현재 임시 테스트용. @홍지형 240323
     public const int MONSTER_SHOOTER_ID = 414; // 길리슈터. @홍지형

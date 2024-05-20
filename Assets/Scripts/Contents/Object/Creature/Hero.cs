@@ -1,20 +1,23 @@
 using Data;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using static Define;
-using static Unity.Collections.AllocatorManager;
 
 public class Hero : Creature
 {
-	private Vector2 _moveDir = Vector2.zero;
+    private Vector2 _moveDir = Vector2.zero;
+
+	// jh
+    public Vector2 MoveDir
+    {
+        get { return _moveDir; }
+    }
+	//
 
     #region Stat
 
-	public int Level { get; set; }
+    public int Level { get; set; }
 	public int MaxExp { get; set; }
 	public float ItemAcquireRange { get; set; }
 	public float ResistDisorder { get; set; }
@@ -35,7 +38,15 @@ public class Hero : Creature
 		}
 	}
 
-    private bool isInvincible = false;	//jh
+    private bool isInvincible = false;
+    public bool IsInvincible
+    {
+        get { return isInvincible; }
+        set { isInvincible = value; }
+    }
+
+    public bool isSpeedBoosted = false;
+
 
     #endregion
 
@@ -57,6 +68,9 @@ public class Hero : Creature
 
 		Pivot = Util.FindChild<Transform>(gameObject, "Pivot", true);
 		Destination = Util.FindChild<Transform>(gameObject, "Destination", true);
+
+
+		gameObject.AddComponent<Stats>();
 
 		return true;
 	}
@@ -101,9 +115,18 @@ public class Hero : Creature
 			// for (int i = 0; i < 1; ++i)
 			// 	Managers.Object.Spawn<Monster>(new Vector3(-2f + i, 0f, 0f), Define.MONSTER_SECURITY2_ID);
 
-			for (int i = 0; i < 1; ++i)
-				Managers.Object.Spawn<Monster>(new Vector3(-2f + i, 1f, 0f), Define.MONSTER_SECURITY3_ID);
+			// for (int i = 0; i < 1; ++i)
+			// 	Managers.Object.Spawn<Monster>(new Vector3(-2f + i, 1f, 0f), Define.MONSTER_SECURITY3_ID);
 		}
+		
+		// TODO Eung 스포너 생성 테스트 코드
+		// if (Input.GetKeyDown(KeyCode.Alpha6))
+		// {
+		// 	Debug.Log("Test");
+		// 	int ran = Random.Range(0, Managers.Spawner.spawner_List.Count);
+		// 	
+		// 	Managers.Spawner.spawner_List[ran].Spawn(415);
+		// }
 	}
 	private void HandleOnMoveDirChanged(Vector2 dir)
 	{
@@ -151,10 +174,11 @@ public class Hero : Creature
 	{
 		base.OnDead(attacker, skill);
 
-		SetRigidbodyVelocity(Vector2.zero);
 		Managers.Game.OnMoveDirChanged -= HandleOnMoveDirChanged;
 		Managers.Game.OnJoystickStateChanged -= HandleOnJoystickStateChanged;
+		SetRigidbodyVelocity(Vector2.zero);
 
+		Managers.Game.GameOver();
 	}
 
 	private void LevelUp()
@@ -177,17 +201,26 @@ public class Hero : Creature
 	}
 
     /// jh 부스터 발판 밟았을 시 속도 변화
-    public IEnumerator SpeedBoost(float duration, float multiplier)
+    public IEnumerator SpeedBoost(float targetDistance, float multiplier)
+    //public IEnumerator SpeedBoost(float duration, float multiplier)
     {
         float originalSpeed = MoveSpeed; 
         MoveSpeed *= multiplier; // 속도 증가
 
         isInvincible = true; // 무적 상태 설정
+        isSpeedBoosted = true;
 
-        // duration 시간만큼 대기
-        yield return new WaitForSeconds(duration);
+        Vector3 startPosition = transform.position;
+        float movedDistance = 0;
+
+        while (movedDistance < targetDistance) // 이동 거리가 목표 거리에 도달하면
+        {
+            yield return null; 
+            movedDistance = Vector3.Distance(startPosition, transform.position);
+        }
 
         // 서서히 속도를 원래대로 돌려놓음
+        float duration = 1f; // 일단 테스트용
         float elapsed = 0;
         while (elapsed < duration)
         {
@@ -196,7 +229,58 @@ public class Hero : Creature
             yield return null;
         }
 
-        MoveSpeed = originalSpeed; // 부스트 끝나면 다시 원래 속도로 설정
+        MoveSpeed = originalSpeed; 
+        isInvincible = false;
+        isSpeedBoosted = false;
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (isSpeedBoosted && ((1 << (int)Define.ELayer.Monster) & (1 << collider.gameObject.layer)) != 0)
+        {
+            Rigidbody2D enemyRb = collider.GetComponent<Rigidbody2D>();
+            if (enemyRb != null)
+            {
+                // 플레이어로부터 몬스터까지의 방향을 계산
+                Vector2 blowDirection = (enemyRb.transform.position - transform.position).normalized;
+
+                // 몬스터를 뒤로 밀어내고 약간 위로 향하게...
+                Vector2 force = blowDirection * 10f + Vector2.up * 5f;
+                enemyRb.AddForce(force, ForceMode2D.Impulse);
+
+                // 몬스터가 회전하도록
+                enemyRb.AddTorque(10f, ForceMode2D.Impulse);
+
+                Destroy(collider.gameObject, 2f); // 2초 후 소멸
+            }
+        }
+    }
+
+    public void OnChangeValue(string statName, int add)
+    {
+        switch (statName)
+        {
+            case "Level":
+                Level += add;
+                break;
+            case "MaxExp":
+                MaxExp += add;
+                break;
+            case "ItemAcquireRange":
+                ItemAcquireRange += add;
+                break;
+            case "Exp":
+                Exp += add;
+                break;
+            case "Hp":
+                Hp += add;
+                break;
+            case "MoveSpeed":
+                MoveSpeed += add;
+                break;
+            default:
+                break;
+        }
     }
 
     #endregion

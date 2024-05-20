@@ -12,14 +12,13 @@ public class PoolManager
 
         Stack<Poolable> _poolStack = new Stack<Poolable>();
 
-        public void Init(GameObject original, int count = 5)
+        public void Init(GameObject original)
         {
             Original = original;
             Root = new GameObject().transform;
             Root.name = $"{original.name}_Root";
 
-            for (int i = 0; i < count; i++)
-                Push(Create());
+            // Push(Create());
         }
 
         Poolable Create()
@@ -54,9 +53,9 @@ public class PoolManager
 
             // DontDestroyOnLoad 해제 용도
             if (parent == null)
-                poolable.transform.parent = Managers.Scene.CurrentScene.transform;
+                poolable.transform.SetParent(Root.transform);
 
-            poolable.transform.parent = parent;
+            // poolable.transform.parent = parent;
             poolable.IsUsing = true;
 
             return poolable;
@@ -72,14 +71,14 @@ public class PoolManager
         if (_root == null)
         {
             _root = new GameObject { name = "@Pool_Root" }.transform;
-            Object.DontDestroyOnLoad(_root);
+            // Object.DontDestroyOnLoad(_root);
         }
     }
 
-    public void CreatePool(GameObject original, int count = 5)
+    public void CreatePool(GameObject original)
     {
         Pool pool = new Pool();
-        pool.Init(original, count);
+        pool.Init(original);
         pool.Root.parent = _root;
 
         _pool.Add(original.name, pool);
@@ -93,7 +92,7 @@ public class PoolManager
             GameObject.Destroy(poolable.gameObject);
             return;
         }
-
+        poolable.gameObject.SetActive(false);
         _pool[name].Push(poolable);
     }
 
@@ -102,7 +101,9 @@ public class PoolManager
         if (_pool.ContainsKey(original.name) == false)
             CreatePool(original);
 
-        return _pool[original.name].Pop(parent);
+        Poolable obj = _pool[original.name].Pop(parent);
+        obj.gameObject.SetActive(true);
+        return obj;
     }
 
     public GameObject GetOriginal(string name)

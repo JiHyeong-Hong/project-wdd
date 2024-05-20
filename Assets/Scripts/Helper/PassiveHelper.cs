@@ -1,25 +1,9 @@
 using Data;
 using System;
 using static Define;
+using UnityEngine;
+using System.Collections.Generic;
 
-public struct PassiveSkill
-{
-    public float coolDown;
-    public float farming;
-    public float exp;
-    public float gold;
-    public float duration;
-    public float recovery;
-    public float hp;
-    public float moveSpeed;
-    public float attack;
-    public float attackSpeed;
-    public float attackRange;
-    public float damageCare;
-    public float castPer;
-    public float castSpeed;
-    public float castRange;
-}
 
 public class PassiveHelper
 {
@@ -34,60 +18,18 @@ public class PassiveHelper
         }
     }
 
-    private PassiveSkill passiveSkill = new PassiveSkill();
+    Dictionary<PassiveSkillStatusType, float> passiveSkill = new Dictionary<PassiveSkillStatusType, float>();
 
     public void SetPassive(SkillData skillData, int operatorValue = 1)
     {
         float stateValue = skillData.StatValue * operatorValue;
-        switch ((PassiveSkillStatusType)skillData.StatType)
-        {
-            case PassiveSkillStatusType.CoolTimeDown:
-                passiveSkill.coolDown += stateValue;
-                break;
-            case PassiveSkillStatusType.Farming:
-                passiveSkill.farming += stateValue;
-                break;
-            case PassiveSkillStatusType.Exp:
-                passiveSkill.exp += stateValue;
-                break;
-            case PassiveSkillStatusType.Gold:
-                passiveSkill.gold += stateValue;
-                break;
-            case PassiveSkillStatusType.Duration:
-                passiveSkill.duration += stateValue;
-                break;
-            case PassiveSkillStatusType.Recovery:
-                passiveSkill.recovery += stateValue;
-                break;
-            case PassiveSkillStatusType.Hp:
-                passiveSkill.hp += stateValue;
-                break;
-            case PassiveSkillStatusType.MoveSpeed:
-                passiveSkill.moveSpeed += stateValue;
-                break;
-            case PassiveSkillStatusType.Attack:
-                passiveSkill.attack += stateValue;
-                break;
-            case PassiveSkillStatusType.AttackSpeed:
-                passiveSkill.attackSpeed += stateValue;
-                break;
-            case PassiveSkillStatusType.AttackRange:
-                passiveSkill.attackRange += stateValue;
-                break;
-            case PassiveSkillStatusType.DamageCare:
-                passiveSkill.damageCare += stateValue;
-                break;
-            case PassiveSkillStatusType.CastPer:
-                passiveSkill.castPer += stateValue;
-                break;
-            default:
-                break;
-        }
+        UpdatePassiveSkillValue((PassiveSkillStatusType)skillData.StatType, stateValue, passiveSkill);
     }
 
-    public float GetPassiveValue(PassiveSkillStatusType value)
+    private void UpdatePassiveSkillValue(PassiveSkillStatusType statusType, float stateValue, Dictionary<PassiveSkillStatusType, float> passiveSkill)
     {
-        return (float)passiveSkill.GetType().GetField(value.ToString()).GetValue(passiveSkill);
+        passiveSkill[statusType] = passiveSkill.TryGetValue(statusType, out var existingValue) ? existingValue + stateValue : stateValue;
     }
 
+    public float GetPassiveValue(PassiveSkillStatusType value) => passiveSkill.TryGetValue(value, out float v) ? v : 0;
 }

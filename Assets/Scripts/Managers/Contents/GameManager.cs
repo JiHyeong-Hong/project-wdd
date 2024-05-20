@@ -69,6 +69,27 @@ public class GameManager
             OnJoystickStateChanged?.Invoke(_joystickState);
         }
     }
+
+    public void GameOver()
+    {
+        IsGamePaused = true;
+
+        MessageBoxHelper.ShowMessageBox_TwoButton("GameOver", "Retry?", "Yes", "No", (button, data) =>
+        {
+            if (button == 0)
+            {
+                IsGamePaused = false;
+                Debug.Log("게임 재시작");
+                //Managers.Scene.LoadScene(Define.Scene.Game);
+            }
+            else if (button == 1)
+            {
+                IsGamePaused = false;
+                Debug.Log("게임종료");
+                //Managers.Scene.LoadScene(Define.Scene.Lobby);
+            }
+        }, "StartTimer");
+    }
     #endregion
 
     #region Action
@@ -108,9 +129,8 @@ public class GameManager
             }
             else if(CurrentTime >= 3f && test == BossCountState.Barricade) 
             {
-                //TODO Eung 보스 오브젝트만들어서 생성하면 될듯 - 보스 Spawn으로 바꾸면 될듯
-                
-                Managers.Object.Spawn<Boss>(Managers.Object.Hero.transform.position * 2, Define.MONSTER_SECURITY2_ID);
+                //TODO Eung StageLv 테이블을 만들어서 스테이지별 등장 보스몬스터 넘버를 받아와서 대입하면 될듯 
+                Managers.Object.Spawn<Boss>(Managers.Object.Hero.transform.position * 2, 241);
                 Debug.Log("보스 생성");
                 break;
             }

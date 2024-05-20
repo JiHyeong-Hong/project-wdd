@@ -1,13 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class UIManager
 {
     int _order = 10;
 
+    public Dictionary<Define.UIWindowType, UIWindow> windowDic = new();
+    Stack<MonoBehaviour> windowStack = new Stack<MonoBehaviour>();
     Stack<UI_Popup> _popupStack = new Stack<UI_Popup>();
     UI_Scene _sceneUI = null;
+
+    Dictionary<string, GameObject> _prefabs = new Dictionary<string, GameObject>();
+
+    public GameObject Joystick { get; private set; }
 
     public GameObject Root
     {
@@ -18,6 +23,10 @@ public class UIManager
 				root = new GameObject { name = "@UI_Root" };
             return root;
 		}
+    }
+    public void SetJoyStick(GameObject joyStick)
+    {
+        Joystick = joyStick;
     }
 
     public void SetCanvas(GameObject go, bool sort = true)
@@ -104,6 +113,45 @@ public class UIManager
         go.transform.SetParent(Root.transform);
 
 		return popup;
+    }
+
+    public T ShowMessageBox<T>(string name = null) where T : MonoBehaviour
+    {
+        if (string.IsNullOrEmpty(name))
+            name = typeof(T).Name;
+
+        GameObject go = Managers.Resource.Instantiate($"UI/Common/{name}", _sceneUI.transform);
+        T messageBox = Util.GetOrAddComponent<T>(go);
+       
+        return messageBox;
+    }
+
+    public T ShowWindowUI<T>(Define.UIWindowType type) where T : UIWindow
+    {
+        if (!windowDic.ContainsKey(type))
+        {
+            GameObject go = Managers.Resource.Instantiate($"UI/Window/{typeof(T).Name}", _sceneUI.transform);
+            T window = Util.GetOrAddComponent<T>(go);
+            windowDic.Add(type, window);
+        }
+
+        return windowDic[type] as T;
+    }
+
+    public T ShowWindowUI<T>(string name = null) where T : MonoBehaviour
+    {
+        // 작업중 05.03 
+        // window가 dictionary에 없으면 생성작업중
+        if (string.IsNullOrEmpty(name))
+            name = typeof(T).Name;
+
+        GameObject go = Managers.Resource.Instantiate($"Window/{name}", _sceneUI.transform);
+        T window = Util.GetOrAddComponent<T>(go);
+        windowStack.Push(window);
+
+        //go.transform.SetParent(Root.transform);
+
+        return window;
     }
 
     public void ClosePopupUI(UI_Popup popup)

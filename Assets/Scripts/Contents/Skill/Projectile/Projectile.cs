@@ -1,3 +1,4 @@
+using Data;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,16 +31,24 @@ public class Projectile : BaseObject
 		Renderer.sortingOrder = SortingLayers.PROJECTILE;
 	}
 
-	public virtual void SetSpawnInfo(Creature owner, SkillBase skill, Vector2 direction)
+    public void SetInfo(Creature owner, SkillBase skill)
+    {
+		Owner = owner;
+		Skill = skill;
+    }
+
+    public virtual void SetSpawnInfo(Creature owner, SkillBase skill, Vector2 direction)
 	{
 		Owner = owner;
 		Skill = skill;
 
-		duration = skill.SkillData.Duration + PassiveHelper.Instance.GetPassiveValue(Define.PassiveSkillStatusType.Duration);
-
-        Debug.Log($"[Projectile] SetSpawnInfo called. Duration set to: {duration}, SkillData Duration: {skill.SkillData.Duration}");
-
-        float angle = Util.VectorToAngle(direction);
+		if (skill != null)
+		{
+			duration = skill.SkillData.Duration + PassiveHelper.Instance.GetPassiveValue(Define.PassiveSkillStatusType.Duration);
+			Debug.Log($"[Projectile] SetSpawnInfo called. Duration set to: {duration}, SkillData Duration: {skill.SkillData.Duration}");
+		}
+		
+		float angle = Util.VectorToAngle(direction);
 		transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
 	}
 	
