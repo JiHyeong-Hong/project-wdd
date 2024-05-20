@@ -167,6 +167,28 @@
       "MoveSpeed": 0.0,
       "ResistDisorder": 0.0,
       "AnimatorDataID": null
+    },
+    {
+      "Type": 4,
+      "AttackType": 1,
+      "CoolTime": 40,
+      "ProjectileID": 0,
+      "ProjectileNum": 0,
+      "CastAngle": 0,
+      "MinStance": 0,
+      "MaxStane": 0,
+      "KnockbackPower": 100,
+      "ConditionType": 0,
+      "SkillLvDown": 1,
+      "ConditionHitType": 3,
+      "KnockbackPowerHitType": 0,
+      "Index": 261,
+      "DescriptionTextID": "Tourists",
+      "MaxHp": 0,
+      "Atk": 7,
+      "MoveSpeed": 0.5,
+      "ResistDisorder": 0.0,
+      "AnimatorDataID": null
     }
   ]
 }
