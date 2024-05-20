@@ -13,10 +13,6 @@ public class DamageText : MonoBehaviour
     void Awake()
     {
         textMesh = GetComponent<TextMeshPro>();
-        if (textMesh == null)
-        {
-            Debug.LogError("TextMeshPro component is missing.");
-        }
     }
 
     void Update()
@@ -32,7 +28,6 @@ public class DamageText : MonoBehaviour
     {
         if (textMesh == null)
         {
-            Debug.LogError("TextMeshPro component is not set.");
             return;
         }
         textMesh.text = damage.ToString(); // 데미지 값을 텍스트로 설정

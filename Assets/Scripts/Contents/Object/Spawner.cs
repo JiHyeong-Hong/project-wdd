@@ -33,17 +33,6 @@ public class Spawner : BaseObject
         if (monster != null)
         {
             monster.SetDamageTextPrefab(damageTextPrefab);
-            Debug.Log("SetDamageTextPrefab called, damageTextPrefab: " + damageTextPrefab);
-
-            // 추가적인 확인
-            if (monster.GetComponent<Monster>().damageTextPrefab == null)
-            {
-                Debug.LogError("Failed to set damageTextPrefab");
-            }
-        }
-        else
-        {
-            Debug.LogError("Failed to spawn monster");
         }
     }
 }
