@@ -46,13 +46,12 @@ public class LocalizationManager
 
         LoadLanguageFile(cultureInfo.TwoLetterISOLanguageName);
 
-        //PlayerPrefs.SetInt("Language", (int)currentLanguageCode);
     }
 
     private void LoadLanguageFile(string fileName)
     {
         string filePath = Path.Combine(Application.streamingAssetsPath, "Languages/" + fileName + ".txt");
-        Debug.Log(filePath);
+        //Debug.Log(filePath);
         if (File.Exists(filePath))
         {
             string[] lines = File.ReadAllLines(filePath);

@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class ResourceManager
 {
+    private static ResourceManager instance;
+    public static ResourceManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new ResourceManager();
+            }
+            return instance;
+        }
+    }
+
     public T Load<T>(string path) where T : Object
     {
         if (typeof(T) == typeof(GameObject))

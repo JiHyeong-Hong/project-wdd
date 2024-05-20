@@ -6,10 +6,12 @@ public static class Define
 {
 	public enum EScene
 	{
-		Unknown,
+        Unknown,
 		TitleScene,
 		GameScene,
-	}
+        Lobby,
+
+    }
 
 	public enum EUIEvent
 	{

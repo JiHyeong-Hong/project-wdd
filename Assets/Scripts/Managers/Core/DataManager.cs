@@ -20,8 +20,10 @@ public class DataManager
     public Dictionary<int, Data.HpConditionData> HpConditionDic { get; private set; } = new Dictionary<int, Data.HpConditionData>();
     public Dictionary<int, Data.PatternPerData> PatternPerDic { get; private set; } = new Dictionary<int, Data.PatternPerData>();
     public Dictionary<int ,Data.BreakthroughData> BreakthroughDic { get; private set; } = new Dictionary<int, Data.BreakthroughData>();
+    public Dictionary<int, Data.StageData> StageDataDic { get; private set; } = new Dictionary<int, Data.StageData>();
 
-
+    //Test
+    public Dictionary<int, Data.Stage> StageDic { get; private set; } = new Dictionary<int, Data.Stage>();
 
     public void Init()
     {
@@ -34,6 +36,9 @@ public class DataManager
         HpConditionDic = LoadJson<Data.HpConditionDataLoader, int, Data.HpConditionData>("HpConditionData").MakeDict();
         PatternPerDic = LoadJson<Data.PatternPerDataLoader, int, Data.PatternPerData>("PatternPerData").MakeDict();
         BreakthroughDic = LoadJson<Data.BreakthroughDataLoader, int, Data.BreakthroughData>("BreakthroughData").MakeDict();
+        //StageDataDic = LoadJson<Data.StageDataLoader, int, Data.StageData>("StageData").MakeDict();
+
+        StageDic = LoadJson<Data.StageLoader, int, Data.Stage>("StageData").MakeDict();
     }
 
     Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>
