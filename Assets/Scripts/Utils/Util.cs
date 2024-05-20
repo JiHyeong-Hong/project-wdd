@@ -269,4 +269,26 @@ public static class Util
         return screenPos;
     }
 
+    public static IEnumerator FadeOut(SpriteRenderer spriteRenderer, float duration, System.Action onComplete = null)
+	{
+        Color originalColor = spriteRenderer.color;
+        float startAlpha = originalColor.a;
+        float time = 0;
+
+        while (time < duration)
+        {
+            float t = time / duration;
+            float alpha = Mathf.Lerp(startAlpha, 0, t);
+
+            spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
+
+            time += Time.deltaTime;
+			//Debug.Log(time);
+            yield return null;
+        }
+        spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0);
+
+        onComplete?.Invoke();
+    }
+
 }
