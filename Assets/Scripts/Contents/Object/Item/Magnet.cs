@@ -12,7 +12,7 @@ public class Magnet : BaseObject
         if (!base.Init())
             return false;
 
-        ObjectType = Define.EObjectType.Item;
+        //ObjectType = Define.EObjectType.Item;
 
         return true;
     }

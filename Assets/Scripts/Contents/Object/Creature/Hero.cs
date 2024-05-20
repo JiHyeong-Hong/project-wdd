@@ -7,13 +7,10 @@ using static Define;
 public class Hero : Creature
 {
     private Vector2 _moveDir = Vector2.zero;
-
-	// 
     public Vector2 MoveDir
     {
         get { return _moveDir; }
     }
-	//
 
     #region Stat
 

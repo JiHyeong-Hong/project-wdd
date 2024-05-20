@@ -10,7 +10,7 @@ using Random = UnityEngine.Random;
 
 public class Monster : Creature
 {
-    protected GameObject damageTextPrefab; // 데미지 텍스트 프리팹
+    public GameObject damageTextPrefab; // 데미지 텍스트 프리팹
     public void SetDamageTextPrefab(GameObject prefab)
     {
         damageTextPrefab = prefab;
@@ -93,7 +93,7 @@ public class Monster : Creature
         }
 
         // TODO Eung
-        target.OnDamaged(this, null);
+        //target.OnDamaged(this, null);
     }
 
     #region Battle
@@ -101,10 +101,38 @@ public class Monster : Creature
     {
         base.OnDamaged(attacker, skill);
 
+        // damageTextPrefab이 null인 경우 초기화 시도
+        if (damageTextPrefab == null)
+        {
+            //Debug.LogError("DamageTextPrefab is not set in OnDamaged");
+            // 프리팹이 설정되지 않은 경우 기본값으로 설정하거나 오류 처리
+            damageTextPrefab = Resources.Load<GameObject>("Prefabs/DamageText");
+            if (damageTextPrefab == null)
+            {
+                Debug.LogError("Failed to load DamageTextPrefab from Resources");
+                return;
+            }
+        }
+
         // 데미지 텍스트 표시
         float damage = CalculateDamage(attacker, skill); // 계산된 데미지를 가져옴
-        ShowDamageText(damage);
         Debug.Log("OnDamaged called, damageTextPrefab: " + damageTextPrefab);
+
+        // damageTextPrefab이 null인 경우 초기화 시도
+        if (damageTextPrefab == null)
+        {
+            Debug.LogError("DamageTextPrefab is not set in OnDamaged");
+            // 프리팹이 설정되지 않은 경우 기본값으로 설정하거나 오류 처리
+            damageTextPrefab = Managers.Resource.Load<GameObject>("Prefabs/DamageText");
+            if (damageTextPrefab == null)
+            {
+                Debug.LogError("Failed to load DamageTextPrefab");
+                return;
+            }
+        }
+
+        ShowDamageText(damage);
+
     }
 
     private float CalculateDamage(BaseObject attacker, SkillBase skill)
@@ -144,7 +172,7 @@ public class Monster : Creature
     {
         if (damageTextPrefab == null)
         {
-            Debug.LogError("DamageTextPrefab is not set");
+            //Debug.LogError("DamageTextPrefab is not set");
             return;
         }
 
@@ -155,9 +183,17 @@ public class Monster : Creature
         // 텍스트 오브젝트의 위치를 머리 위로 이동
         textObject.transform.localPosition = new Vector3(0, 0, 0); // 몬스터의 머리 위
 
+
         // 데미지 텍스트 설정 및 표시
         DamageText damageText = textObject.GetComponent<DamageText>();
-        damageText.ShowDamage(damage);
+        if (damageText != null)
+        {
+            damageText.ShowDamage(damage);
+        }
+        else
+        {
+            Debug.LogError("DamageText component is missing.");
+        }
     }
 
     public override void OnDead(BaseObject attacker, SkillBase skill)
