@@ -216,7 +216,22 @@ public class SkillManager
 		BreakthroughHelper.Instance.GetBreakthroughBaseSkill(skillData.skillType, skillData.Index);
 	}
 
-	public void BreakthroughAdd(int breakthroughIndex)
+	public void AddActiveSkill(string skillName)
+    {
+		foreach (SkillBase item in usingSkillDic[SkillType.Active])
+		{
+			if (item.SkillData.Name.Equals(skillName))
+			{
+                // 같은 스킬이 이미 있음 -> 스킬 레벨업
+                item.LevelUp(allSkillDic[skillName][item.SkillData.Level].SkillData);
+                return;
+            }
+        }
+
+		AddSkill(allSkillDic[skillName][0].SkillData);
+    }
+
+    public void BreakthroughAdd(int breakthroughIndex)
 	{
         var list = usingSkillDic[SkillType.Breakthrough];
 		SkillData skillData= allSkillDic[Managers.Data.BreakthroughDic[breakthroughIndex].Name][0].SkillData;
