@@ -15,6 +15,12 @@ public class MessageBox : SingletonMonoBehaviour<MessageBox>
         ThreeButton
     }
 
+    public enum PopupType
+    {
+        Back,
+        Retry
+    }
+
 
     [SerializeField]
     private TMP_Text titleText;
@@ -24,14 +30,16 @@ public class MessageBox : SingletonMonoBehaviour<MessageBox>
     [SerializeField]
     private GameObject Timer;
 
+    [SerializeField]
+    private GameObject BackPopup;
+    [SerializeField]
+    private GameObject RetryPopup;
 
 
     [SerializeField]
     private Button buttonOne;
     [SerializeField]
     private Button buttonTwo;
-    [SerializeField]
-    private Button buttonThree;
 
     string data;
     #region btnText
@@ -42,7 +50,7 @@ public class MessageBox : SingletonMonoBehaviour<MessageBox>
         {
             if (buttonOneText == null)
             {
-                buttonOneText = buttonOne.transform.Find("Description").GetComponent<TMP_Text>();
+                buttonOneText = buttonOne.transform.Find("Description")?.GetComponent<TMP_Text>();
             }
             return buttonOneText;
         }
@@ -54,21 +62,9 @@ public class MessageBox : SingletonMonoBehaviour<MessageBox>
         {
             if (buttonTwoText == null)
             {
-                buttonTwoText = buttonTwo.transform.Find("Description").GetComponent<TMP_Text>();
+                buttonTwoText = buttonTwo.transform.Find("Description")?.GetComponent<TMP_Text>();
             }
             return buttonTwoText;
-        }
-    }
-    private TMP_Text buttonThreeText;
-    private TMP_Text ButtonThreeText
-    {
-        get
-        {
-            if (buttonThreeText == null)
-            {
-                buttonThreeText = buttonThree.transform.Find("Description").GetComponent<TMP_Text>();
-            }
-            return buttonThreeText;
         }
     }
     #endregion
@@ -98,18 +94,6 @@ public class MessageBox : SingletonMonoBehaviour<MessageBox>
             return buttonTwoImage;
         }
     }
-    private Image buttonThreeImage;
-    public Image ButtonThreeImage
-    {
-        get
-        {
-            if (buttonThreeImage == null)
-            {
-                buttonThreeImage = buttonThree.transform.Find("Image").GetComponent<Image>();
-            }
-            return buttonThreeImage;
-        }
-    }
 
     #endregion
 
@@ -124,16 +108,14 @@ public class MessageBox : SingletonMonoBehaviour<MessageBox>
     {
         buttonOneText = null;
         buttonTwoText = null;
-        buttonThreeText = null;
         buttonOneImage = null;
         buttonTwoImage = null;
-        buttonThreeImage = null;
     }
 
     [ContextMenu("Test")]
     public void Test()
     {
-        Show("hi", "isTest", Mode.TwoButton, "1", testSP, "2", null, "3", null, (button, data) =>
+        Show("hi", "isTest", Mode.TwoButton, PopupType.Retry, "1", testSP, "2", null, "3", null, (button, data) =>
         {
             if (button == 0)
             {
@@ -160,7 +142,7 @@ public class MessageBox : SingletonMonoBehaviour<MessageBox>
         //});
     }
 
-    public void Show(string title, string text, Mode mode,
+    public void Show(string title, string text, Mode mode, MessageBox.PopupType popupType,
                                 string btnText1, Sprite btnSprite1 = null, 
                                 string btnText2 = "", Sprite btnSprite2 = null, 
                                 string btnText3 = "", Sprite btnSprite3 = null,
@@ -168,55 +150,67 @@ public class MessageBox : SingletonMonoBehaviour<MessageBox>
     {
         gameObject.SetActive(true);
 
+        switch (popupType)
+        {
+            case PopupType.Back:
+                BackPopup.SetActive(true);
+                RetryPopup.SetActive(false);
+
+                buttonOne = BackPopup.transform.Find("BrownButtonOne").GetComponent<Button>();
+                buttonTwo = BackPopup.transform.Find("BrownButtonTwo").GetComponent<Button>();
+                Timer.SetActive(false);
+
+                break;
+            case PopupType.Retry:
+                BackPopup.SetActive(false);
+                RetryPopup.SetActive(true);
+                Debug.Log(RetryPopup.transform.Find("BrownButtonOne"));
+                buttonOne = RetryPopup.transform.Find("BrownButtonOne").GetComponent<Button>();
+                buttonTwo = RetryPopup.transform.Find("BrownButtonTwo").GetComponent<Button>();
+                Timer.SetActive(true);
+
+                break;
+            default:
+                break;
+        }
+
+
         switch (mode)
         {
             case Mode.OneButton:
                 buttonOne.gameObject.SetActive(true);
                 buttonTwo.gameObject.SetActive(false);
-                buttonThree.gameObject.SetActive(false);
                 break;
             case Mode.TwoButton:
                 buttonOne.gameObject.SetActive(true);
                 buttonTwo.gameObject.SetActive(true);
-                buttonThree.gameObject.SetActive(false);
 
                 titleText.text = title;
                 messageText.text = text;
 
-                ButtonOneText.text = btnText1;
-                ButtonTwoText.text = btnText2;
+                if (ButtonOneText != null) ButtonOneText.text = btnText1;
+                if (ButtonTwoText != null) ButtonTwoText.text = btnText2;
 
+                //if(btnSprite1 == null)
+                //{
+                //    Debug.Log(ButtonOneImage.name);
+                //    ButtonOneImage.gameObject.SetActive(false);
+                //}
+                //else
+                //{
+                //    ButtonOneImage.gameObject.SetActive(true);
+                //    ButtonOneImage.sprite = btnSprite1;
+                //}
 
-
-                if(btnSprite1 == null)
-                {
-                    Debug.Log(ButtonOneImage.name);
-                    ButtonOneImage.gameObject.SetActive(false);
-                }
-                else
-                {
-                    ButtonOneImage.gameObject.SetActive(true);
-                    ButtonOneImage.sprite = btnSprite1;
-                }
-
-                if(btnSprite2 == null)
-                {
-                    ButtonTwoImage.gameObject.SetActive(false);
-                }
-                else
-                {
-                    ButtonTwoImage.gameObject.SetActive(true);
-                    ButtonTwoImage.sprite = btnSprite2;
-                }
-
-
-
-
-                break;
-            case Mode.ThreeButton:
-                buttonOne.gameObject.SetActive(true);
-                buttonTwo.gameObject.SetActive(true);
-                buttonThree.gameObject.SetActive(true);
+                //if(btnSprite2 == null)
+                //{
+                //    ButtonTwoImage.gameObject.SetActive(false);
+                //}
+                //else
+                //{
+                //    ButtonTwoImage.gameObject.SetActive(true);
+                //    ButtonTwoImage.sprite = btnSprite2;
+                //}
                 break;
             default:
                 break;
@@ -242,7 +236,7 @@ public class MessageBox : SingletonMonoBehaviour<MessageBox>
         while (limitTime >= 0)
         {
             Debug.Log(limitTime);
-            Timer.transform.Find("Time").GetComponent<TMP_Text>().text = limitTime.ToString();
+            Timer.transform.Find("TimerCount").GetComponent<TMP_Text>().text = limitTime.ToString();
             yield return YieldInstructionCache.WaitForSecondsRealtime(1);
 
             limitTime--;

@@ -291,4 +291,23 @@ public static class Util
         onComplete?.Invoke();
     }
 
+
+    public static IEnumerator FadeOut(CanvasGroup canvasGroup, float duration, System.Action onComplete = null)
+    {
+		float startAlpha = canvasGroup.alpha;
+        float rate = 1.0f / duration;
+        float progress = 0.0f;
+
+        while (progress < 1.0f)
+        {
+            canvasGroup.alpha = Mathf.Lerp(startAlpha, 0, progress);
+            progress += rate * Time.deltaTime;
+            yield return null;
+        }
+
+        canvasGroup.alpha = 0; // 마지막에 완전히 투명하게 설정
+
+        onComplete?.Invoke();
+    }
+
 }
