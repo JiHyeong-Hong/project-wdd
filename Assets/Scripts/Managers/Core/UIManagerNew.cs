@@ -1,11 +1,37 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using static Define;
 
 public class UIManagerNew : SingletonMonoBehaviour<UIManagerNew>
 {
+    private Dictionary<UIWindowType, WindowBase> windowCache = new Dictionary<UIWindowType, WindowBase>();
     private UIStackManager<WindowBase> windowManager = new UIStackManager<WindowBase>();
     private UIStackManager<PopupBase> popupManager = new UIStackManager<PopupBase>();
+
+
+    private void CacheAllWindows()
+    {
+        foreach (UIWindowType windowType in System.Enum.GetValues(typeof(UIWindowType)))
+        {
+            GameObject windowPrefab = ResourceManager.Instance.Load($"UI/Windows/{windowType}");
+            /*Managers.Resource.Load($"UI/Windows/{windowType}");*/
+            if (windowPrefab != null)
+            {
+                GameObject windowInstance = Instantiate(windowPrefab, transform);
+                windowInstance.SetActive(false); // 처음에는 비활성화 상태로 둡니다.
+                WindowBase windowBase = windowInstance.GetComponent<WindowBase>();
+                if (windowBase != null)
+                {
+                    windowCache[windowType] = windowBase;
+                }
+            }
+            else
+            {
+                Debug.LogError($"Failed to load window prefab for {windowType}");
+            }
+        }
+    }
 
     public T ShowWindow<T>(string name = null) where T : WindowBase
     {
@@ -47,19 +73,24 @@ public class UIStackManager<T> where T : UIBase
         if (string.IsNullOrEmpty(name))
             name = typeof(U).Name;
 
-        GameObject go = Managers.Resource.Instantiate($"{pathPrefix}{name}", UIManagerNew.Instance.transform);
-        U uiElement = Util.GetOrAddComponent<U>(go);
+        GameObject uiObject = Managers.Resource.Instantiate($"{pathPrefix}{name}", UIManagerNew.Instance.transform);
+        U uiElement = Util.GetOrAddComponent<U>(uiObject);
 
-        if (uiStack.Count > 0)
-        {
-            T currentUI = uiStack.Peek();
-            currentUI.Hide();
-        }
+        HideCurrentTopUI();
 
         uiStack.Push(uiElement);
         uiElement.Show();
 
         return uiElement;
+    }
+
+    private void HideCurrentTopUI()
+    {
+        if (uiStack.Count > 0)
+        {
+            T currentUI = uiStack.Peek();
+            currentUI.Hide();
+        }
     }
 
     public void HideCurrentUI()
@@ -69,11 +100,16 @@ public class UIStackManager<T> where T : UIBase
             T currentUI = uiStack.Pop();
             currentUI.Hide();
 
-            if (uiStack.Count > 0)
-            {
-                T previousUI = uiStack.Peek();
-                previousUI.Show();
-            }
+            ShowPreviousTopUI();
+        }
+    }
+
+    private void ShowPreviousTopUI()
+    {
+        if (uiStack.Count > 0)
+        {
+            T previousUI = uiStack.Peek();
+            previousUI.Show();
         }
     }
 

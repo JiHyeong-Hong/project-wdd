@@ -2,18 +2,52 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourceManager
+public class ResourceManager : SingletonMonoBehaviour<ResourceManager>
 {
-    private static ResourceManager instance;
-    public static ResourceManager Instance
+    private Dictionary<string, Object> loadedResources = new Dictionary<string, Object>();
+
+    public void CheckAllLoadedResources()
     {
-        get
+        foreach (var item in loadedResources)
         {
-            if (instance == null)
-            {
-                instance = new ResourceManager();
-            }
-            return instance;
+            Debug.Log(item);
+        }
+    }
+
+    public GameObject Load(string path)
+    {
+        GameObject prefab = Resources.Load<GameObject>(path);
+        if (prefab == null)
+        {
+            Debug.LogError($"Prefab not found at path: {path}");
+        }
+        return prefab;
+    }
+
+    public void LoadResource<T>(string path) where T : Object
+    {
+        T resource = Resources.Load<T>(path);
+        if (resource != null)
+        {
+            loadedResources[path] = resource;
+            Debug.Log($"Resource loaded: {path}");
+        }
+        else
+        {
+            Debug.LogError($"Failed to load resource: {path}");
+        }
+    }
+
+    public T GetResource<T>(string path) where T : Object
+    {
+        if (loadedResources.ContainsKey(path))
+        {
+            return loadedResources[path] as T;
+        }
+        else
+        {
+            Debug.LogError($"Resource not found: {path}");
+            return null;
         }
     }
 
