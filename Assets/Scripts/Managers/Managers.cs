@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -47,7 +47,11 @@ public class Managers : MonoBehaviour
         Init();
         StartCoroutine(s_instance._skill.CoInit());
         //TODO Eung 보스 출현 카운트
-        // StartCoroutine(Game.BossCount());        
+
+        FootboardManager();
+        s_instance._escapePattern.SpawnEscapePattern(); // @홍지형, 테스트용
+        // StartCoroutine(Game.BossCount());
+
     }
 
     public bool boss;
@@ -89,5 +93,11 @@ public class Managers : MonoBehaviour
             // s_instance._escapePattern.Init();            
             // s_instance._spawner.Init();
         }
+    }
+
+    void FootboardManager()
+    {
+        GameObject footboardManager = new GameObject("FootboardManager");
+        footboardManager.AddComponent<Footboard>();
     }
 }

@@ -10,7 +10,14 @@ using Random = UnityEngine.Random;
 
 public class Monster : Creature
 {
+    public GameObject damageTextPrefab; // 데미지 텍스트 프리팹
+    public void SetDamageTextPrefab(GameObject prefab)
+    {
+        damageTextPrefab = prefab;
+    }
+
     #region Stat
+
     public int DropItemID { get; set; }
     public int DropPersent { get; set; }
     #endregion
@@ -85,13 +92,91 @@ public class Monster : Creature
         }
 
         // TODO Eung
-        target.OnDamaged(this, null);
+        //target.OnDamaged(this, null);
     }
 
     #region Battle
     public override void OnDamaged(BaseObject attacker, SkillBase skill)
     {
         base.OnDamaged(attacker, skill);
+
+        if (damageTextPrefab == null)
+        {
+            damageTextPrefab = Resources.Load<GameObject>("Prefabs/DamageText");
+            if (damageTextPrefab == null)
+            {
+                return;
+            }
+        }
+
+        // 데미지 텍스트 표시
+        float damage = CalculateDamage(attacker, skill); // 계산된 데미지를 가져옴
+
+        // damageTextPrefab이 null인 경우 초기화 시도
+        if (damageTextPrefab == null)
+        {
+            damageTextPrefab = Managers.Resource.Load<GameObject>("Prefabs/DamageText");
+            if (damageTextPrefab == null)
+            {
+                return;
+            }
+        }
+        ShowDamageText(damage);
+    }
+
+    private float CalculateDamage(BaseObject attacker, SkillBase skill)
+    {
+        if (attacker.IsValid() == false)
+            return 0;
+
+        Creature creature = attacker as Creature;
+        Projectile projectile = null;
+
+        if (creature == null)
+        {
+            projectile = attacker as Projectile;
+        }
+
+        if (creature == null && projectile == null)
+            return 0;
+
+        float finalDamage = 0;
+
+        if (skill == null)
+        {
+            if (creature != null)
+                finalDamage = creature.Atk;
+            else
+                finalDamage = projectile.ProjectileData.ContactDmg;
+        }
+        else if (CreatureType == ECreatureType.Hero)
+            finalDamage = skill.SkillData.Damage + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Attack);
+        else if (CreatureType == ECreatureType.Monster || CreatureType == ECreatureType.MiddleBoss || CreatureType == ECreatureType.Boss)
+            finalDamage = skill.SkillData.Damage + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Attack);
+
+        return finalDamage;
+    }
+
+    private void ShowDamageText(float damage)
+    {
+        if (damageTextPrefab == null)
+        {
+            return;
+        }
+
+        // 데미지 텍스트 프리팹을 인스턴스화하여 현재 몬스터 위치에 표시
+        GameObject textObject = Instantiate(Managers.Resource.Load<GameObject>("Prefabs/DamageText"), transform.position, Quaternion.identity);
+        // 데미지 텍스트를 몬스터의 자식 오브젝트로 설정
+        textObject.transform.SetParent(transform);
+        // 텍스트 오브젝트의 위치를 머리 위로 이동
+        textObject.transform.localPosition = new Vector3(0, 0, 0); // 몬스터의 머리 위
+
+        // 데미지 텍스트 설정 및 표시
+        DamageText damageText = textObject.GetComponent<DamageText>();
+        if (damageText != null)
+        {
+            damageText.ShowDamage(damage);
+        }
     }
 
     public override void OnDead(BaseObject attacker, SkillBase skill)

@@ -55,7 +55,7 @@ public class GhillieShooter : Monster
         // 매초 발사 대기
         for (int i = 0; i < 3; i++)
         {
-            Debug.Log("[길리슈터] 조준 중... " + (i + 1) + "초 경과");
+            //Debug.Log("[길리슈터] 조준 중... " + (i + 1) + "초 경과");
             yield return new WaitForSeconds(1f);
         }
         StartCoroutine(Fire());
@@ -73,7 +73,7 @@ public class GhillieShooter : Monster
     IEnumerator Fire()
     {       
         // 투사체 발사
-        Debug.Log("[길리슈터] 발사!");
+        //Debug.Log("[길리슈터] 발사!");
         
         // 마취총알 클래스 생성
         Vector2 direction = (_hero.transform.position - this.transform.position).normalized;
