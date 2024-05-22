@@ -74,7 +74,7 @@ public class GameManager
     {
         IsGamePaused = true;
 
-        MessageBoxHelper.ShowMessageBox_TwoButton("GameOver", "Retry?", "Yes", "No", (button, data) =>
+        MessageBoxHelper.ShowMessageBox_TwoButton("GameOver", "Retry?", "Yes", "No", MessageBox.PopupType.Retry, (button, data) =>
         {
             if (button == 0)
             {
@@ -86,6 +86,14 @@ public class GameManager
             {
                 IsGamePaused = false;
                 Debug.Log("게임종료");
+
+                MessageBoxHelper.ShowMessageBox_TwoButton("게임종료", "신뢰?", "전투포기", "계속하기", MessageBox.PopupType.Back, (button, data) =>
+                {
+                    // 기능 구현
+
+                }, "");
+
+
                 //Managers.Scene.LoadScene(Define.Scene.Lobby);
             }
         }, "StartTimer");

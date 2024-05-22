@@ -14,20 +14,25 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
 
                 if (instance == null)
                 {
-                    GameObject obj = new GameObject(typeof(T).Name);
+                    GameObject obj = new GameObject("@"+ typeof(T).Name);
                     instance = obj.AddComponent<T>();
                 }
+
+                (instance as SingletonMonoBehaviour<T>)?.Init();
             }
 
             return instance;
         }
     }
 
+    protected virtual void Init() { }
+
     private void Awake()
     {
         if (instance == null)
         {
             instance = this as T;
+            gameObject.transform.SetParent(Managers.Instance.transform);
             DontDestroyOnLoad(gameObject);
         }
         else

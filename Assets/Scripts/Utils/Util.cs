@@ -269,4 +269,45 @@ public static class Util
         return screenPos;
     }
 
+    public static IEnumerator FadeOut(SpriteRenderer spriteRenderer, float duration, System.Action onComplete = null)
+	{
+        Color originalColor = spriteRenderer.color;
+        float startAlpha = originalColor.a;
+        float time = 0;
+
+        while (time < duration)
+        {
+            float t = time / duration;
+            float alpha = Mathf.Lerp(startAlpha, 0, t);
+
+            spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
+
+            time += Time.deltaTime;
+			//Debug.Log(time);
+            yield return null;
+        }
+        spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0);
+
+        onComplete?.Invoke();
+    }
+
+
+    public static IEnumerator FadeOut(CanvasGroup canvasGroup, float duration, System.Action onComplete = null)
+    {
+		float startAlpha = canvasGroup.alpha;
+        float rate = 1.0f / duration;
+        float progress = 0.0f;
+
+        while (progress < 1.0f)
+        {
+            canvasGroup.alpha = Mathf.Lerp(startAlpha, 0, progress);
+            progress += rate * Time.deltaTime;
+            yield return null;
+        }
+
+        canvasGroup.alpha = 0; // 마지막에 완전히 투명하게 설정
+
+        onComplete?.Invoke();
+    }
+
 }

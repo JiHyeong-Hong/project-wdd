@@ -20,7 +20,6 @@ public class GameScene : BaseScene
         Managers.Spawner.Init();
         // StartCoroutine(Managers.Spawner.Spawn()); // 홍지형 임시.
 
-        Managers.EscapePattern.Init();
         Managers.EscapePattern.SpawnEscapePattern();
 
         //for (int i = 0; i < 5; ++i)

@@ -24,6 +24,21 @@ public class UIManager
             return root;
 		}
     }
+
+    public Transform mainCanvas;
+    public Transform MainCanvas
+    {
+        get
+        {
+            if (mainCanvas == null)
+            {
+                mainCanvas = Root.transform.GetComponentInChildren<Canvas>().transform;
+            }
+            return mainCanvas;
+        }
+    }
+
+
     public void SetJoyStick(GameObject joyStick)
     {
         Joystick = joyStick;
@@ -120,9 +135,11 @@ public class UIManager
         if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
 
-        GameObject go = Managers.Resource.Instantiate($"UI/Common/{name}", _sceneUI.transform);
+        GameObject go = Managers.Resource.Instantiate($"UI/Common/{name}", MainCanvas);
         T messageBox = Util.GetOrAddComponent<T>(go);
-       
+
+        go.transform.SetParent(MainCanvas);
+
         return messageBox;
     }
 
@@ -130,9 +147,10 @@ public class UIManager
     {
         if (!windowDic.ContainsKey(type))
         {
-            GameObject go = Managers.Resource.Instantiate($"UI/Window/{typeof(T).Name}", _sceneUI.transform);
+            GameObject go = Managers.Resource.Instantiate($"UI/Window/{typeof(T).Name}");
             T window = Util.GetOrAddComponent<T>(go);
             windowDic.Add(type, window);
+            go.transform.SetParent(MainCanvas);
         }
 
         return windowDic[type] as T;
@@ -145,11 +163,11 @@ public class UIManager
         if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
 
-        GameObject go = Managers.Resource.Instantiate($"Window/{name}", _sceneUI.transform);
+        GameObject go = Managers.Resource.Instantiate($"Window/{name}");
         T window = Util.GetOrAddComponent<T>(go);
         windowStack.Push(window);
 
-        //go.transform.SetParent(Root.transform);
+        go.transform.SetParent(MainCanvas);
 
         return window;
     }

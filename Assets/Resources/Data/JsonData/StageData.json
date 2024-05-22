@@ -1,0 +1,85 @@
+{
+  "stages": [
+    {
+      "StageID": 1000,
+      "Name": "맵1",
+      "Lv": 1,
+      "Info": "",
+      "Locked": 0,
+      "IcoUrl": ""
+    },
+    {
+      "StageID": 1001,
+      "Name": "맵2",
+      "Lv": 2,
+      "Info": "",
+      "Locked": 0,
+      "IcoUrl": ""
+    },
+    {
+      "StageID": 1002,
+      "Name": "맵3",
+      "Lv": 3,
+      "Info": "",
+      "Locked": 0,
+      "IcoUrl": ""
+    },
+    {
+      "StageID": 1003,
+      "Name": "맵4",
+      "Lv": 4,
+      "Info": "",
+      "Locked": 0,
+      "IcoUrl": ""
+    },
+    {
+      "StageID": 1004,
+      "Name": "맵5",
+      "Lv": 5,
+      "Info": "",
+      "Locked": 0,
+      "IcoUrl": ""
+    },
+    {
+      "StageID": 1005,
+      "Name": "맵6",
+      "Lv": 6,
+      "Info": "",
+      "Locked": 0,
+      "IcoUrl": ""
+    },
+    {
+      "StageID": 1006,
+      "Name": "맵7",
+      "Lv": 7,
+      "Info": "",
+      "Locked": 0,
+      "IcoUrl": ""
+    },
+    {
+      "StageID": 1007,
+      "Name": "맵8",
+      "Lv": 8,
+      "Info": "",
+      "Locked": 0,
+      "IcoUrl": ""
+    },
+    {
+      "StageID": 1008,
+      "Name": "맵9",
+      "Lv": 9,
+      "Info": "",
+      "Locked": 0,
+      "IcoUrl": ""
+    },
+    {
+      "StageID": 1009,
+      "Name": "맵10",
+      "Lv": 10,
+      "Info": "",
+      "Locked": 0,
+      "IcoUrl": ""
+    }
+
+  ]
+}

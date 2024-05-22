@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Managers : MonoBehaviour
+public class Managers : SingletonMonoBehaviour<Managers>
 {
-    static Managers s_instance; // 유일성이 보장된다
-    static Managers Instance { get { Init(); return s_instance; } } // 유일한 매니저를 갖고온다
-
     #region Contents
     private GameManager _game = new GameManager();
     private ObjectManager _object = new ObjectManager();
@@ -20,37 +17,48 @@ public class Managers : MonoBehaviour
     #region Core
     DataManager _data = new DataManager();
     PoolManager _pool = new PoolManager();
-    ResourceManager _resource = new ResourceManager();
+    //ResourceManager _resource = new ResourceManager();
     SceneManagerEx _scene = new SceneManagerEx();
     SoundManager _sound = new SoundManager();
     UIManager _ui = new UIManager();
     SkillManager _skill = new SkillManager();
-    EscapePatternManager _escapePattern = new EscapePatternManager(); // @홍지형 추가.
+    //EscapePatternManager _escapePattern = new EscapePatternManager(); // @홍지형 추가.
     LocalizationManager _localizationManager = new LocalizationManager();
 
-    public static DataManager Data { get { return Instance._data; } }
+    public static DataManager Data { get { return DataManager.Instance; } }
     public static PoolManager Pool { get { return Instance._pool; } }
-    public static ResourceManager Resource { get { return Instance._resource; } }
+    public static ResourceManager Resource { get { return ResourceManager.Instance; } }
     public static SceneManagerEx Scene { get { return Instance._scene; } }
     public static SoundManager Sound { get { return Instance._sound; } }
     public static UIManager UI { get { return Instance._ui; } }
-    public static EscapePatternManager EscapePattern { get { return Instance._escapePattern; } }
+    public static EscapePatternManager EscapePattern { get { return EscapePatternManager.Instance; } }
 
     public static LocalizationManager Localization { get { return Instance._localizationManager; } }
 
-    public static SkillManager Skill => s_instance._skill;
+    public static SkillManager Skill => Instance._skill;
+
 
     #endregion
 
-    void Start()
-    {
-        Init();
-        StartCoroutine(s_instance._skill.CoInit());
-        //TODO Eung 보스 출현 카운트
+    
+    public bool isTest = false;
 
-        FootboardManager();
-        s_instance._escapePattern.SpawnEscapePattern(); // @홍지형, 테스트용
+    IEnumerator Start()
+    {
+        yield return null;
+
+        SceneManagerNew.Instance.LoadScene(Define.EScene.TitleScene);
+        //SceneManagerNew.Instance.LoadScene("TitleScene");
+
+        StartCoroutine(Instance._skill.CoInit());
+
+        
+        //SceneManagerNew.Instance.LoadScene(Define.EScene.TitleScene);
+
+        //TODO Eung 보스 출현 카운트
         // StartCoroutine(Game.BossCount());
+
+        //EscapePattern.SpawnEscapePattern(); // @홍지형, 테스트용
 
     }
 
@@ -58,7 +66,7 @@ public class Managers : MonoBehaviour
 
     void Update()
     {
-       //  s_instance._skill.UpdateSkillCoolTime(Time.deltaTime); // @홍지형 240424
+        Instance._skill.UpdateSkillCoolTime(Time.deltaTime);
 
 
         // if (!boss && Game.CurrentTime >= 5f)
@@ -73,31 +81,12 @@ public class Managers : MonoBehaviour
         // }
     }
 
-    static void Init()
+    protected override void Init()
     {
-        if (s_instance == null)
-        {
-            GameObject go = GameObject.Find("@Managers");
-            if (go == null)
-            {
-                go = new GameObject { name = "@Managers" };
-                go.AddComponent<Managers>();
-            }
-
-            DontDestroyOnLoad(go);
-            s_instance = go.GetComponent<Managers>();
-
-            s_instance._data.Init();
-            s_instance._pool.Init();
-            s_instance._sound.Init();
-            // s_instance._escapePattern.Init();            
-            // s_instance._spawner.Init();
-        }
+        //Instance._data.Init();
+        //Instance._pool.Init();
+        //Instance._sound.Init();
+        // s_instance._spawner.Init();
     }
 
-    void FootboardManager()
-    {
-        GameObject footboardManager = new GameObject("FootboardManager");
-        footboardManager.AddComponent<Footboard>();
-    }
 }
