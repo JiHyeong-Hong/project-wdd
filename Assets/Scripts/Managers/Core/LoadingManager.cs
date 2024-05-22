@@ -24,7 +24,14 @@ public class LoadingManager : MonoBehaviour
 
     IEnumerator Start()
     {
-        StartCoroutine(LoadResources<Object>());
+        if (Managers.Instance.isTest)
+        {
+            OnLoadingComplete();
+        }
+        else
+        {
+            StartCoroutine(LoadResources<Object>());
+        }
 
         yield return null;
     }

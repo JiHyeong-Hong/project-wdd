@@ -17,7 +17,7 @@ public class Managers : SingletonMonoBehaviour<Managers>
     #region Core
     DataManager _data = new DataManager();
     PoolManager _pool = new PoolManager();
-    ResourceManager _resource = new ResourceManager();
+    //ResourceManager _resource = new ResourceManager();
     SceneManagerEx _scene = new SceneManagerEx();
     SoundManager _sound = new SoundManager();
     UIManager _ui = new UIManager();
@@ -25,7 +25,7 @@ public class Managers : SingletonMonoBehaviour<Managers>
     //EscapePatternManager _escapePattern = new EscapePatternManager(); // @홍지형 추가.
     LocalizationManager _localizationManager = new LocalizationManager();
 
-    public static DataManager Data { get { return Instance._data; } }
+    public static DataManager Data { get { return DataManager.Instance; } }
     public static PoolManager Pool { get { return Instance._pool; } }
     public static ResourceManager Resource { get { return ResourceManager.Instance; } }
     public static SceneManagerEx Scene { get { return Instance._scene; } }
@@ -37,14 +37,19 @@ public class Managers : SingletonMonoBehaviour<Managers>
 
     public static SkillManager Skill => Instance._skill;
 
-    
+
     #endregion
+
+    
+    public bool isTest = false;
 
     IEnumerator Start()
     {
         yield return null;
 
-        Init();
+        SceneManagerNew.Instance.LoadScene(Define.EScene.TitleScene);
+        //SceneManagerNew.Instance.LoadScene("TitleScene");
+
         StartCoroutine(Instance._skill.CoInit());
 
         
@@ -78,30 +83,10 @@ public class Managers : SingletonMonoBehaviour<Managers>
 
     protected override void Init()
     {
-        Instance._data.Init();
-        Instance._pool.Init();
-        Instance._sound.Init();
+        //Instance._data.Init();
+        //Instance._pool.Init();
+        //Instance._sound.Init();
         // s_instance._spawner.Init();
     }
 
-    //static void Init()
-    //{
-    //    if (s_instance == null)
-    //    {
-    //        GameObject go = GameObject.Find("@Managers");
-    //        if (go == null)
-    //        {
-    //            go = new GameObject { name = "@Managers" };
-    //            go.AddComponent<Managers>();
-    //        }
-
-    //        DontDestroyOnLoad(go);
-    //        s_instance = go.GetComponent<Managers>();
-
-    //        s_instance._data.Init();
-    //        s_instance._pool.Init();
-    //        s_instance._sound.Init();
-    //        // s_instance._spawner.Init();
-    //    }
-    //}
 }

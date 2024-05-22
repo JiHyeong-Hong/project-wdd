@@ -13,13 +13,15 @@ public class SceneManagerNew : SingletonMonoBehaviour<SceneManagerNew>
         Debug.Log("SceneManager initialized.");
     }
 
-    public void LoadScene(Define.EScene scene)
+    public void LoadScene(Define.EScene scene, System.Action action = null)
     {
-        StartCoroutine(LoadSceneAsync(SceneManager.GetSceneAt((int)scene).name));
+        OnSceneLoaded = action;
+        StartCoroutine(LoadSceneAsync(scene.ToString()));
     }
 
-    private void LoadScene(string sceneName)
+    public void LoadScene(string sceneName, System.Action action = null)
     {
+        OnSceneLoaded = action;
         StartCoroutine(LoadSceneAsync(sceneName));
     }
 
@@ -61,10 +63,4 @@ public class SceneManagerNew : SingletonMonoBehaviour<SceneManagerNew>
         Debug.Log($"Next Scene {nextSceneIndex} loaded.");
         Debug.Log($"Next Scene Name {SceneManager.GetSceneAt(nextSceneIndex).name} ");
     }
-
-    public void LoadingBar()
-    {
-
-    }
-
 }
