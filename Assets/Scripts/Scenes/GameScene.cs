@@ -12,7 +12,8 @@ public class GameScene : BaseScene
 
         SceneType = Define.EScene.GameScene;
 
-        Managers.UI.ShowSceneUI<UI_GameScene>();
+        //Managers.UI.ShowSceneUI<UI_GameScene>();
+        Managers.UI.ShowWindowUI<InGameWindow>(Define.UIWindowType.Game).Show();
 
         Managers.Object.Spawn<Hero>(new Vector3(0f, -15f, 0f), Define.HERO_ZOOKEEPER_ID);
         Camera.main.GetOrAddComponent<FollowCamera>();

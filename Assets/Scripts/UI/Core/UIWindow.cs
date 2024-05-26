@@ -2,8 +2,9 @@ using static Define;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIWindow : MonoBehaviour
+public class UIWindow : WindowBase
 {
+    public bool isTestScene = false;
     public UIWindowType WindowType { get; private set; }
     public void Initialize(UIWindowType windowType)
     {
@@ -11,13 +12,8 @@ public class UIWindow : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void Open()
+    private void Awake()
     {
-        gameObject.SetActive(true);
-    }
-
-    public void Close()
-    {
-        gameObject.SetActive(false);
+        Managers.Instance.isTestScene = isTestScene;
     }
 }

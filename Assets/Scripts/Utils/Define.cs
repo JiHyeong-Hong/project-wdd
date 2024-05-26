@@ -122,6 +122,8 @@ public static class Define
 		Shop = 5,
 		Inventory = 6,
         SkillLevelUp = 7,
+		Lobby = 8,
+
 	}
 
 	public enum UIDialogType

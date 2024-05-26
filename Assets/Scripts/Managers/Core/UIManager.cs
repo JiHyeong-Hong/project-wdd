@@ -32,7 +32,7 @@ public class UIManager
         {
             if (mainCanvas == null)
             {
-                mainCanvas = Root.transform.GetComponentInChildren<Canvas>().transform;
+                mainCanvas = Root.transform.GetComponent<Canvas>().transform;
             }
             return mainCanvas;
         }
@@ -147,7 +147,7 @@ public class UIManager
     {
         if (!windowDic.ContainsKey(type))
         {
-            GameObject go = Managers.Resource.Instantiate($"UI/Window/{typeof(T).Name}");
+            GameObject go = Managers.Resource.Instantiate($"UI/Window/{typeof(T).Name}", MainCanvas);
             T window = Util.GetOrAddComponent<T>(go);
             windowDic.Add(type, window);
             go.transform.SetParent(MainCanvas);
@@ -156,21 +156,21 @@ public class UIManager
         return windowDic[type] as T;
     }
 
-    public T ShowWindowUI<T>(string name = null) where T : MonoBehaviour
-    {
-        // 작업중 05.03 
-        // window가 dictionary에 없으면 생성작업중
-        if (string.IsNullOrEmpty(name))
-            name = typeof(T).Name;
+    //public T ShowWindowUI<T>(string name = null) where T : MonoBehaviour
+    //{
+    //    // 작업중 05.03 
+    //    // window가 dictionary에 없으면 생성작업중
+    //    if (string.IsNullOrEmpty(name))
+    //        name = typeof(T).Name;
 
-        GameObject go = Managers.Resource.Instantiate($"Window/{name}");
-        T window = Util.GetOrAddComponent<T>(go);
-        windowStack.Push(window);
+    //    GameObject go = Managers.Resource.Instantiate($"Window/{name}");
+    //    T window = Util.GetOrAddComponent<T>(go);
+    //    windowStack.Push(window);
 
-        go.transform.SetParent(MainCanvas);
+    //    go.transform.SetParent(MainCanvas);
 
-        return window;
-    }
+    //    return window;
+    //}
 
     public void ClosePopupUI(UI_Popup popup)
     {

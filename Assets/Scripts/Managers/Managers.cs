@@ -42,23 +42,27 @@ public class Managers : SingletonMonoBehaviour<Managers>
 
     
     public bool isTest = false;
+    public bool isTestScene = false;
 
     IEnumerator Start()
     {
         yield return null;
 
-        SceneManagerNew.Instance.LoadScene(Define.EScene.TitleScene);
-        //SceneManagerNew.Instance.LoadScene("TitleScene");
+        if (!isTestScene)
+        {
+            SceneManagerNew.Instance.LoadScene(Define.EScene.TitleScene);
+            //SceneManagerNew.Instance.LoadScene("TitleScene");
 
-        StartCoroutine(Instance._skill.CoInit());
+            StartCoroutine(Instance._skill.CoInit());
 
-        
-        //SceneManagerNew.Instance.LoadScene(Define.EScene.TitleScene);
 
-        //TODO Eung 보스 출현 카운트
-        // StartCoroutine(Game.BossCount());
+            //SceneManagerNew.Instance.LoadScene(Define.EScene.TitleScene);
 
-        //EscapePattern.SpawnEscapePattern(); // @홍지형, 테스트용
+            //TODO Eung 보스 출현 카운트
+            // StartCoroutine(Game.BossCount());
+
+            //EscapePattern.SpawnEscapePattern(); // @홍지형, 테스트용
+        }
 
     }
 

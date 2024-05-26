@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -47,6 +48,20 @@ public class GameManager
         }
     }
 
+    private List<StageData> stageList;
+    public List<StageData> StageList
+    {
+        get 
+        {
+            if (stageList == null)
+            {
+                stageList = new List<StageData>();
+                //stageList = DataManager.Instance.StageDataDic.ToList();
+            }
+            return stageList;
+        }
+    }
+
     #region Hero
     private Vector2 _moveDir;
     public Vector2 MoveDir
@@ -84,12 +99,20 @@ public class GameManager
             }
             else if (button == 1)
             {
-                IsGamePaused = false;
+                IsGamePaused = true;
                 Debug.Log("게임종료");
 
                 MessageBoxHelper.ShowMessageBox_TwoButton("게임종료", "신뢰?", "전투포기", "계속하기", MessageBox.PopupType.Back, (button, data) =>
                 {
                     // 기능 구현
+                    if(button == 0)
+                    {
+                        SceneManagerNew.Instance.LoadScene(Define.EScene.TitleScene);
+                    }
+                    else if(button == 1)
+                    {
+                        SceneManagerNew.Instance.LoadScene(Define.EScene.GameScene);
+                    }
 
                 }, "");
 

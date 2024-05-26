@@ -37,7 +37,7 @@ public class SkillLevelUpView : MonoBehaviour, IView
     {
         presenter.HandleLevelUpSkill();
 
-        Managers.UI.windowDic[Define.UIWindowType.SkillLevelUp].Close();
+        Managers.UI.windowDic[Define.UIWindowType.SkillLevelUp].Hide();
     }
 
 }
