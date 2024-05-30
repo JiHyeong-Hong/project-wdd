@@ -14,6 +14,11 @@ public abstract class UIBase : MonoBehaviour
         OnHide();
     }
 
+    public virtual void Refresh() 
+    {
+        gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+    }
+
     protected virtual void OnShow() { }
     protected virtual void OnHide() { }
 }

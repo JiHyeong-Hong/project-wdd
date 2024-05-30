@@ -30,8 +30,6 @@ public class SkillLevelUpWindow : UIWindow
     private List<IView> views = new List<IView>();
     private List<SkillLevelUpPresenter> presenters = new List<SkillLevelUpPresenter>();
 
-    public bool isTestScene;
-
     private void Awake()
     {
         Init();
@@ -40,7 +38,7 @@ public class SkillLevelUpWindow : UIWindow
     private void OnEnable()
     {
         Managers.Game.IsGamePaused = true;
-        Managers.UI.Joystick.gameObject.SetActive(false);
+        //Managers.UI.Joystick.gameObject.SetActive(false);
         SetLevelUpUI();
         PreviewImage();
         PreviewCombinationSkill();
@@ -50,7 +48,7 @@ public class SkillLevelUpWindow : UIWindow
     private void OnDisable()
     {
         Managers.Game.IsGamePaused = false;
-        Managers.UI.Joystick.gameObject.SetActive(true);
+        //Managers.UI.Joystick.gameObject.SetActive(true);
         ViewsOnOff(false);
     }
 

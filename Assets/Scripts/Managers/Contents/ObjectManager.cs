@@ -4,9 +4,20 @@ using Data;
 using UnityEngine;
 using static Define;
 
-public class ObjectManager
+public class ObjectManager :SingletonMonoBehaviour<ObjectManager>
 {
-    public Hero Hero { get; private set; }
+    private Hero hero;
+    public Hero Hero 
+    { 
+        get
+        {
+            if (hero == null) 
+            {
+                hero = RespawnHero(Vector3.zero, Define.HERO_ZOOKEEPER_ID);
+            }
+            return hero;
+        }
+    }
     public HashSet<Monster> Monsters { get; } = new HashSet<Monster>();
     public HashSet<Boss> Bosses { get; } = new HashSet<Boss>();
     public HashSet<Projectile> Projectiles { get; } = new HashSet<Projectile>();
@@ -54,8 +65,7 @@ public class ObjectManager
             {
                 case ECreatureType.Hero:
                     obj.transform.parent = (parent == null) ? HeroRoot : parent;
-                    Hero hero = creature as Hero;
-                    Hero = hero;
+                    hero = creature as Hero;
                     hero.SetInfo(templateID);
                     // hero.transform.position = Vector3.zero;
                     hero.transform.position = new Vector3(15, 15, 0);
@@ -125,8 +135,9 @@ public class ObjectManager
             switch (creature.CreatureType)
             {
                 case ECreatureType.Hero:
-                    Hero hero = creature as Hero;
-                    Hero = null;
+                    //Hero hero = creature as Hero;
+                    Destroy(hero);
+                    hero = null;
                     break;
                 case ECreatureType.Monster:
                     Monster monster = creature as Monster;
@@ -149,6 +160,16 @@ public class ObjectManager
         }
 
         Managers.Resource.Destroy(obj.gameObject);
+    }
+
+    public Hero RespawnHero(Vector3 position, int templateID)
+    {
+        if (hero != null)
+        {
+            Despawn(hero);
+        }
+
+        return Spawn<Hero>(position, templateID);
     }
 
     public List<Monster> FindMonsterByRange(Vector2 position, float range)

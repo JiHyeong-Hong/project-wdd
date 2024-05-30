@@ -1,21 +1,47 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using static Define;
-
 public class UIManagerNew : SingletonMonoBehaviour<UIManagerNew>
 {
     private Dictionary<UIWindowType, WindowBase> windowCache = new Dictionary<UIWindowType, WindowBase>();
     private UIStackManager<WindowBase> windowManager = new UIStackManager<WindowBase>();
     private UIStackManager<PopupBase> popupManager = new UIStackManager<PopupBase>();
 
+    public GameObject Root
+    {
+        get
+        {
+            GameObject root = GameObject.Find("@UI_Root");
+            if (root == null)
+                root = new GameObject { name = "@UI_Root" };
+            return root;
+        }
+    }
+
+    public Transform mainCanvas;
+    public Transform MainCanvas
+    {
+        get
+        {
+            if (mainCanvas == null)
+            {
+                mainCanvas = Root.transform.GetComponent<Canvas>().transform;
+            }
+            return mainCanvas;
+        }
+    }
+
+    private void Awake()
+    {
+        CacheAllWindows();
+    }
 
     private void CacheAllWindows()
     {
         foreach (UIWindowType windowType in System.Enum.GetValues(typeof(UIWindowType)))
         {
-            GameObject windowPrefab = ResourceManager.Instance.Load($"UI/Windows/{windowType}");
-            /*Managers.Resource.Load($"UI/Windows/{windowType}");*/
+            windowCache[windowType] = ResourceManager.Instance.Load($"Prefabs/UI/Window/{windowType}")?.GetComponent<WindowBase>();
+            GameObject windowPrefab = windowCache[windowType]?.gameObject;
             if (windowPrefab != null)
             {
                 GameObject windowInstance = Instantiate(windowPrefab, transform);
@@ -28,8 +54,24 @@ public class UIManagerNew : SingletonMonoBehaviour<UIManagerNew>
             }
             else
             {
-                Debug.LogError($"Failed to load window prefab for {windowType}");
+                //Debug.LogError($"Failed to load window prefab for {windowType}");
             }
+        }
+    }
+
+    public T ShowWindow<T>(UIWindowType type) where T : WindowBase
+    {
+        if (windowCache.TryGetValue(type, out WindowBase window))
+        {
+            window.gameObject.transform.SetParent(MainCanvas.transform);
+            window.Refresh();
+            window.gameObject.SetActive(true);
+            return window as T;
+        }
+        else
+        {
+            Debug.LogError($"Window of type {type} is not cached.");
+            return null;
         }
     }
 
@@ -68,13 +110,25 @@ public class UIStackManager<T> where T : UIBase
 {
     private Stack<T> uiStack = new Stack<T>();
 
-    public T ShowUI<U>(string name, string pathPrefix) where U : T
+    public U ShowUI<U>(string name, string pathPrefix) where U : T
     {
         if (string.IsNullOrEmpty(name))
             name = typeof(U).Name;
 
-        GameObject uiObject = Managers.Resource.Instantiate($"{pathPrefix}{name}", UIManagerNew.Instance.transform);
-        U uiElement = Util.GetOrAddComponent<U>(uiObject);
+        GameObject uiObject = ResourceManager.Instance.Load($"{pathPrefix}{name}");
+        if (uiObject == null)
+        {
+            Debug.LogError($"Failed to load UI prefab: {pathPrefix}{name}");
+            return null;
+        }
+
+        GameObject instance = GameObject.Instantiate(uiObject, UIManagerNew.Instance.transform);
+        U uiElement = instance.GetComponent<U>();
+        if (uiElement == null)
+        {
+            Debug.LogError($"UI prefab {name} does not have component {typeof(U).Name}");
+            return null;
+        }
 
         HideCurrentTopUI();
 

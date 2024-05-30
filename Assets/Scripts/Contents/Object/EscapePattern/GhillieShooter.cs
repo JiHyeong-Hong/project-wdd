@@ -29,16 +29,15 @@ public class GhillieShooter : Monster
         return true;
     }
 
-    protected MonsterData monsterData;
-    protected Hero _hero;
+    //protected MonsterData monsterData;
+    //protected Hero _hero;
     public override void SetInfo(int templateID)
     {
         base.SetInfo(templateID);
 
         Renderer.sortingOrder = SortingLayers.MONSTER;
-        _hero = Managers.Object.Hero;
-
-        monsterData = CreatureData as MonsterData;
+        //_hero = Managers.Object.Hero;
+        //monsterData = Util.ConvertToMonsterData(CreatureData);
     }
 
     void Update()

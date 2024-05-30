@@ -17,8 +17,8 @@ public class DataTransformer : EditorWindow
     [MenuItem("Tools/ParseExcel %#K")]
     public static void ParseExcelDataToJson()
     {
-        //ParseExcelDataToJson<MonsterDataLoader, MonsterData>("Monster");
-        //ParseExcelDataToJson<HeroDataLoader, HeroData>("Hero");
+        ParseExcelDataToJson<MonsterDataLoader, MonsterData>("Monster");
+        ParseExcelDataToJson<HeroDataLoader, HeroData>("Hero");
         //ParseExcelDataToJson<HeroLevelDataLoader, HeroLevelData>("HeroLevel");
         //ParseExcelDataToJson<SkillDataLoader, SkillData>("Skill");
         //ParseExcelDataToJson<ProjectileDataLoader, ProjectileData>("Projectile");
@@ -26,7 +26,9 @@ public class DataTransformer : EditorWindow
         //ParseExcelDataToJson<HpConditionDataLoader, HpConditionData>("HpCondition");
         //ParseExcelDataToJson<PatternPerDataLoader, PatternPerData>("PatternPer");
         //ParseExcelDataToJson<BreakthroughDataLoader, BreakthroughData>("Breakthrough");
-        ParseExcelDataToJson<StageDataLoader, StageData>("Stage");
+        //ParseExcelDataToJson<StageLoader, Data.Stage>("Stage");
+        //ParseExcelDataToJson<StageLevelLoader, StageLevel>("StageLv");
+        //ParseExcelDataToJson<SpawnLoader, Spawn>("Spawn");
 
 
         Debug.Log("DataTransformer Completed");
@@ -49,6 +51,7 @@ public class DataTransformer : EditorWindow
         List<LoaderData> loaderDatas = new List<LoaderData>();
         int errorIndex = 0;
         int errorFieldIndex = 0;
+        string errorFieldName = string.Empty;
         try
         {
             string filePath = $"{Application.dataPath}/Resources/Data/ExcelData/{filename}Data.csv";
@@ -79,6 +82,8 @@ public class DataTransformer : EditorWindow
                     FieldInfo field = loaderData.GetType().GetField(fields[f].Name);
                     Type type = field.FieldType;
 
+                    errorFieldName = fields[f].Name;
+
                     if (type.IsGenericType)
                     {
                         object value = ConvertList(row[f], type);
@@ -98,7 +103,9 @@ public class DataTransformer : EditorWindow
         }
         catch (Exception ex)
         {
-            Debug.LogError($"파일을 읽는 도중 오류가 발생했습니다: {ex.Message} FileName : {filename} ErrorIndex : {errorIndex} ErrorFieldIndex : {errorFieldIndex}");
+            Debug.LogError($"파일을 읽는 도중 오류가 발생했습니다: " +
+                $"{ex.Message} FileName : {filename} ErrorIndex : {errorIndex} ErrorFieldIndex : {errorFieldIndex}" +
+                $"FieldsName : {errorFieldName}");
             throw;
         }
         
@@ -108,6 +115,12 @@ public class DataTransformer : EditorWindow
     {
         if (string.IsNullOrEmpty(value))
             return null;
+
+
+        // type이 bool 이라면 true, false로 변환
+        if (type == typeof(bool))
+            return value != "0";
+
 
         TypeConverter converter = TypeDescriptor.GetConverter(type);
         return converter.ConvertFromString(value);

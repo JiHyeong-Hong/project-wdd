@@ -117,7 +117,7 @@ public class Boss : Monster
         }
         if (_hero.IsValid())
         {
-            switch (monsterData.Index)
+            switch (monsterData.MonsterID)
             {
                 case 241:
                     Vector2 dest = (_hero.transform.position - transform.position).normalized;

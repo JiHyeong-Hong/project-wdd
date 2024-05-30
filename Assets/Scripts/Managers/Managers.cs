@@ -6,16 +6,16 @@ public class Managers : SingletonMonoBehaviour<Managers>
 {
     #region Contents
     private GameManager _game = new GameManager();
-    private ObjectManager _object = new ObjectManager();
+    //private ObjectManager _object = new ObjectManager();
     private SpawnManager _spawner = new SpawnManager();
 
     public static GameManager Game { get { return Instance._game; } }
-    public static ObjectManager Object { get { return Instance?._object; } }
+    public static ObjectManager Object { get { return ObjectManager.Instance; } }
     public static SpawnManager Spawner { get { return Instance?._spawner; } }
     #endregion
 
     #region Core
-    DataManager _data = new DataManager();
+    //DataManager _data = new DataManager();
     PoolManager _pool = new PoolManager();
     //ResourceManager _resource = new ResourceManager();
     SceneManagerEx _scene = new SceneManagerEx();
@@ -53,7 +53,7 @@ public class Managers : SingletonMonoBehaviour<Managers>
             SceneManagerNew.Instance.LoadScene(Define.EScene.TitleScene);
             //SceneManagerNew.Instance.LoadScene("TitleScene");
 
-            StartCoroutine(Instance._skill.CoInit());
+            //StartCoroutine(Instance._skill.CoInit());
 
 
             //SceneManagerNew.Instance.LoadScene(Define.EScene.TitleScene);

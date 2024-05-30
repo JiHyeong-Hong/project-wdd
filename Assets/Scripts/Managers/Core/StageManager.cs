@@ -1,89 +1,198 @@
+using Data;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public class PhaseInfo
+{
+    public int Phase;
+    public float Duration;
+    public List<Spawn> Spawns;
+
+    public PhaseInfo(int phase, float duration)
+    {
+        Phase = phase;
+        Duration = duration;
+        Spawns = new List<Spawn>();
+    }
+}
+
 public class StageManager : SingletonMonoBehaviour<StageManager>
 {
-    private int currentStageId;
+    private int currentStageID;
+    private Stage currentStage;
 
-    private Dictionary<int, Data.Stage> stageDic;
+    private List<PhaseInfo> phases = new List<PhaseInfo>();
+    private int currentPhaseIndex = 0;
+    private float phaseTimer = 0;
+    private Dictionary<int, Coroutine> activeCoroutines = new Dictionary<int, Coroutine>();
 
-    public Data.Stage CurrentStage { get; private set; }
+    private List<Coroutine> coroutines = new List<Coroutine>();
 
-    protected override void Init()
+    public void LoadStage(int stageID)
     {
-        base.Init();
-        stageDic = Managers.Data.StageDic;
-        currentStageId = GetFirstUnlockedStageId();
-        CurrentStage = GetStage(currentStageId);
+        if (!DataManager.Instance.StageDic.ContainsKey(stageID))
+        {
+            Debug.LogError($"Stage ID {stageID} not found.");
+            return;
+        }
+
+        currentStageID = stageID;
+        currentStage = DataManager.Instance.StageDic[stageID];
+        phases = GetPhasesForStage(stageID);
+
+        Debug.Log($"Loading Stage: {currentStage.Name}, Level: {currentStage.Lv}");
+
+        StartStage();
     }
 
-    private int GetFirstUnlockedStageId()
+    private List<PhaseInfo> GetPhasesForStage(int stageID)
     {
-        foreach (var stage in stageDic.Values)
+        List<PhaseInfo> phaseList = new List<PhaseInfo>();
+
+        StageLevel stageLevel = GetStageLevel(stageID);
+        if (stageLevel != null)
         {
-            if (!stage.Locked)
-                return stage.StageID;
+            phaseList.Add(new PhaseInfo(1, stageLevel.Phase1Time));
+            phaseList.Add(new PhaseInfo(2, stageLevel.Phase2Time));
+            phaseList.Add(new PhaseInfo(3, stageLevel.Phase3Time));
+            phaseList.Add(new PhaseInfo(4, stageLevel.Phase4Time));
+            phaseList.Add(new PhaseInfo(5, stageLevel.Phase4Time));
+            phaseList.Add(new PhaseInfo(6, stageLevel.Phase4Time));
+            phaseList.Add(new PhaseInfo(7, stageLevel.Phase4Time));
+            phaseList.Add(new PhaseInfo(8, stageLevel.Phase4Time));
+            phaseList.Add(new PhaseInfo(9, stageLevel.Phase4Time));
+            phaseList.Add(new PhaseInfo(10, stageLevel.Phase4Time));
         }
-        return -1; // 적절한 값을 반환하거나 예외 처리를 할 수 있습니다.
+
+        List<Spawn> spawns = GetSpawnsForStage(stageID);
+        foreach (var spawn in spawns)
+        {
+            phaseList[spawn.Phase - 1].Spawns.Add(spawn);
+        }
+
+        return phaseList;
     }
 
-    public Data.Stage GetStage(int stageId)
+    private StageLevel GetStageLevel(int stageID)
     {
-        if (stageDic.TryGetValue(stageId, out var stage))
+        foreach (var kvp in DataManager.Instance.StageLvDic)
         {
-            return stage;
+            if (kvp.Value.StageID == stageID)
+                return kvp.Value;
         }
-        Debug.LogWarning($"Stage with ID {stageId} not found.");
+
         return null;
     }
 
-    public void NextStage()
+    private List<Spawn> GetSpawnsForStage(int stageID)
     {
-        if (CurrentStage == null)
+        List<Spawn> spawns = new List<Spawn>();
+        foreach (var kvp in DataManager.Instance.SpawnDic)
+        {
+            if (kvp.Value.StageID == stageID)
+                spawns.Add(kvp.Value);
+        }
+
+        return spawns;
+    }
+
+    public void StartStage()
+    {
+        if (currentStage == null)
+        {
+            Debug.LogError("No stage loaded.");
             return;
-
-        int nextStageId = CurrentStage.StageID + 1;
-        if (stageDic.TryGetValue(nextStageId, out var nextStage))
-        {
-            CurrentStage = nextStage;
-            currentStageId = nextStageId;
-            LoadStage(CurrentStage);
         }
-        else
+
+        Debug.Log($"Starting Stage: {currentStage.Name}, Level: {currentStage.Lv}");
+        StartCoroutine(StageRoutine());
+    }
+
+
+    private IEnumerator StageRoutine()
+    {
+        while (currentPhaseIndex < phases.Count)
         {
-            Debug.Log("Next stage not found");
+            PhaseInfo phase = phases[currentPhaseIndex];
+            phaseTimer = 0;
+
+            Debug.Log($"<color=red>Starting Phase {phase.Phase} for {phase.Duration} seconds \n phasesCount:{phases.Count} </color>");
+
+            foreach (var spawn in phase.Spawns)
+            {
+                Coroutine coroutine = StartCoroutine(SpawnMonsterCoroutine(spawn));
+                if (coroutine != null)
+                {
+                    //activeCoroutines.Add(coroutine);
+                    coroutines.Add(coroutine);
+
+                }
+                else
+                {
+                    Debug.LogError($"Failed to start coroutine for spawn ID {spawn.SpawnID}");
+                }
+                
+                //activeCoroutines.Add(spawn.SpawnID, coroutine);
+            }
+
+            while (phaseTimer < phase.Duration)
+            {
+                phaseTimer += Time.deltaTime;
+                yield return null;
+            }
+
+            TransitionToNextPhase();
+        }
+
+        EndStage();
+    }
+
+    private void TransitionToNextPhase()
+    {
+        currentPhaseIndex++;
+        phaseTimer = 0;
+        Debug.Log($"Transitioning to Phase {currentPhaseIndex + 1}");
+
+        foreach (var coroutine in coroutines)
+        {
+            StopCoroutine(coroutine);
+        }
+        coroutines.Clear();
+
+        //foreach (var coroutine in activeCoroutines.Values)
+        //{
+        //    StopCoroutine(coroutine);
+        //}
+        //activeCoroutines.Clear();
+    }
+
+    private IEnumerator SpawnMonsterCoroutine(Spawn spawn)
+    {
+        while (true)
+        {
+            Debug.Log($"Spawning {spawn.Count} of MonsterID {spawn.MonsterID} at Phase {currentPhaseIndex + 1} spawn.CycleTime : {spawn.CycleTime}");
+            for (int i = 0; i < spawn.Count; i++)
+            {
+                // 실제 몬스터 생성 로직을 여기에 추가
+                Managers.Spawner.SpawnNew(spawn.MonsterID);
+            }
+
+            if (spawn.CycleTime == 0)
+            {
+                break;
+            }
+
+            yield return YieldInstructionCache.WaitForSeconds(spawn.CycleTime);
         }
     }
 
-    public void RestartStage()
+    private void EndStage()
     {
-        if (CurrentStage == null)
-            return;
-
-        LoadStage(CurrentStage);
-    }
-
-    private void LoadStage(Data.Stage stage)
-    {
-        // 실제로 스테이지를 로드하는 로직을 여기에 추가합니다.
-        Debug.Log($"Loaded Stage: {stage.Name}");
-    }
-
-    public void LockStage(int stageId)
-    {
-        if (stageDic.TryGetValue(stageId, out var stage))
-        {
-            stage.Locked = true;
-            Debug.Log($"Stage {stageId} locked.");
-        }
-    }
-
-    public void UnlockStage(int stageId)
-    {
-        if (stageDic.TryGetValue(stageId, out var stage))
-        {
-            stage.Locked = false;
-            Debug.Log($"Stage {stageId} unlocked.");
-        }
+        Debug.Log("Stage Ended.");
+        // 스테이지 종료 시 필요한 로직을 여기에 추가
+        // 스테이지 종료 시 종료 팝업
+        // 클리어 판별
+        // 
     }
 }

@@ -103,6 +103,7 @@ public class PoolManager
 
         Poolable obj = _pool[original.name].Pop(parent);
         obj.gameObject.SetActive(true);
+        Debug.LogWarning($"<color=green>{obj.transform.parent}</color>");
         return obj;
     }
 

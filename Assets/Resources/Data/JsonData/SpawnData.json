@@ -1,0 +1,193 @@
+{
+  "spawns": [
+    {
+      "SpawnID": 8000,
+      "StageID": 1000,
+      "MonsterID": 201,
+      "Phase": 1,
+      "CycleTime": 0.6,
+      "Count": 1,
+      "RiseRate": 0.0
+    },
+    {
+      "SpawnID": 8001,
+      "StageID": 1000,
+      "MonsterID": 201,
+      "Phase": 2,
+      "CycleTime": 0.4,
+      "Count": 1,
+      "RiseRate": 0.0
+    },
+    {
+      "SpawnID": 8002,
+      "StageID": 1000,
+      "MonsterID": 211,
+      "Phase": 2,
+      "CycleTime": 0.6,
+      "Count": 1,
+      "RiseRate": 0.0
+    },
+    {
+      "SpawnID": 8003,
+      "StageID": 1000,
+      "MonsterID": 231,
+      "Phase": 2,
+      "CycleTime": 0.0,
+      "Count": 1,
+      "RiseRate": 0.0
+    },
+    {
+      "SpawnID": 8004,
+      "StageID": 1000,
+      "MonsterID": 201,
+      "Phase": 3,
+      "CycleTime": 0.4,
+      "Count": 2,
+      "RiseRate": 0.0
+    },
+    {
+      "SpawnID": 8005,
+      "StageID": 1000,
+      "MonsterID": 211,
+      "Phase": 3,
+      "CycleTime": 0.4,
+      "Count": 1,
+      "RiseRate": 0.0
+    },
+    {
+      "SpawnID": 8006,
+      "StageID": 1000,
+      "MonsterID": 221,
+      "Phase": 3,
+      "CycleTime": 1.2,
+      "Count": 1,
+      "RiseRate": 0.0
+    },
+    {
+      "SpawnID": 8007,
+      "StageID": 1000,
+      "MonsterID": 201,
+      "Phase": 4,
+      "CycleTime": 0.4,
+      "Count": 2,
+      "RiseRate": 0.0
+    },
+    {
+      "SpawnID": 8008,
+      "StageID": 1000,
+      "MonsterID": 221,
+      "Phase": 4,
+      "CycleTime": 0.6,
+      "Count": 2,
+      "RiseRate": 0.0
+    },
+    {
+      "SpawnID": 8009,
+      "StageID": 1000,
+      "MonsterID": 232,
+      "Phase": 4,
+      "CycleTime": 0.0,
+      "Count": 1,
+      "RiseRate": 0.0
+    },
+    {
+      "SpawnID": 8010,
+      "StageID": 1000,
+      "MonsterID": 202,
+      "Phase": 5,
+      "CycleTime": 0.6,
+      "Count": 2,
+      "RiseRate": 0.0
+    },
+    {
+      "SpawnID": 8011,
+      "StageID": 1000,
+      "MonsterID": 212,
+      "Phase": 5,
+      "CycleTime": 0.6,
+      "Count": 2,
+      "RiseRate": 0.0
+    },
+    {
+      "SpawnID": 8012,
+      "StageID": 1000,
+      "MonsterID": 201,
+      "Phase": 6,
+      "CycleTime": 0.6,
+      "Count": 3,
+      "RiseRate": 0.0
+    },
+    {
+      "SpawnID": 8013,
+      "StageID": 1000,
+      "MonsterID": 202,
+      "Phase": 6,
+      "CycleTime": 0.6,
+      "Count": 3,
+      "RiseRate": 0.0
+    },
+    {
+      "SpawnID": 8014,
+      "StageID": 1000,
+      "MonsterID": 211,
+      "Phase": 7,
+      "CycleTime": 0.1,
+      "Count": 1,
+      "RiseRate": 0.0
+    },
+    {
+      "SpawnID": 8015,
+      "StageID": 1000,
+      "MonsterID": 221,
+      "Phase": 8,
+      "CycleTime": 0.1,
+      "Count": 1,
+      "RiseRate": 0.0
+    },
+    {
+      "SpawnID": 8016,
+      "StageID": 1000,
+      "MonsterID": 232,
+      "Phase": 8,
+      "CycleTime": 0.0,
+      "Count": 2,
+      "RiseRate": 0.0
+    },
+    {
+      "SpawnID": 8017,
+      "StageID": 1000,
+      "MonsterID": 202,
+      "Phase": 9,
+      "CycleTime": 0.18,
+      "Count": 3,
+      "RiseRate": 0.0
+    },
+    {
+      "SpawnID": 8018,
+      "StageID": 1000,
+      "MonsterID": 211,
+      "Phase": 9,
+      "CycleTime": 0.18,
+      "Count": 3,
+      "RiseRate": 0.0
+    },
+    {
+      "SpawnID": 8019,
+      "StageID": 1000,
+      "MonsterID": 221,
+      "Phase": 9,
+      "CycleTime": 0.36,
+      "Count": 3,
+      "RiseRate": 0.0
+    },
+    {
+      "SpawnID": 8020,
+      "StageID": 1000,
+      "MonsterID": 241,
+      "Phase": 10,
+      "CycleTime": 0.0,
+      "Count": 1,
+      "RiseRate": 0.0
+    }
+  ]
+}

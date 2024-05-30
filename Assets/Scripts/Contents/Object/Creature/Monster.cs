@@ -32,8 +32,8 @@ public class Monster : Creature
 
         Renderer.sortingOrder = SortingLayers.MONSTER;
         _hero = Managers.Object.Hero;
-        
-        monsterData = CreatureData as MonsterData;
+
+        monsterData = Util.ConvertToMonsterData(CreatureData);
         //몬스터 클래스에서 몬스터와 보스 타입 재분류
         switch (monsterData.Type)
         {
@@ -51,8 +51,8 @@ public class Monster : Creature
         
         test = StartCoroutine(CoUpdateAI());
         //TODO Eung Drop 데이터 테이블 만들고나서 봐야할듯?
-        DropItemID = monsterData.DropItemID;
-        DropPersent = monsterData.DropPersent;
+        //DropItemID = monsterData.DropItemID;
+        //DropPersent = monsterData.DropPersent;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

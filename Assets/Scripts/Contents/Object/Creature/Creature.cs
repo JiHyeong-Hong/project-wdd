@@ -55,10 +55,10 @@ public class Creature : BaseObject
                 CreatureData = Managers.Data.HeroDic[templateID];
                 break;
             case ECreatureType.Monster:
-                CreatureData = Managers.Data.MonsterDic[templateID];
+                CreatureData = Util.ConvertToCreatureData(Managers.Data.MonsterDic[templateID]);
                 break;
             case ECreatureType.Boss:
-                CreatureData = Managers.Data.MonsterDic[templateID];
+                CreatureData = Util.ConvertToCreatureData(Managers.Data.MonsterDic[templateID]);
                 //TODO 
                 break;
         }

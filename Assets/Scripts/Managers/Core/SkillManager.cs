@@ -192,7 +192,8 @@ public class SkillManager
 
 		//Managers.UI.ShowWindowUI<MonoBehaviour>("SkillWindow");
 		//Managers.UI.ShowPopupUI<UI_LevelUp>().SetInfo(sampleSkillList);
-		Managers.UI.ShowWindowUI<SkillLevelUpWindow>(Define.UIWindowType.SkillLevelUp).Show();
+		UIManagerNew.Instance.ShowWindow<SkillLevelUpWindow>(Define.UIWindowType.SkillLevelUpWindow);
+		//Managers.UI.ShowWindowUI<SkillLevelUpWindow>(Define.UIWindowType.SkillLevelUpWindow).Show();
 		//Managers.UI.ShowWindowUI<SkillLevelUpWindow>("SkillLevelUpWindow");
 	}
 

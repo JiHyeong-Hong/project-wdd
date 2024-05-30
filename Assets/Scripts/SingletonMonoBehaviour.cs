@@ -32,7 +32,7 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
         if (instance == null)
         {
             instance = this as T;
-            gameObject.transform.SetParent(Managers.Instance.transform);
+            //gameObject.transform.SetParent(Managers.Instance.transform);
             DontDestroyOnLoad(gameObject);
         }
         else

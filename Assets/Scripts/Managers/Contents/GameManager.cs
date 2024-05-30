@@ -48,14 +48,16 @@ public class GameManager
         }
     }
 
-    private List<StageData> stageList;
-    public List<StageData> StageList
+    public int currentStageID;
+
+    private List<Data.Stage> stageList;
+    public List<Data.Stage> StageList
     {
         get 
         {
             if (stageList == null)
             {
-                stageList = new List<StageData>();
+                stageList = new List<Data.Stage>();
                 //stageList = DataManager.Instance.StageDataDic.ToList();
             }
             return stageList;

@@ -10,6 +10,6 @@ public class TitleWindow : MonoBehaviour
 
     public void StartLobby()
     {
-        SceneManagerNew.Instance.LoadScene(Define.EScene.GameScene);
+        SceneManagerNew.Instance.LoadScene(Define.EScene.Lobby);
     }
 }

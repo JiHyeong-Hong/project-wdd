@@ -25,9 +25,9 @@ namespace Data
     #region MonsterData
 
 	[Serializable]
-	public class MonsterData : CreatureData
-	{
-		/* 기존 테이블 데이터
+	public class MonsterData
+    {
+        /* 기존 테이블 데이터
 		//TODO 몬스터의 드랍 테이블에서 사용햇던 데이터 - 드랍 아이템 관련 이야기를 해봐야함
 		// public int DropItemID;			*****
 		// public int DropPersent;			*****
@@ -37,8 +37,14 @@ namespace Data
 		// //TODO Eung 공격 타입 - 테이블에 따라 변경필요
 		// public int Atktype;
 		*/
+
+		public int MonsterID;
+		public string Name;
 		public int Type;
 		public int AttackType;
+		public int HP;
+		public int MoveSpeed;
+		public int ContactDmg;
 		public int CoolTime;
 		public int ProjectileID;
 		public int ProjectileNum;
@@ -50,13 +56,13 @@ namespace Data
 		public int SkillLvDown;
 		public int ConditionHitType;
 		public int KnockbackPowerHitType;
-		public int DropItemID;
-		public int DropPersent;
-		
-	}
-	
-	//TODO Eung 몬스터를 그냥 하나의 객체로 만들때 사용할수도? 아니먄 그냥 기존 구조로 공통 변수 묶어서 CreatureData + MonsterData로 가는 경우 필요없어짐
-	[Serializable]
+
+
+    }
+
+
+    //TODO Eung 몬스터를 그냥 하나의 객체로 만들때 사용할수도? 아니먄 그냥 기존 구조로 공통 변수 묶어서 CreatureData + MonsterData로 가는 경우 필요없어짐
+    [Serializable]
 	public class MonsterData2
 	{
 		public int Type;
@@ -82,7 +88,7 @@ namespace Data
 		{
 			Dictionary<int, MonsterData> dict = new Dictionary<int, MonsterData>();
 			foreach (MonsterData monster in monsters)
-				dict.Add(monster.Index, monster);
+				dict.Add(monster.MonsterID, monster);
 			return dict;
 		}
 	}
@@ -357,41 +363,10 @@ namespace Data
 
     #endregion
 
-    #region StageData
-
-    public class StageData
-    {
-        public int Index;
-        public int Stage_ID;
-        public int Phase;
-        public int Time;
-        public int GroupA;
-        public int GroupB;
-        public int Cage;
-        public int SpecialCage;
-        public int AnimalNumSign;
-        public int SkillSign;
-        public int ItemBox;
-        public int MoveGimmick;
-        public int Bargainite;
-
-    }
-
-    [Serializable]
-    public class StageDataLoader : ILoader<int, StageData>
-    {
-        public List<StageData> stageDatas = new List<StageData>();
-
-        public Dictionary<int, StageData> MakeDict()
-        {
-            Dictionary<int, StageData> dict = new Dictionary<int, StageData>();
-            foreach (StageData stageData in stageDatas)
-                dict.Add(stageData.Index, stageData);
-            return dict;
-        }
-    }
+    #region Stage
 
 
+    //public string IconURL;
     //----------------------------------------
     [Serializable]
     public class Stage
@@ -401,7 +376,6 @@ namespace Data
         public int Lv;
         public string Info;
         public bool Locked;
-        public string IcoUrl;
 	}
 
 	[Serializable]
@@ -441,6 +415,31 @@ namespace Data
         }
     }
 
+	[Serializable]
+    public class Spawn
+    {
+		public int SpawnID;
+		public int StageID;
+		public int MonsterID;
+		public int Phase;
+		public float CycleTime;
+		public int Count;
+		public float RiseRate;
+    }
+
+    [Serializable]
+    public class SpawnLoader : ILoader<int, Spawn>
+    {
+        public List<Spawn> spawns = new List<Spawn>();
+
+        public Dictionary<int, Spawn> MakeDict()
+        {
+            Dictionary<int, Spawn> dict = new Dictionary<int, Spawn>();
+            foreach (Spawn spawn in spawns)
+                dict.Add(spawn.SpawnID, spawn);
+            return dict;
+        }
+    }
 
 
 

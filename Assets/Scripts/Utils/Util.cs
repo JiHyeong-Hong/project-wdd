@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Data;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -308,6 +309,30 @@ public static class Util
         canvasGroup.alpha = 0; // 마지막에 완전히 투명하게 설정
 
         onComplete?.Invoke();
+    }
+
+
+    public static MonsterData ConvertToMonsterData(CreatureData creatureData)
+    {
+        return new MonsterData
+        {
+            HP = creatureData.MaxHp,
+            MoveSpeed = (int)creatureData.MoveSpeed,
+            // 다른 필요한 변환 로직 추가
+        };
+    }
+
+    public static CreatureData ConvertToCreatureData(MonsterData monsterData)
+    {
+		return new CreatureData
+		{
+			Index = monsterData.MonsterID,
+			AnimatorDataID = "Animations/Monster/" + monsterData.Name,
+			MaxHp = monsterData.HP,
+			MoveSpeed = monsterData.MoveSpeed,
+			DescriptionTextID = monsterData.Name,
+            // 다른 필요한 변환 로직 추가
+        };
     }
 
 }

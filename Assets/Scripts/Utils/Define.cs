@@ -112,19 +112,25 @@ public static class Define
 		CastPer = 13
     }
 
-	public enum UIWindowType
-	{
-		None = 0,
-		Loading = 1,
-		Title = 2,
-		Game = 3,
-		Option = 4,
-		Shop = 5,
-		Inventory = 6,
-        SkillLevelUp = 7,
-		Lobby = 8,
+	public enum SceneType
+    {
+        None = 0,
+        Loading = 1,
+        Title = 2,
+        Game = 3,
+        Lobby = 4,
+    }
 
-	}
+    public enum UIWindowType
+	{
+        OptionWindow = 1,
+		ShopWindow = 2,
+        InventoryWindow = 3,
+        SkillLevelUpWindow = 4,
+        AnimalRescueWindow = 6,
+        InGameWindow = 7,
+
+    }
 
 	public enum UIDialogType
 	{

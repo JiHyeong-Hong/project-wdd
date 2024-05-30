@@ -20,10 +20,11 @@ public class DataManager : SingletonMonoBehaviour<DataManager>
     public Dictionary<int, Data.HpConditionData> HpConditionDic { get; private set; } = new Dictionary<int, Data.HpConditionData>();
     public Dictionary<int, Data.PatternPerData> PatternPerDic { get; private set; } = new Dictionary<int, Data.PatternPerData>();
     public Dictionary<int ,Data.BreakthroughData> BreakthroughDic { get; private set; } = new Dictionary<int, Data.BreakthroughData>();
-    public Dictionary<int, Data.StageData> StageDataDic { get; private set; } = new Dictionary<int, Data.StageData>();
-
     //Test
     public Dictionary<int, Data.Stage> StageDic { get; private set; } = new Dictionary<int, Data.Stage>();
+
+    public Dictionary<int, Data.StageLevel> StageLvDic { get; private set; } = new Dictionary<int, Data.StageLevel>();
+    public Dictionary<int, Data.Spawn> SpawnDic { get; private set; } = new Dictionary<int, Data.Spawn>();
 
     protected override void Init()
     {
@@ -40,6 +41,9 @@ public class DataManager : SingletonMonoBehaviour<DataManager>
         //StageDataDic = LoadJson<Data.StageDataLoader, int, Data.StageData>("StageData").MakeDict();
 
         StageDic = LoadJson<Data.StageLoader, int, Data.Stage>("StageData").MakeDict();
+        StageLvDic = LoadJson<Data.StageLevelLoader, int, Data.StageLevel>("StageLvData").MakeDict();
+        SpawnDic = LoadJson<Data.SpawnLoader, int, Data.Spawn>("SpawnData").MakeDict();
+
     }
 
     Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>
