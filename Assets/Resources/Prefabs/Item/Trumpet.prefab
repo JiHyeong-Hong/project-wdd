@@ -118,9 +118,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.030187875, y: 0.010977387}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.37101558
 --- !u!114 &6452738841999299293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,3 +133,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19aa77d219d4f0047b6b17fa2948ebf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zebraPrefab: {fileID: 2120700423756268912, guid: 73284b2e37fe8be46851b57292ba6b58, type: 3}
