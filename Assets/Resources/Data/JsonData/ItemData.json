@@ -4,7 +4,7 @@
       "DataId": 41,
       "Name": "경험치구슬1",
       "Value": 5,
-      "IconPath": "Art/ExpLv1"
+      "IconPath": "Art/_ExpLv1"
     },
     {
       "DataId": 42,

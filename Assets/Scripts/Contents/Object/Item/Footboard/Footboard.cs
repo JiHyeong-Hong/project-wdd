@@ -18,6 +18,9 @@ public class Footboard : MonoBehaviour
         playerTransform = GameObject.FindWithTag("Player").transform;
 
         uiGameScene = FindObjectOfType<UI_GameScene>();
+
+        jumpfab = Resources.Load<GameObject>("Prefabs/JumpFootboard");
+        boostfab = Resources.Load<GameObject>("Prefabs/BoostFootboard");
     }
 
     private void Update()
@@ -29,6 +32,8 @@ public class Footboard : MonoBehaviour
         float currentMinute = Mathf.Floor(currentTime / 60);
         float currentSecond = currentTime % 60;
 
+        // 테스트용으로 게임 시작하고 바로 발판 생성해봄
+        //if (currentSecond <= 15 && lastSpawnMinute != currentMinute)
         if (currentMinute >= 1 && currentSecond <= 15 && lastSpawnMinute != currentMinute)
         {
             if (Random.Range(0, 100) < 70) 

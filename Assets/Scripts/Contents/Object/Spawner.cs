@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Spawner : BaseObject
 {
+    public GameObject damageTextPrefab; // 데미지 텍스트 프리팹
+
     public override bool Init()
     {
         if (base.Init() == false)
@@ -27,6 +29,10 @@ public class Spawner : BaseObject
 
     public void Spawn(int ID)
     {
-        Managers.Object.Spawn<Monster>(transform.position, ID);
+        Monster monster = Managers.Object.Spawn<Monster>(transform.position, ID);
+        if (monster != null)
+        {
+            monster.SetDamageTextPrefab(damageTextPrefab);
+        }
     }
 }
