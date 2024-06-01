@@ -1,10 +1,12 @@
 using Cysharp.Threading.Tasks;
+using Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using UnityEngine;
 using static Define;
+using static UnityEditor.Progress;
 
 
 public class CompositeData
@@ -156,6 +158,23 @@ public class BreakthroughHelper
         }
 
         return null;
+    }
+
+    public string FindPassiveName(string activeName)
+    {
+        Managers.Skill.allSkillDic.TryGetValue(activeName, out List<SkillBase> findSkillList);
+
+        Data.BreakthroughData btData = Managers.Data.BreakthroughDic.Select(x => x.Value).FirstOrDefault(x => x.G_Skill_ID1 == findSkillList.Last().SkillData.Index);
+
+        //Managers.Data.BreakthroughDic.TryGetValue(findSkillList.Last().SkillData.Index, out Data.BreakthroughData breakthroughData);
+
+        SkillData passiveSkill = Managers.Data.SkillDic.Select(x => x.Value).FirstOrDefault(x => x.Index == btData.G_Skill_ID2);
+
+        // 공백 제거
+
+        passiveSkill.Name = passiveSkill.Name.Replace(" ", "");
+
+        return passiveSkill.Name;
     }
 
     public bool IsActivated(float ActivationProbability)

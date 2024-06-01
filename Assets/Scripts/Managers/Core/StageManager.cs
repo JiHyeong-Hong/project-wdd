@@ -106,7 +106,7 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
         }
 
         Debug.Log($"Starting Stage: {currentStage.Name}, Level: {currentStage.Lv}");
-        StartCoroutine(StageRoutine());
+        //StartCoroutine(StageRoutine());
     }
 
 
@@ -175,7 +175,7 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
             for (int i = 0; i < spawn.Count; i++)
             {
                 // 실제 몬스터 생성 로직을 여기에 추가
-                Managers.Spawner.SpawnNew(spawn.MonsterID);
+                Managers.Spawner.SpawnNew<Monster>(spawn.MonsterID);
             }
 
             if (spawn.CycleTime == 0)

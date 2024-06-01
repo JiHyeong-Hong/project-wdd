@@ -56,7 +56,7 @@ public class Crocodile : Projectile
 
     private void Direction()
     {
-        transform.right = Managers.Object.Hero.Destination.position - Owner.transform.position;
+        transform.right = Managers.Object.Hero.destination.position - Owner.transform.position;
         if (transform.right.x < 0)
         {
             spriteRenderer.flipY = true;

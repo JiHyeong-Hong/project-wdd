@@ -249,11 +249,11 @@ public class SpawnManager
         //Vector2 newPos = SpawnPos[idx];/* + new Vector2(Managers.Object.Hero.transform.position.x , Managers.Object.Hero.transform.position.y);*/
         //return SpawnPos[idx];
     }
-    public void SpawnNew(int spawnId)
+    public void SpawnNew<T>(int spawnId) where T : BaseObject
     {
         Vector2 pos = SpawnPosNew();
         Debug.LogWarning($"SpawnPos : {pos}");
-        Managers.Object.Spawn<Monster>(pos, spawnId);
+        Managers.Object.Spawn<T>(pos, spawnId);
     }
 
 }

@@ -42,7 +42,25 @@ public class JailBase : MonoBehaviour
         }
     }
 
+    private SpriteRenderer passiveIcon;
+    public SpriteRenderer PassiveIcon
+    {
+        get
+        {
+            if (passiveIcon == null)
+            {
+                passiveIcon = Util.FindChild<Transform>(gameObject, "passiveIcon", true).gameObject.GetComponent<SpriteRenderer>();
+            }
+            return passiveIcon;
+        }
+    }
+
     private int SignCount = 0;
+
+    private bool isColliding = false;
+    private Coroutine openCoroutine;
+    private Coroutine timerCoroutine;
+
 
     public void Init()
     {
@@ -52,7 +70,7 @@ public class JailBase : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
-            //SetJailSprite(JailType.Big, "Tiger");
+            SetJailSprite(JailType.Big, jailName);
         }
     }
 
@@ -78,8 +96,14 @@ public class JailBase : MonoBehaviour
     {
         jailName = skillName;
 
+        string passiveName = BreakthroughHelper.Instance.FindPassiveName(skillName);
+
         Sprite sprite = null;
         Sprite[] multiSprite = Resources.LoadAll<Sprite>($"Art/Jail/{jailType.ToString()}Jail");
+
+        Sprite[] multiPassiveSprite = Resources.LoadAll<Sprite>($"Art/Sign/Passiveicon");
+
+
 
         foreach (Sprite s in multiSprite)
         {
@@ -90,35 +114,66 @@ public class JailBase : MonoBehaviour
             }
         }
 
-        if (jailSprite == null)
-        {
-            jailSprite = GetComponent<SpriteRenderer>();
-        }
-        jailSprite.sprite = sprite;
-    }
+        if (JailSprite != null)
+            JailSprite.sprite = sprite;
 
-    float currentTime = 0;
+        foreach (Sprite s in multiPassiveSprite)
+        {
+            if (s.name == passiveName)
+            {
+                sprite = s;
+                break;
+            }
+        }
+
+        if(PassiveIcon != null)
+            PassiveIcon.sprite = sprite;
+
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        currentTime = 0;
+        if (collision.CompareTag("Player"))
+        {
+            if (!isColliding)
+            {
+                isColliding = true;
+                Managers.Object.Hero.keyAndTimer.SetActive(true);
+
+                openCoroutine = StartCoroutine(OpenAfterDelay(3.0f));
+                timerCoroutine = StartCoroutine(Util.FillAmount(Managers.Object.Hero.timerMaterial, 3.0f));
+            }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        currentTime = 0;
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
+        if (collision.CompareTag("Player"))
         {
-            currentTime += Time.deltaTime;
-            //Debug.Log("currentTime: " + currentTime);
-            if (currentTime >= jailTime)
+            if (isColliding)
             {
-                JailAction();
+                isColliding = false;
+
+                Managers.Object.Hero.keyAndTimer.SetActive(false);
+
+                if (openCoroutine != null)
+                    StopCoroutine(openCoroutine);
+
+                if (timerCoroutine != null)
+                    StopCoroutine(timerCoroutine);
             }
         }
     }
+
+    private IEnumerator OpenAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (isColliding)
+        {
+            Debug.Log("Object opened");
+            JailAction();
+        }
+    }
+
 }

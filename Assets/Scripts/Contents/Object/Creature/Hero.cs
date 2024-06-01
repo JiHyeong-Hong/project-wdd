@@ -54,11 +54,13 @@ public class Hero : Creature
     public bool isSpeedBoosted = false;
     public int protectionHits = 0;
 
-    #endregion
+	#endregion
 
-    public Transform Pivot { get; private set; }
-	public Transform Destination { get; private set; }
+	public Transform pivot;
+	public Transform destination;
 
+	public GameObject keyAndTimer;
+	public Material timerMaterial;
 
 	public override bool Init()
 	{
@@ -67,21 +69,30 @@ public class Hero : Creature
 
 		CreatureType = ECreatureType.Hero;
 
-		Managers.Game.OnMoveDirChanged -= HandleOnMoveDirChanged;
+        Managers.Game.OnMoveDirChanged -= HandleOnMoveDirChanged;
 		Managers.Game.OnMoveDirChanged += HandleOnMoveDirChanged;
 		Managers.Game.OnJoystickStateChanged -= HandleOnJoystickStateChanged;
 		Managers.Game.OnJoystickStateChanged += HandleOnJoystickStateChanged;
 
-		Pivot = Util.FindChild<Transform>(gameObject, "Pivot", true);
-		Destination = Util.FindChild<Transform>(gameObject, "Destination", true);
+		//pivot = Util.FindChild<Transform>(gameObject, "Pivot", true);
+		//destination = Util.FindChild<Transform>(gameObject, "Destination", true);
 
 
 		gameObject.AddComponent<Stats>();
 
-		return true;
+        keyAndTimer.SetActive(false);
+
+
+        return true;
 	}
 
-	public override void SetInfo(int templateID)
+    private void OnDestroy()
+    {
+        Managers.Game.OnMoveDirChanged -= HandleOnMoveDirChanged;
+        Managers.Game.OnJoystickStateChanged -= HandleOnJoystickStateChanged;
+    }
+
+    public override void SetInfo(int templateID)
 	{
 		base.SetInfo(templateID);
 
@@ -143,7 +154,7 @@ public class Hero : Creature
 			Direction = dir;
 
 			float angle = Mathf.Atan2(-dir.x, +dir.y) * 180 / Mathf.PI;
-			Pivot.eulerAngles = new Vector3(0, 0, angle);
+			pivot.eulerAngles = new Vector3(0, 0, angle);
 		}
 	}
 

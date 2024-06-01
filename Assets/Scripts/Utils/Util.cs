@@ -276,12 +276,15 @@ public static class Util
         float startAlpha = originalColor.a;
         float time = 0;
 
+		SpriteRenderer[] srList = spriteRenderer.gameObject.GetComponentsInChildren<SpriteRenderer>();
+
         while (time < duration)
         {
             float t = time / duration;
             float alpha = Mathf.Lerp(startAlpha, 0, t);
 
-            spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
+            foreach (SpriteRenderer sr in srList)
+				sr.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
 
             time += Time.deltaTime;
 			//Debug.Log(time);
@@ -311,6 +314,18 @@ public static class Util
         onComplete?.Invoke();
     }
 
+	public static IEnumerator FillAmount(Material material ,float duration)
+	{
+		float time = 0;
+        while (time <= duration)
+		{
+            time += Time.deltaTime;
+
+			material.SetFloat("_FillAmount", time / duration);
+
+            yield return null;
+        }
+	}
 
     public static MonsterData ConvertToMonsterData(CreatureData creatureData)
     {
