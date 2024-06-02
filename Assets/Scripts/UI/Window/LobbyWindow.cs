@@ -31,7 +31,7 @@ public class LobbyWindow : UIWindow
             goodsThumbnailList.Add(goodsThumbnailObj.GetComponent<IView>());
         }
 
-        stageThumbnailView = Instantiate(stageThumbnail, transform).GetComponent<IView>();
+        stageThumbnailView = Instantiate(stageThumbnail, MiddleAnchor).GetComponent<IView>();
     }
 
 }
