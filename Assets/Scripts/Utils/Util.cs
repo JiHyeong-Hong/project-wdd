@@ -255,17 +255,21 @@ public static class Util
 		// 화면밖으로 나가지 않도록 제한
         Vector2 screenPos = Camera.main.WorldToScreenPoint(target);
 
-		if (Mathf.Abs(screenPos.x) >= width - uiSize.x || Mathf.Abs(screenPos.y) >= height - uiSize.y)
+		if (screenPos.x < 0 || screenPos.x > width || screenPos.y < 0 || screenPos.y > height)
 		{
-			if(invisibleObject.activeSelf == false ) invisibleObject.SetActive(true);
-			
-			screenPos.x = Mathf.Clamp(screenPos.x, uiSize.x, width - uiSize.x);
-			screenPos.y = Mathf.Clamp(screenPos.y, uiSize.y, height - uiSize.y);
-		}
+            if (invisibleObject.activeSelf == false) invisibleObject.SetActive(true);
+        }
 		else
 		{
             if (invisibleObject.activeSelf == true) invisibleObject.SetActive(false);
         }
+
+
+        if (Mathf.Abs(screenPos.x) >= 0/*width - 1000*//* - uiSize.x*/ || Mathf.Abs(screenPos.y) >= height - uiSize.y)
+		{
+			screenPos.x = Mathf.Clamp(screenPos.x, uiSize.x, width - uiSize.x);
+			screenPos.y = Mathf.Clamp(screenPos.y, uiSize.y, height - uiSize.y);
+		}
 
         return screenPos;
     }

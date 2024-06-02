@@ -20,6 +20,12 @@ public class PointToTargetUI : MonoBehaviour
 
     private void Start()
     {
+        
+    }
+
+
+    private void OnEnable()
+    {
         arrowRectTransform = arrowImage.GetComponent<RectTransform>();
         StartCoroutine(UpdateArrowDirection());
     }

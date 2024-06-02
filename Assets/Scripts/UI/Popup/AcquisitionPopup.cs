@@ -75,7 +75,7 @@ public class AcquisitionPopup : PopupBase
 
 
         skillImage.sprite = sprite;
-        desc.text = "Lv." + Managers.Skill.usingSkillDic[type].Where(x => x.SkillData.Name == skillName).Select(x => x.SkillData.Level).FirstOrDefault().ToString();
+        //desc.text = "Lv." + Managers.Skill.usingSkillDic[type].Where(x => x.SkillData.Name == skillName).Select(x => x.SkillData.Level).FirstOrDefault().ToString();
 
         Show();
     }
