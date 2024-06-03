@@ -712,6 +712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20d8b73654135774ab2ba2455788a469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTestScene: 0
   view: {fileID: 2851329659068123676}
 --- !u!114 &2851329659068123676
 MonoBehaviour:
@@ -958,7 +959,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 0.271
+  m_FillAmount: 0.929
   m_FillClockwise: 1
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
