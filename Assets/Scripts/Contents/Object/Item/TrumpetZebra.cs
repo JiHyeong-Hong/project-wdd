@@ -25,6 +25,19 @@ public class TrumpetZebra : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Creature creature = other.GetComponent<Creature>();
+        if (creature != null)
+        {
+            Monster monster = creature as Monster;
+            if(monster!= null && monster.CreatureType == ECreatureType.Monster)
+            {
+                monster.StartFadeOut();
+            }
+        }
+    }
+
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
