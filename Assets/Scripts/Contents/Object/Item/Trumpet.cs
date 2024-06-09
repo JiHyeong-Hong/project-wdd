@@ -5,16 +5,13 @@ using UnityEngine;
 public class Trumpet : BaseObject
 {
     private float usedTransparency = 0f;
-    public GameObject zebraPrefab;
-    private GameObject zebraInstance;
-    public float speed = 0.5f;
-    private Vector3 targetPosition;
-
 
     public override bool Init()
     {
         if (!base.Init())
             return false;
+
+        ObjectType = Define.EObjectType.Item;
 
         return true;
     }
@@ -36,20 +33,10 @@ public class Trumpet : BaseObject
             Renderer.material.color = color;
         }
 
-        SpawnZebra();
+        //
+        //트럼펫 기능 채우기
+        ///
 
         Managers.Object.Despawn(this);
-    }
-
-    void SpawnZebra()
-    {
-        // 카메라의 위치와 화면의 높이, 너비 계산
-        Camera mainCamera = Camera.main;
-        float screenWidth = 2 * mainCamera.orthographicSize * mainCamera.aspect;
-        float spawnX = mainCamera.transform.position.x + (Random.value > 0.5f ? -1 : 1) * screenWidth / 2;
-        float spawnY = mainCamera.transform.position.y;
-
-        Vector3 spawnPosition = new Vector3(spawnX, spawnY, 0);
-        Instantiate(zebraPrefab, spawnPosition, Quaternion.identity);
     }
 }
