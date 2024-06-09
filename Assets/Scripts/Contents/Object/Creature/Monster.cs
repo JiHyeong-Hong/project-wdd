@@ -16,6 +16,10 @@ public class Monster : Creature
         damageTextPrefab = prefab;
     }
 
+    private Material material;
+    private Color startColor;
+    private float fadeDuration = 1.5f;
+
     #region Stat
 
     public int DropItemID { get; set; }
@@ -29,7 +33,29 @@ public class Monster : Creature
 
         CreatureType = ECreatureType.Monster;
 
+        material = GetComponent<Renderer>().material;
+        startColor = material.color;
+
         return true;
+    }
+
+    public void StartFadeOut()
+    {
+        StartCoroutine(FadeOutAndDestroy());
+    }
+
+    IEnumerator FadeOutAndDestroy()
+    {
+        float elapsed = 0;
+
+        while (elapsed < fadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            float alpha = Mathf.Lerp(1f,0f,elapsed /fadeDuration);
+            material.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
+            yield return null;
+        }
+        Destroy(gameObject);
     }
 
     protected MonsterData monsterData;
