@@ -13,7 +13,6 @@ public class GameScene : BaseScene
         SceneType = Define.EScene.GameScene;
 
         //Managers.UI.ShowSceneUI<UI_GameScene>();
-        UIManagerNew.Instance.ShowWindow<WindowBase>(Define.UIWindowType.InGameWindow);
         //Managers.UI.ShowWindowUI<InGameWindow>(Define.UIWindowType.Game).Show();
 
         //Managers.Object.Spawn<Hero>(new Vector3(0f, -15f, 0f), Define.HERO_ZOOKEEPER_ID);
@@ -24,8 +23,9 @@ public class GameScene : BaseScene
 
         Managers.EscapePattern.SpawnEscapePattern();
 
-
         StageManager.Instance.LoadStage(Managers.Game.currentStageID);
+
+        UIManagerNew.Instance.ShowWindow<WindowBase>(Define.UIWindowType.InGameWindow);
 
 
         //for (int i = 0; i < 5; ++i)
@@ -43,6 +43,12 @@ public class GameScene : BaseScene
         Managers.UI.SetJoyStick(Managers.UI.ShowBaseUI<UI_Joystick>().gameObject);
 
         return true;
+    }
+
+    private void Update()
+    {
+        if (Managers.Game.isStartGame && Managers.Object.Hero != null)
+            Managers.Skill.UpdateSkillCoolTime(Time.deltaTime);
     }
 
     public override void Clear()

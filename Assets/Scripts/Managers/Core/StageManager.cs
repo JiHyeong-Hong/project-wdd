@@ -1,4 +1,5 @@
 using Data;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -107,6 +108,7 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 
         Debug.Log($"Starting Stage: {currentStage.Name}, Level: {currentStage.Lv}");
         //StartCoroutine(StageRoutine());
+        Managers.Game.isStartGame = true;
     }
 
 
@@ -132,8 +134,6 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
                 {
                     Debug.LogError($"Failed to start coroutine for spawn ID {spawn.SpawnID}");
                 }
-                
-                //activeCoroutines.Add(spawn.SpawnID, coroutine);
             }
 
             while (phaseTimer < phase.Duration)
@@ -159,12 +159,6 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
             StopCoroutine(coroutine);
         }
         coroutines.Clear();
-
-        //foreach (var coroutine in activeCoroutines.Values)
-        //{
-        //    StopCoroutine(coroutine);
-        //}
-        //activeCoroutines.Clear();
     }
 
     private IEnumerator SpawnMonsterCoroutine(Spawn spawn)
@@ -190,9 +184,9 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
     private void EndStage()
     {
         Debug.Log("Stage Ended.");
+        Managers.Game.isStartGame = false;
         // 스테이지 종료 시 필요한 로직을 여기에 추가
         // 스테이지 종료 시 종료 팝업
         // 클리어 판별
-        // 
     }
 }

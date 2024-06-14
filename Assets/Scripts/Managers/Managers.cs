@@ -53,7 +53,7 @@ public class Managers : SingletonMonoBehaviour<Managers>
             SceneManagerNew.Instance.LoadScene(Define.EScene.TitleScene);
             //SceneManagerNew.Instance.LoadScene("TitleScene");
 
-            StartCoroutine(Instance._skill.CoInit());
+            //StartCoroutine(Instance._skill.CoInit());
 
 
             //SceneManagerNew.Instance.LoadScene(Define.EScene.TitleScene);

@@ -37,6 +37,16 @@ public class SkillLevelUpWindow : UIWindow
 
     private void OnEnable()
     {
+        
+    }
+
+    private void OnDisable()
+    {
+        
+    }
+
+    protected override void OnShow()
+    {
         Managers.Game.IsGamePaused = true;
         //Managers.UI.Joystick.gameObject.SetActive(false);
         SetLevelUpUI();
@@ -45,13 +55,12 @@ public class SkillLevelUpWindow : UIWindow
         ViewsOnOff(true);
     }
 
-    private void OnDisable()
+    protected override void OnHide()
     {
         Managers.Game.IsGamePaused = false;
         //Managers.UI.Joystick.gameObject.SetActive(true);
         ViewsOnOff(false);
     }
-
 
     private void Init()
     {
@@ -122,13 +131,15 @@ public class SkillLevelUpWindow : UIWindow
     {
         List<string> list = Util.SelectUniqueElements(Managers.Skill.canPickSkillList, 3);
 
-        Assert.IsTrue(list.Count != 0, "Skill List is Empty");
-
+        //Assert.IsTrue(list.Count != 0, "Skill List is Empty");
+        if (list.Count == 0) return;
 
         for(int i = 0; i < views.Count; ++i)
         {
             bool isSkillFound = false;
             SkillData skillData = Managers.Skill.allSkillDic[list[i]][0].SkillData;
+            if (skillData.skillType == 0) continue;
+
             List<SkillBase> skillsWithSameType = Managers.Skill.usingSkillDic[skillData.skillType];
 
             foreach (var item in skillsWithSameType)

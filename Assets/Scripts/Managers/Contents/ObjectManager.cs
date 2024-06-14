@@ -14,6 +14,8 @@ public class ObjectManager :SingletonMonoBehaviour<ObjectManager>
             if (hero == null) 
             {
                 hero = RespawnHero(Vector3.zero, Define.HERO_ZOOKEEPER_ID);
+                StartCoroutine(Managers.Skill.CoInit());
+
             }
             return hero;
         }

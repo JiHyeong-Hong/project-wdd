@@ -7,6 +7,9 @@ using Random = UnityEngine.Random;
 
 public class GameManager
 {
+    public bool isStartGame = false;
+
+
     private bool _isGamePaused = false;
     public bool IsGamePaused
     {
@@ -90,6 +93,7 @@ public class GameManager
     public void GameOver()
     {
         IsGamePaused = true;
+        Managers.Game.isStartGame = false;
 
         MessageBoxHelper.ShowMessageBox_TwoButton("GameOver", "Retry?", "Yes", "No", MessageBox.PopupType.Retry, (button, data) =>
         {
