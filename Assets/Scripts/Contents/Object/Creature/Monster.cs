@@ -193,9 +193,9 @@ public class Monster : Creature
         // 데미지 텍스트 프리팹을 인스턴스화하여 현재 몬스터 위치에 표시
         GameObject textObject = Instantiate(Managers.Resource.Load<GameObject>("Prefabs/DamageText"), transform.position, Quaternion.identity);
         // 데미지 텍스트를 몬스터의 자식 오브젝트로 설정
-        textObject.transform.SetParent(transform);
+        //textObject.transform.SetParent(transform);
         // 텍스트 오브젝트의 위치를 머리 위로 이동
-        textObject.transform.localPosition = new Vector3(0, 0, 0); // 몬스터의 머리 위
+        textObject.transform.position = transform.position +new Vector3(0, 0.1f, 0); // 몬스터의 머리 위
 
         // 데미지 텍스트 설정 및 표시
         DamageText damageText = textObject.GetComponent<DamageText>();

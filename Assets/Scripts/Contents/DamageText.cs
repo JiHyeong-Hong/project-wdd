@@ -7,8 +7,9 @@ using TMPro;
 public class DamageText : MonoBehaviour
 {
     private TextMeshPro textMesh;
-    private float displayDuration = 1f; // ÅØ½ºÆ® Ç¥½Ã ½Ã°£
-    private float timer = 0f;   // ÅØ½ºÆ® Ç¥½Ã ½Ã°£ Áö³ª¸é »ç¶óÁ®¾ßÇÏ¹Ç·Î ±× ½Ã°£ Àç´Â Å¸ÀÌ¸Ó
+    private float displayDuration = 0.7f; // ï¿½Ø½ï¿½Æ® Ç¥ï¿½ï¿½ ï¿½Ã°ï¿½
+    
+    private float timer = 0f;   // ï¿½Ø½ï¿½Æ® Ç¥ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¹Ç·ï¿½ ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ Å¸ï¿½Ì¸ï¿½
 
     void Awake()
     {
@@ -17,10 +18,10 @@ public class DamageText : MonoBehaviour
 
     void Update()
     {
-            timer += Time.deltaTime; // °æ°úµÈ ½Ã°£À» Ãß°¡
-            if (timer >= displayDuration) // °æ°ú ½Ã°£ÀÌ Ç¥½Ã ½Ã°£À» ÃÊ°úÇÏ¸é
+            timer += Time.deltaTime; // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
+            if (timer >= displayDuration) // ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ï¿½Ï¸ï¿½
             {
-                Destroy(gameObject); // ÀÏÁ¤ ½Ã°£ ÈÄ¿¡ ¿ÀºêÁ§Æ®¸¦ ÆÄ±«
+                Destroy(gameObject); // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ä±ï¿½
             }
     }
 
@@ -30,7 +31,7 @@ public class DamageText : MonoBehaviour
         {
             return;
         }
-        textMesh.text = damage.ToString(); // µ¥¹ÌÁö °ªÀ» ÅØ½ºÆ®·Î ¼³Á¤
-        timer = 0f; // Å¸ÀÌ¸Ó¸¦ ÃÊ±âÈ­
+        textMesh.text = damage.ToString(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        timer = 0f; // Å¸ï¿½Ì¸Ó¸ï¿½ ï¿½Ê±ï¿½È­
     }
 }
