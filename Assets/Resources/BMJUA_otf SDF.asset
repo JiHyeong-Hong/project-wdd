@@ -60,9 +60,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: BMJUA_otf SDF
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: 683712802
   material: {fileID: 1959043800621477264}
-  materialHashCode: 0
+  materialHashCode: -1252591166
   m_Version: 1.1.0
   m_SourceFontFileGUID: 4ca761a719981497a8ef6506e0a6da8e
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 4ca761a719981497a8ef6506e0a6da8e, type: 3}
@@ -2807,12 +2807,12 @@ Material:
     - _OutlineSoftness: 0
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
-    - _OutlineWidth: 0
+    - _OutlineWidth: 0.751
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
-    - _ScaleRatioA: 1
-    - _ScaleRatioB: 1
-    - _ScaleRatioC: 1
+    - _ScaleRatioA: 0.8333333
+    - _ScaleRatioB: 0.6770833
+    - _ScaleRatioC: 0.6770833
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0
