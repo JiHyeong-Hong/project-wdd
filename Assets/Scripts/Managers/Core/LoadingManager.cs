@@ -14,8 +14,16 @@ public class LoadingManager : MonoBehaviour
     public GameObject startButton;
 
     private List<string> resourcesToLoad = new List<string>
-    {
-        "Art",
+    {        
+        "Art/Creature",
+        "Art/Effects",
+        "Art/EscapePatterns",
+        "Art/Item",
+        "Art/Jail",
+        "Art/Materials",
+        "Art/Projectile",
+        "Art/Sign",
+        "Art/Skills",
         "Prefabs",
         "Animations",
         //"UI/Popups"
@@ -68,7 +76,7 @@ public class LoadingManager : MonoBehaviour
 
                 ResourceManager.Instance.LoadResource<T>(path);
                 loadedResources++;
-                Debug.Log(loadedResources);
+                // Debug.Log(loadedResources);
                 UpdateLoadingBar(resource.GetType().Name, (float)loadedResources / totalResources);
             }
         }

@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public abstract class UIBase : MonoBehaviour
 {
@@ -16,7 +16,7 @@ public abstract class UIBase : MonoBehaviour
 
     public virtual void Refresh() 
     {
-        gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+        // gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero; // í™ì§€í˜• IngameUI ìœ„ì¹˜ë¬¸ì œë¡œ ì‚­ì œ. 240616
     }
 
     protected virtual void OnShow() { }
@@ -25,10 +25,10 @@ public abstract class UIBase : MonoBehaviour
 
 public abstract class WindowBase : UIBase
 {
-    // À©µµ¿ì Àü¿ë ±â´ÉÀ» ¿©±â¿¡ Ãß°¡ÇÒ ¼ö ÀÖ½À´Ï´Ù.
+    // ìœˆë„ìš° ì „ìš© ê¸°ëŠ¥ì„ ì—¬ê¸°ì— ì¶”ê°€í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.
 }
 
 public abstract class PopupBase : UIBase
 {
-    // ÆË¾÷ Àü¿ë ±â´ÉÀ» ¿©±â¿¡ Ãß°¡ÇÒ ¼ö ÀÖ½À´Ï´Ù.
+    // íŒì—… ì „ìš© ê¸°ëŠ¥ì„ ì—¬ê¸°ì— ì¶”ê°€í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.
 }

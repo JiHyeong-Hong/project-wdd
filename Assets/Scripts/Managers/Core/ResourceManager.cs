@@ -19,7 +19,7 @@ public class ResourceManager : SingletonMonoBehaviour<ResourceManager>
         GameObject prefab = Resources.Load<GameObject>(path);
         if (prefab == null)
         {
-            Debug.LogError($"Prefab not found at path: {path}");
+            Debug.Log($"Prefab not found at path: {path}");
         }
         return prefab;
     }
@@ -34,7 +34,7 @@ public class ResourceManager : SingletonMonoBehaviour<ResourceManager>
         }
         else
         {
-            Debug.LogError($"Failed to load resource: {path}");
+            Debug.Log($"Failed to load resource: {path}");
         }
     }
 

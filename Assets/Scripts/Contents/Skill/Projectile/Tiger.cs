@@ -130,7 +130,7 @@ public class Tiger : Projectile
         Collider2D[] targets = Util.SearchCollidersInRadius(transform.position, Skill.SkillData.AttackRange); // 충돌한 몬스터 주변에 있는 몬스터들을 찾음
         foreach (var target in targets)
         {
-            Debug.Log("Tiger DoDamage");
+            // Debug.Log("Tiger DoDamage");
             target.GetComponent<Monster>().OnDamaged(Owner, Skill);
         }
     }

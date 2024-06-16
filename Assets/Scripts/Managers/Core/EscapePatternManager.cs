@@ -32,7 +32,7 @@ public class EscapePatternManager : SingletonMonoBehaviour<EscapePatternManager>
         //SpawnGhillieShooter();
         //SpawnNet();
 
-        SpawnTourist();
+        // SpawnTourist();
     }
 
     public void SpawnTourist()
