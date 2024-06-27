@@ -1,22 +1,123 @@
 {
   "items": [
     {
-      "DataId": 41,
-      "Name": "경험치구슬1",
+      "ItemId": 31,
+      "Name": "ExpMarble1",
+      "Value": 1,
+      "Type": 5,
+      "IconPath": "Art/Item/ExpLv1"
+    },
+    {
+      "ItemId": 32,
+      "Name": "ExpMarble2",
+      "Value": 1,
+      "Type": 15,
+      "IconPath": "Art/Item/ExpLv1"
+    },
+    {
+      "ItemId": 33,
+      "Name": "ExpMarble3",
+      "Value": 1,
+      "Type": 35,
+      "IconPath": "Art/Item/ExpLv1"
+    },
+    {
+      "ItemId": 41,
+      "Name": "Magnet",
+      "Value": 2,
+      "Type": 100,
+      "IconPath": "Art/Item/ExpLv1"
+    },
+    {
+      "ItemId": 51,
+      "Name": "Trumpet",
+      "Value": 3,
+      "Type": 200,
+      "IconPath": "Art/Item/ExpLv1"
+    },
+    {
+      "ItemId": 61,
+      "Name": "FirstAidKit",
+      "Value": 4,
+      "Type": 30,
+      "IconPath": "Art/Item/ExpLv1"
+    },
+    {
+      "ItemId": 71,
+      "Name": "BulletproofVest",
       "Value": 5,
-      "IconPath": "Art/_ExpLv1"
+      "Type": 1,
+      "IconPath": "Art/Item/ExpLv1"
     },
     {
-      "DataId": 42,
-      "Name": "경험치구슬2",
-      "Value": 10,
-      "IconPath": "Art/ExpLv2"
+      "ItemId": 81,
+      "Name": "Gold1",
+      "Value": 6,
+      "Type": 10,
+      "IconPath": "Art/Item/Gold1"
     },
     {
-      "DataId": 43,
-      "Name": "경험치구슬3",
-      "Value": 15,
-      "IconPath": "Art/ExpLv3"
+      "ItemId": 82,
+      "Name": "Gold2",
+      "Value": 6,
+      "Type": 50,
+      "IconPath": "Art/Item/Gold2"
+    },
+    {
+      "ItemId": 83,
+      "Name": "Gold3",
+      "Value": 6,
+      "Type": 100,
+      "IconPath": "Art/Item/Gold3"
+    },
+    {
+      "ItemId": 91,
+      "Name": "Key",
+      "Value": 7,
+      "Type": 1,
+      "IconPath": "Art/Item/ExpLv1"
+    },
+    {
+      "ItemId": 101,
+      "Name": "Skill_Item1",
+      "Value": 8,
+      "Type": 1,
+      "IconPath": "Art/Item/ExpLv1"
+    },
+    {
+      "ItemId": 102,
+      "Name": "Skill_Item2",
+      "Value": 8,
+      "Type": 2,
+      "IconPath": "Art/Item/ExpLv1"
+    },
+    {
+      "ItemId": 103,
+      "Name": "Skill_Item3",
+      "Value": 8,
+      "Type": 3,
+      "IconPath": "Art/Item/ExpLv1"
+    },
+    {
+      "ItemId": 104,
+      "Name": "Skill_Item4",
+      "Value": 8,
+      "Type": 4,
+      "IconPath": "Art/Item/ExpLv1"
+    },
+    {
+      "ItemId": 105,
+      "Name": "Skill_Item5",
+      "Value": 8,
+      "Type": 5,
+      "IconPath": "Art/Item/ExpLv1"
+    },
+    {
+      "ItemId": 200,
+      "Name": "End_Box",
+      "Value": 9,
+      "Type": 0,
+      "IconPath": "Art/Item/ExpLv1"
     }
   ]
 }

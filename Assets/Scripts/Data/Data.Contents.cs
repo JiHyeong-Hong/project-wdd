@@ -250,9 +250,10 @@ namespace Data
 	[Serializable]
 	public class ItemData
 	{
-		public int DataId;
+		public int ItemId;
 		public string Name;
 		public int Value;
+		public int Type;
 		public string IconPath;
 	}
 
@@ -265,11 +266,37 @@ namespace Data
 		{
 			Dictionary<int, ItemData> dict = new Dictionary<int, ItemData>();
 			foreach (ItemData item in items)
-				dict.Add(item.DataId, item);
+				dict.Add(item.ItemId, item);
 			return dict;
 		}
 	}
 
+    #endregion
+    
+    #region DropData
+    [Serializable]
+    public class DropItemData
+    {
+	    public int DropItemID;
+	    public int MonsterID;
+	    public int ItemID;
+	    public int DropPer;
+    }
+
+    [Serializable]
+    public class DropItemDataLoader : ILoader<int, DropItemData>
+    {
+	    public List<DropItemData> drops = new List<DropItemData>();
+
+	    public Dictionary<int, DropItemData> MakeDict()
+	    {
+		    Dictionary<int, DropItemData> dict = new Dictionary<int, DropItemData>();
+		    foreach (DropItemData dropitem in drops)
+			    dict.Add(dropitem.DropItemID, dropitem);
+		    return dict;
+	    }
+    }
+    
     #endregion
     
     #region Boss_Patturn

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Data;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -20,6 +21,9 @@ public class Monster : Creature
 
     public int DropItemID { get; set; }
     public int DropPersent { get; set; }
+
+    public List<DropItemData> DropData { get; set; }
+
     #endregion
     public float temp;
     public override bool Init()
@@ -55,7 +59,9 @@ public class Monster : Creature
                 CreatureState = ECreatureState.Move;
                 break;
         }
-        
+
+        DropData = Managers.Data.DropItemDic.Select(x => x.Value)
+            .Where(x => x.MonsterID == monsterData.MonsterID).ToList();
         test = StartCoroutine(CoUpdateAI());
         //TODO Eung Drop 데이터 테이블 만들고나서 봐야할듯?
         //DropItemID = monsterData.DropItemID;
@@ -183,7 +189,25 @@ public class Monster : Creature
     {
         base.OnDead(attacker, skill);
 
+        bool test2 = false;
         int rand = Random.Range(0, 100);
+        Debug.Log("아이템 드랍 확률 :" + $"{rand}");
+        int setVal = 0;
+        foreach (var item in DropData)
+        {
+            setVal += item.DropPer;
+
+            if (rand <= setVal)
+            {
+                test2 = !test2;
+                Managers.Object.Spawn<Item>(transform.position, item.ItemID);
+            }
+        }
+
+        if (!test2)
+        {
+            Debug.Log("아이템 드랍 실패!!");
+        }
         if (rand <= DropPersent)
         {
             Managers.Object.Spawn<Item>(transform.position, DropItemID);
