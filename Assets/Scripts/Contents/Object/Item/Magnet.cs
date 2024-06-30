@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Magnet : BaseObject
+public class Magnet : Item
 {
     private float usedTransparency = 0f;
 
@@ -34,7 +34,7 @@ public class Magnet : BaseObject
             Renderer.material.color = color;
         }
 
-        // ¾À¿¡ ÀÖ´Â ¸ðµç °æÇèÄ¡ ±¸½½ Ã£À½
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½
         Item[] items = FindObjectsOfType<Item>();
 
         foreach (Item item in items)

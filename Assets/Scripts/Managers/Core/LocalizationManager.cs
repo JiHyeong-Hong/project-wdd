@@ -44,7 +44,7 @@ public class LocalizationManager
                 break;
         }
 
-        LoadLanguageFile(cultureInfo.TwoLetterISOLanguageName);
+        LoadLanguageFile("ko");
 
     }
 

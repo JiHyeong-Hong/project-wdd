@@ -11,9 +11,25 @@ public class Test : MonoBehaviour
 
     private void Update()
     {
+        // if(Input.GetKeyDown(KeyCode.V)) 
+        // {
+        //     FindSkillForName("Bear");
+        // }
+        //
         if(Input.GetKeyDown(KeyCode.V)) 
         {
-            FindSkillForName("Bear");
+            Managers.Object.Spawn<Monster>(new Vector3(0,0, 0f), 31);
+            
+            // Managers.Object.Spawn<Item>(new Vector3(0, 1, 0f), 32);
+            // Managers.Object.Spawn<Item>(new Vector3(1, 0, 0f), 33);
+            // Managers.Object.Spawn<Item>(new Vector3(1, 1, 0f), 41);
+            // Managers.Object.Spawn<Item>(new Vector3(2, 0, 0f), 51);
+            // Managers.Object.Spawn<Item>(new Vector3(2, 1, 0f), 61);
+            // Managers.Object.Spawn<Item>(new Vector3(3, 0, 0f), 71);
+            // Managers.Object.Spawn<Item>(new Vector3(3, 1, 0f), 81);
+            // Managers.Object.Spawn<Trumpet>(new Vector3(6, 1, 0f), 81);
+
+            
         }
     }
 

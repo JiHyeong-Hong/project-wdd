@@ -46,6 +46,9 @@ public class ObjectManager :SingletonMonoBehaviour<ObjectManager>
     
     public Transform ProjectileRoot { get { return GetRootTransform("@Projectiles"); } }
     public Transform ItemRoot { get { return GetRootTransform("@Item"); } }
+    public Transform ExpRoot { get { return GetRootTransform("@Exp"); } }
+    public Transform GoldRoot { get { return GetRootTransform("@GoldRoot"); } }
+    public Transform EtcRoot { get { return GetRootTransform("@EtcRoot"); } }
     public Transform StructureRoot { get { return GetRootTransform("@Structure"); } }
     public Transform SpawnerRoot { get { return GetRootTransform("@Spawners"); } }
     #endregion

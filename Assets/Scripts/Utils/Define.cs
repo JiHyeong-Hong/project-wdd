@@ -45,6 +45,16 @@ public static class Define
 		Structure,
 		Spawner,
 	}
+	
+	public enum EItemType
+	{
+		Exp = 1,
+		Magnet = 2,
+		Trumpet = 3,
+		Medkit = 4,
+		BulletproofVest = 5,
+		Gold = 6,
+	}
 
 	public enum ECreatureType
 	{
@@ -71,6 +81,7 @@ public static class Define
 		Pattern2 = 10,
 		Pattern3 = 11,
 		ChangePhase = 12,
+		isTest = 13,
 	}
 
 	public enum ELayer

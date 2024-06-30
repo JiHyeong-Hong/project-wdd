@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Trumpet : BaseObject
+public class Trumpet : Item
 {
     private float usedTransparency = 0f;
 
@@ -34,7 +34,7 @@ public class Trumpet : BaseObject
         }
 
         //
-        //Æ®·³Æê ±â´É Ã¤¿ì±â
+        //Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Ã¤ï¿½ï¿½ï¿½
         ///
 
         Managers.Object.Despawn(this);

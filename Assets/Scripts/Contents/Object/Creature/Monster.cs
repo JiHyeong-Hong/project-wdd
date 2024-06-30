@@ -208,10 +208,10 @@ public class Monster : Creature
         {
             Debug.Log("아이템 드랍 실패!!");
         }
-        if (rand <= DropPersent)
-        {
-            Managers.Object.Spawn<Item>(transform.position, DropItemID);
-        }
+        // if (rand <= DropPersent)
+        // {
+        //     Managers.Object.Spawn<Item>(transform.position, DropItemID);
+        // }
         
 
         if(test != null)
@@ -250,6 +250,10 @@ public class Monster : Creature
             time += Time.deltaTime;
             yield return new WaitForFixedUpdate();
         }
+    }
+    protected override void IsTest()
+    {
+        
     }
     
     protected override void UpdateAttack()

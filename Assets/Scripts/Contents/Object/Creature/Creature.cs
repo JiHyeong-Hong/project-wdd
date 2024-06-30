@@ -80,6 +80,10 @@ public class Creature : BaseObject
     private void LateUpdate()
     {
         _freezeStateOneFrame = false;
+        if (Input.GetKeyDown(KeyCode.F6))
+        {
+            CreatureState = ECreatureState.isTest;
+        }
     }
 
     protected override void PlayAnimation(Define.ECreatureState state)
@@ -145,6 +149,10 @@ public class Creature : BaseObject
                 case ECreatureState.ChangePhase:
                     UpdateChangePhase();
                     break;
+                
+                case ECreatureState.isTest:
+                    UpdateChangePhase();
+                    break;
             }
 
             if (UpdateAITick > 0)
@@ -194,6 +202,7 @@ public class Creature : BaseObject
     protected virtual void UpdatePattern1() { }
     protected virtual void UpdatePattern2() { }
     protected virtual void UpdateChangePhase() { }
+    protected virtual void IsTest() { }
     #endregion
 
     #region Battle

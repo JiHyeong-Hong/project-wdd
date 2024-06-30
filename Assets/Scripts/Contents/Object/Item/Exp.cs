@@ -1,11 +1,10 @@
+using Data;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gold : Item
+public class Exp : Item
 {
-    public int value;
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         BaseObject target = other.GetComponent<BaseObject>();
@@ -16,8 +15,8 @@ public class Gold : Item
         if (hero == null)
             return;
 
-        // ��� ���� ����
-        hero.AddGold(value);
+        hero.Exp += ItemData.Value;
+        Debug.Log($"����ġ {ItemData.Value}��ŭ ȹ��. �� ����ġ : {hero.Exp}");
 
         Managers.Object.Despawn(this);
     }

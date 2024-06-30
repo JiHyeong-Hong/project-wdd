@@ -252,8 +252,8 @@ namespace Data
 	{
 		public int ItemId;
 		public string Name;
-		public int Value;
 		public int Type;
+		public int Value;
 		public string IconPath;
 	}
 

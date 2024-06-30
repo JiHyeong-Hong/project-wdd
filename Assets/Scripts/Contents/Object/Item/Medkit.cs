@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Medkit : BaseObject
+public class Medkit : Item
 {
-    public float healthRestorePercent = 50.0f;  // ¸îÆÛ È¸º¹½ÃÅ³Áö ¾ÆÁ÷ ¹ÌÁ¤. ÀÓÀÇ°ª 50
+    public float healthRestorePercent = 50.0f;  // ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½Å³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½Ç°ï¿½ 50
     private float usedTransparency = 0f;
 
     public override bool Init()
