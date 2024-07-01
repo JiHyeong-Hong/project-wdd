@@ -12,7 +12,7 @@ public class Medkit : Item
         if (base.Init() == false)
             return false;
 
-        ObjectType = Define.EObjectType.Item;
+        ItemType = Define.EItemType.Medkit;
 
         return true;
     }

@@ -54,6 +54,7 @@ public static class Define
 		Medkit = 4,
 		BulletproofVest = 5,
 		Gold = 6,
+		Key = 7,
 	}
 
 	public enum ECreatureType

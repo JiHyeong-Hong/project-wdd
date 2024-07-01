@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Linq;
+using Data;
 using UnityEngine;
 using static Define;
 
@@ -297,6 +299,43 @@ public class Creature : BaseObject
                 break;
             else
                 yield return null;
+        }
+    }
+
+    #endregion
+
+    #region Drop
+
+    public void OnDrop(Transform DropPos, int ItemID)
+    {
+        ItemData item =
+            Managers.Data.ItemDic
+            .Select(x => x.Value)
+            .FirstOrDefault(x => x.ItemId == ItemID);
+        
+        switch (item.Type)
+        {
+            case 1:
+                Managers.Object.Spawn<Exp>(DropPos.position, ItemID);
+                break;
+            case 2:
+                Managers.Object.Spawn<Magnet>(DropPos.position, ItemID);
+                break;
+            case 3:
+                Managers.Object.Spawn<Trumpet>(DropPos.position, ItemID);
+                break;
+            case 4:
+                Managers.Object.Spawn<Medkit>(DropPos.position, ItemID);
+                break;
+            case 5:
+                Managers.Object.Spawn<BulletproofVest>(DropPos.position, ItemID);
+                break;
+            case 6:
+                Managers.Object.Spawn<Gold>(DropPos.position, ItemID);
+                break;
+            case 7:
+                // Managers.Object.Spawn<Key>(DropPos.position, ItemID);
+                break;
         }
     }
 

@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class BulletproofVest : Item
 {
-    public int maxProtectionHits = 5; // ¹æ¾î °¡´ÉÇÑ È½¼ö. ¾ÆÁ÷ ¹ÌÁ¤
-    public float protectionDuration = 10f; // ¹æÅºÁ¶³¢ Áö¼Ó ½Ã°£
+    public int maxProtectionHits = 5; // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public float protectionDuration = 10f; // ï¿½ï¿½Åºï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
     private float usedTransparency = 0f;
 
     private int currentProtectionHits;
     private float protectionEndTime;
     private bool isProtecting;
-
+    
     public override bool Init()
     {
         if (!base.Init())
             return false;
 
+        ItemType = Define.EItemType.BulletproofVest;
         currentProtectionHits = maxProtectionHits;
         protectionEndTime = Time.time + protectionDuration;
         isProtecting = true;

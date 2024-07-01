@@ -8,14 +8,13 @@ public class Trumpet : Item
 
     public override bool Init()
     {
-        if (!base.Init())
+        if (base.Init() == false)
             return false;
 
-        ObjectType = Define.EObjectType.Item;
+        ItemType = Define.EItemType.Trumpet;
 
         return true;
     }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         BaseObject target = other.GetComponent<BaseObject>();

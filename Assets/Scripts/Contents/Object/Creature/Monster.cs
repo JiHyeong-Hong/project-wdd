@@ -200,7 +200,8 @@ public class Monster : Creature
             if (rand <= setVal)
             {
                 test2 = !test2;
-                Managers.Object.Spawn<Item>(transform.position, item.ItemID);
+                OnDrop(transform, item.ItemID);
+                
             }
         }
 

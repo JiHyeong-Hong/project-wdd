@@ -105,10 +105,28 @@ public class ObjectManager :SingletonMonoBehaviour<ObjectManager>
         }
         else if (obj.ObjectType == EObjectType.Item)
         {
-            obj.transform.parent = (parent == null) ? ItemRoot : parent;
+            // switch (obj.)
+            // {
+            //     
+            // }
 
             Item item = go.GetComponent<Item>();
+
+            switch (item.ItemType)
+            {
+                case EItemType.Exp:
+                    obj.transform.parent = (parent == null) ? ExpRoot : parent;
+                    break;
+                case EItemType.Gold:
+                    obj.transform.parent = (parent == null) ? GoldRoot : parent;
+                    break;
+                default:
+                    obj.transform.parent = (parent == null) ? EtcRoot : parent;
+                    break;
+            }
             Items.Add(item);
+            
+            obj.transform.parent.parent = ItemRoot;
 
             item.SetInfo(templateID);
         }

@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class Gold : Item
 {
-    public int value;
+    public override bool Init()
+    {
+        if (base.Init() == false)
+            return false;
 
+        ItemType = Define.EItemType.Gold;
+
+        return true;
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         BaseObject target = other.GetComponent<BaseObject>();
@@ -17,7 +24,7 @@ public class Gold : Item
             return;
 
         // ��� ���� ����
-        hero.AddGold(value);
+        hero.AddGold(ItemData.Value);
 
         Managers.Object.Despawn(this);
     }

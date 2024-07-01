@@ -12,14 +12,14 @@
       "Name": "ExpMarble2",
       "Type": 1,
       "Value": 15,
-      "IconPath": "Art/Item/ExpLv1"
+      "IconPath": "Art/Item/ExpLv2"
     },
     {
       "ItemId": 33,
       "Name": "ExpMarble3",
       "Type": 1,
       "Value": 35,
-      "IconPath": "Art/Item/ExpLv1"
+      "IconPath": "Art/Item/ExpLv3"
     },
     {
       "ItemId": 41,

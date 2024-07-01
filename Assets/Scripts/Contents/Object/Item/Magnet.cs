@@ -9,10 +9,10 @@ public class Magnet : Item
 
     public override bool Init()
     {
-        if (!base.Init())
+        if (base.Init() == false)
             return false;
 
-        //ObjectType = Define.EObjectType.Item;
+        ItemType = Define.EItemType.Magnet;
 
         return true;
     }
