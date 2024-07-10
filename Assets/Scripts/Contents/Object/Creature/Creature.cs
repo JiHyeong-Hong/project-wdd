@@ -216,10 +216,12 @@ public class Creature : BaseObject
 
         if (attacker.IsValid() == false)
             return;
-
+        
         Creature creature = attacker as Creature;
+        Monster creature2;
         Projectile projectile = null;
 
+        //TODO 코드 creature를 타입별로 나누어야 할듯
         if (creature == null)
         {
             projectile = attacker as Projectile;
@@ -233,8 +235,11 @@ public class Creature : BaseObject
 
         if (skill == null)
         {
-            if(creature != null)
-                finalDamage = creature.Atk;
+            if (creature != null)
+            {
+                creature2 = attacker as Monster;
+                finalDamage = creature2.monsterData.ContactDmg;
+            }
             else
                 finalDamage = projectile.ProjectileData.ContactDmg;
         }

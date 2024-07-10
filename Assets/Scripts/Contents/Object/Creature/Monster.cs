@@ -36,7 +36,7 @@ public class Monster : Creature
         return true;
     }
 
-    protected MonsterData monsterData;
+    public MonsterData monsterData;
     public override void SetInfo(int templateID)
     {
         base.SetInfo(templateID);
@@ -99,7 +99,7 @@ public class Monster : Creature
         }
 
         // TODO Eung
-        //target.OnDamaged(this, null);
+        target.OnDamaged(this, null);
     }
 
     #region Battle
