@@ -90,6 +90,12 @@ public class ObjectManager :SingletonMonoBehaviour<ObjectManager>
                     Monsters.Add(boss);
                     boss.SetInfo(templateID);
                     break;
+                case ECreatureType.Box:
+                    obj.transform.parent = (obj.transform.parent == null) ? ItemRoot : obj.transform.parent;
+                    Monster itembox = creature as Monster;
+                    Monsters.Add(itembox);
+                    itembox.SetInfo(templateID);
+                    break;
                 
                 //TODO Eung ECreatureType.Boss의 경우 코드 작성 
             }

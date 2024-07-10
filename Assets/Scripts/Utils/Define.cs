@@ -64,6 +64,7 @@ public static class Define
 		Monster,
 		MiddleBoss,
 		Boss,
+		Box,
 		Npc,
 	}
 

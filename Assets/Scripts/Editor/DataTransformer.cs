@@ -23,7 +23,7 @@ public class DataTransformer : EditorWindow
         //ParseExcelDataToJson<SkillDataLoader, SkillData>("Skill");
         ParseExcelDataToJson<ProjectileDataLoader, ProjectileData>("Projectile");
         ParseExcelDataToJson<ItemDataLoader, ItemData>("Item");
-        // ParseExcelDataToJson<DropItemDataLoader, DropItemData>("DropItem");
+        ParseExcelDataToJson<DropItemDataLoader, DropItemData>("DropItem");
         //ParseExcelDataToJson<HpConditionDataLoader, HpConditionData>("HpCondition");
         //ParseExcelDataToJson<PatternPerDataLoader, PatternPerData>("PatternPer");
         //ParseExcelDataToJson<BreakthroughDataLoader, BreakthroughData>("Breakthrough");

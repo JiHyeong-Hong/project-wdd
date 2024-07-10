@@ -62,7 +62,8 @@ public class Monster : Creature
 
         DropData = Managers.Data.DropItemDic.Select(x => x.Value)
             .Where(x => x.MonsterID == monsterData.MonsterID).ToList();
-        test = StartCoroutine(CoUpdateAI());
+        if(CreatureType != ECreatureType.Box)
+            CoMonsterAI = StartCoroutine(CoUpdateAI());
         //TODO Eung Drop 데이터 테이블 만들고나서 봐야할듯?
         //DropItemID = monsterData.DropItemID;
         //DropPersent = monsterData.DropPersent;
@@ -189,7 +190,7 @@ public class Monster : Creature
     {
         base.OnDead(attacker, skill);
 
-        bool test2 = false;
+        bool isDrop = false;
         int rand = Random.Range(0, 100);
         Debug.Log("아이템 드랍 확률 :" + $"{rand}");
         int setVal = 0;
@@ -199,13 +200,13 @@ public class Monster : Creature
 
             if (rand <= setVal)
             {
-                test2 = !test2;
+                isDrop = !isDrop;
                 OnDrop(transform, item.ItemID);
-                
+                break;
             }
         }
 
-        if (!test2)
+        if (!isDrop)
         {
             Debug.Log("아이템 드랍 실패!!");
         }
@@ -215,9 +216,9 @@ public class Monster : Creature
         // }
         
 
-        if(test != null)
-            StopCoroutine(test);
-        test = null;
+        if(CoMonsterAI != null)
+            StopCoroutine(CoMonsterAI);
+        CoMonsterAI = null;
         Managers.Resource.Destroy(gameObject);
     }
     #endregion
@@ -244,7 +245,7 @@ public class Monster : Creature
                 proj.SetSpawnInfo(this, null, direction);
                 proj.SetTarget(_hero);
                 
-                cotest = null;
+                CoAttack = null;
                 CreatureState = ECreatureState.Idle;
                 break;
             }
@@ -259,9 +260,9 @@ public class Monster : Creature
     
     protected override void UpdateAttack()
     {
-        if (cotest == null)
+        if (CoAttack == null)
         {
-            cotest = StartCoroutine(Attack());
+            CoAttack = StartCoroutine(Attack());
         }
         
         Vector2 dest = (_hero.transform.position - transform.position).normalized;
@@ -291,15 +292,15 @@ public class Monster : Creature
         }
     }
 
-    public Coroutine cotest = null;
+    public Coroutine CoAttack = null;
     //공격 대기상태
     protected override void UpdateIdle()
     {
         // UpdateAITick = 100f;
 
-        if (cotest == null)
+        if (CoAttack == null)
         {
-            cotest = StartCoroutine(CAttackWait());
+            CoAttack = StartCoroutine(CAttackWait());
         }
         
         Vector2 dest = (_hero.transform.position - transform.position).normalized;
@@ -373,14 +374,14 @@ public class Monster : Creature
             if (!searching)
             {
                 CreatureState = ECreatureState.Move;
-                cotest = null;
+                CoAttack = null;
                 break;
             }
             
             if (time > cooltime)
             {
                 CreatureState = ECreatureState.Attack;
-                cotest = null;
+                CoAttack = null;
                 cooltime = 0f;
                 break;
             }

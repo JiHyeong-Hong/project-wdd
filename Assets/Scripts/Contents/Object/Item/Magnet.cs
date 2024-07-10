@@ -1,6 +1,7 @@
 using Data;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Magnet : Item
@@ -39,7 +40,7 @@ public class Magnet : Item
 
         foreach (Item item in items)
         {
-            if (item != null && item.ItemData != null)
+            if (item != null && item.ItemData != null && item.ItemType == Define.EItemType.Exp)
             {
                 hero.Exp += item.ItemData.Value;
                 Managers.Object.Despawn(item);

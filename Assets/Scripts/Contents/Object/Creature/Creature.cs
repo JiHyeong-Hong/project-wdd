@@ -63,6 +63,9 @@ public class Creature : BaseObject
                 CreatureData = Util.ConvertToCreatureData(Managers.Data.MonsterDic[templateID]);
                 //TODO 
                 break;
+            case ECreatureType.Box:
+                CreatureData = Util.ConvertToCreatureData(Managers.Data.MonsterDic[templateID]);
+                break;
         }
 
         gameObject.name = $"{CreatureData.Index}_{CreatureData.DescriptionTextID}";
@@ -116,7 +119,7 @@ public class Creature : BaseObject
     public float UpdateAITick { get; protected set; } = 0.01f;
 
     //TODO Eung 몬스터 AI 코루틴 변수 - 변경 필요
-    public Coroutine test = null;
+    public Coroutine CoMonsterAI = null;
 
     protected IEnumerator CoUpdateAI()
     {
@@ -151,7 +154,6 @@ public class Creature : BaseObject
                 case ECreatureState.ChangePhase:
                     UpdateChangePhase();
                     break;
-                
                 case ECreatureState.isTest:
                     UpdateChangePhase();
                     break;
@@ -238,7 +240,7 @@ public class Creature : BaseObject
         }
         else if(CreatureType == ECreatureType.Hero)
             finalDamage = skill.SkillData.Damage + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Attack);
-        else if(CreatureType == ECreatureType.Monster || CreatureType == ECreatureType.MiddleBoss || CreatureType == ECreatureType.Boss)
+        else if(CreatureType == ECreatureType.Monster || CreatureType == ECreatureType.MiddleBoss || CreatureType == ECreatureType.Boss || CreatureType == ECreatureType.Box)
             finalDamage = skill.SkillData.Damage + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Attack);
 
         Hp = Mathf.Clamp(Hp - finalDamage, 0, MaxHp);
@@ -335,6 +337,8 @@ public class Creature : BaseObject
                 break;
             case 7:
                 // Managers.Object.Spawn<Key>(DropPos.position, ItemID);
+            default:
+                Managers.Object.Spawn<ItemBox>(DropPos.position, ItemID);
                 break;
         }
     }
