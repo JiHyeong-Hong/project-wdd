@@ -2,6 +2,7 @@ using System;
 using Data;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static Define;
 
@@ -10,6 +11,8 @@ public class Item : BaseObject
     public ItemData ItemData { get; private set; }
 
     public EItemType ItemType { get; protected set; }
+
+    public bool isMove;
     
     public override bool Init()
     {
@@ -32,4 +35,19 @@ public class Item : BaseObject
         this.name = ItemType.ToString();
     }
     
+    public static IEnumerator Move(Item item)
+    {
+        
+        while (true)
+        {
+            
+            item.transform.position = 
+                Vector3.MoveTowards(item.transform.position, 
+                    Managers.Object.Hero.transform.position, 
+                    3f * Time.deltaTime);
+            Debug.Log("이동중!!");
+
+            yield return YieldInstructionCache.WaitForEndOfFrame;
+        }
+    }
 }

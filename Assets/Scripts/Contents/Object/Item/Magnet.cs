@@ -35,15 +35,15 @@ public class Magnet : Item
             Renderer.material.color = color;
         }
 
+        
         // ���� �ִ� ��� ����ġ ���� ã��
-        Item[] items = FindObjectsOfType<Item>();
-
-        foreach (Item item in items)
+        Exp[] exps = FindObjectsOfType<Exp>();
+        
+        foreach (Exp exp in exps)
         {
-            if (item != null && item.ItemData != null && item.ItemType == Define.EItemType.Exp)
+            if (exp != null)
             {
-                hero.Exp += item.ItemData.Value;
-                Managers.Object.Despawn(item);
+                exp.StartCoroutine(Move(exp));
             }
         }
 
