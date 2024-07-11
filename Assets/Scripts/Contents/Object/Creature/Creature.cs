@@ -220,7 +220,7 @@ public class Creature : BaseObject
 
         if (skill == null)
         {
-            if(creature != null)
+            if(creature != null)                
                 finalDamage = creature.Atk;
             else
                 finalDamage = projectile.ProjectileData.ContactDmg;

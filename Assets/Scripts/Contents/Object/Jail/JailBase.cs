@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 
@@ -68,6 +68,7 @@ public class JailBase : MonoBehaviour
     }
     private void Update()
     {
+        // 테스트용
         if (Input.GetKeyDown(KeyCode.B))
         {
             SetJailSprite(JailType.Big, jailName);

@@ -47,7 +47,7 @@ public class Managers : SingletonMonoBehaviour<Managers>
     IEnumerator Start()
     {
         yield return null;
-
+      
         if (!isTestScene)
         {
             SceneManagerNew.Instance.LoadScene(Define.EScene.TitleScene);
@@ -59,7 +59,7 @@ public class Managers : SingletonMonoBehaviour<Managers>
             //SceneManagerNew.Instance.LoadScene(Define.EScene.TitleScene);
 
             //TODO Eung 보스 출현 카운트
-            // StartCoroutine(Game.BossCount());
+            // StartCoroutine(Managers.Game.BossCount());
 
             //EscapePattern.SpawnEscapePattern(); // @홍지형, 테스트용
         }

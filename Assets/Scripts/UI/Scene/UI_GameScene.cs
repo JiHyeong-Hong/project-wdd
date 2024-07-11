@@ -77,6 +77,7 @@ public class UI_GameScene : UI_Scene
         Managers.Game.CurrentTime = _timeElapsed;
     }
 
+    // UI구조 변경으로 삭제해야할듯? @홍지형
     private void RefreshUI()
     {
         _hpBar.fillAmount = (float)Managers.Object.Hero.Hp / Managers.Object.Hero.MaxHp;

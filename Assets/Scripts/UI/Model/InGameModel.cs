@@ -23,12 +23,16 @@ public class ProfileData
     public float Exp;
     public int Gold;
     public int AnimalSaveCount;
-    public ProfileData(string name, int level, int exp, int gold)
+    public float Time;
+    public float Hp;
+    public ProfileData(string name, int level, float exp, int gold, float hp, float time)
     {
         Name = name;
         Level = level;
         Exp = exp;
         Gold = gold;
+        Hp = hp;
+        Time = time;
     }
 }
 

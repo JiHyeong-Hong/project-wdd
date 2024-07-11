@@ -61,9 +61,10 @@ public class SpawnManager
         camera = Camera.main;
         size_y_ = camera.orthographicSize;
         size_x_ = camera.orthographicSize * Screen.width / Screen.height;
+
         SetSpawnPos();
 
-        CreateSpawner(); // 240502 홍지형
+        CreateSpawner(); 
     }
 
     public void CreateTop()

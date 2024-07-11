@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9136017733693474052}
   - component: {fileID: 4960304408830538033}
   m_Layer: 0
-  m_Name: Gold3_Gold
+  m_Name: Gold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

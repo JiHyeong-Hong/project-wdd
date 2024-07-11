@@ -11,10 +11,10 @@ public class Test : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.V)) 
-        {
-            FindSkillForName("Bear");
-        }
+        //if(Input.GetKeyDown(KeyCode.V)) 
+        //{
+        //    FindSkillForName("Bear");
+        //}
     }
 
     public void FindSkillForName(string name)

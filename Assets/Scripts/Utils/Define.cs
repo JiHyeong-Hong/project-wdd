@@ -44,6 +44,7 @@ public static class Define
 		Item,
 		Structure,
 		Spawner,
+		Gold,	// @홍지형 추가. 240623
 	}
 
 	public enum ECreatureType

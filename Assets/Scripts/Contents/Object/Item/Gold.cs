@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +11,7 @@ public class Gold : BaseObject
         if (base.Init() == false)
             return false;
 
-       // ObjectType = Define.EObjectType.Item;
+        ObjectType = Define.EObjectType.Gold;
 
         return true;
     }
@@ -26,8 +26,10 @@ public class Gold : BaseObject
         if (hero == null)
             return;
 
-        // °ñµå ´©Àû ·ÎÁ÷
+        // ê³¨ë“œ ëˆ„ì  ë¡œì§
         hero.AddGold(value);
+        
+        hero.AddExp(10); // í…ŒìŠ¤íŠ¸ìš©, ì‚­ì œê°€ëŠ¥.  @í™ì§€í˜•
 
         Managers.Object.Despawn(this);
     }

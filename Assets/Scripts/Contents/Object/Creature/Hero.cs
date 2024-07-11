@@ -31,7 +31,7 @@ public class Hero : Creature
 			_exp = value;
 			if (_exp >= MaxExp)
 				LevelUp();
-			Managers.Game.RefreshUI();
+			// Managers.Game.RefreshUI(); 
 		}
 	}
 
@@ -44,7 +44,14 @@ public class Hero : Creature
 		Debug.Log($"총 골드 : {Gold}");
     }
 
-    private bool isInvincible = false;
+    public void AddExp(float amount)
+    {
+        Exp += amount;
+        Debug.Log($"경험치 획득 : {amount}");
+        Debug.Log($"총 경험치 : {Exp}");
+    }
+
+    public bool isInvincible = false; 
     public bool IsInvincible
     {
         get { return isInvincible; }
@@ -135,16 +142,49 @@ public class Hero : Creature
 			// for (int i = 0; i < 1; ++i)
 			// 	Managers.Object.Spawn<Monster>(new Vector3(-2f + i, 1f, 0f), Define.MONSTER_SECURITY3_ID);
 		}
-		
-		// TODO Eung 스포너 생성 테스트 코드
-		// if (Input.GetKeyDown(KeyCode.Alpha6))
-		// {
-		// 	Debug.Log("Test");
-		// 	int ran = Random.Range(0, Managers.Spawner.spawner_List.Count);
-		// 	
-		// 	Managers.Spawner.spawner_List[ran].Spawn(415);
-		// }
-	}
+
+        // TODO Eung 스포너 생성 테스트 코드
+        // if (Input.GetKeyDown(KeyCode.Alpha6))
+        // {
+        // 	Debug.Log("Test");
+        // 	int ran = Random.Range(0, Managers.Spawner.spawner_List.Count);
+        // 	
+        // 	Managers.Spawner.spawner_List[ran].Spawn(415);
+        // }
+
+        // 테스트 용 240623 @홍지형
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            UIManagerNew.Instance.ShowWindow<SkillLevelUpWindow>(Define.UIWindowType.SkillLevelUpWindow);
+            // UIManagerNew.Instance.ShowWindow<SkillLevelUpWindow>(Define.UIWindowType.OptionWindow);
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            UIManagerNew.Instance.ShowWindow<SkillLevelUpWindow>(Define.UIWindowType.AnimalRescueWindow);
+            // UIManagerNew.Instance.ShowWindow<SkillLevelUpWindow>(Define.UIWindowType.ShopWindow);
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            UIManagerNew.Instance.ShowWindow<SkillLevelUpWindow>(Define.UIWindowType.InGameWindow);
+            // UIManagerNew.Instance.ShowWindow<SkillLevelUpWindow>(Define.UIWindowType.InventoryWindow);
+        }
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            
+        }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            // UIManagerNew.Instance.ShowWindow<SkillLevelUpWindow>(Define.UIWindowType.OptionWindow);
+        }
+    }
 	private void HandleOnMoveDirChanged(Vector2 dir)
 	{
 		_moveDir = dir;

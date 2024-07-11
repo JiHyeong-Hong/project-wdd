@@ -26,6 +26,7 @@ public class ObjectManager :SingletonMonoBehaviour<ObjectManager>
     public HashSet<Item> Items { get; } = new HashSet<Item>();
     public HashSet<Structure> Structures { get; } = new HashSet<Structure>();
     public HashSet<Spawner> Spawners { get; } = new HashSet<Spawner>();
+    public HashSet<Gold> Golds { get; } = new HashSet<Gold>();
     #region Roots
     public Transform GetRootTransform(string name)
     {
@@ -48,6 +49,7 @@ public class ObjectManager :SingletonMonoBehaviour<ObjectManager>
     public Transform ItemRoot { get { return GetRootTransform("@Item"); } }
     public Transform StructureRoot { get { return GetRootTransform("@Structure"); } }
     public Transform SpawnerRoot { get { return GetRootTransform("@Spawners"); } }
+    public Transform GoldRoot { get { return GetRootTransform("@Golds"); } }
     #endregion
 
     public T Spawn<T>(Vector3 position, int templateID, Transform parent = null) where T : BaseObject
@@ -117,11 +119,19 @@ public class ObjectManager :SingletonMonoBehaviour<ObjectManager>
             Structures.Add(structure);
         }
         else if (obj.ObjectType == EObjectType.Spawner)
-        {
+        {       
             obj.transform.parent = (parent == null) ? SpawnerRoot : parent;
-            
+            SpawnerRoot.transform.SetParent(Camera.main.transform);         // Main Camera에 붙이기 240630 @홍지형
+
             Spawner spawner = go.GetComponent<Spawner>();
             Spawners.Add(spawner);
+        }
+        else if (obj.ObjectType == EObjectType.Gold)
+        {
+            obj.transform.parent = (parent == null) ? GoldRoot : parent;
+
+            Gold gold = go.GetComponent<Gold>();
+            Golds.Add(gold);
         }
 
         return obj as T;

@@ -134,7 +134,7 @@ public class GameManager
     public event Action<Define.EJoystickState> OnJoystickStateChanged;
 
     public event Action OnUIRefreshed;
-    public void RefreshUI()
+    public void RefreshUI() // UI구조 변경으로 삭제해야할듯? @홍지형
     {
         OnUIRefreshed?.Invoke();
     }
@@ -167,7 +167,7 @@ public class GameManager
             else if(CurrentTime >= 3f && test == BossCountState.Barricade) 
             {
                 //TODO Eung StageLv 테이블을 만들어서 스테이지별 등장 보스몬스터 넘버를 받아와서 대입하면 될듯 
-                Managers.Object.Spawn<Boss>(Managers.Object.Hero.transform.position * 2, 241);
+                Managers.Object.Spawn<Boss>(Managers.Object.Hero.transform.position * 1, 241);
                 Debug.Log("보스 생성");
                 break;
             }

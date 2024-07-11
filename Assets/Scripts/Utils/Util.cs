@@ -336,7 +336,7 @@ public static class Util
         return new MonsterData
         {
             HP = creatureData.MaxHp,
-            MoveSpeed = (int)creatureData.MoveSpeed,
+            MoveSpeed = (int)creatureData.MoveSpeed,            
             // 다른 필요한 변환 로직 추가
         };
     }
@@ -350,6 +350,7 @@ public static class Util
 			MaxHp = monsterData.HP,
 			MoveSpeed = monsterData.MoveSpeed,
 			DescriptionTextID = monsterData.Name,
+            Atk = monsterData.ContactDmg,        // 240620 @홍지형
             // 다른 필요한 변환 로직 추가
         };
     }

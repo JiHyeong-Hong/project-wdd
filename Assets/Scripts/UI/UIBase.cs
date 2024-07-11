@@ -16,7 +16,8 @@ public abstract class UIBase : MonoBehaviour
 
     public virtual void Refresh() 
     {
-        // gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero; // 홍지형 IngameUI 위치문제로 삭제. 240616
+        if (this.ToString().Contains("InGameWindow")) { return; }                           // Ingame UI 는 예외 위치 설정.
+        else { gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero; }
     }
 
     protected virtual void OnShow() { }

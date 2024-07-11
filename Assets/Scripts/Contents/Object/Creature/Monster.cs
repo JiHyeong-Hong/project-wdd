@@ -77,7 +77,7 @@ public class Monster : Creature
                 CreatureState = ECreatureState.Move;
                 break;
         }
-        
+                
         test = StartCoroutine(CoUpdateAI());
         //TODO Eung Drop 데이터 테이블 만들고나서 봐야할듯?
         //DropItemID = monsterData.DropItemID;
@@ -114,7 +114,7 @@ public class Monster : Creature
         }
 
         // TODO Eung
-        //target.OnDamaged(this, null);
+        target.OnDamaged(this, null);
     }
 
     #region Battle
@@ -209,9 +209,11 @@ public class Monster : Creature
         {
             Managers.Object.Spawn<Item>(transform.position, DropItemID);
         }
-        
 
-        if(test != null)
+        // 골드 획득 테스트용. @홍지형 삭제가능
+        Managers.Object.Spawn<Gold>(transform.position, 0);
+
+        if (test != null)
             StopCoroutine(test);
         test = null;
         Managers.Resource.Destroy(gameObject);
