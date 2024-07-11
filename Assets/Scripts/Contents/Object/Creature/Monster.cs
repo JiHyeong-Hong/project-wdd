@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Data;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -20,6 +21,9 @@ public class Monster : Creature
 
     public int DropItemID { get; set; }
     public int DropPersent { get; set; }
+
+    public List<DropItemData> DropData { get; set; }
+
     #endregion
     public float temp;
     public override bool Init()
@@ -53,8 +57,7 @@ public class Monster : Creature
         }
         Destroy(gameObject);
     }
-
-    protected MonsterData monsterData;
+    public MonsterData monsterData;
     public override void SetInfo(int templateID)
     {
         base.SetInfo(templateID);
@@ -77,8 +80,11 @@ public class Monster : Creature
                 CreatureState = ECreatureState.Move;
                 break;
         }
-                
-        test = StartCoroutine(CoUpdateAI());
+
+        DropData = Managers.Data.DropItemDic.Select(x => x.Value)
+            .Where(x => x.MonsterID == monsterData.MonsterID).ToList();
+        if(CreatureType != ECreatureType.Box)
+            CoMonsterAI = StartCoroutine(CoUpdateAI());
         //TODO Eung Drop 데이터 테이블 만들고나서 봐야할듯?
         //DropItemID = monsterData.DropItemID;
         //DropPersent = monsterData.DropPersent;
@@ -204,18 +210,32 @@ public class Monster : Creature
     {
         base.OnDead(attacker, skill);
 
+        bool isDrop = false;
         int rand = Random.Range(0, 100);
-        if (rand <= DropPersent)
+        Debug.Log("아이템 드랍 확률 :" + $"{rand}");
+        int setVal = 0;
+        foreach (var item in DropData)
         {
-            Managers.Object.Spawn<Item>(transform.position, DropItemID);
+            setVal += item.DropPer;
+
+            if (rand <= setVal)
+            {
+                isDrop = !isDrop;
+                OnDrop(transform, item.ItemID);
+                break;
+            }
         }
 
-        // 골드 획득 테스트용. @홍지형 삭제가능
+        if (!isDrop)
+        {
+            Debug.Log("아이템 드랍 실패!!");
+        }
+		// 골드 획득 테스트용. @홍지형 삭제가능
         Managers.Object.Spawn<Gold>(transform.position, 0);
-
-        if (test != null)
-            StopCoroutine(test);
-        test = null;
+        
+        if(CoMonsterAI != null)
+            StopCoroutine(CoMonsterAI);
+        CoMonsterAI = null;
         Managers.Resource.Destroy(gameObject);
     }
     #endregion
@@ -242,7 +262,7 @@ public class Monster : Creature
                 proj.SetSpawnInfo(this, null, direction);
                 proj.SetTarget(_hero);
                 
-                cotest = null;
+                CoAttack = null;
                 CreatureState = ECreatureState.Idle;
                 break;
             }
@@ -250,12 +270,16 @@ public class Monster : Creature
             yield return new WaitForFixedUpdate();
         }
     }
+    protected override void IsTest()
+    {
+        
+    }
     
     protected override void UpdateAttack()
     {
-        if (cotest == null)
+        if (CoAttack == null)
         {
-            cotest = StartCoroutine(Attack());
+            CoAttack = StartCoroutine(Attack());
         }
         
         Vector2 dest = (_hero.transform.position - transform.position).normalized;
@@ -285,15 +309,15 @@ public class Monster : Creature
         }
     }
 
-    public Coroutine cotest = null;
+    public Coroutine CoAttack = null;
     //공격 대기상태
     protected override void UpdateIdle()
     {
         // UpdateAITick = 100f;
 
-        if (cotest == null)
+        if (CoAttack == null)
         {
-            cotest = StartCoroutine(CAttackWait());
+            CoAttack = StartCoroutine(CAttackWait());
         }
         
         Vector2 dest = (_hero.transform.position - transform.position).normalized;
@@ -367,14 +391,14 @@ public class Monster : Creature
             if (!searching)
             {
                 CreatureState = ECreatureState.Move;
-                cotest = null;
+                CoAttack = null;
                 break;
             }
             
             if (time > cooltime)
             {
                 CreatureState = ECreatureState.Attack;
-                cotest = null;
+                CoAttack = null;
                 cooltime = 0f;
                 break;
             }

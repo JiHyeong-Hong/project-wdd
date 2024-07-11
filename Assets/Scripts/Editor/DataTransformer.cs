@@ -18,11 +18,12 @@ public class DataTransformer : EditorWindow
     public static void ParseExcelDataToJson()
     {
         ParseExcelDataToJson<MonsterDataLoader, MonsterData>("Monster");
-        ParseExcelDataToJson<HeroDataLoader, HeroData>("Hero");
+        // ParseExcelDataToJson<HeroDataLoader, HeroData>("Hero");
         //ParseExcelDataToJson<HeroLevelDataLoader, HeroLevelData>("HeroLevel");
         //ParseExcelDataToJson<SkillDataLoader, SkillData>("Skill");
-        //ParseExcelDataToJson<ProjectileDataLoader, ProjectileData>("Projectile");
-        //ParseExcelDataToJson<ItemDataLoader, ItemData>("Item");
+        ParseExcelDataToJson<ProjectileDataLoader, ProjectileData>("Projectile");
+        ParseExcelDataToJson<ItemDataLoader, ItemData>("Item");
+        ParseExcelDataToJson<DropItemDataLoader, DropItemData>("DropItem");
         //ParseExcelDataToJson<HpConditionDataLoader, HpConditionData>("HpCondition");
         //ParseExcelDataToJson<PatternPerDataLoader, PatternPerData>("PatternPer");
         //ParseExcelDataToJson<BreakthroughDataLoader, BreakthroughData>("Breakthrough");

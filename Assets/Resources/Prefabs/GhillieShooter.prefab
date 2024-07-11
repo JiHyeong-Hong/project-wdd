@@ -149,7 +149,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1e5a7065316814b8dbae4e58fb7c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageTextPrefab: {fileID: 0}
   temp: 0
+  _hero: {fileID: 0}
   cooltime: 0
   Atk_chk: 0
 --- !u!120 &4643620914030751521
@@ -242,7 +244,7 @@ LineRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: 0
+      m_ColorSpace: -1
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0

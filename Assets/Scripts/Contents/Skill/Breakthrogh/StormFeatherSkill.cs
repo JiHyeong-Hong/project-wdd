@@ -70,14 +70,20 @@ public class StormFeatherSkill : SkillBase
     {
         Hero hero = Managers.Object.Hero;
 
-        // ÀÌ¹Ì ÇÇÄÛ È¿°ú°¡ Á¸ÀçÇÏ´ÂÁö È®ÀÎ
+        // ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ È¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
         peacockEffect = hero.gameObject.transform.Find("PeacockEffect")?.gameObject;
 
         if (peacockEffect == null)
         {
             peacockEffect = new GameObject("PeacockEffect");
             peacockEffect.transform.SetParent(hero.transform);
-            peacockEffect.AddComponent<SpriteRenderer>().sprite = Managers.Resource.Load<Sprite>("Art/PeacockEffect");
+            SpriteRenderer sr = peacockEffect.AddComponent<SpriteRenderer>();
+            sr.sprite = Managers.Resource.Load<Sprite>("Art/PeacockEffect");
+            sr.sortingOrder = 10;
+
+            Color color = sr.color;
+            color.a = 0.6f; // íˆ¬ëª…ë„ 50
+            sr.color = color;
         }
         peacockEffect.transform.localPosition = Vector3.zero;
 

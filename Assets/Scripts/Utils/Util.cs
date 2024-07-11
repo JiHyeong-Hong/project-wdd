@@ -1,6 +1,7 @@
 ﻿using Data;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public static class Util
@@ -333,12 +334,8 @@ public static class Util
 
     public static MonsterData ConvertToMonsterData(CreatureData creatureData)
     {
-        return new MonsterData
-        {
-            HP = creatureData.MaxHp,
-            MoveSpeed = (int)creatureData.MoveSpeed,            
-            // 다른 필요한 변환 로직 추가
-        };
+	    MonsterData data = Managers.Data.MonsterDic[creatureData.Index];
+	    return data;
     }
 
     public static CreatureData ConvertToCreatureData(MonsterData monsterData)

@@ -21,7 +21,7 @@ public class GuardianOfMountainSkill : TigerSkill
 
         Tiger tiger = Managers.Object.Spawn<Tiger>(Owner.transform.position + new Vector3(offsetX, offsetY, 0f), SkillData.ProjectileNum);
         tiger.isBTSkill = true;
-        tiger.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
+        tiger.transform.localScale = new Vector3(0.45f, 0.45f, 0.45f);
         tiger.SetSpawnInfo(Owner, this, direction);
     }
 }

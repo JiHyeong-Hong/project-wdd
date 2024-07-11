@@ -47,6 +47,9 @@ public class ObjectManager :SingletonMonoBehaviour<ObjectManager>
     
     public Transform ProjectileRoot { get { return GetRootTransform("@Projectiles"); } }
     public Transform ItemRoot { get { return GetRootTransform("@Item"); } }
+    public Transform ExpRoot { get { return GetRootTransform("@Exp"); } }
+    public Transform GoldRoot { get { return GetRootTransform("@GoldRoot"); } }
+    public Transform EtcRoot { get { return GetRootTransform("@EtcRoot"); } }
     public Transform StructureRoot { get { return GetRootTransform("@Structure"); } }
     public Transform SpawnerRoot { get { return GetRootTransform("@Spawners"); } }
     public Transform GoldRoot { get { return GetRootTransform("@Golds"); } }
@@ -89,6 +92,12 @@ public class ObjectManager :SingletonMonoBehaviour<ObjectManager>
                     Monsters.Add(boss);
                     boss.SetInfo(templateID);
                     break;
+                case ECreatureType.Box:
+                    obj.transform.parent = (obj.transform.parent == null) ? ItemRoot : obj.transform.parent;
+                    Monster itembox = creature as Monster;
+                    Monsters.Add(itembox);
+                    itembox.SetInfo(templateID);
+                    break;
                 
                 //TODO Eung ECreatureType.Boss의 경우 코드 작성 
             }
@@ -104,10 +113,28 @@ public class ObjectManager :SingletonMonoBehaviour<ObjectManager>
         }
         else if (obj.ObjectType == EObjectType.Item)
         {
-            obj.transform.parent = (parent == null) ? ItemRoot : parent;
+            // switch (obj.)
+            // {
+            //     
+            // }
 
             Item item = go.GetComponent<Item>();
+
+            switch (item.ItemType)
+            {
+                case EItemType.Exp:
+                    obj.transform.parent = (parent == null) ? ExpRoot : parent;
+                    break;
+                case EItemType.Gold:
+                    obj.transform.parent = (parent == null) ? GoldRoot : parent;
+                    break;
+                default:
+                    obj.transform.parent = (parent == null) ? EtcRoot : parent;
+                    break;
+            }
             Items.Add(item);
+            
+            obj.transform.parent.parent = ItemRoot;
 
             item.SetInfo(templateID);
         }
