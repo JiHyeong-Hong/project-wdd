@@ -132,9 +132,9 @@ public class Boss : Monster
     protected override void UpdateAttack()
     {
         Debug.Log("원거리 공격중");
-        if (cotest == null)
+        if (CoAttack == null)
         {
-            cotest = StartCoroutine(Attack());
+            CoAttack = StartCoroutine(Attack());
         }
         
         Vector2 dest = (_hero.transform.position - transform.position).normalized;
@@ -144,9 +144,9 @@ public class Boss : Monster
     
     protected override void UpdateSkill1()
     {
-        if (cotest == null)
+        if (CoAttack == null)
         {
-            cotest = StartCoroutine(Skill1());
+            CoAttack = StartCoroutine(Skill1());
             SetRigidbodyVelocity(Vector2.zero);
         }
     }
@@ -158,17 +158,17 @@ public class Boss : Monster
 
     protected override void UpdatePattern2()
     {
-        if (cotest == null)
+        if (CoAttack == null)
         {
-            cotest = StartCoroutine(Pattern2());
+            CoAttack = StartCoroutine(Pattern2());
         }
     }
 
     protected override void UpdateChangePhase()
     {
-        if (cotest == null)
+        if (CoAttack == null)
         {
-            cotest = StartCoroutine(ChangePhase());
+            CoAttack = StartCoroutine(ChangePhase());
         }
         SetRigidbodyVelocity(Vector2.zero);
     }
@@ -198,7 +198,7 @@ public class Boss : Monster
                             SelectPattern(Phase);
                             break;
                     }
-                    cotest = null;
+                    CoAttack = null;
                     break;
                 }
                 time += Time.deltaTime;
@@ -231,10 +231,10 @@ public class Boss : Monster
             if (Hp / MaxHp * 100 <= Phase_Percent.Phase1Hp && Phase == 0)
             {
                 Phase++;
-                if (cotest != null)
+                if (CoAttack != null)
                 {
-                    StopCoroutine(cotest);
-                    cotest = null;
+                    StopCoroutine(CoAttack);
+                    CoAttack = null;
                 }
 
                 if (WaitTest != null)
@@ -248,10 +248,10 @@ public class Boss : Monster
             else if (Hp / MaxHp * 100 <= Phase_Percent.Phase2Hp && Phase == 1)
             {
                 Phase++;
-                if (cotest != null)
+                if (CoAttack != null)
                 {
-                    StopCoroutine(cotest);
-                    cotest = null;
+                    StopCoroutine(CoAttack);
+                    CoAttack = null;
                 }
 
                 if (WaitTest != null)
@@ -279,22 +279,6 @@ public class Boss : Monster
             Hp-= 10;
         }
         
-        // if (Input.GetKeyDown(KeyCode.Keypad1))
-        // {
-        //     CreatureState = ECreatureState.Move;
-        // }
-        // if (Input.GetKeyDown(KeyCode.Keypad2))
-        // {
-        //     cotest = StartCoroutine(Attack());
-        // }
-        // if (Input.GetKeyDown(KeyCode.Keypad3))
-        // {
-        //     Debug.Log(cotest);
-        // }
-        // if (Input.GetKeyDown(KeyCode.Keypad5))
-        // {
-        //     CreatureState = ECreatureState.Skill1;
-        // }
 
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
@@ -336,7 +320,7 @@ public class Boss : Monster
             
             if (i == monsterData.ProjectileNum)
             {
-                cotest = null;
+                CoAttack = null;
                 SelectPattern(Phase);
                 yield break;    
             }
@@ -357,7 +341,7 @@ public class Boss : Monster
             if (time >= cooltime)
             {
                 SelectPattern(Phase);
-                cotest = null;
+                CoAttack = null;
                 break;
             }
             time += Time.deltaTime;
@@ -406,7 +390,7 @@ public class Boss : Monster
                 if ((Vector2)transform.position == targetPosition)
                 {
                     // Debug.Log("돌진 패턴 끝");
-                    cotest = null;
+                    CoAttack = null;
                     SelectPattern(Phase);
                     yield break;
                 }

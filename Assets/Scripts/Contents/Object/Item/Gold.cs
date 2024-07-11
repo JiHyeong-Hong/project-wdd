@@ -2,20 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gold : BaseObject
+public class Gold : Item
 {
-    public int value;
-
     public override bool Init()
     {
         if (base.Init() == false)
             return false;
 
-       // ObjectType = Define.EObjectType.Item;
+        ItemType = Define.EItemType.Gold;
 
         return true;
     }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         BaseObject target = other.GetComponent<BaseObject>();
@@ -26,8 +23,8 @@ public class Gold : BaseObject
         if (hero == null)
             return;
 
-        // °ñµå ´©Àû ·ÎÁ÷
-        hero.AddGold(value);
+        // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        hero.AddGold(ItemData.Value);
 
         Managers.Object.Despawn(this);
     }

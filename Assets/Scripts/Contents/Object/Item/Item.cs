@@ -1,12 +1,19 @@
+using System;
 using Data;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using static Define;
 
 public class Item : BaseObject
 {
-    public Data.ItemData ItemData { get; private set; }
+    public ItemData ItemData { get; private set; }
 
+    public EItemType ItemType { get; protected set; }
+
+    public bool isMove;
+    
     public override bool Init()
     {
         if (base.Init() == false)
@@ -24,21 +31,23 @@ public class Item : BaseObject
 
         Sprite sprite = Managers.Resource.Load<Sprite>(ItemData.IconPath);
         Renderer.sprite = sprite;
+        
+        this.name = ItemType.ToString();
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
+    
+    public static IEnumerator Move(Item item)
     {
-        BaseObject target = other.GetComponent<BaseObject>();
-        if (target.IsValid() == false)
-            return;
+        
+        while (true)
+        {
+            
+            item.transform.position = 
+                Vector3.MoveTowards(item.transform.position, 
+                    Managers.Object.Hero.transform.position, 
+                    3f * Time.deltaTime);
+            Debug.Log("Ïù¥ÎèôÏ§ë!!");
 
-        Hero hero = target as Hero;
-        if (hero == null)
-            return;
-
-        hero.Exp += ItemData.Value;
-        Debug.Log($"∞Ê«Ëƒ° {ItemData.Value}∏∏≈≠ »πµÊ. √— ∞Ê«Ëƒ° : {hero.Exp}");
-
-        Managers.Object.Despawn(this);
+            yield return YieldInstructionCache.WaitForEndOfFrame;
+        }
     }
 }

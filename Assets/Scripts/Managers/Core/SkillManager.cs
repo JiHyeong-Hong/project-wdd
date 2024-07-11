@@ -49,11 +49,11 @@ public class SkillManager
             usingSkillDic[SkillType.Active][i].UpdateCoolTime(deltaTime);
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            Hero hero = Managers.Object.Hero;
-            hero.Exp += 1000;
-        }
+        // if (Input.GetKeyDown(KeyCode.A))
+        // {
+        //     Hero hero = Managers.Object.Hero;
+        //     hero.Exp += 1000;
+        // }
 
         foreach (var skill in usingSkillDic[SkillType.Active])
         {

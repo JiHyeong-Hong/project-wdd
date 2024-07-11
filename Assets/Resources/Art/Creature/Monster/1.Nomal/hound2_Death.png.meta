@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fd86005004fc47346952560160d4572f
+guid: 55fd6b6448db84c4eb02d1e2ef3328d0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 40
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -82,32 +82,6 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Server
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -132,17 +106,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Key,  trumpet_0
+      name: hound2_Death_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 1
-        width: 22
-        height: 29
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d6f1277f1c74b074f8d7b0585b2cf94c
-      internalID: -1188386738
+      spriteID: 4bc538d62b206400dbf253e5234a6268
+      internalID: -606393227
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Key,  trumpet_1
+      name: hound2_Death_1
       rect:
         serializedVersion: 2
-        x: 38
-        y: 6
-        width: 18
-        height: 21
+        x: 32
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9fa88d2887f178f419f4e6d288a12935
-      internalID: 115686912
+      spriteID: 5c5e5be74b8fa40e2ae42d5982fc0f64
+      internalID: -2013685025
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Key,  trumpet_2
+      name: hound2_Death_2
       rect:
         serializedVersion: 2
-        x: 68
-        y: 5
-        width: 18
-        height: 21
+        x: 64
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,8 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 13a7f11785c616f48a46694d26bbade2
-      internalID: 1624765015
+      spriteID: f957a1fbb535c4dac894070252b7de64
+      internalID: 561548913
       vertices: []
       indices: 
       edges: []
@@ -209,9 +196,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Key,  trumpet_0: -1188386738
-      Key,  trumpet_1: 115686912
-      Key,  trumpet_2: 1624765015
+      hound2_Death_0: -606393227
+      hound2_Death_1: -2013685025
+      hound2_Death_2: 561548913
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -17,6 +17,7 @@ public class DataManager : SingletonMonoBehaviour<DataManager>
     public Dictionary<int, Data.SkillData> SkillDic { get; private set; } = new Dictionary<int, Data.SkillData>();
     public Dictionary<int, Data.ProjectileData> ProjectileDic { get; private set; } = new Dictionary<int, Data.ProjectileData>();
     public Dictionary<int, Data.ItemData> ItemDic { get; private set; } = new Dictionary<int, Data.ItemData>();
+    public Dictionary<int, Data.DropItemData> DropItemDic { get; private set; } = new Dictionary<int, Data.DropItemData>();
     public Dictionary<int, Data.HpConditionData> HpConditionDic { get; private set; } = new Dictionary<int, Data.HpConditionData>();
     public Dictionary<int, Data.PatternPerData> PatternPerDic { get; private set; } = new Dictionary<int, Data.PatternPerData>();
     public Dictionary<int ,Data.BreakthroughData> BreakthroughDic { get; private set; } = new Dictionary<int, Data.BreakthroughData>();
@@ -35,6 +36,7 @@ public class DataManager : SingletonMonoBehaviour<DataManager>
         SkillDic = LoadJson<Data.SkillDataLoader, int, Data.SkillData>("SkillData").MakeDict();
         ProjectileDic = LoadJson<Data.ProjectileDataLoader, int, Data.ProjectileData>("ProjectileData").MakeDict();
         ItemDic = LoadJson<Data.ItemDataLoader, int, Data.ItemData>("ItemData").MakeDict();
+        DropItemDic = LoadJson<Data.DropItemDataLoader, int, Data.DropItemData>("DropItemData").MakeDict();
         HpConditionDic = LoadJson<Data.HpConditionDataLoader, int, Data.HpConditionData>("HpConditionData").MakeDict();
         PatternPerDic = LoadJson<Data.PatternPerDataLoader, int, Data.PatternPerData>("PatternPerData").MakeDict();
         BreakthroughDic = LoadJson<Data.BreakthroughDataLoader, int, Data.BreakthroughData>("BreakthroughData").MakeDict();

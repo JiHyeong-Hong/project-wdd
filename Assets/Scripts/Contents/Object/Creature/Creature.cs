@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Linq;
+using Data;
 using UnityEngine;
 using static Define;
 
@@ -61,6 +63,9 @@ public class Creature : BaseObject
                 CreatureData = Util.ConvertToCreatureData(Managers.Data.MonsterDic[templateID]);
                 //TODO 
                 break;
+            case ECreatureType.Box:
+                CreatureData = Util.ConvertToCreatureData(Managers.Data.MonsterDic[templateID]);
+                break;
         }
 
         gameObject.name = $"{CreatureData.Index}_{CreatureData.DescriptionTextID}";
@@ -80,6 +85,10 @@ public class Creature : BaseObject
     private void LateUpdate()
     {
         _freezeStateOneFrame = false;
+        if (Input.GetKeyDown(KeyCode.F6))
+        {
+            CreatureState = ECreatureState.isTest;
+        }
     }
 
     protected override void PlayAnimation(Define.ECreatureState state)
@@ -110,7 +119,7 @@ public class Creature : BaseObject
     public float UpdateAITick { get; protected set; } = 0.01f;
 
     //TODO Eung 몬스터 AI 코루틴 변수 - 변경 필요
-    public Coroutine test = null;
+    public Coroutine CoMonsterAI = null;
 
     protected IEnumerator CoUpdateAI()
     {
@@ -143,6 +152,9 @@ public class Creature : BaseObject
                     UpdatePattern2();
                     break;
                 case ECreatureState.ChangePhase:
+                    UpdateChangePhase();
+                    break;
+                case ECreatureState.isTest:
                     UpdateChangePhase();
                     break;
             }
@@ -194,6 +206,7 @@ public class Creature : BaseObject
     protected virtual void UpdatePattern1() { }
     protected virtual void UpdatePattern2() { }
     protected virtual void UpdateChangePhase() { }
+    protected virtual void IsTest() { }
     #endregion
 
     #region Battle
@@ -203,10 +216,12 @@ public class Creature : BaseObject
 
         if (attacker.IsValid() == false)
             return;
-
+        
         Creature creature = attacker as Creature;
+        Monster creature2;
         Projectile projectile = null;
 
+        //TODO 코드 creature를 타입별로 나누어야 할듯
         if (creature == null)
         {
             projectile = attacker as Projectile;
@@ -220,14 +235,17 @@ public class Creature : BaseObject
 
         if (skill == null)
         {
-            if(creature != null)
-                finalDamage = creature.Atk;
+            if (creature != null)
+            {
+                creature2 = attacker as Monster;
+                finalDamage = creature2.monsterData.ContactDmg;
+            }
             else
                 finalDamage = projectile.ProjectileData.ContactDmg;
         }
         else if(CreatureType == ECreatureType.Hero)
             finalDamage = skill.SkillData.Damage + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Attack);
-        else if(CreatureType == ECreatureType.Monster || CreatureType == ECreatureType.MiddleBoss || CreatureType == ECreatureType.Boss)
+        else if(CreatureType == ECreatureType.Monster || CreatureType == ECreatureType.MiddleBoss || CreatureType == ECreatureType.Boss || CreatureType == ECreatureType.Box)
             finalDamage = skill.SkillData.Damage + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Attack);
 
         Hp = Mathf.Clamp(Hp - finalDamage, 0, MaxHp);
@@ -288,6 +306,45 @@ public class Creature : BaseObject
                 break;
             else
                 yield return null;
+        }
+    }
+
+    #endregion
+
+    #region Drop
+
+    public void OnDrop(Transform DropPos, int ItemID)
+    {
+        ItemData item =
+            Managers.Data.ItemDic
+            .Select(x => x.Value)
+            .FirstOrDefault(x => x.ItemId == ItemID);
+        
+        switch (item.Type)
+        {
+            case 1:
+                Managers.Object.Spawn<Exp>(DropPos.position, ItemID);
+                break;
+            case 2:
+                Managers.Object.Spawn<Magnet>(DropPos.position, ItemID);
+                break;
+            case 3:
+                Managers.Object.Spawn<Trumpet>(DropPos.position, ItemID);
+                break;
+            case 4:
+                Managers.Object.Spawn<Medkit>(DropPos.position, ItemID);
+                break;
+            case 5:
+                Managers.Object.Spawn<BulletproofVest>(DropPos.position, ItemID);
+                break;
+            case 6:
+                Managers.Object.Spawn<Gold>(DropPos.position, ItemID);
+                break;
+            case 7:
+                // Managers.Object.Spawn<Key>(DropPos.position, ItemID);
+            default:
+                Managers.Object.Spawn<ItemBox>(DropPos.position, ItemID);
+                break;
         }
     }
 
