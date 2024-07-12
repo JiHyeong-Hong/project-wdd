@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemBox : BaseObject
+public class ItemBox : Monster
 {
     private float usedTransparency = 0f;
 
@@ -11,30 +11,30 @@ public class ItemBox : BaseObject
         if (base.Init() == false)
             return false;
 
-        ObjectType = Define.EObjectType.Item;
+        CreatureType = Define.ECreatureType.Box;
 
         return true;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        BaseObject target = other.GetComponent<BaseObject>();
-        if (target.IsValid() == false)
-            return;
-
-        Hero hero = target as Hero;
-        if (hero == null)
-            return;
-
-        /// ¾ÆÀÌÅÛ¹Ú½º ·ÎÁ÷
-
-        if (Renderer != null)
-        {
-            Color color = Renderer.material.color;
-            color.a = usedTransparency;
-            Renderer.material.color = color;
-        }
-
-        Managers.Object.Despawn(this);
-    }
+    // private void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     BaseObject target = other.GetComponent<BaseObject>();
+    //     if (target.IsValid() == false)
+    //         return;
+    //
+    //     Hero hero = target as Hero;
+    //     if (hero == null)
+    //         return;
+    //
+    //     /// ï¿½ï¿½ï¿½ï¿½ï¿½Û¹Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    //
+    //     if (Renderer != null)
+    //     {
+    //         Color color = Renderer.material.color;
+    //         color.a = usedTransparency;
+    //         Renderer.material.color = color;
+    //     }
+    //
+    //     Managers.Object.Despawn(this);
+    // }
 }

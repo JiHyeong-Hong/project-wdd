@@ -2,20 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gold : BaseObject
+public class Gold : Item
 {
-    public int value;
-
     public override bool Init()
     {
         if (base.Init() == false)
             return false;
 
-        ObjectType = Define.EObjectType.Gold;
+        ItemType = Define.EItemType.Gold;
 
         return true;
     }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         BaseObject target = other.GetComponent<BaseObject>();
@@ -25,11 +22,12 @@ public class Gold : BaseObject
         Hero hero = target as Hero;
         if (hero == null)
             return;
+            
+                              
 
-        // 골드 누적 로직
-        hero.AddGold(value);
-        
+		// 골드 누적 로직        
         hero.AddExp(10); // 테스트용, 삭제가능.  @홍지형
+        hero.AddGold(ItemData.Value);
 
         Managers.Object.Despawn(this);
     }

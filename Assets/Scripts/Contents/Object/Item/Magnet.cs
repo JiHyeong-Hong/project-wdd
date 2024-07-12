@@ -1,18 +1,19 @@
 using Data;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class Magnet : BaseObject
+public class Magnet : Item
 {
     private float usedTransparency = 0f;
 
     public override bool Init()
     {
-        if (!base.Init())
+        if (base.Init() == false)
             return false;
 
-        //ObjectType = Define.EObjectType.Item;
+        ItemType = Define.EItemType.Magnet;
 
         return true;
     }
@@ -34,15 +35,15 @@ public class Magnet : BaseObject
             Renderer.material.color = color;
         }
 
-        // ¾À¿¡ ÀÖ´Â ¸ðµç °æÇèÄ¡ ±¸½½ Ã£À½
-        Item[] items = FindObjectsOfType<Item>();
-
-        foreach (Item item in items)
+        
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½
+        Exp[] exps = FindObjectsOfType<Exp>();
+        
+        foreach (Exp exp in exps)
         {
-            if (item != null && item.ItemData != null)
+            if (exp != null)
             {
-                hero.Exp += item.ItemData.Value;
-                Managers.Object.Despawn(item);
+                exp.StartCoroutine(Move(exp));
             }
         }
 
