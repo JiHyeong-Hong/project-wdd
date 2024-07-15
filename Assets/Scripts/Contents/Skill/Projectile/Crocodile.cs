@@ -15,7 +15,7 @@ public class Crocodile : Projectile
 
     private Vector2 moveDirection;
     private Hero hero;
-    public float crocodileHeightOffset = 5f; // CrocodileÀÌ ¼ÒÈ¯µÉ ¶§ Ãß°¡ÀûÀ¸·Î ´õÇØÁÙ ³ôÀÌ °ª
+    public float crocodileHeightOffset = 5f; // Crocodileï¿½ï¿½ ï¿½ï¿½È¯ï¿½ï¿½ ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 
     [SerializeField]
     private GameObject gravityPoint;
@@ -29,7 +29,7 @@ public class Crocodile : Projectile
 
         Direction();
 
-        // Ãæµ¹ÇÏÁö ¾ÊÀº ÀÎ½ºÅÏ½º´Â ÀÚµ¿À¸·Î DespawnµÇµµ·Ï ÇÔ
+        // ï¿½æµ¹ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ Despawnï¿½Çµï¿½ï¿½ï¿½ ï¿½ï¿½
         StartCoroutine(DespawnAfterTime(5f));
 
         SizeControl(0.7f);
@@ -80,14 +80,14 @@ public class Crocodile : Projectile
     public Sprite testSp;
     private async UniTask DetectedMonster()
     {
-        #region ÃµÃµÈ÷ ¾ø¾îÁö´Â ¾Ö´Ï¸ÞÀÌ¼Ç
+        #region ÃµÃµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½
 
         spriteRenderer.DOFade(0, 1);
         #endregion
 
         await UniTask.Delay(TimeSpan.FromSeconds(1));
 
-        transform.rotation = Quaternion.Euler(0, 0, 0); // Ãæµ¹ ½Ã È¸Àü°ª ÃÊ±âÈ­
+        transform.rotation = Quaternion.Euler(0, 0, 0); // ï¿½æµ¹ ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
         if (spriteRenderer.flipY)
         {
             spriteRenderer.flipY = false;
@@ -99,7 +99,7 @@ public class Crocodile : Projectile
         if (isBreakthrough)
         {
             SizeControl(2);
-            swampRenderer.sprite = Resources.Load<Sprite>("Art/Effects/SwampBT");// Ãæµ¹ ÀÌÆåÆ® »ý¼º
+            swampRenderer.sprite = Resources.Load<Sprite>("Art/Effects/SwampBT");// ï¿½æµ¹ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
             spriteRenderer.sprite = Util.Load("Art/Skills/CrocodileBT", "CrocodileBT_0");
 
             StartCoroutine(ApplyGravityWell());
@@ -108,12 +108,15 @@ public class Crocodile : Projectile
         {
             #region nomalAttack
             SizeControl(1);
-            swampRenderer.sprite = Resources.Load<Sprite>("Art/Effects/Swamp");// Ãæµ¹ ÀÌÆåÆ® »ý¼º
+            
             spriteRenderer.sprite = Util.Load("Art/Skills/Crocodile", "Crocodile_4");
+            StartCoroutine(ChangeSpriteAfterDelay(0.7f));
+            swampRenderer.sprite = Resources.Load<Sprite>("Art/Effects/Swamp");// ï¿½æµ¹ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+            
 
-            Collider2D[] targets = Util.SearchCollidersInRadius(transform.position, Skill.SkillData.AttackRange); // Ãæµ¹ÇÑ ¸ó½ºÅÍ ÁÖº¯¿¡ ÀÖ´Â ¸ó½ºÅÍµéÀ» Ã£À½
+            Collider2D[] targets = Util.SearchCollidersInRadius(transform.position, Skill.SkillData.AttackRange); // ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Öºï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½ Ã£ï¿½ï¿½
 
-            StartCoroutine(Util.DrawCircle(transform.position, Skill.SkillData.AttackRange, 16, Color.red, 5f)); // °ø°Ý ¹üÀ§¸¦ ½Ã°¢ÀûÀ¸·Î Ç¥½Ã
+            StartCoroutine(Util.DrawCircle(transform.position, Skill.SkillData.AttackRange, 16, Color.red, 5f)); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½
 
             foreach (var target in targets)
             {
@@ -121,10 +124,11 @@ public class Crocodile : Projectile
                 if (targetMonster == null)
                     continue;
 
-                targetMonster.OnDamaged(Owner, Skill); // ¸ó½ºÅÍ¿¡°Ô µ¥¹ÌÁö Àû¿ë
+                targetMonster.OnDamaged(Owner, Skill); // ï¿½ï¿½ï¿½Í¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             }
             #endregion
         }
+        
         StartCoroutine(DestroyAfterAnimation(Skill.SkillData.Duration));
     }
 
@@ -156,7 +160,7 @@ public class Crocodile : Projectile
     IEnumerator ApplyGravityWell()
     {
         Collider2D[] targets = null;
-        float elapsedTime = 0; // °æ°ú ½Ã°£
+        float elapsedTime = 0; // ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
 
         swampRenderer.transform.DOScale(new Vector3(0.5f, 0.5f, 1), skill2.SkillData.AttackRange);
         swampRenderer.transform.DOMove(gravityPoint.transform.position, skill2.SkillData.AttackRange);
@@ -164,12 +168,12 @@ public class Crocodile : Projectile
         while (elapsedTime <= 2)
         {
             elapsedTime+= Time.deltaTime;
-            targets = Util.SearchCollidersInRadius(transform.position, skill2.SkillData.AttackRange); // Ãæµ¹ÇÑ ¸ó½ºÅÍ ÁÖº¯¿¡ ÀÖ´Â ¸ó½ºÅÍµéÀ» Ã£À½
+            targets = Util.SearchCollidersInRadius(transform.position, skill2.SkillData.AttackRange); // ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Öºï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½ Ã£ï¿½ï¿½
 
             foreach (var item in targets)
             {
-                // 1ÃÊ¸¶´Ù Áß·Â¿¡ µû¶ó ¿ÀºêÁ§Æ®¸¦ ÀÌµ¿½ÃÅµ´Ï´Ù.
-                float moveSpeed = 3f; // Áß·Â¿¡ µû¸¥ ÀÌµ¿ ¼Óµµ
+                // 1ï¿½Ê¸ï¿½ï¿½ï¿½ ï¿½ß·Â¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½Åµï¿½Ï´ï¿½.
+                float moveSpeed = 3f; // ï¿½ß·Â¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½Óµï¿½
                 Vector3 directionToGravityPoint = (gravityPoint.transform.position - item.gameObject.transform.position).normalized;
                 item.gameObject.transform.position += directionToGravityPoint * moveSpeed * Time.deltaTime;
             }
@@ -188,10 +192,16 @@ public class Crocodile : Projectile
         }
     }
 
+     IEnumerator ChangeSpriteAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        spriteRenderer.sprite = Util.Load("Art/Skills/Crocodile", "Crocodile_5");
+    }
+
     IEnumerator DestroyAfterAnimation(float duration)
     {
         float waitTime = 1 > duration ? 1 : duration;
-        yield return new WaitForSeconds(waitTime); // ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ Àç»ýµÇ´Â ½Ã°£À» ±â´Ù¸².
+        yield return new WaitForSeconds(waitTime); // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½Ù¸ï¿½.
 
         Managers.Object.Despawn(this);
     }

@@ -8,8 +8,8 @@ public class DamageText : MonoBehaviour
 {
     private TextMeshPro textMesh;
     Color alpha;
-    public float alphaSpeed= 0.5f;
-    private float displayDuration = 0.7f; // �ؽ�Ʈ ǥ�� �ð�
+    public float alphaSpeed= 0.1f;
+    private float displayDuration = 2.5f; // �ؽ�Ʈ ǥ�� �ð�
     
     private float timer = 0f;   // �ؽ�Ʈ ǥ�� �ð� ������ ��������ϹǷ� �� �ð� ��� Ÿ�̸�
 

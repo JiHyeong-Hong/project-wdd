@@ -5,10 +5,7 @@
       "MaxExp": 70,
       "ItemAcquireRange": 0.0,
       "SkillIdList": [
-        2015,
-        1011,
-        1031,
-        1071,
+        1041,
         1081
       ],
       "Index": 100,
