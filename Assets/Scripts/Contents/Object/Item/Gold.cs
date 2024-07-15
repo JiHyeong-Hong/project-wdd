@@ -22,11 +22,12 @@ public class Gold : Item
         Hero hero = target as Hero;
         if (hero == null)
             return;
+            
+                              
 
-        // 골드 누적 로직
-        hero.AddGold(value);
-        
+		// 골드 누적 로직        
         hero.AddExp(10); // 테스트용, 삭제가능.  @홍지형
+        hero.AddGold(ItemData.Value);
 
         Managers.Object.Despawn(this);
     }

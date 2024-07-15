@@ -230,9 +230,10 @@ public class Monster : Creature
         {
             Debug.Log("아이템 드랍 실패!!");
         }
-		// 골드 획득 테스트용. @홍지형 삭제가능
+ 		
+ 		// 골드 획득 테스트용. @홍지형 삭제가능
         Managers.Object.Spawn<Gold>(transform.position, 0);
-        
+
         if(CoMonsterAI != null)
             StopCoroutine(CoMonsterAI);
         CoMonsterAI = null;
