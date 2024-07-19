@@ -1,4 +1,4 @@
-using DG.Tweening;
+﻿using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +7,7 @@ public class AwakeningParrotSkill : SkillBase
     private GameObject birdPool;
     private float orbitRadius = 1f;
     private List<Bird> birds = new List<Bird>();
+    private Sequence sequence; // 기존 시퀀스를 저장할 변수 추가
 
     public override void DoSkill()
     {
@@ -18,6 +19,7 @@ public class AwakeningParrotSkill : SkillBase
             {
                 birdPool = new GameObject("BirdPool");
                 birdPool.transform.parent = Owner.transform;
+                birdPool.transform.localPosition = Vector3.zero; // Owner의 위치로 이동
             }
             else
             {
@@ -51,11 +53,16 @@ public class AwakeningParrotSkill : SkillBase
 
     private void RotateSatellites()
     {
-        Sequence sequence = DOTween.Sequence();
+        // 기존 시퀀스가 존재하면 중지하고 삭제
+        if (sequence != null && sequence.IsActive())
+        {
+            sequence.Kill();
+
+        }
+        sequence = DOTween.Sequence();
         sequence.Append(DOTween.To(() => birdPool.transform.localRotation.eulerAngles,
                   x => birdPool.transform.localRotation = Quaternion.Euler(x),
-                  new Vector3(0, 0, 360 * SkillData.CastCount),
-                  3)
+                  new Vector3(0, 0, 360 * SkillData.CastCount), 6) // 6: 공전속도
              .SetEase(Ease.Linear))
             .AppendCallback(() =>
             {
