@@ -20,7 +20,7 @@ public class Tiger : Projectile
         base.SetSpawnInfo(owner, skill, direction);
 
             _collider = GetComponent<CapsuleCollider2D>();
-        _collider.enabled = false;
+        _collider.enabled = true;
 
         int minus = (direction.x >= 0) ? 1 : -1;
 
@@ -52,18 +52,18 @@ public class Tiger : Projectile
         {
             Animator.SetInteger("state", 2);
             transform.DOLocalJump(new Vector3(5f * minus, 0, 0), 1, 1, 1).SetRelative();
-
+            //_collider.enabled = true;
         })
         .AppendInterval(0.5f)
         .AppendCallback(() =>
         {
             Animator.SetInteger("state", 3);
-            _collider.enabled = true;
+           // _collider.enabled = true;
         })
         .AppendInterval(0.5f)
         .AppendCallback(() =>
         {
-            _collider.enabled = false;
+            //_collider.enabled = true;
             Animator.SetInteger("state", 4);
             DoDamage();
         })
@@ -71,6 +71,7 @@ public class Tiger : Projectile
         .Join(transform.DOMoveX(0.5f * minus, 0.5f).SetRelative().SetEase(Ease.Linear))
         .AppendCallback(() =>
         {
+            _collider.enabled = false;
             Managers.Object.Despawn(this);
         });
         sequence.Restart();
@@ -127,11 +128,20 @@ public class Tiger : Projectile
     void DoDamage()
     {
         
-        Collider2D[] targets = Util.SearchCollidersInRadius(transform.position, Skill.SkillData.AttackRange); // Ãæµ¹ÇÑ ¸ó½ºÅÍ ÁÖº¯¿¡ ÀÖ´Â ¸ó½ºÅÍµéÀ» Ã£À½
+        Collider2D[] targets = Util.SearchCollidersInRadius(transform.position, Skill.SkillData.AttackRange); // ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Öºï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½ Ã£ï¿½ï¿½
         foreach (var target in targets)
         {
-            // Debug.Log("Tiger DoDamage");
+            Debug.Log("Tiger DoDamage");
             target.GetComponent<Monster>().OnDamaged(Owner, Skill);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D col)
+	{
+		if (((1 << (int)Define.ELayer.Monster) & (1 << col.gameObject.layer)) != 0)
+		{
+			col.GetComponent<Monster>().OnDamaged(Owner,Skill);
+            Debug.Log("Tiger trigger");
+		}
+	}
 }

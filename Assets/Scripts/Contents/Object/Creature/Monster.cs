@@ -238,6 +238,30 @@ public class Monster : Creature
             StopCoroutine(CoMonsterAI);
         CoMonsterAI = null;
         Managers.Resource.Destroy(gameObject);
+
+
+        if (damageTextPrefab == null)
+        {
+            damageTextPrefab = Resources.Load<GameObject>("Prefabs/DamageText");
+            if (damageTextPrefab == null)
+            {
+                return;
+            }
+        }
+
+        // 데미지 텍스트 표시
+        float damage = CalculateDamage(attacker, skill); // 계산된 데미지를 가져옴
+
+        // damageTextPrefab이 null인 경우 초기화 시도
+        if (damageTextPrefab == null)
+        {
+            damageTextPrefab = Managers.Resource.Load<GameObject>("Prefabs/DamageText");
+            if (damageTextPrefab == null)
+            {
+                return;
+            }
+        }
+        ShowDamageText(damage);
     }
     #endregion
 

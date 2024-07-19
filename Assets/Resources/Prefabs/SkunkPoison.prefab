@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 200
   m_Sprite: {fileID: -1456605130, guid: f4a3fdf739a001245a012e9691c770a2, type: 3}
-  m_Color: {r: 0.07168472, g: 0.6509434, b: 0, a: 0.77254903}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpPos: {x: 0, y: 0, z: 0}
+  sprites: []
 --- !u!58 &3841663603851350468
 CircleCollider2D:
   m_ObjectHideFlags: 0

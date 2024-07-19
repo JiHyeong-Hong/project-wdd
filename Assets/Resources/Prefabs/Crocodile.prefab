@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 200
+  m_SortingOrder: 3
   m_Sprite: {fileID: 1999508771, guid: 12048c681d96743c889877707373e190, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -170,8 +170,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.022643693, y: 0.045282546}
-  m_Size: {x: 3.1054294, y: 1.0458694}
+  m_Offset: {x: 1.0524254, y: 0.045282423}
+  m_Size: {x: 1.045873, y: 1.045873}
   m_Direction: 1
 --- !u!114 &-4510139362431425113
 MonoBehaviour:
@@ -185,10 +185,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 476bc0d3479943a4287067f97bd775fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
+  speed: 5
   crocodileHeightOffset: 0.5
   gravityPoint: {fileID: 4271651661023851866}
-  canGravity: 0
+  isBreakthrough: 0
+  testSp: {fileID: 0}
 --- !u!1 &4206056189162702230
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,7 +262,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

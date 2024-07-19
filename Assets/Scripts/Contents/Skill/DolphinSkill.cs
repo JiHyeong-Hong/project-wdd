@@ -5,7 +5,7 @@ using UnityEngine;
 public class DolphinSkill : SkillBase
 {
 	private readonly float[] angles = { 10f, 190f };
-	private readonly float DISTANCE = 5f;
+	private readonly float DISTANCE = 3f;
 	public override void DoSkill()
 	{
 		for (int i = 0; i < 2; i++)
