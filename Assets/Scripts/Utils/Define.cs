@@ -69,6 +69,13 @@ public static class Define
 		Npc,
 	}
 
+	public enum EGameState
+	{
+		Nomal = 1,
+		Warning = 2,
+		Barricade = 3,
+		Boss = 4,
+	}
 	public enum ECreatureState
 	{
 		None,

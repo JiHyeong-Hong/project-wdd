@@ -21,7 +21,7 @@ public class ObjectManager :SingletonMonoBehaviour<ObjectManager>
         }
     }
     public HashSet<Monster> Monsters { get; } = new HashSet<Monster>();
-    public HashSet<Boss> Bosses { get; } = new HashSet<Boss>();
+    public Boss Bosses { get; set; }
     public HashSet<Projectile> Projectiles { get; } = new HashSet<Projectile>();
     public HashSet<Item> Items { get; } = new HashSet<Item>();
     public HashSet<Structure> Structures { get; } = new HashSet<Structure>();
@@ -88,7 +88,7 @@ public class ObjectManager :SingletonMonoBehaviour<ObjectManager>
                     //TODO Eung 보스 소환 코드 수정 필요
                     Boss boss = creature as Boss;
                     //TODO Eung 몬스터 통합하면 boss 수정
-                    Monsters.Add(boss);
+                    Bosses = creature as Boss;
                     boss.SetInfo(templateID);
                     break;
                 case ECreatureType.Box:
