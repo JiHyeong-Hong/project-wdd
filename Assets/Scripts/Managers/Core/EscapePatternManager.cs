@@ -49,8 +49,8 @@ public class EscapePatternManager : SingletonMonoBehaviour<EscapePatternManager>
             float verticalScale = 1.5f;
             Vector2 ovalRandom = new Vector3(Random.insideUnitCircle.x * horizontalScale, Random.insideUnitCircle.y * verticalScale); // 랜덤 타원 범위            
             Vector3 spawnPosition = ovalRandom * spawnRadius + camPos;
-
-            Managers.Object.Spawn<Tourist>(spawnPosition, 261); // TODO: 관광객 번호 하드코딩
+            int[] touristIDs = { 311, 312, 313 };
+            Managers.Object.Spawn<Tourist>(spawnPosition, touristIDs[Random.Range(0, touristIDs.Length)]); // TODO: 관광객 번호 하드코딩
 
             if (!isDirectionSet)
             {
@@ -71,7 +71,7 @@ public class EscapePatternManager : SingletonMonoBehaviour<EscapePatternManager>
     public void SpawnGhillieShooter()
     {
         // 길리슈터 생성 테스트용. @홍지형
-        Managers.Object.Spawn<GhillieShooter>(new Vector3(-5f, 5f, 0f), 251); // TODO: 길리슈터 번호 하드코딩
+        Managers.Object.Spawn<GhillieShooter>(new Vector3(-5f, 5f, 0f), 301);
     }
 
     public void SpawnNet()
@@ -126,7 +126,7 @@ public class EscapePatternManager : SingletonMonoBehaviour<EscapePatternManager>
         //await UniTask.Delay(TimeSpan.FromSeconds(1f)); // 경고 표시 지속 시간
         //Destroy(warning);
 
-        Managers.Object.Spawn<Net>(position, 271); // 그물망 스폰. Net 번호 하드코딩.
+        Managers.Object.Spawn<Net>(position, 321); // 그물망 스폰. Net 번호 하드코딩.
     }
     #endregion
 
