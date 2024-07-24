@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// ½ºÄÈÅ© Áö¼Ó µ¥¹ÌÁö ÀåÆÇ ½ºÅ³ Å¬·¡½º. @È«ÁöÇü
+// ï¿½ï¿½ï¿½ï¿½Å© ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å³ Å¬ï¿½ï¿½ï¿½ï¿½. @È«ï¿½ï¿½ï¿½ï¿½
 public class SkunkPoison : Projectile
 {
     private SpriteRenderer spriteRenderer;
-    private Sprite[] sprites; //3~6±îÁö »ç¿ë
+    private Sprite[] sprites; //3~6ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 
     public override bool Init()
     {
@@ -31,11 +31,13 @@ public class SkunkPoison : Projectile
         if (isBTSkill)
         {
             sprites = Resources.LoadAll<Sprite>("Art/Skills/SkunkBT");
+            Animator.SetBool("isBreakthrough", true);
             transform.localScale = new Vector3(2.6f, 2.6f, 2.6f);
         }
         else
         {
             sprites = Resources.LoadAll<Sprite>("Art/Skills/Skunk");
+            Animator.SetBool("isNormal", true);
         }
 
         SetSpawnInfo(owner, skill, direction);
@@ -62,10 +64,10 @@ public class SkunkPoison : Projectile
 
     }
 
-    float currentTime = 0.5f;
+    float currentTime = 1;
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (currentTime > 0.1f && LayerMask.NameToLayer("Monster") == other.gameObject.layer)
+        if (currentTime > 0.5f && LayerMask.NameToLayer("Monster") == other.gameObject.layer)
         {
             Monster monster = other.gameObject.GetComponent<Monster>();
             monster.OnDamaged(Owner, Skill);

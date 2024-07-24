@@ -7,6 +7,9 @@ public class PeacockSkill : SkillBase
 {
     public override void DoSkill()
     {
+        if (BreakthroughHelper.Instance.CheckBreakthrough(SkillData.Index))
+             return;
+
         Vector2 direction = Vector2.zero;
         
         Monster target = Managers.Object.FindClosestMonster(Owner.CenterPosition, 20);

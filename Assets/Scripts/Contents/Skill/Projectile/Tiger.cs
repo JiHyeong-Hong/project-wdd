@@ -136,12 +136,12 @@ public class Tiger : Projectile
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
-	{
-		if (((1 << (int)Define.ELayer.Monster) & (1 << col.gameObject.layer)) != 0)
-		{
-			col.GetComponent<Monster>().OnDamaged(Owner,Skill);
-            Debug.Log("Tiger trigger");
-		}
-	}
+    // private void OnTriggerEnter2D(Collider2D col)
+	// {
+	// 	if (((1 << (int)Define.ELayer.Monster) & (1 << col.gameObject.layer)) != 0)
+	// 	{
+	// 		col.GetComponent<Monster>().OnDamaged(Owner,Skill);
+    //         Debug.Log("Tiger trigger");
+	// 	}
+	// }
 }
