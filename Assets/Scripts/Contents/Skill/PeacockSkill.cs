@@ -5,12 +5,11 @@ using UnityEngine;
 using Data;
 public class PeacockSkill : SkillBase
 {
+    private GameObject peacockEffect;
+    
     public override void DoSkill()
     {
-        if (BreakthroughHelper.Instance.CheckBreakthrough(SkillData.Index))
-             return;
-
-        Vector2 direction = Vector2.zero;
+       Vector2 direction = Vector2.zero;
         
         Monster target = Managers.Object.FindClosestMonster(Owner.CenterPosition, 20);
         if (target == null)
@@ -21,8 +20,9 @@ public class PeacockSkill : SkillBase
         {
             direction = target.transform.position - Owner.CenterPosition;
         }
-
+        
         AttackKunai(direction, 0);
+        PeacockEffectFindSetActive(true, 0.1f * SkillData.CastCount);
 
         for (int i = 2; i <= SkillData.CastCount; ++i)
         {
@@ -33,60 +33,42 @@ public class PeacockSkill : SkillBase
         }
     }
 
-    private void AttackKunai(Vector2 direction, float angle)
+   private void AttackKunai(Vector2 direction, float angle)
     {
         // Kunai proj = Managers.Object.Spawn<Kunai>(Owner.transform.position, SkillData.ProjectileNum);
         // proj.SetSpawnInfo(Owner, this, Util.RotateVectorByAngle(direction, angle));
 
         Peacock peacock = Managers.Object.Spawn<Peacock>(Owner.transform.position, 1);
+        peacock.transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
         peacock.SetSpawnInfo(Owner, this, Util.RotateVectorByAngle(direction, angle));
     }
 
 
-    // private List<Monster> monsterList = new List<Monster>();
+    private void PeacockEffectFindSetActive(bool active, float time)
+    {
+        Hero hero = Managers.Object.Hero;
 
-    // public override void DoSkill()
-    // {
-    //     if (BreakthroughHelper.Instance.CheckBreakthrough(SkillData.Index))
-    //         return;
+        // �̹� ���� ȿ���� �����ϴ��� Ȯ��
+        peacockEffect = hero.gameObject.transform.Find("PeacockEffect")?.gameObject;
 
-    //     monsterList.Clear();
-    //  GetTargets();
-    // }
+        if (peacockEffect == null)
+        {
+            peacockEffect = new GameObject("PeacockEffect");
+            peacockEffect.transform.SetParent(hero.transform);
+            SpriteRenderer sr = peacockEffect.AddComponent<SpriteRenderer>();
+            sr.sprite = Managers.Resource.Load<Sprite>("Art/PeacockEffect");
+            sr.sortingOrder = 10;
 
-    // private void GetTargets()
-    // {
-    //  var list = Managers.Object.Monsters;
+            Color color = sr.color;
+            color.a = 0.6f; // 투명도 50
+            sr.color = color;
+        }
+        peacockEffect.transform.localPosition = Vector3.zero;
 
-    //  foreach (var monster in list)
-    //  {
-    //      if (monster.Hp <= 0)
-    //          continue;
-
-    //      if (Util.CheckTargetInScreen(monster.transform.position))
-    //      {
-    //          monsterList.Add(monster);
-    //      }
-    //  }
-        
-    //  for (int i = 0; i < SkillData.ProjectileNum; i++)
-    //  {
-    //      bool isNull = monsterList.Count == 0;
-
-    //      int idx = Random.Range(0, monsterList.Count);
-    //      Monster target = !isNull ? monsterList[idx] : null;
-    //      Peacock peacock = Managers.Object.Spawn<Peacock>(Owner.transform.position, 1);
-
-    //      peacock.SetTarget(target);
-    //      peacock.SetSpawnInfo(Owner, this, isNull ? Util.GetRandomDir() : Vector2.zero, false);
-    
-    //      if (!isNull)
-    //          monsterList.RemoveAt(idx);
-    //  }
-    // }
+        BreakthroughHelper.Instance.SetActiveObject(peacockEffect, active, 1.0f);
+    }
 
     public override void Clear()
     {
-
     }
 }
