@@ -191,7 +191,7 @@ public class SpawnManager
         {
             int ran = Random.Range(0, spawner_List.Count);
             int ran2 = Random.Range(0, monster_List.Count);
-            Data.MonsterData monster = monster_List[ran2];
+            MonsterData monster = monster_List[ran2];
                 
             spawner_List[ran].Spawn(monster.MonsterID);
             //TODO Eung StageLv 테이블로 단계/페이즈에 따라 스폰시간 넣어서 관리
@@ -253,7 +253,7 @@ public class SpawnManager
     public void SpawnNew<T>(int spawnId) where T : BaseObject
     {
         Vector2 pos = SpawnPosNew();
-        Debug.LogWarning($"SpawnPos : {pos}");
+        // Debug.LogWarning($"SpawnPos : {pos}");
         Managers.Object.Spawn<T>(pos, spawnId);
     }
 

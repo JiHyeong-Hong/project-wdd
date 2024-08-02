@@ -45,7 +45,7 @@ public class UIManagerNew : SingletonMonoBehaviour<UIManagerNew>
             if (windowPrefab != null)
             {
                 GameObject windowInstance = Instantiate(windowPrefab, transform);
-                windowInstance.SetActive(false); // Ã³À½¿¡´Â ºñÈ°¼ºÈ­ »óÅÂ·Î µÓ´Ï´Ù.
+                windowInstance.SetActive(false); // Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½Ó´Ï´ï¿½.
                 WindowBase windowBase = windowInstance.GetComponent<WindowBase>();
                 if (windowBase != null)
                 {
@@ -82,7 +82,7 @@ public class UIManagerNew : SingletonMonoBehaviour<UIManagerNew>
 
     public T ShowPopup<T>(string name = null) where T : PopupBase
     {
-        return popupManager.ShowUI<T>(name, "UI/Popups/") as T;
+        return popupManager.ShowUI<T>(name, "Prefabs/UI/Popup/") as T;
     }
 
     public void HideCurrentWindow()
@@ -122,7 +122,7 @@ public class UIStackManager<T> where T : UIBase
             return null;
         }
 
-        GameObject instance = GameObject.Instantiate(uiObject, UIManagerNew.Instance.transform);
+        GameObject instance = GameObject.Instantiate(uiObject, UIManagerNew.Instance.MainCanvas.transform);
         U uiElement = instance.GetComponent<U>();
         if (uiElement == null)
         {

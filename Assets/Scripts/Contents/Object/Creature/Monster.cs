@@ -55,7 +55,9 @@ public class Monster : Creature
             material.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
             yield return null;
         }
-        Destroy(gameObject);
+        
+        Managers.Object.Despawn(this);
+        // Destroy(gameObject);
     }
     public MonsterData monsterData;
     public override void SetInfo(int templateID)
@@ -204,7 +206,7 @@ public class Monster : Creature
 
         bool isDrop = false;
         int rand = Random.Range(0, 100);
-        Debug.Log("아이템 드랍 확률 :" + $"{rand}");
+        // Debug.Log("아이템 드랍 확률 :" + $"{rand}");
         int setVal = 0;
         foreach (var item in DropData)
         {
@@ -229,7 +231,8 @@ public class Monster : Creature
         if(CoMonsterAI != null)
             StopCoroutine(CoMonsterAI);
         CoMonsterAI = null;
-        Managers.Resource.Destroy(gameObject);
+        // Managers.Resource.Destroy(gameObject);
+        Managers.Object.Despawn(this);
 
 
         if (damageTextPrefab == null)

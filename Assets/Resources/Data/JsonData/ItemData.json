@@ -12,14 +12,14 @@
       "Name": "ExpMarble2",
       "Type": 1,
       "Value": 15,
-      "IconPath": "Art/Item/ExpLv2"
+      "IconPath": "Art/Item/ExpLv1"
     },
     {
       "ItemId": 33,
       "Name": "ExpMarble3",
       "Type": 1,
       "Value": 35,
-      "IconPath": "Art/Item/ExpLv3"
+      "IconPath": "Art/Item/ExpLv1"
     },
     {
       "ItemId": 41,
@@ -118,6 +118,27 @@
       "Type": 9,
       "Value": 0,
       "IconPath": "Art/Item/ExpLv1"
+    },
+    {
+      "ItemId": 501,
+      "Name": "ItemBox",
+      "Type": 10,
+      "Value": 0,
+      "IconPath": "Art/Item/ItemBox"
+    },
+    {
+      "ItemId": 502,
+      "Name": "ItemBox",
+      "Type": 10,
+      "Value": 0,
+      "IconPath": "Art/Item/ItemBox"
+    },
+    {
+      "ItemId": 503,
+      "Name": "ItemBox",
+      "Type": 10,
+      "Value": 0,
+      "IconPath": "Art/Item/ItemBox"
     }
   ]
 }

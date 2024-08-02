@@ -40,6 +40,11 @@ public class InGameWindow : UIWindow
         profileData.Time = Managers.Game.CurrentTime;
         profileData.Hp = Managers.Object.Hero.Hp;
         UpdateGameData(profileData);
+
+        if (StageManager.Instance.state == Define.EStageState.Boss)
+        {
+            profileData.BossHp = Managers.Object.Bosses.Hp;
+        }
     }
 
     private void UpdateTimer()

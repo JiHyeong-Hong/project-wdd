@@ -25,6 +25,7 @@ public class ProfileData
     public int AnimalSaveCount;
     public float Time;
     public float Hp;
+    public float BossHp;
     public ProfileData(string name, int level, float exp, int gold, float hp, float time)
     {
         Name = name;
@@ -42,9 +43,12 @@ public class InGameModel
     public ProfileData ProfileData { get; private set; }
     public event Action<ProfileData> OnProfileDataChanged;
 
-    public void SetProfileData(ProfileData profileData)
+    public void SetProfileData(ProfileData data)
     {
-        ProfileData = profileData;
-        OnProfileDataChanged?.Invoke(profileData);
+        if (data.GetType() == typeof(ProfileData))
+        {
+            ProfileData = (ProfileData)data;
+            OnProfileDataChanged?.Invoke(ProfileData);
+        }
     }
 }

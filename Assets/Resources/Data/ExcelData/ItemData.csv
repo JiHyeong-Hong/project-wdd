@@ -16,3 +16,6 @@ ItemID,Name,Type,Value,IconPath
 104,Skill_Item4,8,4,Art/Item/ExpLv1
 105,Skill_Item5,8,5,Art/Item/ExpLv1
 200,End_Box,9,0,Art/Item/ExpLv1
+501,ItemBox,10,0,Art/Item/ItemBox
+502,ItemBox,10,0,Art/Item/ItemBox
+503,ItemBox,10,0,Art/Item/ItemBox

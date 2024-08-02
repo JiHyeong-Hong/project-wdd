@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,6 +23,10 @@ public class WarningPopup : PopupBase
         }
     }
 
+    private void Start()
+    {
+        Init(true, "보스 출현!!");
+    }
 
     public void Init(bool iconActive, string desc, string imageName = null)
     {

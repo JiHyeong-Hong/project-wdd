@@ -20,7 +20,7 @@ public class GameScene : BaseScene
 
         // 게임씬을만들때 스포너 생성/스폰시작
         Managers.Spawner.Init();
-        StartCoroutine(Managers.Spawner.Spawn()); // 홍지형 임시.
+        // StartCoroutine(Managers.Spawner.Spawn()); // 홍지형 임시.
 
         Managers.EscapePattern.SpawnEscapePattern();
 
