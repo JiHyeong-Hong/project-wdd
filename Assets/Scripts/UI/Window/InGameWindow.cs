@@ -41,7 +41,7 @@ public class InGameWindow : UIWindow
         profileData.Hp = Managers.Object.Hero.Hp;
         UpdateGameData(profileData);
 
-        if (Managers.Game.GameState == Define.EGameState.Boss)
+        if (StageManager.Instance.state == Define.EStageState.Boss)
         {
             profileData.BossHp = Managers.Object.Bosses.Hp;
         }

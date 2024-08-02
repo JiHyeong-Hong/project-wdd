@@ -150,33 +150,37 @@ public class GameManager
 
     public Action OnLevelUp;
     
-    public IEnumerator BossCount()
-    {
-        while (true)
-        {
-            if (CurrentTime >= 1f && GameState == EGameState.Nomal)
-            {
-                GameState = EGameState.Warning;
-                // Managers.UI.ShowPopupUI<UI_Warning>();
-                UIManagerNew.Instance.ShowPopup<WarningPopup>();
-                
-            }
-            else if (CurrentTime >= 2f && GameState == EGameState.Warning)
-            {
-                GameState = EGameState.Barricade;
-                //TODO Eung 바리게이트 오브젝트만들어서 생성하면 될듯 - 바리게이트 Spawn으로 바꾸면 될듯
-                Managers.Object.Spawn<Structure>(Managers.Object.Hero.transform.position, 0);
-            }
-            else if(CurrentTime >= 3f && GameState == EGameState.Barricade)
-            {
-                //TODO Eung StageLv 테이블을 만들어서 스테이지별 등장 보스몬스터 넘버를 받아와서 대입하면 될듯 
-                Managers.Object.Spawn<Boss>(Managers.Object.Hero.transform.position * 2, 241);
-                GameState = EGameState.Boss;
-                break;
-            }
-
-            yield return new WaitForFixedUpdate();
-        }
-    }
+    // public IEnumerator BossCount()
+    // {
+    //     while (true)
+    //     {
+    //         if (GameState == EGameState.Nomal)
+    //         {
+    //             GameState = EGameState.Warning;
+    //             // Managers.UI.ShowPopupUI<UI_Warning>();
+    //             UIManagerNew.Instance.ShowPopup<WarningPopup>();
+    //             
+    //         }
+    //         else if (GameState == EGameState.Warning)
+    //         {
+    //             foreach (var monster in Managers.Object.Monsters)
+    //             {
+    //                 monster.StartFadeOut();
+    //             }
+    //             GameState = EGameState.Barricade;
+    //             //TODO Eung 바리게이트 오브젝트만들어서 생성하면 될듯 - 바리게이트 Spawn으로 바꾸면 될듯
+    //             Managers.Object.Spawn<Structure>(Managers.Object.Hero.transform.position, 0);
+    //         }
+    //         else if(GameState == EGameState.Barricade)
+    //         {
+    //             //TODO Eung StageLv 테이블을 만들어서 스테이지별 등장 보스몬스터 넘버를 받아와서 대입하면 될듯 
+    //             Managers.Object.Spawn<Boss>(Managers.Object.Hero.transform.position * 2, 241);
+    //             GameState = EGameState.Boss;
+    //             break;
+    //         }
+    //
+    //         yield return YieldInstructionCache.WaitForSeconds(1f);
+    //     }
+    // }
     #endregion
 }

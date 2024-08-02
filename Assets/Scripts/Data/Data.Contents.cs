@@ -423,10 +423,8 @@ namespace Data
     {
 		public int StageLvID;
 		public int StageID;
-		public float Phase1Time;
-		public float Phase2Time;
-		public float Phase3Time;
-		public float Phase4Time;
+		public int MaxPhase;
+		public int Cycle;
     }
 
     [Serializable]

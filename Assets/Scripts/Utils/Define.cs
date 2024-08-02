@@ -76,6 +76,14 @@ public static class Define
 		Barricade = 3,
 		Boss = 4,
 	}
+	
+	public enum EStageState
+	{
+		Nomal = 1,
+		Warning = 2,
+		Barricade = 3,
+		Boss = 4,
+	}
 	public enum ECreatureState
 	{
 		None,

@@ -43,7 +43,7 @@ public class InGameView : MonoBehaviour, IView
         UpdateTimerUI(data.Time);
         _hpImg.fillAmount = (float)Managers.Object.Hero.Hp / Managers.Object.Hero.MaxHp;
         
-        if (Managers.Game.GameState == Define.EGameState.Boss &&
+        if (StageManager.Instance.state == Define.EStageState.Boss &&
             Managers.Object.Bosses != null)
         {
             if(!_bosshpbackImg.gameObject.activeSelf)

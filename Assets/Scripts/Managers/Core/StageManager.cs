@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Define;
 
 public class PhaseInfo
 {
@@ -26,6 +27,8 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
     private List<PhaseInfo> phases = new List<PhaseInfo>();
     private int currentPhaseIndex = 0;
     private float phaseTimer = 0;
+    private int maxPhase = 0;
+    public EStageState state;
     private Dictionary<int, Coroutine> activeCoroutines = new Dictionary<int, Coroutine>();
 
     private List<Coroutine> coroutines = new List<Coroutine>();
@@ -54,17 +57,27 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
         StageLevel stageLevel = GetStageLevel(stageID);
         if (stageLevel != null)
         {
-            phaseList.Add(new PhaseInfo(1, stageLevel.Phase1Time));
-            phaseList.Add(new PhaseInfo(2, stageLevel.Phase2Time));
-            phaseList.Add(new PhaseInfo(3, stageLevel.Phase3Time));
-            phaseList.Add(new PhaseInfo(4, stageLevel.Phase4Time));
-            phaseList.Add(new PhaseInfo(5, stageLevel.Phase4Time));
-            phaseList.Add(new PhaseInfo(6, stageLevel.Phase4Time));
-            phaseList.Add(new PhaseInfo(7, stageLevel.Phase4Time));
-            phaseList.Add(new PhaseInfo(8, stageLevel.Phase4Time));
-            phaseList.Add(new PhaseInfo(9, stageLevel.Phase4Time));
-            phaseList.Add(new PhaseInfo(10, stageLevel.Phase4Time));
+            for (int i = 1; i <= stageLevel.MaxPhase; i++)
+            {
+                phaseList.Add(new PhaseInfo(i, stageLevel.Cycle));
+            }
         }
+
+        maxPhase = stageLevel.MaxPhase;
+
+
+        // {
+        // phaseList.Add(new PhaseInfo(1, stageLevel.Phase1Time));
+        // phaseList.Add(new PhaseInfo(2, stageLevel.Phase2Time));
+        // phaseList.Add(new PhaseInfo(3, stageLevel.Phase3Time));
+        // phaseList.Add(new PhaseInfo(4, stageLevel.Phase4Time));
+        // phaseList.Add(new PhaseInfo(5, stageLevel.Phase4Time));
+        // phaseList.Add(new PhaseInfo(6, stageLevel.Phase4Time));
+        // phaseList.Add(new PhaseInfo(7, stageLevel.Phase4Time));
+        // phaseList.Add(new PhaseInfo(8, stageLevel.Phase4Time));
+        // phaseList.Add(new PhaseInfo(9, stageLevel.Phase4Time));
+        // phaseList.Add(new PhaseInfo(10, stageLevel.Phase4Time));
+        // }
 
         List<Spawn> spawns = GetSpawnsForStage(stageID);
         foreach (var spawn in spawns)
@@ -107,8 +120,9 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
         }
 
         Debug.Log($"Starting Stage: {currentStage.Name}, Level: {currentStage.Lv}");
-        //StartCoroutine(StageRoutine());
+        StartCoroutine(StageRoutine());
         Managers.Game.isStartGame = true;
+        state = EStageState.Nomal;
     }
 
 
@@ -116,34 +130,54 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
     {
         while (currentPhaseIndex < phases.Count)
         {
+            Debug.Log(currentPhaseIndex);
+
             PhaseInfo phase = phases[currentPhaseIndex];
             phaseTimer = 0;
 
-            Debug.Log($"<color=red>Starting Phase {phase.Phase} for {phase.Duration} seconds \n phasesCount:{phases.Count} </color>");
 
-            foreach (var spawn in phase.Spawns)
+            if (phase.Phase < maxPhase)
             {
-                Coroutine coroutine = StartCoroutine(SpawnMonsterCoroutine(spawn));
+                Debug.Log($"<color=red>Starting Phase {phase.Phase} for {phase.Duration} seconds \n phasesCount:{phases.Count} </color>");
+                foreach (var spawn in phase.Spawns)
+                {
+                    Coroutine coroutine = StartCoroutine(SpawnMonsterCoroutine(spawn));
+                    if (coroutine != null)
+                    {
+                        //activeCoroutines.Add(coroutine);
+                        coroutines.Add(coroutine);
+                    }
+                    else
+                    {
+                        // Debug.LogError($"Failed to start coroutine for spawn ID {spawn.SpawnID}");
+                    }
+                }
+
+                while (phaseTimer < phase.Duration)
+                {
+                    phaseTimer += Time.deltaTime;
+                    yield return null;
+                }
+            }
+            else
+            {
+                Debug.Log($"<color=red>Last Phase {phase.Phase} is Boss Stage </color>");
+                Coroutine coroutine = StartCoroutine(StartBossStage(phase.Spawns[0]));
                 if (coroutine != null)
                 {
                     //activeCoroutines.Add(coroutine);
                     coroutines.Add(coroutine);
-
+                    yield return null;
                 }
                 else
                 {
-                    Debug.LogError($"Failed to start coroutine for spawn ID {spawn.SpawnID}");
+                    // Debug.LogError($"Failed to start coroutine for spawn ID {spawn.SpawnID}");
                 }
             }
-
-            while (phaseTimer < phase.Duration)
-            {
-                phaseTimer += Time.deltaTime;
-                yield return null;
-            }
-
+            
             TransitionToNextPhase();
         }
+
 
         EndStage();
     }
@@ -154,21 +188,25 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
         phaseTimer = 0;
         Debug.Log($"Transitioning to Phase {currentPhaseIndex + 1}");
 
-        foreach (var coroutine in coroutines)
+        if (currentPhaseIndex < phases.Count)
         {
-            StopCoroutine(coroutine);
+            foreach (var coroutine in coroutines)
+            {
+                StopCoroutine(coroutine);
+            }
+
+            coroutines.Clear();
         }
-        coroutines.Clear();
     }
 
     private IEnumerator SpawnMonsterCoroutine(Spawn spawn)
     {
         while (true)
         {
-            Debug.Log($"Spawning {spawn.Count} of MonsterID {spawn.MonsterID} at Phase {currentPhaseIndex + 1} spawn.CycleTime : {spawn.CycleTime}");
+            // Debug.Log($"Spawning {spawn.Count} of MonsterID {spawn.MonsterID} at Phase {currentPhaseIndex + 1} spawn.CycleTime : {spawn.CycleTime}");
             for (int i = 0; i < spawn.Count; i++)
             {
-                // ½ÇÁ¦ ¸ó½ºÅÍ »ı¼º ·ÎÁ÷À» ¿©±â¿¡ Ãß°¡
+                // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â¿¡ ï¿½ß°ï¿½
                 Managers.Spawner.SpawnNew<Monster>(spawn.MonsterID);
             }
 
@@ -181,12 +219,51 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
         }
     }
 
-    private void EndStage()
+    public IEnumerator StartBossStage(Spawn spawn)
     {
-        Debug.Log("Stage Ended.");
-        Managers.Game.isStartGame = false;
-        // ½ºÅ×ÀÌÁö Á¾·á ½Ã ÇÊ¿äÇÑ ·ÎÁ÷À» ¿©±â¿¡ Ãß°¡
-        // ½ºÅ×ÀÌÁö Á¾·á ½Ã Á¾·á ÆË¾÷
-        // Å¬¸®¾î ÆÇº°
+        Structure Barricate = null;
+        while (true)
+        {
+            if (state == EStageState.Nomal)
+            {
+                state = EStageState.Warning;
+                // Managers.UI.ShowPopupUI<UI_Warning>();
+                UIManagerNew.Instance.ShowPopup<WarningPopup>();
+            }
+            else if (state == EStageState.Warning)
+            {
+                foreach (var monster in Managers.Object.Monsters)
+                {
+                    monster.StartFadeOut();
+                }
+
+                state = EStageState.Barricade;
+                //TODO Eung ë°”ë¦¬ê²Œì´íŠ¸ ì˜¤ë¸Œì íŠ¸ë§Œë“¤ì–´ì„œ ìƒì„±í•˜ë©´ ë ë“¯ - ë°”ë¦¬ê²Œì´íŠ¸ Spawnìœ¼ë¡œ ë°”ê¾¸ë©´ ë ë“¯
+                Barricate = Managers.Object.Spawn<Structure>(Managers.Object.Hero.transform.position, 0);
+            }
+            else if (state == EStageState.Barricade)
+            {
+                //TODO Eung StageLv í…Œì´ë¸”ì„ ë§Œë“¤ì–´ì„œ ìŠ¤í…Œì´ì§€ë³„ ë“±ì¥ ë³´ìŠ¤ëª¬ìŠ¤í„° ë„˜ë²„ë¥¼ ë°›ì•„ì™€ì„œ ëŒ€ì…í•˜ë©´ ë ë“¯ 
+                Managers.Object.Spawn<Boss>(Barricate.transform.position + Vector3.up*3, spawn.MonsterID);
+                state = EStageState.Boss;
+                break;
+            }
+
+            yield return YieldInstructionCache.WaitForSeconds(1f);
+        }
+    }
+
+    public void EndStage()
+    {
+        // Debug.Log("Stage Ended.");
+        // Managers.Game.isStartGame = false;
+        // // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â¿¡ ï¿½ß°ï¿½
+        // // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¾ï¿½
+        // // Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½Çºï¿½
+
+        // if (currentPhaseIndex == maxPhase)
+        // {
+        //     StartCoroutine(Managers.Game.BossCount());
+        // }
     }
 }

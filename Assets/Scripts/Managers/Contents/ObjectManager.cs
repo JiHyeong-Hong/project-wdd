@@ -78,7 +78,8 @@ public class ObjectManager :SingletonMonoBehaviour<ObjectManager>
                     break;
                 case ECreatureType.Monster:
                     //TODO Eung Pool사용시 Root 설정 변경
-                    obj.transform.parent = (obj.transform.parent == null) ? MonsterRoot : obj.transform.parent;
+                    // obj.transform.parent = (obj.transform.parent == null) ? MonsterRoot : obj.transform.parent;
+                    obj.transform.parent = (parent == null) ? MonsterRoot : obj.transform.parent;
                     Monster monster = creature as Monster;
                     Monsters.Add(monster);
                     monster.SetInfo(templateID);
