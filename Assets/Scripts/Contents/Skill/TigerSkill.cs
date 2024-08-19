@@ -22,7 +22,7 @@ public class TigerSkill : SkillBase
     public virtual void AttackTiger(Vector2 direction)
     {
         float offsetX = (direction.x >= 0) ? -15f : 15f;
-        float offsetY = (direction.y >= 0) ? 4f : -4f;
+        float offsetY = (direction.y >= 0) ? 2.5f : -2.5f;
 
         if (Mathf.Abs(direction.x) < 0.001f && direction.y < 0)
             offsetX *= -2;

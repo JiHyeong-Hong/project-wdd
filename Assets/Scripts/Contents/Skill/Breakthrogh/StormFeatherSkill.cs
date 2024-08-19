@@ -6,65 +6,44 @@ using UnityEngine;
 
 public class StormFeatherSkill : SkillBase
 {
-    private List<Monster> monsterList = new List<Monster>();
     private GameObject peacockEffect;
+    
     public override void DoSkill()
     {
-        DoSkillAsync().Forget();
-    }
-
-    private void GetTargets()
-    {
-        var list = Managers.Object.Monsters;
-        monsterList.Clear();
-
-        foreach (var monster in list)
+       Vector2 direction = Vector2.zero;
+        
+        Monster target = Managers.Object.FindClosestMonster(Owner.CenterPosition, 20);
+        if (target == null)
         {
-            if (monster.Hp <= 0)
-                continue;
-
-            if (Util.CheckTargetInScreen(monster.transform.position))
-            {
-                monsterList.Add(monster);
-            }
-        }
-
-
-    }
-
-    public async UniTask DoSkillAsync()
-    {
-        GetTargets();
-
-        bool isNull = monsterList.Count == 0;
-
-        int idx = Random.Range(0, monsterList.Count);
-        Monster target = !isNull ? monsterList[idx] : null;
-
-        Vector3 lastPos;
-        Vector3 dir;
-        if (target != null)
-        {
-            lastPos = target.transform.position;
-            dir = (lastPos - Owner.transform.position).normalized;
+            direction = Util.GetRandomDir();
         }
         else
         {
-            dir = Owner.Direction;
+            direction = target.transform.position - Owner.CenterPosition;
         }
+        
+        AttackKunai(direction, 0);
         PeacockEffectFindSetActive(true, 0.1f * SkillData.CastCount);
 
-        for (int i = 0; i < SkillData.CastCount; i++)
+        for (int i = 2; i <= SkillData.CastCount; ++i)
         {
-            Peacock peacock = Managers.Object.Spawn<Peacock>(Owner.transform.position, 1);
-
-            peacock.SetTarget(target);
-
-            peacock.SetSpawnInfo(Owner, this, dir, true);
-
-            await UniTask.WaitForSeconds(0.1f);
+            float angle = (i / 2) * SkillData.CastAngle;
+            if (i % 2 == 1)
+                angle *= -1;
+            AttackKunai(direction, angle);
         }
     }
+
+   private void AttackKunai(Vector2 direction, float angle)
+    {
+        // Kunai proj = Managers.Object.Spawn<Kunai>(Owner.transform.position, SkillData.ProjectileNum);
+        // proj.SetSpawnInfo(Owner, this, Util.RotateVectorByAngle(direction, angle));
+
+        Peacock peacock = Managers.Object.Spawn<Peacock>(Owner.transform.position, 1);
+        peacock.transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
+        peacock.SetSpawnInfo(Owner, this, Util.RotateVectorByAngle(direction, angle));
+    }
+
 
     private void PeacockEffectFindSetActive(bool active, float time)
     {
@@ -87,7 +66,7 @@ public class StormFeatherSkill : SkillBase
         }
         peacockEffect.transform.localPosition = Vector3.zero;
 
-        BreakthroughHelper.Instance.SetActiveObject(peacockEffect, active, time);
+        BreakthroughHelper.Instance.SetActiveObject(peacockEffect, active, 1.0f);
     }
 
     public override void Clear()

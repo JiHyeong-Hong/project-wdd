@@ -55,7 +55,9 @@ public class Monster : Creature
             material.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
             yield return null;
         }
-        Destroy(gameObject);
+        
+        Managers.Object.Despawn(this);
+        // Destroy(gameObject);
     }
     public MonsterData monsterData;
     public override void SetInfo(int templateID)
@@ -140,15 +142,7 @@ public class Monster : Creature
         // 데미지 텍스트 표시
         float damage = CalculateDamage(attacker, skill); // 계산된 데미지를 가져옴
 
-        // damageTextPrefab이 null인 경우 초기화 시도
-        if (damageTextPrefab == null)
-        {
-            damageTextPrefab = Managers.Resource.Load<GameObject>("Prefabs/DamageText");
-            if (damageTextPrefab == null)
-            {
-                return;
-            }
-        }
+       
         ShowDamageText(damage);
     }
 
@@ -237,7 +231,8 @@ public class Monster : Creature
         if(CoMonsterAI != null)
             StopCoroutine(CoMonsterAI);
         CoMonsterAI = null;
-        Managers.Resource.Destroy(gameObject);
+        // Managers.Resource.Destroy(gameObject);
+        Managers.Object.Despawn(this);
 
 
         if (damageTextPrefab == null)

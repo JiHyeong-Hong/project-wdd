@@ -22,8 +22,12 @@ public class InGameView : MonoBehaviour, IView
     private Image _hpImg;
     [SerializeField]
     private Image _expImg;
+    [SerializeField]
+    private Image _bosshpbackImg;
+    [SerializeField]
+    private Image _bosshpImg;
 
-    
+
     void Awake()
     {
  
@@ -38,6 +42,16 @@ public class InGameView : MonoBehaviour, IView
         animalSaveCountText.text = data.AnimalSaveCount.ToString();
         UpdateTimerUI(data.Time);
         _hpImg.fillAmount = (float)Managers.Object.Hero.Hp / Managers.Object.Hero.MaxHp;
+        
+        if (StageManager.Instance.state == Define.EStageState.Boss &&
+            Managers.Object.Bosses != null)
+        {
+            if(!_bosshpbackImg.gameObject.activeSelf)
+                _bosshpbackImg.gameObject.SetActive(true);
+            if(!_bosshpImg.gameObject.activeSelf)
+                _bosshpImg.gameObject.SetActive(true);
+            _bosshpImg.fillAmount = Managers.Object.Bosses.Hp / Managers.Object.Bosses.MaxHp;
+        }
     }
 
     public void UpdateUI(object data)

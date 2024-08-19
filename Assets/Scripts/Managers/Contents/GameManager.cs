@@ -3,12 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static Define;
 using Random = UnityEngine.Random;
 
 public class GameManager
 {
     public bool isStartGame = false;
 
+    private EGameState _gameState = EGameState.Nomal;
+
+    public EGameState GameState
+    {
+        get { return _gameState; }
+        set { _gameState = value; }
+    }
 
     private bool _isGamePaused = false;
     public bool IsGamePaused
@@ -113,11 +121,12 @@ public class GameManager
                     // 기능 구현
                     if(button == 0)
                     {
-                        SceneManagerNew.Instance.LoadScene(Define.EScene.TitleScene);
+                        SceneManagerNew.Instance.LoadScene(Define.EScene.Lobby);
                     }
                     else if(button == 1)
                     {
-                        SceneManagerNew.Instance.LoadScene(Define.EScene.GameScene);
+                        GameObject.Destroy(GameObject.Find("MessageBox"));
+                        IsGamePaused = false;
                     }
 
                 }, "");
@@ -140,41 +149,38 @@ public class GameManager
     }
 
     public Action OnLevelUp;
-    enum BossCountState
-    {
-        Counting,
-        Warning,
-        Barricade,
-        Appear
-    }
-    public IEnumerator BossCount()
-    {
-        BossCountState test = BossCountState.Counting;
-        while (true)
-        {
-            if (CurrentTime >= 1f && test == BossCountState.Counting)
-            {
-                Managers.UI.ShowPopupUI<UI_Warning>();
-                test = BossCountState.Warning;
-            }
-            else if (CurrentTime >= 2f && test == BossCountState.Warning)
-            {
-                test = BossCountState.Barricade;
-                //TODO Eung 바리게이트 오브젝트만들어서 생성하면 될듯 - 바리게이트 Spawn으로 바꾸면 될듯
-                Managers.Object.Spawn<Structure>(Managers.Object.Hero.transform.position, 0);
-                Debug.Log("바리게이트 생성");
-            }
-            else if(CurrentTime >= 3f && test == BossCountState.Barricade) 
-            {
-                //TODO Eung StageLv 테이블을 만들어서 스테이지별 등장 보스몬스터 넘버를 받아와서 대입하면 될듯 
-                Managers.Object.Spawn<Boss>(Managers.Object.Hero.transform.position * 1, 241);
-                Debug.Log("보스 생성");
-                break;
-            }
-
-            yield return new WaitForFixedUpdate();
-            
-        }
-    }
+    
+    // public IEnumerator BossCount()
+    // {
+    //     while (true)
+    //     {
+    //         if (GameState == EGameState.Nomal)
+    //         {
+    //             GameState = EGameState.Warning;
+    //             // Managers.UI.ShowPopupUI<UI_Warning>();
+    //             UIManagerNew.Instance.ShowPopup<WarningPopup>();
+    //             
+    //         }
+    //         else if (GameState == EGameState.Warning)
+    //         {
+    //             foreach (var monster in Managers.Object.Monsters)
+    //             {
+    //                 monster.StartFadeOut();
+    //             }
+    //             GameState = EGameState.Barricade;
+    //             //TODO Eung 바리게이트 오브젝트만들어서 생성하면 될듯 - 바리게이트 Spawn으로 바꾸면 될듯
+    //             Managers.Object.Spawn<Structure>(Managers.Object.Hero.transform.position, 0);
+    //         }
+    //         else if(GameState == EGameState.Barricade)
+    //         {
+    //             //TODO Eung StageLv 테이블을 만들어서 스테이지별 등장 보스몬스터 넘버를 받아와서 대입하면 될듯 
+    //             Managers.Object.Spawn<Boss>(Managers.Object.Hero.transform.position * 2, 241);
+    //             GameState = EGameState.Boss;
+    //             break;
+    //         }
+    //
+    //         yield return YieldInstructionCache.WaitForSeconds(1f);
+    //     }
+    // }
     #endregion
 }

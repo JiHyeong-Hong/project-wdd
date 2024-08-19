@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PoisonGasSkill : SkunkSkill
 {
-    public new List<int> availableQuadrants = new List<int> { 1, 2, 3, 4, 5, 6 }; // »ç¿ë °¡´ÉÇÑ »çºÐ¸é ¸ñ·Ï
+    public new List<int> availableQuadrants = new List<int> { 1, 2, 3, 4, 5, 6 }; // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ð¸ï¿½ ï¿½ï¿½ï¿½
 
     public override void DoSkill()
     {
@@ -28,6 +28,7 @@ public class PoisonGasSkill : SkunkSkill
         for (int i = 0; i < SkillData.ProjectileNum; i++)
         {
             Skunk skunk = Managers.Object.Spawn<Skunk>(Owner.transform.position + new Vector3(offsetX, offsetY, 0f), 4);
+            skunk.isBTSkill = true;
             skunk.quadrant = spawnPointList[0];
             skunk.SetSpawnInfo(Owner, this, direction, true);
             spawnPointList.RemoveAt(0);

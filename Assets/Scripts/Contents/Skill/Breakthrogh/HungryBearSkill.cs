@@ -11,7 +11,7 @@ public class HungryBearSkill : SkillBase
 
         Bear bear = Managers.Object.Spawn<Bear>((Vector2)Owner.transform.position + Vector2.up, SkillData.ProjectileNum);
         bear.Skills[1].SetActive(true);
-        bear.myCollider2D.radius = 4;
+        bear.myCollider2D.radius = 1.3f;
 
         bear.SetSpawnInfo(Owner, this, Vector3.zero);
         bear.transform.localScale = isFlip ? new Vector3(-1.5f, 1.5f, 1.5f) : Vector3.one * 1.5f;

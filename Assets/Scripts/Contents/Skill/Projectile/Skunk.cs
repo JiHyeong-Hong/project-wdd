@@ -18,12 +18,14 @@ enum ESkunkState
     End
 }
 
-// ½ºÄÈÅ© Å¬·¡½º. @È«ÁöÇü // TODO: ½ºÄÈÅ© ¾ÆÆ®·Î ¼öÁ¤ÇØ¾ßÇÔ.
+// ï¿½ï¿½ï¿½ï¿½Å© Å¬ï¿½ï¿½ï¿½ï¿½. @È«ï¿½ï¿½ï¿½ï¿½ // TODO: ï¿½ï¿½ï¿½ï¿½Å© ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½.
 public class Skunk : Projectile
 {
     SkunkSkill _skill;
-    public Vector3 jumpPos; // ¹ß»çÃ¼°¡ Á¡ÇÁÇÒ ¸ñÇ¥ À§Ä¡
-    private SkunkPoison poison; // µ¶ ÀåÆÇ ÀÎ½ºÅÏ½º
+    public Vector3 jumpPos; // ï¿½ß»ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ ï¿½ï¿½Ä¡
+    private SkunkPoison poison; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½
+
+    public bool isBTSkill = false;
 
     private SpriteRenderer spriteRenderer;
     [SerializeField]
@@ -36,7 +38,7 @@ public class Skunk : Projectile
         if (base.Init() == false)
             return false;
 
-        // ½ºÄÈÅ© ½ºÅ³ Å¬·¡½º¸¦ Ã£´Â´Ù.
+        // ï¿½ï¿½ï¿½ï¿½Å© ï¿½ï¿½Å³ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½Â´ï¿½.
         List<SkillBase> skillList = Managers.Skill.usingSkillDic[SkillType.Active];
         foreach (SkillBase skill in skillList)
         {
@@ -58,13 +60,16 @@ public class Skunk : Projectile
 
         spriteRenderer.sprite = sprites[(int)ESkunkState.Jump];
 
-        Sequence sequence = DOTween.Sequence()
+        if (isBTSkill)
+        {
+             Sequence sequence = DOTween.Sequence()
         .Append(transform.DOJump(ChooseJumpPosition(), 0.5f, 1, 0.5f))
         .AppendCallback(() =>
         {
             spriteRenderer.sprite = sprites[(int)ESkunkState.Landing];
             spriteRenderer.DOFade(0, 0.5f);
-            poison = Managers.Resource.Instantiate("SkunkPoison", transform).GetOrAddComponent<SkunkPoison>(); ; // µ¶ ÀåÆÇ spawn
+            poison = Managers.Resource.Instantiate("SkunkPoison", transform).GetOrAddComponent<SkunkPoison>(); ; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ spawn
+            poison.Animator.SetBool("isBreakthrough", true);
             poison.SetInfo(Owner, skill);
         })
         .AppendInterval(skill.SkillData.Duration)
@@ -72,6 +77,27 @@ public class Skunk : Projectile
         {
             Managers.Object.Despawn(this);
         });
+        }
+
+        else
+        {
+            Sequence sequence = DOTween.Sequence()
+        .Append(transform.DOJump(ChooseJumpPosition(), 0.5f, 1, 0.5f))
+        .AppendCallback(() =>
+        {
+            spriteRenderer.sprite = sprites[(int)ESkunkState.Landing];
+            spriteRenderer.DOFade(0, 0.5f);
+            poison = Managers.Resource.Instantiate("SkunkPoison", transform).GetOrAddComponent<SkunkPoison>(); ; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ spawn
+            poison.Animator.SetBool("isNormal", true);
+            poison.SetInfo(Owner, skill);
+        })
+        .AppendInterval(skill.SkillData.Duration)
+        .AppendCallback(() =>
+        {
+            Managers.Object.Despawn(this);
+        });
+        }   
+        
     }
 
     public void SetSpawnInfo(Creature owner, SkillBase skill, Vector2 direction, bool isBTSkill)
@@ -86,25 +112,25 @@ public class Skunk : Projectile
 
 
 
-    // ½ºÄÈÅ©°¡ Á¡ÇÁÇÒ 4ºÐ¸éÀÇ À§Ä¡¸¦ ¹«ÀÛÀ§·Î Á¤ÇÑ´Ù.
+    // ï¿½ï¿½ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 4ï¿½Ð¸ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½.
     Vector3 ChooseJumpPosition()
     {
-        // ÇÃ·¹ÀÌ¾î·ÎºÎÅÍÀÇ °Å¸®
+        // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½Îºï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½
         float distance = 3.0f;
-        // ¼±ÅÃµÈ »çºÐ¸é¿¡ µû¶ó ÃÊ±â À§Ä¡ °áÁ¤
+        // ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½Ð¸é¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
         Vector3 startPosition = Vector3.zero;
         switch (quadrant)
         {
-            case 1: // 1»çºÐ¸é
+            case 1: // 1ï¿½ï¿½Ð¸ï¿½
                 startPosition = Owner.transform.position + Util.ConvertVector2ToVector3(Util.AngleToVector(45)) * distance;
                 break;
-            case 2: // 2»çºÐ¸é
+            case 2: // 2ï¿½ï¿½Ð¸ï¿½
                 startPosition = Owner.transform.position + Util.ConvertVector2ToVector3(Util.AngleToVector(225)) * distance;
                 break;
-            case 3: // 3»çºÐ¸é
+            case 3: // 3ï¿½ï¿½Ð¸ï¿½
                 startPosition = Owner.transform.position + Util.ConvertVector2ToVector3(Util.AngleToVector(315)) * distance;
                 break;
-            case 4: // 4»çºÐ¸é
+            case 4: // 4ï¿½ï¿½Ð¸ï¿½
                 startPosition = Owner.transform.position + Util.ConvertVector2ToVector3(Util.AngleToVector(135)) * distance;
                 break;
             case 5:
@@ -127,7 +153,7 @@ public class Skunk : Projectile
         // transform.rotation = Quaternion.identity;
     }
 
-    // ½ºÄÈÅ© ÀÚÃ¼´Â °ø°ÝÆÇÁ¤ÀÌ ¾øÀ½.
+    // ï¿½ï¿½ï¿½ï¿½Å© ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 
     private void OnTriggerStay2D(Collider2D other)
     {
