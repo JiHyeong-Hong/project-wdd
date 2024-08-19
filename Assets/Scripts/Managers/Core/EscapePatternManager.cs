@@ -16,30 +16,30 @@ public class EscapePatternManager : SingletonMonoBehaviour<EscapePatternManager>
     private Data.MonsterData monsterData; // ??
     public GameObject warningPrefab; // 경고 표시 프리팹
     public GameObject netPrefab; // 그물망 프리팹
-    public int netCount = 5; // 떨어지는 그물망의 개수
-    public float spawnInterval = 0.4f; // 그물망이 떨어지는 시간 간격
-    private float spawnAreaSize = 3f; // 스폰 영역 크기
+    public int netCount = 25; // 떨어지는 그물망의 개수
+    public float spawnNetInterval = 0.5f; // 그물망이 떨어지는 시간 간격
+    public float NetSpawnAreaSize = 6f; // 스폰 영역 크기
     private List<Vector2> usedPositions = new List<Vector2>(); // 이미 사용된 위치 목록
     private float spawnRadius = 1.2f; // 스폰 반경
     private Vector3 initialDirection; // 첫 몬스터의 이동 방향
     private bool isDirectionSet = false; // 방향 설정 여부
-
+    public float colliderRadius; // 그물망 collider의 반경
 
     // 회피패턴을 생성한다.
     public void SpawnEscapePattern()
     {
         // TODO: 상황과 조건에 따라서 회피패턴이 스폰되도록 조정할것. 240415
-        //SpawnGhillieShooter();
+         SpawnGhillieShooter();
         //SpawnNet();
-
-        // SpawnTourist();
+        //SpawnTourist();
     }
 
     public void SpawnTourist()
     {
         // TODO: 출현 경고 UI 필요.
 
-        Vector2 camPos = Camera.main.ViewportToWorldPoint(new Vector2(1, 1)); // 인게임 카메라의 오른쪽 상단 위치        
+        Vector2 camPos = Camera.main.ViewportToWorldPoint(new Vector2(Random.Range(0, 2), Random.Range(0, 2))); // 인게임 사각형 화면 꼭지점 4곳 중 1곳 랜덤 생성              
+        // Vector2 camPos = Camera.main.ViewportToWorldPoint(new Vector2(1, 1)); // 인게임 카메라의 오른쪽 상단 위치        
 
         // 여러 관광객을 동시에 spawn한다.
         for (int i = 0; i < 20; i++) // TODO: 관광객 수 하드코딩됨.
@@ -66,12 +66,17 @@ public class EscapePatternManager : SingletonMonoBehaviour<EscapePatternManager>
         {            
             tourist.SetDirection(initialDirection);
         }
+
+        initialDirection = Vector3.zero;
+        isDirectionSet = false;
     }
 
     public void SpawnGhillieShooter()
     {
+        Vector2 camPos = Camera.main.ViewportToWorldPoint(new Vector2(Random.Range(0, 2), Random.Range(0, 2))); // 인게임 사각형 화면 꼭지점 4곳 중 1곳 랜덤 생성
+
         // 길리슈터 생성 테스트용. @홍지형
-        Managers.Object.Spawn<GhillieShooter>(new Vector3(-5f, 5f, 0f), 301);
+        Managers.Object.Spawn<GhillieShooter>(camPos, 301);
     }
 
     public void SpawnNet()
@@ -79,7 +84,10 @@ public class EscapePatternManager : SingletonMonoBehaviour<EscapePatternManager>
         // 프리팹 로드
         warningPrefab = Resources.Load<GameObject>("Prefabs/warning");
         netPrefab = Resources.Load<GameObject>("Prefabs/Net");
-
+        
+        // 콜라이더 반경값 저장
+        CircleCollider2D circleCollider = netPrefab.GetComponent<CircleCollider2D>();
+        colliderRadius = circleCollider.radius;
         SpawnNetPattern().Forget();
     }
 
@@ -94,25 +102,47 @@ public class EscapePatternManager : SingletonMonoBehaviour<EscapePatternManager>
             Vector2 spawnPosition = GetRandomPosition(_targetPos);
             // StartCoroutine(SpawnWarning(spawnPosition));
             SpawnWarning(spawnPosition).Forget();
-            await UniTask.Delay(TimeSpan.FromSeconds(spawnInterval));
+            await UniTask.Delay(TimeSpan.FromSeconds(spawnNetInterval));
         }
     }
+
 
     // 무작위 위치 구하기
     Vector2 GetRandomPosition(Vector2 _targetPos)
     {
-        Vector2 randomPosition = Vector2.zero;
+        Vector2 randomPosition;
+        int attempts = 0;
+        const int maxAttempts = 100; // 무한 루프 방지용 시도 횟수 제한
         do
         {
-            float x = Random.Range(-spawnAreaSize / 2, spawnAreaSize / 2);
-            float y = Random.Range(-spawnAreaSize / 2, spawnAreaSize / 2);
+            float x = Random.Range(-NetSpawnAreaSize / 2, NetSpawnAreaSize / 2);
+            float y = Random.Range(-NetSpawnAreaSize / 2, NetSpawnAreaSize / 2);
             randomPosition = new Vector2(x, y) + _targetPos;
+            attempts++;
+
+            if (attempts > maxAttempts)
+            {
+                // Debug.LogWarning("최대 시도 횟수에 도달하여 현재 위치에 그물망을 생성합니다.");
+                break;
+            }
         }
-        while (usedPositions.Contains(randomPosition));
+        while (IsOverlappingWithExisting(randomPosition));
+
         usedPositions.Add(randomPosition);
         return randomPosition;
     }
-
+    // 겹침 여부 검사
+    bool IsOverlappingWithExisting(Vector2 position)
+    {
+        foreach (Vector2 usedPosition in usedPositions)
+        {
+            if (Vector2.Distance(position, usedPosition) < colliderRadius * 2)
+            {
+                return true; 
+            }
+        }
+        return false; 
+    }   
     // 스폰 전 경고표시
     private async UniTaskVoid SpawnWarning(Vector2 position)    
     {

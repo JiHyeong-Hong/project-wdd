@@ -2,14 +2,25 @@
 
 public abstract class UIBase : MonoBehaviour
 {
-    public virtual void Show()
+    public bool isCached = false; // 캐싱되었는지 여부 확인 240804 @홍지형
+       
+    public virtual void Show(bool isGamePaused) // UI창마다 인게임 일시정지 여부가 다름
     {
+        if (isGamePaused == true) { Managers.Game.IsGamePaused = true; } 
+
+        gameObject.SetActive(true);
+        OnShow();
+    }
+
+    public virtual void Show() // 스택에서 빼는 UI는 일시정지 여부 상관 없음.
+    {       
         gameObject.SetActive(true);
         OnShow();
     }
 
     public virtual void Hide()
     {
+        Managers.Game.IsGamePaused = false;
         gameObject.SetActive(false);
         OnHide();
     }

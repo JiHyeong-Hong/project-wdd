@@ -49,10 +49,12 @@ public class Test : MonoBehaviour
 
             // 탄막 3가지 spawn
             Managers.EscapePattern.SpawnGhillieShooter();
-            Managers.EscapePattern.SpawnNet();
-            Managers.EscapePattern.SpawnTourist();
+            // Managers.EscapePattern.SpawnNet();
+            // Managers.EscapePattern.SpawnTourist();
 
-            
+
+            // 레벨업
+            // Managers.Game.OnLevelUp?.Invoke();
         }
     }
 

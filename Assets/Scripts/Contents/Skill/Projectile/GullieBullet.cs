@@ -53,13 +53,34 @@ public class GullieBullet : Projectile
             Managers.Object.Despawn(this);
     }
 
-    // TODO: 응찬님께 충돌판정 확인하기. 현재 동작 x240406
-    private void OnTriggerEnter2D(Collider2D col)
+   
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (((1 << (int)Define.ELayer.Hero) & (1 << col.gameObject.layer)) != 0)
-        {
-            col.GetComponent<Hero>().OnDamaged(Managers.Object.Hero, Skill);
-            Managers.Object.Despawn(this);
-        }
+        // Debug.Log("WHY" + other.gameObject.layer); 
+
+        Hero hero = other.GetComponent<Hero>();
+
+        // Debug.Log("WHY" + hero);
+
+
+
+        // 백업
+        //if (((1 << (int)Define.ELayer.Hero) & (1 << other.gameObject.layer)) != 0)
+        //{
+        //    Hero hero = other.GetComponent<Hero>();
+        //    if (hero != null)
+        //    {
+        //        if (hero.IsInvincible)
+        //        {
+        //            // Hero가 무적 상태일 때의 처리
+        //            hero.OnHitByProjectile(); // 보호 횟수 감소 
+        //            Managers.Object.Despawn(this); // 투사체 제거
+        //            return; // 추가 피해 처리 방지
+        //        }
+        //        // 무적 상태가 아니면 일반적인 피해 처리
+        //        hero.OnDamaged(this, Skill); // 공격자 정보와 스킬 정보를 넘겨줌
+        //        Managers.Object.Despawn(this); // 투사체 제거
+        //    }
+        //}
     }
 }

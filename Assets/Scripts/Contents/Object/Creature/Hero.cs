@@ -40,15 +40,15 @@ public class Hero : Creature
     public void AddGold(int amount)
     {
         Gold += amount;
-		Debug.Log($"골드 획득 : {amount}");
-		Debug.Log($"총 골드 : {Gold}");
+		//Debug.Log($"골드 획득 : {amount}");
+		//Debug.Log($"총 골드 : {Gold}");
     }
 
     public void AddExp(float amount)
     {
         Exp += amount;
-        Debug.Log($"경험치 획득 : {amount}");
-        Debug.Log($"총 경험치 : {Exp}");
+        //Debug.Log($"경험치 획득 : {amount}");
+        //Debug.Log($"총 경험치 : {Exp}");
     }
 
     public bool isInvincible = false; 
@@ -58,7 +58,9 @@ public class Hero : Creature
         set { isInvincible = value; }
     }
 
-    public bool isSpeedBoosted = false;
+    public bool isSpeedBoosted = false;    
+    public float originalSpeed;
+    public bool isInNet = false; // hero가 그물망 안에 있는지 확인 @홍지형 240720
     public int protectionHits = 0;
 
 	#endregion
@@ -155,17 +157,17 @@ public class Hero : Creature
         // 테스트 용 240623 @홍지형
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            UIManagerNew.Instance.ShowWindow<SkillLevelUpWindow>(Define.UIWindowType.SkillLevelUpWindow);
+            LevelUp();
             // UIManagerNew.Instance.ShowWindow<SkillLevelUpWindow>(Define.UIWindowType.OptionWindow);
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
-            UIManagerNew.Instance.ShowWindow<SkillLevelUpWindow>(Define.UIWindowType.AnimalRescueWindow);
+            //UIManagerNew.Instance.ShowWindow<SkillLevelUpWindow>(Define.UIWindowType.AnimalRescueWindow);
             // UIManagerNew.Instance.ShowWindow<SkillLevelUpWindow>(Define.UIWindowType.ShopWindow);
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
-            UIManagerNew.Instance.ShowWindow<SkillLevelUpWindow>(Define.UIWindowType.InGameWindow);
+            //UIManagerNew.Instance.ShowWindow<SkillLevelUpWindow>(Define.UIWindowType.InGameWindow);
             // UIManagerNew.Instance.ShowWindow<SkillLevelUpWindow>(Define.UIWindowType.InventoryWindow);
         }
         if (Input.GetKeyDown(KeyCode.V))
@@ -261,7 +263,7 @@ public class Hero : Creature
     public IEnumerator SpeedBoost(float targetDistance, float multiplier)
     //public IEnumerator SpeedBoost(float duration, float multiplier)
     {
-        float originalSpeed = MoveSpeed; 
+        originalSpeed = MoveSpeed; 
         MoveSpeed *= multiplier; // 속도 증가
 
         isInvincible = true; // 무적 상태 설정
@@ -289,6 +291,18 @@ public class Hero : Creature
         MoveSpeed = originalSpeed; 
         isInvincible = false;
         isSpeedBoosted = false;
+    }
+
+    // 플레이어의 이동속도 감소, 현재 그물망(Net)에서 사용중 @홍지형 240720
+    public void SpeedReduce(float multiplier)
+    {
+        originalSpeed = MoveSpeed;
+        MoveSpeed *= multiplier; // 속도 감소        
+    }
+    // 플레이어의 원래 이동속도로 복원
+    public void SpeedReset()
+    {
+        MoveSpeed = originalSpeed; 
     }
 
     void OnTriggerEnter2D(Collider2D collider)

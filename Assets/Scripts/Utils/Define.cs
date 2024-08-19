@@ -100,6 +100,7 @@ public static class Define
 		Env = 8,
 		Obstacle = 9,
 		Projectile = 10,
+		HeroFoot = 11,
 	}
 
 	public enum SkillType
@@ -141,7 +142,7 @@ public static class Define
 		ShopWindow = 2,
         InventoryWindow = 3,
         SkillLevelUpWindow = 4,
-        AnimalRescueWindow = 6,
+        // AnimalRescueWindow = 6, 현재 버전에서 미사용.
         InGameWindow = 7,
 
     }

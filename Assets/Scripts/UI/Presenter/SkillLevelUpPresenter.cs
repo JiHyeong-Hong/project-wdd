@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class SkillLevelUpPresenter
 {
+    public SkillLevelUpModel Model { get { return model; } }
     private readonly SkillLevelUpModel model;
     private readonly IView view;
 

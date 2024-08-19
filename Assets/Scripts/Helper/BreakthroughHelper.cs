@@ -6,8 +6,6 @@ using System.Linq;
 using System.Threading;
 using UnityEngine;
 using static Define;
-using static UnityEditor.Progress;
-
 
 public class CompositeData
 {
@@ -42,7 +40,7 @@ public class BreakthroughHelper
 
     public Dictionary<int, CompositeData> compositeSkillTable = new Dictionary<int, CompositeData>();
 
-    public Dictionary<int, int> nomalSkillToBTSkill = new Dictionary<int, int>();
+    public Dictionary<int, int> nomalSkillToBTSkill = new Dictionary<int, int>(); // ì¼ë°˜ ì•¡í‹°ë¸ŒìŠ¤í‚¬IDì™€ ë§¤ì¹­ë˜ëŠ” ëŒíŒŒìŠ¤í‚¬IDë¥¼ í•œ ìŒìœ¼ë¡œ ì €ì¥í•œë‹¤. <ì•¡í‹°ë¸ŒìŠ¤í‚¬ID(ë§Œë ™), ëŒíŒŒìŠ¤í‚¬ID>
     public Dictionary<int, int> passiveSkillToBTSkill = new Dictionary<int, int>();
     public Dictionary<int, int> nomalSkillCastCount = new Dictionary<int, int>();
 
@@ -56,12 +54,12 @@ public class BreakthroughHelper
         target.SetActive(active);
         try
         {
-            // activeTime ÀÌÈÄ¿¡ gameObject¸¦ ºñÈ°¼ºÈ­ÇÏ±â À§ÇØ ÀÏÁ¤ ½Ã°£ µ¿¾È ´ë±âÇÕ´Ï´Ù.
+            // activeTime ì´í›„ì— gameObjectë¥¼ ë¹„í™œì„±í™”í•˜ê¸° ìœ„í•´ ì¼ì • ì‹œê°„ ë™ì•ˆ ëŒ€ê¸°í•©ë‹ˆë‹¤.
             await UniTask.Delay((int)(activeTime * 1000), cancellationToken: cancellationTokenSource.Token);
         }
         catch (OperationCanceledException)
         {
-            // UniTask°¡ Ãë¼ÒµÇ¾ú½À´Ï´Ù. ÀÌ´Â SetActiveObject ÇÔ¼ö°¡ ´Ù½Ã È£ÃâµÇ¾î ÀÌÀü ÀÛ¾÷ÀÌ Ãë¼ÒµÇ¾úÀ½À» ³ªÅ¸³À´Ï´Ù.
+            // UniTaskê°€ ì·¨ì†Œë˜ì—ˆìŠµë‹ˆë‹¤. ì´ëŠ” SetActiveObject í•¨ìˆ˜ê°€ ë‹¤ì‹œ í˜¸ì¶œë˜ì–´ ì´ì „ ì‘ì—…ì´ ì·¨ì†Œë˜ì—ˆìŒì„ ë‚˜íƒ€ëƒ…ë‹ˆë‹¤.
             return;
         }
 
@@ -76,7 +74,7 @@ public class BreakthroughHelper
                 Active = new Tuple<int, bool>(item.Value.G_Skill_ID1, false), 
                 Passive = new Tuple<int, bool>(item.Value.G_Skill_ID2, false)
             });
-
+            
             nomalSkillToBTSkill.Add(item.Value.G_Skill_ID1, item.Value.C_Skill_ID1);
             //passiveSkillToBTSkill.Add(item.Value.G_Skill_ID2, item.Value.C_Skill_ID1);
         }
@@ -103,6 +101,7 @@ public class BreakthroughHelper
             }
         }
 
+        // ë§Œì•½ ëŒíŒŒìŠ¤í‚¬ ë°œë™ ì¡°ê±´ì„ ëª¨ë‘ ì„±ë¦½í•œë‹¤ë©´
         if (compositeSkill != 0 && 
             compositeSkillTable[compositeSkill].Active.Item2 == true && compositeSkillTable[compositeSkill].Passive.Item2 == true)
         {
@@ -111,6 +110,7 @@ public class BreakthroughHelper
 
     }
 
+    // í˜„ì¬ ì•¡í‹°ë¸ŒìŠ¤í‚¬ì´ ëŒíŒŒìŠ¤í‚¬ì´ ê°€ëŠ¥í•œ ìƒíƒœì¸ì§€ í™•ì¸í•œë‹¤.
     public bool CheckBreakthrough(int index)
     {
         if (!nomalSkillToBTSkill.TryGetValue(index, out int breakthroughIndex))
@@ -122,7 +122,7 @@ public class BreakthroughHelper
             SkillBase breakthroughSkill = null;
             foreach (var item in Managers.Skill.usingSkillDic[SkillType.Breakthrough])
             {
-                if (item.SkillData.Index == breakthroughIndex)
+                if (item.SkillData.SkillID == breakthroughIndex)
                 {
                     breakthroughSkill = item;
                     break;
@@ -141,7 +141,6 @@ public class BreakthroughHelper
             nomalSkillCastCount[index]++;
         else
             nomalSkillCastCount[index] = 1;
-
 
         return false;
     }
@@ -164,13 +163,13 @@ public class BreakthroughHelper
     {
         Managers.Skill.allSkillDic.TryGetValue(activeName, out List<SkillBase> findSkillList);
 
-        Data.BreakthroughData btData = Managers.Data.BreakthroughDic.Select(x => x.Value).FirstOrDefault(x => x.G_Skill_ID1 == findSkillList.Last().SkillData.Index);
+        Data.BreakthroughData btData = Managers.Data.BreakthroughDic.Select(x => x.Value).FirstOrDefault(x => x.G_Skill_ID1 == findSkillList.Last().SkillData.SkillID);
 
         //Managers.Data.BreakthroughDic.TryGetValue(findSkillList.Last().SkillData.Index, out Data.BreakthroughData breakthroughData);
 
-        SkillData passiveSkill = Managers.Data.SkillDic.Select(x => x.Value).FirstOrDefault(x => x.Index == btData.G_Skill_ID2);
+        SkillData passiveSkill = Managers.Data.SkillDic.Select(x => x.Value).FirstOrDefault(x => x.SkillID == btData.G_Skill_ID2);
 
-        // °ø¹é Á¦°Å
+        // ê³µë°± ì œê±°
 
         passiveSkill.Name = passiveSkill.Name.Replace(" ", "");
 
@@ -179,10 +178,10 @@ public class BreakthroughHelper
 
     public bool IsActivated(float ActivationProbability)
     {
-        // ·£´ıÇÑ È®·üÀ» »ı¼º
-        float randomValue = UnityEngine.Random.Range(0f, 1f); // 0 ~ 1 »çÀÌÀÇ ·£´ıÇÑ °ª
+        // ëœë¤í•œ í™•ë¥ ì„ ìƒì„±
+        float randomValue = UnityEngine.Random.Range(0f, 1f); // 0 ~ 1 ì‚¬ì´ì˜ ëœë¤í•œ ê°’
 
-        // ½ºÅ³ÀÌ ¹ßµ¿µÇ´ÂÁö ¿©ºÎ¸¦ ÆÇ´Ü
+        // ìŠ¤í‚¬ì´ ë°œë™ë˜ëŠ”ì§€ ì—¬ë¶€ë¥¼ íŒë‹¨
         return randomValue <= ActivationProbability;
     }
 

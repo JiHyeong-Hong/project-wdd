@@ -205,6 +205,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInvincible: 1
   isSpeedBoosted: 0
+  originalSpeed: 0
+  isInNet: 0
   protectionHits: 0
   pivot: {fileID: 4361159434796001480}
   destination: {fileID: 2959692578359369009}

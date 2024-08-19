@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -169,7 +169,7 @@ namespace Data
 	public class SkillData
 	{
 		// Common
-		public int Index;
+		public int SkillID;
 		public string Name;
 		public int AttackPattern;
 		public Define.SkillType skillType;
@@ -195,7 +195,12 @@ namespace Data
 		public float StatValue;
 		public int SkillGetType;
 		public int SkillMaxLv;
-	}
+
+		// 스킬 설명 240818 @홍지형 추가
+		public string Kor_Text;
+		public string Eng_Text;
+
+    }
 
 	[Serializable]
 	public class SkillDataLoader : ILoader<int, SkillData>
@@ -206,7 +211,7 @@ namespace Data
 		{
 			Dictionary<int, SkillData> dict = new Dictionary<int, SkillData>();
 			foreach (SkillData skill in skills)
-				dict.Add(skill.Index, skill);
+				dict.Add(skill.SkillID, skill);
 			return dict;
 		}
 	}

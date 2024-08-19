@@ -9,8 +9,8 @@ public class SceneManagerNew : SingletonMonoBehaviour<SceneManagerNew>
 
     protected override void Init()
     {
-        // ¾À °ü·Ã ÃÊ±âÈ­ ÀÛ¾÷À» ¼öÇàÇÕ´Ï´Ù.
-        Debug.Log("SceneManager initialized.");
+        // ì”¬ ê´€ë ¨ ì´ˆê¸°í™” ì‘ì—…ì„ ìˆ˜í–‰í•©ë‹ˆë‹¤.
+        //Debug.Log("SceneManager initialized.");
     }
 
     public void LoadScene(Define.EScene scene, System.Action action = null)
@@ -32,10 +32,10 @@ public class SceneManagerNew : SingletonMonoBehaviour<SceneManagerNew>
 
         while (!asyncOperation.isDone)
         {
-            // ¾ÀÀÌ ¿ÏÀüÈ÷ ·ÎµåµÈ ÈÄ¿¡ È°¼ºÈ­ÇÕ´Ï´Ù.
+            // ì”¬ì´ ì™„ì „íˆ ë¡œë“œëœ í›„ì— í™œì„±í™”í•©ë‹ˆë‹¤.
             if (asyncOperation.progress >= 0.9f)
             {
-                Debug.Log("Scene load complete.");
+                //Debug.Log("Scene load complete.";
                 asyncOperation.allowSceneActivation = true;
                 OnSceneLoaded?.Invoke();
             }

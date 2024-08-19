@@ -1,4 +1,4 @@
-﻿using Cysharp.Threading.Tasks.Triggers;
+using Cysharp.Threading.Tasks.Triggers;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,16 +16,22 @@ public class ParrotSkill : SkillBase
     {
         ClearSatellites();
 
-        if (!GameObject.Find("BirdPool"))
+        if (BreakthroughHelper.Instance.CheckBreakthrough(SkillData.SkillID))
         {
-            birdPool = new GameObject("BirdPool");
-            birdPool.transform.parent = Owner.transform;
-            birdPool.transform.localPosition = Vector3.zero; // Owner의 위치로 이동
+            Clear();
+            return;
         }
 
-        if (BreakthroughHelper.Instance.CheckBreakthrough(SkillData.Index))
-            return;
-
+        if (!GameObject.Find("BirdPool"))
+        {
+            InitBirdPool();
+        }
+        
+        if (birdPool == null)
+        {
+            birdPool = GameObject.Find("BirdPool");
+        }        
+        
 
         for (int i = 0; i < SkillData.ProjectileNum; ++i)
         {
@@ -83,6 +89,21 @@ public class ParrotSkill : SkillBase
 
     public override void Clear()
     {
+        // 기존 시퀀스가 존재하면 중지하고 삭제
+        if (sequence != null && sequence.IsActive())
+        {
+            sequence.Kill();
+
+        }
         ClearSatellites();
+        // InitBirdPool();
+    }
+
+    private void InitBirdPool()
+    {        
+        birdPool = null;
+        birdPool = new GameObject("BirdPool");
+        birdPool.transform.parent = Owner.transform;
+        birdPool.transform.localPosition = Vector3.zero; // Owner의 위치로 이동
     }
 }

@@ -212,7 +212,7 @@ public class Monster : Creature
 
         bool isDrop = false;
         int rand = Random.Range(0, 100);
-        Debug.Log("아이템 드랍 확률 :" + $"{rand}");
+        // Debug.Log("아이템 드랍 확률 :" + $"{rand}");
         int setVal = 0;
         foreach (var item in DropData)
         {
@@ -228,7 +228,7 @@ public class Monster : Creature
 
         if (!isDrop)
         {
-            Debug.Log("아이템 드랍 실패!!");
+            // Debug.Log("아이템 드랍 실패!!");
         }
  		
  		// 골드 획득 테스트용. @홍지형 삭제가능

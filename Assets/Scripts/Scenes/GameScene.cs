@@ -25,8 +25,10 @@ public class GameScene : BaseScene
         Managers.EscapePattern.SpawnEscapePattern();
 
         StageManager.Instance.LoadStage(Managers.Game.currentStageID);
-                
-        UIManagerNew.Instance.ShowWindow<WindowBase>(Define.UIWindowType.InGameWindow);  
+
+        // UIManagerNew.Instance.ShowWindow<WindowBase>(Define.UIWindowType.InGameWindow); // 캐싱        
+        UIManagerNew.Instance.ShowWindow<InGameWindow>(false); // 논캐싱
+
 
         //for (int i = 0; i < 5; ++i)
         //    Managers.Object.Spawn<Monster>(new Vector3(-2f + i, -1f, 0f), Define.MONSTER_SECURITY1_ID);

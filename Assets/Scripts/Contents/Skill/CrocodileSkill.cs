@@ -6,7 +6,7 @@ public class CrocodileSkill : SkillBase
 {
     public override void DoSkill()
     {
-        if (BreakthroughHelper.Instance.CheckBreakthrough(SkillData.Index))
+        if (BreakthroughHelper.Instance.CheckBreakthrough(SkillData.SkillID))
             return;
 
         Attack();

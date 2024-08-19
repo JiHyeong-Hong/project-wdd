@@ -192,7 +192,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 494725a9bcc556f4ea6d7645f7700277, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTestScene: 1
+  isCached: 0
+  isTestScene: 0
   thumbnailGrid: {fileID: 0}
   thumbnailPrefab: {fileID: 7470553513231440731, guid: 33469641c1f58ea49bf6bbafe1016c71, type: 3}
   ActiveAndPassiveImage: {fileID: 1608662871226772273}

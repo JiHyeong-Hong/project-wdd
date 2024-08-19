@@ -17,16 +17,16 @@ public class DataTransformer : EditorWindow
     [MenuItem("Tools/ParseExcel %#K")]
     public static void ParseExcelDataToJson()
     {
-        ParseExcelDataToJson<MonsterDataLoader, MonsterData>("Monster");
+        //ParseExcelDataToJson<MonsterDataLoader, MonsterData>("Monster");
         // ParseExcelDataToJson<HeroDataLoader, HeroData>("Hero");
         //ParseExcelDataToJson<HeroLevelDataLoader, HeroLevelData>("HeroLevel");
-        //ParseExcelDataToJson<SkillDataLoader, SkillData>("Skill");
-        ParseExcelDataToJson<ProjectileDataLoader, ProjectileData>("Projectile");
-        ParseExcelDataToJson<ItemDataLoader, ItemData>("Item");
-        ParseExcelDataToJson<DropItemDataLoader, DropItemData>("DropItem");
+        ParseExcelDataToJson<SkillDataLoader, SkillData>("Skill");
+        //ParseExcelDataToJson<ProjectileDataLoader, ProjectileData>("Projectile");
+        //ParseExcelDataToJson<ItemDataLoader, ItemData>("Item");
+        //ParseExcelDataToJson<DropItemDataLoader, DropItemData>("DropItem");
         //ParseExcelDataToJson<HpConditionDataLoader, HpConditionData>("HpCondition");
         //ParseExcelDataToJson<PatternPerDataLoader, PatternPerData>("PatternPer");
-        //ParseExcelDataToJson<BreakthroughDataLoader, BreakthroughData>("Breakthrough");
+        ParseExcelDataToJson<BreakthroughDataLoader, BreakthroughData>("Breakthrough");
         //ParseExcelDataToJson<StageLoader, Data.Stage>("Stage");
         //ParseExcelDataToJson<StageLevelLoader, StageLevel>("StageLv");
         //ParseExcelDataToJson<SpawnLoader, Spawn>("Spawn");

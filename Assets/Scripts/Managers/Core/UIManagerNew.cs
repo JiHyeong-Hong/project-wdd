@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 using static Define;
 public class UIManagerNew : SingletonMonoBehaviour<UIManagerNew>
@@ -31,6 +31,19 @@ public class UIManagerNew : SingletonMonoBehaviour<UIManagerNew>
         }
     }
 
+    // 삭제예정
+    // UI창이 캐싱되었는지 확인한다. @홍지형 240804
+    public Dictionary<UIWindowType, WindowBase> WindowCache { get => windowCache; set => windowCache = value; }
+    public bool IsWindowCached(UIWindowType windowType)
+    {
+        if (windowCache[windowType].isCached == true)
+        {
+            return true;
+        }
+        else
+            return false;
+    }
+
     private void Awake()
     {
         CacheAllWindows();
@@ -45,10 +58,11 @@ public class UIManagerNew : SingletonMonoBehaviour<UIManagerNew>
             if (windowPrefab != null)
             {
                 GameObject windowInstance = Instantiate(windowPrefab, transform);
-                windowInstance.SetActive(false); // ó������ ��Ȱ��ȭ ���·� �Ӵϴ�.
+                windowInstance.SetActive(false); // 처음에는 비활성화 상태로 둡니다.
                 WindowBase windowBase = windowInstance.GetComponent<WindowBase>();
                 if (windowBase != null)
                 {
+                    windowBase.isCached = true;
                     windowCache[windowType] = windowBase;
                 }
             }
@@ -59,30 +73,50 @@ public class UIManagerNew : SingletonMonoBehaviour<UIManagerNew>
         }
     }
 
-    public T ShowWindow<T>(UIWindowType type) where T : WindowBase
+    // 사용X, 삭제예정
+    //public T ShowWindow<T>(UIWindowType type) where T : WindowBase
+    //{
+    //    if (windowCache.TryGetValue(type, out WindowBase window))
+    //    {
+    //        window.gameObject.transform.SetParent(MainCanvas.transform);
+    //        window.Refresh();
+    //        window.gameObject.SetActive(true);
+    //        window.Show(); //@홍지형
+    //        return window as T;
+    //    }
+    //    else
+    //    {
+    //        Debug.LogError($"Window of type {type} is not cached.");
+    //        return null;
+    //    }
+    //}
+
+    //public T HideWindow<T>(UIWindowType type) where T : WindowBase
+    //{
+    //    if (windowCache.TryGetValue(type, out WindowBase window))
+    //    {
+    //        window.Hide();
+    //        return window as T;
+    //    }
+    //    else
+    //    {
+    //        Debug.LogError($"Window of type {type} is not cached.");
+    //        return null;
+    //    }
+    //}
+
+    // 논캐싱, 상속된 OnShow() 호출
+    public T ShowWindow<T>(bool isGamePaused, string name = null) where T : WindowBase
     {
-        if (windowCache.TryGetValue(type, out WindowBase window))
-        {
-            window.gameObject.transform.SetParent(MainCanvas.transform);
-            window.Refresh();
-            window.gameObject.SetActive(true);
-            return window as T;
-        }
-        else
-        {
-            Debug.LogError($"Window of type {type} is not cached.");
-            return null;
-        }
+        // TODO: 일시정지 파라미터 추가 240814
+        return windowManager.ShowUI<T>(name, "Prefabs/UI/Window/", isGamePaused) as T;
     }
 
-    public T ShowWindow<T>(string name = null) where T : WindowBase
+    // public T ShowPopup<T>(string name = null, bool isGamePause) where T : PopupBase
+    public T ShowPopup<T>(bool isGamePaused, string name = null) where T : PopupBase
     {
-        return windowManager.ShowUI<T>(name, "UI/Windows/") as T;
-    }
-
-    public T ShowPopup<T>(string name = null) where T : PopupBase
-    {
-        return popupManager.ShowUI<T>(name, "UI/Popups/") as T;
+        // TODO: 일시정지 파라미터 추가 240814
+        return popupManager.ShowUI<T>(name, "Prefabs/UI/Popup/", isGamePaused) as T;
     }
 
     public void HideCurrentWindow()
@@ -110,7 +144,7 @@ public class UIStackManager<T> where T : UIBase
 {
     private Stack<T> uiStack = new Stack<T>();
 
-    public U ShowUI<U>(string name, string pathPrefix) where U : T
+    public U ShowUI<U>(string name, string pathPrefix, bool isGamePaused) where U : T
     {
         if (string.IsNullOrEmpty(name))
             name = typeof(U).Name;
@@ -122,7 +156,8 @@ public class UIStackManager<T> where T : UIBase
             return null;
         }
 
-        GameObject instance = GameObject.Instantiate(uiObject, UIManagerNew.Instance.transform);
+        // GameObject instance = GameObject.Instantiate(uiObject, UIManagerNew.Instance.transform); // 삭제예정
+        GameObject instance = GameObject.Instantiate(uiObject, UIManagerNew.Instance.MainCanvas.transform);
         U uiElement = instance.GetComponent<U>();
         if (uiElement == null)
         {
@@ -133,7 +168,7 @@ public class UIStackManager<T> where T : UIBase
         HideCurrentTopUI();
 
         uiStack.Push(uiElement);
-        uiElement.Show();
+        uiElement.Show(isGamePaused);
 
         return uiElement;
     }

@@ -77,11 +77,22 @@ public class PoolManager
 
     public void CreatePool(GameObject original)
     {
+        // 이미 생성되었으면 중복 생성 방지
+        GameObject obj = GameObject.Find($"{original.name}_Root");
+        if (obj != null)
+        {
+            // Debug.Log("이미 존재하는 게임오브젝트: " + $"{original.name}_Root");
+            return;
+        }
+
         Pool pool = new Pool();
         pool.Init(original);
         pool.Root.parent = _root;
 
-        _pool.Add(original.name, pool);
+        if(_pool.TryAdd(original.name, pool) == false)
+        {
+            Debug.LogWarning($"PoolManager():: 이미 추가된 Key입니다({original.name})");            
+        }
     }
 
     public void Push(Poolable poolable)

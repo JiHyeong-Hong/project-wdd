@@ -131,7 +131,7 @@ public class Tiger : Projectile
         Collider2D[] targets = Util.SearchCollidersInRadius(transform.position, Skill.SkillData.AttackRange); // �浹�� ���� �ֺ��� �ִ� ���͵��� ã��
         foreach (var target in targets)
         {
-            Debug.Log("Tiger DoDamage");
+            //Debug.Log("Tiger DoDamage");
             target.GetComponent<Monster>().OnDamaged(Owner, Skill);
         }
     }
@@ -141,7 +141,7 @@ public class Tiger : Projectile
 		if (((1 << (int)Define.ELayer.Monster) & (1 << col.gameObject.layer)) != 0)
 		{
 			col.GetComponent<Monster>().OnDamaged(Owner,Skill);
-            Debug.Log("Tiger trigger");
+            //Debug.Log("Tiger trigger");
 		}
 	}
 }

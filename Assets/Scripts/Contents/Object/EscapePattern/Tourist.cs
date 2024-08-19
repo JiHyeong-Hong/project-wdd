@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Net;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Experimental.GlobalIllumination;
@@ -48,14 +49,23 @@ public class Tourist : Monster
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        BaseObject target = other.GetComponent<BaseObject>();
-        if (target.IsValid() == false)
-            return;
-
-        Creature creature = target as Creature;
-        if (creature == null || creature.CreatureType != Define.ECreatureType.Hero)
-            return;
-
-        target.OnDamaged(this, null);
+        // TODO: 240721 @홍지형
+        //if (((1 << (int)Define.ELayer.Hero) & (1 << other.gameObject.layer)) != 0)
+        //{
+        //    Hero hero = other.GetComponent<Hero>();
+        //    if (hero != null)
+        //    {
+        //        if (hero.IsInvincible)
+        //        {
+        //            // Hero가 무적 상태일 때의 처리
+        //            hero.OnHitByProjectile(); // 보호 횟수 감소 
+        //            Managers.Object.Despawn(this); // 투사체 제거
+        //            return; // 추가 피해 처리 방지
+        //        }
+        //        // 무적 상태가 아니면 일반적인 피해 처리
+        //        hero.OnDamaged(this, Skill); // 공격자 정보와 스킬 정보를 넘겨줌
+        //        Managers.Object.Despawn(this); // 투사체 제거
+        //    }
+        //}
     }
 }

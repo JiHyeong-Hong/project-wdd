@@ -10,6 +10,7 @@ public class GhillieShooter : Monster
     private Transform _target;
     private LineRenderer _lineRenderer;
     private bool _isFired = false;
+    private SpriteRenderer spriteRenderer;
 
     public override bool Init()
     {
@@ -17,6 +18,8 @@ public class GhillieShooter : Monster
             return false;
         CreatureType = ECreatureType.Monster;
 
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.flipX = !spriteRenderer.flipX;
         // 레이저 시각화
         _lineRenderer = GetComponent<LineRenderer>(); 
         _lineRenderer.positionCount = 2;

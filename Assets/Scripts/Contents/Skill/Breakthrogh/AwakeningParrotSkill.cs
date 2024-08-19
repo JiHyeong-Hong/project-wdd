@@ -1,4 +1,4 @@
-﻿using DG.Tweening;
+using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,19 +13,14 @@ public class AwakeningParrotSkill : SkillBase
     {
         ClearSatellites();
 
+        if (!GameObject.Find("BirdPool"))
+        {
+            InitBirdPool();
+        }
+
         if (birdPool == null)
         {
-            if (!GameObject.Find("BirdPool"))
-            {
-                birdPool = new GameObject("BirdPool");
-                birdPool.transform.parent = Owner.transform;
-                birdPool.transform.localPosition = Vector3.zero; // Owner의 위치로 이동
-            }
-            else
-            {
-                birdPool = GameObject.Find("BirdPool");
-            }
-            
+            birdPool = GameObject.Find("BirdPool");
         }
 
         for (int i = 0; i < SkillData.ProjectileNum; ++i)
@@ -85,6 +80,14 @@ public class AwakeningParrotSkill : SkillBase
     public override void Clear()
     {
         ClearSatellites();
+    }
+
+    private void InitBirdPool()
+    {
+        birdPool = null;
+        birdPool = new GameObject("BirdPool");
+        birdPool.transform.parent = Owner.transform;
+        birdPool.transform.localPosition = Vector3.zero; // Owner의 위치로 이동
     }
 
 }

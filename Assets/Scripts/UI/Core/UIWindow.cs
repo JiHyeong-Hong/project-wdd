@@ -6,6 +6,7 @@ public class UIWindow : WindowBase
 {
     public bool isTestScene = false;
     public UIWindowType WindowType { get; private set; }
+    
     public void Initialize(UIWindowType windowType)
     {
         WindowType = windowType;

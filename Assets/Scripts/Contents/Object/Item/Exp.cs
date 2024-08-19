@@ -25,7 +25,7 @@ public class Exp : Item
             return;
 
         hero.Exp += ItemData.Value;
-        Debug.Log($"����ġ {ItemData.Value}��ŭ ȹ��. �� ����ġ : {hero.Exp}");
+        // Debug.Log($"����ġ {ItemData.Value}��ŭ ȹ��. �� ����ġ : {hero.Exp}");
 
         Managers.Object.Despawn(this);
     }

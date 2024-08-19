@@ -767,6 +767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e884a74a469751479974c25f91dae40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isCached: 0
   isTestScene: 1
   goodsThumbnailListGrid: {fileID: 1886179043}
   MiddleAnchor: {fileID: 224709092}
