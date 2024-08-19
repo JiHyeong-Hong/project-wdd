@@ -228,7 +228,7 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
             {
                 state = EStageState.Warning;
                 // Managers.UI.ShowPopupUI<UI_Warning>();
-                UIManagerNew.Instance.ShowPopup<WarningPopup>();
+                UIManagerNew.Instance.ShowPopup<WarningPopup>(false);
             }
             else if (state == EStageState.Warning)
             {
