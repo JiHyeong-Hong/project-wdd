@@ -239,7 +239,7 @@ public class Hero : Creature
 
 		// Managers.Game.GameOver();
 		StageManager.Instance.state = EStageState.Fail;
-		UIManagerNew.Instance.ShowPopup<ResultPopup>();
+		UIManagerNew.Instance.ShowPopup<ResultPopup>(true);
 	}
 
 	private void LevelUp()

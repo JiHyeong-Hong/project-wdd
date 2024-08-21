@@ -18,7 +18,7 @@ public class EndBox : Monster
 
     public override void OnDead(BaseObject attacker, SkillBase skill)
     {
-        UIManagerNew.Instance.ShowPopup<ResultPopup>();
+        UIManagerNew.Instance.ShowPopup<ResultPopup>(true);
     }
 
     // private void OnTriggerEnter2D(Collider2D other)
