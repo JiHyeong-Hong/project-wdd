@@ -237,7 +237,9 @@ public class Hero : Creature
 		Managers.Game.OnJoystickStateChanged -= HandleOnJoystickStateChanged;
 		SetRigidbodyVelocity(Vector2.zero);
 
-		Managers.Game.GameOver();
+		// Managers.Game.GameOver();
+		StageManager.Instance.state = EStageState.Fail;
+		UIManagerNew.Instance.ShowPopup<ResultPopup>();
 	}
 
 	private void LevelUp()

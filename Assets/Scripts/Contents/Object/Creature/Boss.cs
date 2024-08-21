@@ -275,8 +275,13 @@ public class Boss : Monster
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Keypad9))
-        { 
-            Hp-= 10;
+        {
+            Debug.Log("Test");
+            CreatureState = ECreatureState.Skill1;
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad0))
+        {
+            CreatureState = ECreatureState.Move;
         }
         
 
@@ -366,7 +371,7 @@ public class Boss : Monster
             {
                 if (time >= cooltime)
                 { 
-                    // Debug.Log("목표 포착 확인!!");
+                    Debug.Log("목표 포착 확인!!");
                     targeting = !targeting;
                     targetPosition = _hero.transform.position;
                     time = 0;
@@ -389,7 +394,7 @@ public class Boss : Monster
 
                 if ((Vector2)transform.position == targetPosition)
                 {
-                    // Debug.Log("돌진 패턴 끝");
+                    Debug.Log("돌진 패턴 끝");
                     CoAttack = null;
                     SelectPattern(Phase);
                     yield break;

@@ -266,4 +266,20 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
         //     StartCoroutine(Managers.Game.BossCount());
         // }
     }
+
+
+    //Eung 보스 일때 카메라 줌 아웃 기능 테스트
+    // public IEnumerator Test()
+    // {
+    //     Camera camera = Camera.main;
+    //     while (camera.orthographicSize < 15)
+    //     {
+    //
+    //         camera.orthographicSize += 0.01f;
+    //         
+    //         yield return YieldInstructionCache.WaitForFixedUpdate;
+    //     }
+    //     
+    //     
+    // }
 }
