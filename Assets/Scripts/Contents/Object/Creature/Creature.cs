@@ -340,8 +340,9 @@ public class Creature : BaseObject
             case 6:
                 Managers.Object.Spawn<Gold>(DropPos.position, ItemID);
                 break;
-            case 7:
-                // Managers.Object.Spawn<Key>(DropPos.position, ItemID);
+            case 9:
+                Managers.Object.Spawn<EndBox>(DropPos.position, ItemID);
+                break;
             default:
                 Managers.Object.Spawn<ItemBox>(DropPos.position, ItemID);
                 break;

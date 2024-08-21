@@ -204,6 +204,8 @@ public class Monster : Creature
     {
         base.OnDead(attacker, skill);
 
+        if (CreatureType == ECreatureType.Boss)
+            StageManager.Instance.state = EStageState.Clear;
         bool isDrop = false;
         int rand = Random.Range(0, 100);
         // Debug.Log("아이템 드랍 확률 :" + $"{rand}");
@@ -349,6 +351,8 @@ public class Monster : Creature
 
     protected override void UpdateHit()
     {
+        if(CreatureType == ECreatureType.Boss)
+            Debug.Log("보스타입입니다.");
         if(CreatureType != ECreatureType.Boss)
             CreatureState = ECreatureState.Idle;
     }

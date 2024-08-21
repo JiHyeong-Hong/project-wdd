@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Data;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,28 +17,31 @@ public class ResultPopup : PopupBase
     [SerializeField]
     private TMP_Text recordInfo;
     [SerializeField]
+    private Image ItemIco;
+    [SerializeField]
+    private TMP_Text ItemCnt;
+    [SerializeField]
     private Button homeButton;
+
+    private void Awake()
+    {
+        switch (StageManager.Instance.state)
+        {
+            case Define.EStageState.Clear:
+                Title.text = "구출 성공";
+                subTitle.text = "";
+                break;
+            case Define.EStageState.Fail:
+                Title.text = "구출 실패";
+                subTitle.text = "많은 동물들이 구조대를 기다립니다.";
+                break;
+        }
+        ItemCnt.text = Managers.Object.Hero.Gold.ToString();
+    }
 
     public void OnClickHomeButton()
     {
-        MessageBoxHelper.HomeButton();
-    }
-
-    public void OnClickContinueButton()
-    {
-        Managers.Game.IsGamePaused = false;
-        Close();
-    }
-
-    public void OnClickMuteButton()
-    {
-        //Managers.Sound.Mute();
-    }
-
-    public void Close()
-    {
-        Hide();
-        
+        SceneManagerNew.Instance.LoadScene(Define.EScene.Lobby);
     }
 
 }

@@ -82,6 +82,7 @@ public class UIManagerNew : SingletonMonoBehaviour<UIManagerNew>
 
     public T ShowPopup<T>(string name = null) where T : PopupBase
     {
+        // Managers.Game.IsGamePaused = true;
         return popupManager.ShowUI<T>(name, "Prefabs/UI/Popup/") as T;
     }
 

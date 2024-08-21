@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public static class Define
@@ -83,6 +84,8 @@ public static class Define
 		Warning = 2,
 		Barricade = 3,
 		Boss = 4,
+		Fail = 5,
+		Clear = 6,
 	}
 	public enum ECreatureState
 	{

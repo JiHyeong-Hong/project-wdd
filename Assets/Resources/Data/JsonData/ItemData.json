@@ -117,7 +117,7 @@
       "Name": "End_Box",
       "Type": 9,
       "Value": 0,
-      "IconPath": "Art/Item/ExpLv1"
+      "IconPath": "Art/Item/EndBox"
     },
     {
       "ItemId": 501,
