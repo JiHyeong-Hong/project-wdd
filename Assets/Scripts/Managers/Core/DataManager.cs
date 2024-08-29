@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -26,8 +27,9 @@ public class DataManager : SingletonMonoBehaviour<DataManager>
 
     public Dictionary<int, Data.StageLevel> StageLvDic { get; private set; } = new Dictionary<int, Data.StageLevel>();
     public Dictionary<int, Data.Spawn> SpawnDic { get; private set; } = new Dictionary<int, Data.Spawn>();
+    public Dictionary<int, Data.UserData> UserDic { get; private set; } = new Dictionary<int, Data.UserData>();
 
-    protected override void Init()
+    public override void Init()
     {
         base.Init();
         MonsterDic = LoadJson<Data.MonsterDataLoader, int, Data.MonsterData>("MonsterData").MakeDict();
@@ -40,11 +42,12 @@ public class DataManager : SingletonMonoBehaviour<DataManager>
         HpConditionDic = LoadJson<Data.HpConditionDataLoader, int, Data.HpConditionData>("HpConditionData").MakeDict();
         PatternPerDic = LoadJson<Data.PatternPerDataLoader, int, Data.PatternPerData>("PatternPerData").MakeDict();
         BreakthroughDic = LoadJson<Data.BreakthroughDataLoader, int, Data.BreakthroughData>("BreakthroughData").MakeDict();
-        //StageDataDic = LoadJson<Data.StageDataLoader, int, Data.StageData>("StageData").MakeDict();
-
+        
         StageDic = LoadJson<Data.StageLoader, int, Data.Stage>("StageData").MakeDict();
         StageLvDic = LoadJson<Data.StageLevelLoader, int, Data.StageLevel>("StageLvData").MakeDict();
         SpawnDic = LoadJson<Data.SpawnLoader, int, Data.Spawn>("SpawnData").MakeDict();
+        // UserDic = LoadJson<Data.UserDataLoader, int, Data.UserData>("UserData").MakeDict();
+        
 
     }
 

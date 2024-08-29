@@ -46,6 +46,7 @@ public class Crocodile : Projectile
 
         isInfinityDuration = true;
 
+        SoundManager.Instance.Play(Define.ESoundMainType.Skill1, Define.ESoundType.Crocodile);
         return true;
     }
 
@@ -112,6 +113,7 @@ public class Crocodile : Projectile
             spriteRenderer.sprite = Util.Load("Art/Skills/Crocodile", "Crocodile_4");
             StartCoroutine(ChangeSpriteAfterDelay(0.7f));
             swampRenderer.sprite = Resources.Load<Sprite>("Art/Effects/Swamp");// �浹 ����Ʈ ����
+            SoundManager.Instance.Play(Define.ESoundMainType.Skill2, Define.ESoundType.Crocodile);
             
 
             Collider2D[] targets = Util.SearchCollidersInRadius(transform.position, Skill.SkillData.AttackRange); // �浹�� ���� �ֺ��� �ִ� ���͵��� ã��

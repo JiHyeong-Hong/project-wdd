@@ -16,6 +16,7 @@ public class GameScene : BaseScene
         //Managers.UI.ShowWindowUI<InGameWindow>(Define.UIWindowType.Game).Show();
 
         //Managers.Object.Spawn<Hero>(new Vector3(0f, -15f, 0f), Define.HERO_ZOOKEEPER_ID);
+        SoundManager.Instance.Play(Define.ESoundMainType.Bgm, Define.ESoundType.Ingame);
         Camera.main.GetOrAddComponent<FollowCamera>();
 
         // 게임씬을만들때 스포너 생성/스폰시작

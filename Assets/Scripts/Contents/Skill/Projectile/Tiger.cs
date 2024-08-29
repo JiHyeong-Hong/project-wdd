@@ -17,6 +17,7 @@ public class Tiger : Projectile
 
     public override void SetSpawnInfo(Creature owner, SkillBase skill, Vector2 direction)
     {
+        SoundManager.Instance.Play(Define.ESoundMainType.Skill1, Define.ESoundType.Tiger);
         base.SetSpawnInfo(owner, skill, direction);
 
             _collider = GetComponent<CapsuleCollider2D>();
@@ -50,6 +51,7 @@ public class Tiger : Projectile
         .Append(transform.DOMoveX(10f * minus, 1f).SetRelative().SetEase(Ease.Linear))
         .AppendCallback(() =>
         {
+            SoundManager.Instance.Play(Define.ESoundMainType.Skill2, Define.ESoundType.Tiger);
             Animator.SetInteger("state", 2);
             transform.DOLocalJump(new Vector3(5f * minus, 0, 0), 1, 1, 1).SetRelative();
             //_collider.enabled = true;

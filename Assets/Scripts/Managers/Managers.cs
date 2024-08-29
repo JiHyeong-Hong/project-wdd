@@ -85,7 +85,7 @@ public class Managers : SingletonMonoBehaviour<Managers>
         // }
     }
 
-    protected override void Init()
+    public override void Init()
     {
         //Instance._data.Init();
         //Instance._pool.Init();

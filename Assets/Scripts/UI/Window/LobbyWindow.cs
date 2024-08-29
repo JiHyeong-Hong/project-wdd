@@ -32,6 +32,7 @@ public class LobbyWindow : UIWindow
         }
 
         stageThumbnailView = Instantiate(stageThumbnail, MiddleAnchor).GetComponent<IView>();
+        SoundManager.Instance.Play(Define.ESoundMainType.Bgm, Define.ESoundType.Lobby);
     }
 
 }
