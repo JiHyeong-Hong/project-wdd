@@ -48,6 +48,7 @@ public static class Define
 		Item,
 		Object,
 		UI,
+		Boss,
 		
 		Max,
 	}
@@ -58,10 +59,14 @@ public static class Define
 		Button = 0,
 		Item = 0,
 		ItemBox = 0,
+		BossShot = 0,
 		Ingame = 1,
 		Crocodile = 1,
 		Trumpet = 1,
+		Warning = 1,
+		BossRoar = 1,
 		Skunk = 2,
+		Boss = 2,
 		Peacock = 3,
 		Bear = 4,
 		Parrot = 5,

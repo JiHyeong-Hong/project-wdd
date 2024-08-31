@@ -182,6 +182,10 @@ public class ObjectManager :SingletonMonoBehaviour<ObjectManager>
                     Monster monster = creature as Monster;
                     Monsters.Remove(monster);
                     break;
+                case ECreatureType.Box:
+                    Monster itembox = creature as Monster;
+                    Monsters.Remove(itembox);
+                    break;
             }
         }
         else if (obj.ObjectType == EObjectType.Projectile)
