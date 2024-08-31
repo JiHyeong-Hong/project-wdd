@@ -59,6 +59,7 @@ public static class Define
 		Item = 0,
 		Ingame = 1,
 		Crocodile = 1,
+		Trumpet = 1,
 		Skunk = 2,
 		Peacock = 3,
 		Bear = 4,
