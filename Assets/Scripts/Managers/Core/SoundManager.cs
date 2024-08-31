@@ -49,6 +49,7 @@ public class SoundManager: SingletonMonoBehaviour<SoundManager>
 	    SetAudioSoruce(Skill1EffectList, Skill1Effect);
 	    SetAudioSoruce(Skill2EffectList, Skill2Effect);
 	    SetAudioSoruce(ItemEffectList, ItemEffect);
+	    SetAudioSoruce(ObjectEffectList, ObjectEffect);
     }
 
     public override void Init()

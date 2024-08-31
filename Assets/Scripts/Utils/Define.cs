@@ -57,6 +57,7 @@ public static class Define
 		Tiger = 0,
 		Button = 0,
 		Item = 0,
+		ItemBox = 0,
 		Ingame = 1,
 		Crocodile = 1,
 		Trumpet = 1,

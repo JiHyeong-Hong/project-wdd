@@ -168,7 +168,8 @@ MonoBehaviour:
   ItemEffectList:
   - {fileID: 8300000, guid: c51c9bc64176f4081823ce58bd04cc27, type: 3}
   - {fileID: 8300000, guid: 1e0aa6d793a3c4140aa149d02927d998, type: 3}
-  ObjectEffectList: []
+  ObjectEffectList:
+  - {fileID: 8300000, guid: eace0d9b5487d4c5fadc3e25a0bf84a0, type: 3}
   UIEffectList: []
   BGM: {fileID: 0}
   Skill1Effect: []
