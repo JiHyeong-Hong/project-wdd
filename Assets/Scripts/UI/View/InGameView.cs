@@ -26,11 +26,12 @@ public class InGameView : MonoBehaviour, IView
     private Image _bosshpbackImg;
     [SerializeField]
     private Image _bosshpImg;
+    [SerializeField]
+    private Button PauseBtn;
 
-
-    void Awake()
+    void Start()
     {
- 
+        PauseBtn.onClick.AddListener(OnClickPauseButton);
     }
 
     private void UpdateUI(ProfileData data)
@@ -65,4 +66,17 @@ public class InGameView : MonoBehaviour, IView
         int seconds = (int)(time % 60);
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds); // TODO:
     }
-}
+
+    private void OnClickPauseButton()
+    {
+        Managers.Game.IsGamePaused = !Managers.Game.IsGamePaused;
+        Time.timeScale = Managers.Game.IsGamePaused ? 0 : 1;
+
+        if (Managers.Game.IsGamePaused)
+        {
+            Managers.UI.ShowPopupUI<UI_Pause>();
+        }
+    }
+
+    }
+

@@ -29,8 +29,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.6085392, y: 0.14173795, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -118,9 +118,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.030187875, y: 0.010977387}
+  m_Offset: {x: 0.03718126, y: 0.010977387}
   serializedVersion: 2
-  m_Radius: 0.37101558
+  m_Radius: 0.31646705
 --- !u!114 &6452738841999299293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,4 +133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19aa77d219d4f0047b6b17fa2948ebf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMove: 0
   zebraPrefab: {fileID: 2120700423756268912, guid: 73284b2e37fe8be46851b57292ba6b58, type: 3}
+  speed: 0.5

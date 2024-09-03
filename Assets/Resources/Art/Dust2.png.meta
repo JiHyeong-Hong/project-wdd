@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1562bfa4c21db984999307ffbc8a6980
+guid: 10bac7263b90648f7a593c4214f652b1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 30
+  spritePixelsToUnits: 25
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -94,19 +94,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Server
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: iPhone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -132,59 +119,114 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Zebra_0
+      name: Dust2_0
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 1
+        width: 33
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e087a9980b7f4d37848c53d0654d815
+      internalID: -323224016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dust2_1
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 1
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40c63ef01a0bc428ba3aa7c6d0e1f25e
+      internalID: -1249913729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dust2_3
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 1
+        width: 30
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29265e0e6e8534290ab85cf0b9bd1ec3
+      internalID: 1251846679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dust2_4
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 1
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71ae16cbb6a0540bfbc118fa54e13f14
+      internalID: 1535994550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dust2_7
       rect:
         serializedVersion: 2
         x: 1
-        y: 4
-        width: 64
-        height: 41
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e2b95d10d886edf4d9c96e4dec9ff3d3
-      internalID: -309645868
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Zebra_1
-      rect:
-        serializedVersion: 2
-        x: 73
-        y: 2
-        width: 69
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8ca43d5515424534c8e5587c97cfddb4
-      internalID: 2065225964
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Zebra_2
-      rect:
-        serializedVersion: 2
-        x: 145
         y: 1
-        width: 70
-        height: 42
+        width: 21
+        height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,20 +234,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d7b12ee859e2ea45acfbd68dac2eed8
-      internalID: -238275591
+      spriteID: 753a4321af1cd493f950d571fb845077
+      internalID: 289213285
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Zebra_3
+      name: Dust2_8
       rect:
         serializedVersion: 2
-        x: 217
+        x: 38
         y: 1
-        width: 66
-        height: 44
+        width: 26
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,8 +255,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea6940c7617365440a9142d95a952b34
-      internalID: -185374395
+      spriteID: a13bf34eeced04093bf9f16962b05c85
+      internalID: -1714492555
       vertices: []
       indices: 
       edges: []
@@ -230,10 +272,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Zebra_0: -309645868
-      Zebra_1: 2065225964
-      Zebra_2: -238275591
-      Zebra_3: -185374395
+      Dust2_0: -323224016
+      Dust2_1: -1249913729
+      Dust2_2: -1638638455
+      Dust2_3: 1251846679
+      Dust2_4: 1535994550
+      Dust2_5: -63102671
+      Dust2_6: -79180231
+      Dust2_7: 289213285
+      Dust2_8: -1714492555
+      Dust2_9: 697427035
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

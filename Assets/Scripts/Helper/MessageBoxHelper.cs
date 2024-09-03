@@ -76,18 +76,18 @@ public class MessageBoxHelper
 
     public static void HomeButton()
     {
-        MessageBoxHelper.ShowMessageBox_TwoButton("°ÔÀÓÁ¾·á", "½Å·Ú?", "ÀüÅõÆ÷±â", "°è¼ÓÇÏ±â", MessageBox.PopupType.Back, (button, data) =>
+        MessageBoxHelper.ShowMessageBox_TwoButton("ê²Œìž„ ì¢…ë£Œ", "ì¤‘ê°„ì— ì´íƒˆí•˜ë©´\n ë™ë¬¼ ì¹œêµ¬ë“¤ì˜ ì‹ ë¢°ë¥¼ ìžƒê²Œ ë©ë‹ˆë‹¤.", "ì „ë¶€ í¬ê¸°", "ê³„ì†í•˜ê¸°", MessageBox.PopupType.Back, (button, data) =>
         {
             if (button == 0)
             {
                 Managers.Game.IsGamePaused = false;
-                Debug.Log("ÀüÅõÆ÷±â");
-                //Managers.Scene.LoadScene(Define.Scene.Game); // ·Îºñ ¾ÀÀ¸·Î ÀÌµ¿
+                //Managers.Scene.LoadScene(Define.Scene.Game); // ï¿½Îºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
+                SceneManagerNew.Instance.LoadScene(Define.EScene.Lobby);
             }
             else if (button == 1)
             {
                 Managers.Game.IsGamePaused = false;
-                Debug.Log("°è¼ÓÇÏ±â");
+                Debug.Log("ï¿½ï¿½ï¿½ï¿½Ï±ï¿½");
             }
         }, "");
     }

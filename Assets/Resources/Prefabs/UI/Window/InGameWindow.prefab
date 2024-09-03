@@ -425,6 +425,7 @@ MonoBehaviour:
   _expImg: {fileID: 710740377821960318}
   _bosshpbackImg: {fileID: 6842642608283828474}
   _bosshpImg: {fileID: 1269430187286978172}
+  PauseBtn: {fileID: 0}
 --- !u!223 &5647835648044261818
 Canvas:
   m_ObjectHideFlags: 0
@@ -1752,6 +1753,7 @@ GameObject:
   - component: {fileID: 7300198921112274955}
   - component: {fileID: 2821285622169377892}
   - component: {fileID: 5631070596320942848}
+  - component: {fileID: 2150429861821596245}
   m_Layer: 5
   m_Name: PauseBtn
   m_TagString: Untagged
@@ -1873,6 +1875,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c50a68a91c8684ea50930903f1e032, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2150429861821596245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7653692224672039993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d88664af43c379249bcf004dbe20e597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerNameText: {fileID: 0}
+  levelText: {fileID: 0}
+  expText: {fileID: 0}
+  goldText: {fileID: 0}
+  animalSaveCountText: {fileID: 0}
+  timerText: {fileID: 0}
+  _hpImg: {fileID: 0}
+  _expImg: {fileID: 0}
+  _bosshpbackImg: {fileID: 0}
+  _bosshpImg: {fileID: 0}
+  PauseBtn: {fileID: 2821285622169377892}
 --- !u!1 &7693527743643610733
 GameObject:
   m_ObjectHideFlags: 0
