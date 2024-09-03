@@ -44,6 +44,19 @@ public class Managers : SingletonMonoBehaviour<Managers>
     public bool isTest = false;
     public bool isTestScene = false;
 
+    public void ResetManagers()
+    {
+        // 각 매니저들 초기화
+        _game = new GameManager();
+        _spawner = new SpawnManager();
+        _pool = new PoolManager();
+        _scene = new SceneManagerEx();
+        _sound = new SoundManager();
+        _ui = new UIManager();
+        _skill = new SkillManager();
+        _localizationManager = new LocalizationManager();
+    }
+
     IEnumerator Start()
     {
         yield return null;

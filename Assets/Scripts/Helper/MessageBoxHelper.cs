@@ -83,6 +83,7 @@ public class MessageBoxHelper
                 Managers.Game.IsGamePaused = false;
                 //Managers.Scene.LoadScene(Define.Scene.Game); // �κ� ������ �̵�
                 SceneManagerNew.Instance.LoadScene(Define.EScene.Lobby);
+                Managers.Instance.ResetManagers();
             }
             else if (button == 1)
             {
