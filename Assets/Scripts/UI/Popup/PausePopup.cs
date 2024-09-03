@@ -16,6 +16,7 @@ public class PausePopup : PopupBase
     public void OnClickHomeButton()
     {
         MessageBoxHelper.HomeButton();
+        Managers.UI.ClosePopupUI();
     }
 
     public void OnClickContinueButton()
