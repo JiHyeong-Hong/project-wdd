@@ -15,6 +15,7 @@ public class PausePopup : PopupBase
 
     public void OnClickHomeButton()
     {
+        SoundManager.Instance.Play(Define.ESoundMainType.UI, Define.ESoundType.Button);
         MessageBoxHelper.HomeButton();
     }
 

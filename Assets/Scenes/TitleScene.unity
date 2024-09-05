@@ -172,7 +172,7 @@ MonoBehaviour:
   ObjectEffectList:
   - {fileID: 8300000, guid: eace0d9b5487d4c5fadc3e25a0bf84a0, type: 3}
   UIEffectList:
-  - {fileID: 8300000, guid: 93b5d44edf4c3477885b8d97dbe2cb4e, type: 3}
+  - {fileID: 8300000, guid: d388e679f65e74b5a8245068798b6961, type: 3}
   - {fileID: 8300000, guid: 93b5d44edf4c3477885b8d97dbe2cb4e, type: 3}
   BossEffectList:
   - {fileID: 8300000, guid: 0217da25ddef94c558348a17bb4263bc, type: 3}
