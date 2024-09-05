@@ -192,11 +192,9 @@ public class SkillManager
         bool isFullActive = usingSkillDic[SkillType.Active].Count == 6;
         bool isFullPassive = usingSkillDic[SkillType.Passive].Count == 6;
 
-        // TODO: 240811 @홍지형
+        // 240811 @홍지형
         // 1) usingSkillDic에서 현재 sampleSkillList에 추가하려는 스킬이 있는지 검사한다.
         // 2) 현재 추가하려는 스킬이 usingSkillDic에 있으면, 그 존재하는 스킬의 레벨+1 된 스킬을 sampleSkillList에 넣는다.
-
-        // +) 돌파스킬은 allSkillDic에서 빼야하는가? 뺀다면, 돌파스킬 레벨업 관리는 어떻게 해야할지 고민할것 
 
         int pick = 0;
         while (pick < 3)

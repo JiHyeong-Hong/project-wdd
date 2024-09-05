@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 using static Define;
 
@@ -158,7 +159,17 @@ public class BreakthroughHelper
 
         return null;
     }
+    
+    // 현재 스킬의 레벨1 ID값을 가져온다.
+    public int GetFirstLvSkillID(int id)
+    {
+        // 상위 3자리 숫자를 추출
+        int topThreeDigits = id / 10;
 
+        // 상위 3자리 숫자에 마지막 자리를 1로 설정하여 레벨1 ID값을 가져온다.
+        return topThreeDigits * 10 + 1;
+    }
+       
     public string FindPassiveName(string activeName)
     {
         Managers.Skill.allSkillDic.TryGetValue(activeName, out List<SkillBase> findSkillList);

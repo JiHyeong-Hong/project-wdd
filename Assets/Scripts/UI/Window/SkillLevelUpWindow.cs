@@ -8,6 +8,8 @@ using System.Threading;
 using static UnityEditor.Progress;
 using System.Linq;
 using System.Collections;
+using System;
+using UnityEngine.AI;
 
 public class SkillLevelUpWindow : UIWindow
 {
@@ -28,7 +30,7 @@ public class SkillLevelUpWindow : UIWindow
     [SerializeField]
     private Transform combinationGrid;
     [SerializeField]
-    private GameObject combinationPrefab;
+    private GameObject CombinationPrefab;
 
     private List<IView> views = new List<IView>();
     private List<SkillLevelUpPresenter> presenters = new List<SkillLevelUpPresenter>();
@@ -90,44 +92,6 @@ public class SkillLevelUpWindow : UIWindow
         return false;
     }
 
-
-    //// 같은 string 값을 가진 원소가 있는지 검사하는 메서드
-    //bool CheckForCommonElement(List<SkillBase> listA, List<SkillLevelUpPresenter> listB)
-    //{
-    //    // 비교군 A
-    //    HashSet<string> setName = new HashSet<string>(listA.Select(a => a.SkillData.Name));
-    //    HashSet<int> setLevel = new HashSet<int>(listA.Select(a => a.SkillData.Level));
-
-
-    //    // 비교군 B에서 스킬이름과 레벨이 같은게 있는지 확인
-    //    foreach (var b in listB)
-    //    {
-    //        if (setA.Contains(b.Model.skillData.Name))
-    //        {
-    //            return true;
-    //        }
-    //    }
-
-    //    return false;
-    //}
-
-    // 같은 string 값을 가진 원소가 있는지 검사하는 메서드
-    //bool CheckForCommonElement(List<SkillBase> listA, List<SkillLevelUpPresenter> listB)
-    //{
-    //    // sampleSkillList에 동일한 레벨의 스킬이 UI에 이미 있는지 검사한다.
-    //    bool hasMatchingElement = Managers.Skill.sampleSkillList.Any(a => presenters.Any(b => a.SkillData.Name == b.Model.skillData.Name && a.SkillData.Level == b.Model.skillData.Level));
-    //    // bool hasMatchingElement = listA.Any(a => listB.Any(b => a.SkillData.Name == b.Model.skillData.Name && a.SkillData.Level == b.Model.skillData.Level));
-
-    //    if (hasMatchingElement)
-    //    {
-    //        Debug.Log("같은 name과 level을 가진 원소가 존재합니다.");
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("같은 name과 level을 가진 원소가 없습니다.");
-    //    }
-    //}
-
     protected override void OnHide()
     {
         // Managers.Game.IsGamePaused = false; // 삭제예정
@@ -140,6 +104,7 @@ public class SkillLevelUpWindow : UIWindow
         // if (UIManagerNew.Instance.IsWindowCached(Define.UIWindowType.SkillLevelUpWindow) == true) { return; }
         
         Managers.Pool.CreatePool(ActiveAndPassiveImage.gameObject);
+        Managers.Pool.CreatePool(CombinationPrefab.gameObject);
 
         FindTransform(out thumbnailGrid, "ThumbnailGrid");
         FindTransform(out activeGrid, "ActiveGrid");
@@ -149,6 +114,7 @@ public class SkillLevelUpWindow : UIWindow
         for (int i = 0; i < 3; ++i)
         {
             GameObject obj = Instantiate(thumbnailPrefab, thumbnailGrid);
+             GameObject obj2 = Instantiate(CombinationPrefab, thumbnailGrid);
             SkillLevelUpView view = obj.GetComponent<SkillLevelUpView>();
             views.Add(view);
 
@@ -165,6 +131,96 @@ public class SkillLevelUpWindow : UIWindow
 
     private void PreviewCombinationSkill()
     {
+        // TODO: 240824
+
+        // 스킬선택 화면 3개에 무엇이 있는지 알아낸다.
+
+        //List<>
+        // 스킬선택 0번~2번에 있는 스킬에 따라서 돌파스킬에 필요한 스킬을 찾아낸다.
+
+        // 돌파스킬에 필요한 스킬을 CombinationGrid에 추가한다.
+        // Combination 0번~2번 화면
+
+        // TODO// TODO// TODO// TODO// TODO// TODO// TODO// TODO// TODO// TODO// TODO// TODO// TODO// TODO
+        foreach (var item in Managers.Skill.sampleSkillList)
+        {
+            int currentSkillID = item.SkillData.SkillID;
+            int lv1ID_current = BreakthroughHelper.Instance.GetFirstLvSkillID(currentSkillID); // Lv1스킬의 ID
+            Define.SkillType currentSkillType = item.SkillData.skillType;
+            int combinationSkillIndex = -1; // 돌파에 필요한 스킬 인덱스번호
+            string combinationSkillName; // 돌파에 필요한 스킬이름
+            bool isContiansSkill = false;
+
+            // 현재 선택 스킬이 패시브인경우
+            if (currentSkillType == Define.SkillType.Passive)
+            {
+                // 이 패시브 스킬과 관련된 돌파스킬조건 만족 스킬을 찾는다.
+                foreach (var btSkillData in Managers.Data.BreakthroughDic)
+                {
+                    int lv1ID_BT = BreakthroughHelper.Instance.GetFirstLvSkillID(btSkillData.Value.G_Skill_ID2); // G_Skill_ID2(패시브)
+                    if (lv1ID_BT == lv1ID_current)  
+                    {
+                        // 돌파에 필요한 액티브 스킬을 출력
+                        combinationSkillIndex = btSkillData.Value.G_Skill_ID1;
+                    }
+                }
+                List<SkillBase> usingSkillList = Managers.Skill.usingSkillDic[Define.SkillType.Active];
+                // 현재 스킬을 가지고 있는지 검사한다.
+                foreach (var usingSkill in usingSkillList)
+                {
+                    isContiansSkill = (usingSkill.SkillData.SkillID == combinationSkillIndex);
+                    if(isContiansSkill)
+                    {
+                        combinationSkillName = Managers.Data.SkillDic[combinationSkillIndex].Name;
+                        //
+                        var obj = Managers.Pool.Pop(CombinationPrefab.gameObject);
+                        obj.transform.SetParent(combinationGrid);
+
+                        obj.GetComponent<Image>().sprite = Managers.Resource.GetSkillSprite(combinationSkillName);
+
+                        WaitPoolPush(obj).Forget();
+                        //
+                        Debug.Log($"combinationSkill:{combinationSkillIndex}"); return;  
+                    }
+                }
+            }
+
+            // 현재 선택 스킬이 액티브인경우
+            if (currentSkillType == Define.SkillType.Active)
+            {               
+                // 이 패시브 스킬과 관련된 돌파스킬조건 만족 스킬을 찾는다.
+                foreach (var btSkillData in Managers.Data.BreakthroughDic)
+                {
+                    int lv1ID_BT = BreakthroughHelper.Instance.GetFirstLvSkillID(btSkillData.Value.G_Skill_ID1); // G_Skill_ID1(액티브)
+                    if (lv1ID_BT == lv1ID_current)
+                    {
+                        // 돌파에 필요한 패시브 스킬을 출력
+                        combinationSkillIndex = btSkillData.Value.G_Skill_ID2;
+                    }
+                }
+                List<SkillBase> usingSkillList = Managers.Skill.usingSkillDic[Define.SkillType.Passive];
+                // 현재 스킬을 가지고 있는지 검사한다.
+                foreach (var usingSkill in usingSkillList)
+                {
+                    isContiansSkill = (usingSkill.SkillData.SkillID == combinationSkillIndex);
+                    if (isContiansSkill)
+                    {
+                        combinationSkillName = Managers.Data.SkillDic[combinationSkillIndex].Name;
+                        //
+                        var obj = Managers.Pool.Pop(CombinationPrefab.gameObject);
+                        obj.transform.SetParent(combinationGrid);
+
+                        obj.GetComponent<Image>().sprite = Managers.Resource.GetSkillSprite(combinationSkillName);
+
+                        WaitPoolPush(obj).Forget();
+                        //
+                        Debug.Log($"combinationSkill:{combinationSkillIndex}"); return;
+                    }
+                }
+            }
+            
+        }
+        // TODO// TODO// TODO// TODO// TODO// TODO// TODO// TODO// TODO// TODO// TODO// TODO// TODO// TODO// TODO// TODO// TODO// TODO
 
     }
 

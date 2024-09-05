@@ -200,7 +200,7 @@ MonoBehaviour:
   activeGrid: {fileID: 0}
   passiveGrid: {fileID: 0}
   combinationGrid: {fileID: 0}
-  combinationPrefab: {fileID: 7269243292467201223}
+  CombinationPrefab: {fileID: 381887879402685625, guid: 53549c70e08563044b8b3deda5c47ca7, type: 3}
 --- !u!1 &1795579394826004704
 GameObject:
   m_ObjectHideFlags: 0
