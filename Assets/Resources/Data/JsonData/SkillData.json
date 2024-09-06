@@ -944,7 +944,7 @@
       "Level": 5,
       "ProjectileNum": 3,
       "CastAngle": 0.0,
-      "Damage": 30.0,
+      "Damage": 30000.0,
       "AttackSpeed": 8.5,
       "AttackRange": 1.0,
       "KnockbackPower": 0.0,

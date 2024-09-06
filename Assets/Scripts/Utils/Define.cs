@@ -49,6 +49,7 @@ public static class Define
 		Object,
 		UI,
 		Boss,
+		Character,
 		
 		Max,
 	}
@@ -60,6 +61,7 @@ public static class Define
 		Item = 0,
 		ItemBox = 0,
 		BossShot = 0,
+		HeroDead = 0,
 		Ingame = 1,
 		Crocodile = 1,
 		Trumpet = 1,
@@ -238,7 +240,7 @@ public static class SortingLayers
 {
 	public const int ITEM = 50;
 	public const int ENV = 100;
-	public const int MONSTER = 100;
+	public const int MONSTER = 51;
 	public const int HERO = 100;
 	public const int PROJECTILE = 200;
 }

@@ -112,49 +112,49 @@
       "DropItemID": 9018,
       "MonsterID": 231,
       "ItemID": 501,
-      "DropPer": 55
+      "DropPer": 0
     },
     {
       "DropItemID": 9019,
       "MonsterID": 231,
       "ItemID": 502,
-      "DropPer": 35
+      "DropPer": 0
     },
     {
       "DropItemID": 9020,
       "MonsterID": 231,
       "ItemID": 503,
-      "DropPer": 10
+      "DropPer": 0
     },
     {
       "DropItemID": 9021,
       "MonsterID": 232,
       "ItemID": 501,
-      "DropPer": 45
+      "DropPer": 0
     },
     {
       "DropItemID": 9022,
       "MonsterID": 232,
       "ItemID": 502,
-      "DropPer": 45
+      "DropPer": 0
     },
     {
       "DropItemID": 9023,
       "MonsterID": 232,
       "ItemID": 503,
-      "DropPer": 10
+      "DropPer": 0
     },
     {
       "DropItemID": 9024,
       "MonsterID": 233,
       "ItemID": 501,
-      "DropPer": 45
+      "DropPer": 0
     },
     {
       "DropItemID": 9025,
       "MonsterID": 233,
       "ItemID": 502,
-      "DropPer": 45
+      "DropPer": 0
     },
     {
       "DropItemID": 9026,
@@ -164,12 +164,6 @@
     },
     {
       "DropItemID": 9027,
-      "MonsterID": 241,
-      "ItemID": 200,
-      "DropPer": 100
-    },
-    {
-      "DropItemID": 9028,
       "MonsterID": 241,
       "ItemID": 200,
       "DropPer": 100

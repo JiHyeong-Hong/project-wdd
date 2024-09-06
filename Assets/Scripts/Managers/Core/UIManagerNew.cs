@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using System.Collections.Generic;
 using static Define;
 public class UIManagerNew : SingletonMonoBehaviour<UIManagerNew>
@@ -117,6 +118,19 @@ public class UIManagerNew : SingletonMonoBehaviour<UIManagerNew>
     {
         // TODO: 일시정지 파라미터 추가 240814
         return popupManager.ShowUI<T>(name, "Prefabs/UI/Popup/", isGamePaused) as T;
+    }
+
+    public IEnumerator DelayShowWindow<T>(float timer, bool isGamePaused, string name = null) where T : WindowBase
+    {
+        yield return new WaitForSeconds(timer);
+
+        windowManager.ShowUI<T>(name, "Prefabs/UI/Window/", isGamePaused);
+    }
+    public IEnumerator DelayShowPopup<T>(float timer, bool isGamePaused, string name = null) where T : PopupBase
+    {
+        yield return new WaitForSeconds(timer);
+
+        popupManager.ShowUI<T>(name, "Prefabs/UI/Popup/", isGamePaused);
     }
 
     public void HideCurrentWindow()

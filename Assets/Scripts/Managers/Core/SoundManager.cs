@@ -28,6 +28,9 @@ public class SoundManager: SingletonMonoBehaviour<SoundManager>
     List<AudioClip> UIEffectList;
     
     [SerializeField]
+    List<AudioClip> CharacterEffectList;
+    
+    [SerializeField]
     List<AudioClip> BossEffectList;
     
     [SerializeField]
@@ -43,20 +46,23 @@ public class SoundManager: SingletonMonoBehaviour<SoundManager>
     [SerializeField]
     List<AudioSource> UIEffect;
     [SerializeField]
-    List<AudioSource> BossEffect;
+    AudioSource CharacterEffect;
+    [SerializeField]
+    AudioSource BossEffect;
     
     // Dictionary<string, AudioClip> _audioClips = new Dictionary<string, AudioClip>();
 
     private void Start()
     {
 	    BGM = gameObject.AddComponent<AudioSource>();
+	    BossEffect = gameObject.AddComponent<AudioSource>();
+	    CharacterEffect = gameObject.AddComponent<AudioSource>();
 	    BGM.loop = true;
 	    SetAudioSoruce(Skill1EffectList, Skill1Effect);
 	    SetAudioSoruce(Skill2EffectList, Skill2Effect);
 	    SetAudioSoruce(ItemEffectList, ItemEffect);
 	    SetAudioSoruce(ObjectEffectList, ObjectEffect);
 	    SetAudioSoruce(UIEffectList, UIEffect);
-	    SetAudioSoruce(BossEffectList, BossEffect);
     }
 
     public override void Init()
@@ -108,8 +114,13 @@ public class SoundManager: SingletonMonoBehaviour<SoundManager>
 				break;
 			case Define.ESoundMainType.Boss:
 				audioClip = BossEffectList[(int)type];
-				BossEffect[(int)type].clip = audioClip;
-				BossEffect[(int)type].Play();
+				BossEffect.clip = audioClip;
+				BossEffect.Play();
+				break;
+			case Define.ESoundMainType.Character:
+				audioClip = CharacterEffectList[(int)type];
+				CharacterEffect.clip = audioClip;
+				CharacterEffect.Play();
 				break;
 		}
 		
