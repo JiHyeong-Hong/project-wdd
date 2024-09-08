@@ -9,6 +9,9 @@ public class SoundManager: SingletonMonoBehaviour<SoundManager>
 	// [SerializeField]
  //    List<AudioSource> _audioSources;
     
+	private bool BGMState = false;
+	private bool EffectState = false;
+	
     [SerializeField]
     List<AudioClip> BGMList;
     
@@ -76,6 +79,30 @@ public class SoundManager: SingletonMonoBehaviour<SoundManager>
 	    {
 		    sourceList.Add(gameObject.AddComponent<AudioSource>());
 	    }
+    }
+    public void MuteAudioSoruce(List<AudioSource> sourceList)
+    {
+	    for (int i = 0; i < sourceList.Count; i++)
+	    {
+		    sourceList[i].mute = !sourceList[i].mute;
+	    }
+    }
+
+    public void BGMMute()
+    {
+	    BGMState = !BGMState; 
+	    BGM.mute = !BGM.mute;
+	}
+    public void EffectMute()
+    {
+	    EffectState = !EffectState;
+	    BossEffect.mute = !BossEffect.mute;
+	    CharacterEffect.mute = !CharacterEffect.mute;
+	    UIEffect.mute = !UIEffect.mute;
+	    MuteAudioSoruce(Skill1Effect);
+	    MuteAudioSoruce(Skill2Effect);
+	    MuteAudioSoruce(ItemEffect);
+	    MuteAudioSoruce(ObjectEffect);
     }
     public void Play(Define.ESoundMainType main,Define.ESoundType type, float pitch = 1.0f)
 	{
@@ -166,4 +193,5 @@ public class SoundManager: SingletonMonoBehaviour<SoundManager>
  //
 	// 	return audioClip;
  //    }
+ 
 }
