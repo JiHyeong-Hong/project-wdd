@@ -55,23 +55,29 @@ public static class Define
 	}
 	public enum ESoundType
 	{
-		Lobby = 0,
-		Tiger = 0,
-		Button = 0,
-		Item = 0,
-		ItemBox = 0,
-		BossShot = 0,
-		HeroDead = 0,
-		Ingame = 1,
-		Crocodile = 1,
-		Trumpet = 1,
-		Warning = 1,
-		BossRoar = 1,
-		Skunk = 2,
-		Boss = 2,
-		Peacock = 3,
-		Bear = 4,
-		Parrot = 5,
+		Lobby = 0,		//BGM
+		Tiger = 0,		//Skill
+		Button = 0,		//UI
+		Item = 0,		//Item
+		ItemBox = 0,	//Object
+		BossShot = 0,	//Boss
+		HeroDead = 0,	//Character
+		
+		Ingame = 1,		//BGM
+		Crocodile = 1,	//Skill
+		Warning = 1,	//UI
+		Trumpet = 1,	//Item
+		BossRoar = 1,	//Boss
+		EndBox = 1,	//Object
+		
+		Skunk = 2,		//Skill
+		Boss = 2,		//BGM
+		Clear = 2,		//UI
+		
+		Peacock = 3,	//Skill
+
+		Bear = 4,		//Skill
+		Parrot = 5,		//Skill
 	}
 	
 

@@ -18,7 +18,8 @@ public class EndBox : Monster
 
     public override void OnDead(BaseObject attacker, SkillBase skill)
     {
-        StartCoroutine(UIManagerNew.Instance.DelayShowPopup<ResultPopup>(3f, true));
+        SoundManager.Instance.Play(Define.ESoundMainType.Object, Define.ESoundType.EndBox);
+        StartCoroutine(UIManagerNew.Instance.DelayShowPopup<ResultPopup>(1f, true, Define.ESoundType.Clear));
     }
 
     // private void OnTriggerEnter2D(Collider2D other)

@@ -126,10 +126,10 @@ public class UIManagerNew : SingletonMonoBehaviour<UIManagerNew>
 
         windowManager.ShowUI<T>(name, "Prefabs/UI/Window/", isGamePaused);
     }
-    public IEnumerator DelayShowPopup<T>(float timer, bool isGamePaused, string name = null) where T : PopupBase
+    public IEnumerator DelayShowPopup<T>(float timer, bool isGamePaused,ESoundType sound , string name = null) where T : PopupBase
     {
         yield return new WaitForSeconds(timer);
-
+        SoundManager.Instance.Play(Define.ESoundMainType.UI, sound);
         popupManager.ShowUI<T>(name, "Prefabs/UI/Popup/", isGamePaused);
     }
 

@@ -242,7 +242,7 @@ public class Hero : Creature
 		SoundManager.Instance.Play(Define.ESoundMainType.Character, Define.ESoundType.HeroDead);
 		
 		// UIManagerNew.Instance.ShowPopup<ResultPopup>(true);
-		StartCoroutine(UIManagerNew.Instance.DelayShowPopup<ResultPopup>(3f, true));
+		StartCoroutine(UIManagerNew.Instance.DelayShowPopup<ResultPopup>(3f, true, ESoundType.Clear));
 	}
 
 	private void LevelUp()

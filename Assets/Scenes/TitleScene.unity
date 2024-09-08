@@ -171,9 +171,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1e0aa6d793a3c4140aa149d02927d998, type: 3}
   ObjectEffectList:
   - {fileID: 8300000, guid: eace0d9b5487d4c5fadc3e25a0bf84a0, type: 3}
+  - {fileID: 8300000, guid: a3cc588d0731349ce9ec5198b25938f1, type: 3}
   UIEffectList:
   - {fileID: 8300000, guid: d388e679f65e74b5a8245068798b6961, type: 3}
   - {fileID: 8300000, guid: 93b5d44edf4c3477885b8d97dbe2cb4e, type: 3}
+  - {fileID: 8300000, guid: 6bc0e3f90835949dcb95fe77931f2cf1, type: 3}
   CharacterEffectList:
   - {fileID: 8300000, guid: b5f83ae74d7224e4685e4940e672f7a2, type: 3}
   BossEffectList:
@@ -184,7 +186,7 @@ MonoBehaviour:
   Skill2Effect: []
   ItemEffect: []
   ObjectEffect: []
-  UIEffect: []
+  UIEffect: {fileID: 0}
   CharacterEffect: {fileID: 0}
   BossEffect: {fileID: 0}
 --- !u!4 &248087284
