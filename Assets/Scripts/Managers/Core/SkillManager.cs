@@ -199,9 +199,8 @@ public class SkillManager
         int pick = 0;
         while (pick < 3)
         {
-            // 시작
-            var randomIndex = Random.Range(0, tempList.Count);
-            if (tempList.Count == 0) // 남은 스킬리스트가 2개 이하일 때
+            // 남은 스킬리스트가 2개 이하일 때
+            if (tempList.Count == 0) 
             {
                 var randomName = canPickSkillList[Random.Range(0, canPickSkillList.Count)];
                 sampleSkillList.Add(allSkillDic[randomName][0]);
@@ -209,8 +208,35 @@ public class SkillManager
                 pick++;
                 continue;
             }
-            SkillBase selectedSkillBase = allSkillDic[tempList[randomIndex]][0];
+            
+            // 돌파스킬 검사 시작
+            List<SkillBase> activeSkillList = Managers.Skill.usingSkillDic[Define.SkillType.Active];
+            int breakthroughSkillID = -1;
+            foreach (var skill in activeSkillList) // TODO: for문 돌아서, 같은 돌파스킬을 샘플스킬리스트에 중복해서 담는 버그. 돌파1개 조건만족하고, 다른 액티브 있는 경우 버그 발생.
+            {
+                breakthroughSkillID = BreakthroughHelper.Instance.GetBreakthroughSkillID(SkillType.Active, skill.SkillData.SkillID);
+                if (breakthroughSkillID < 0) { continue; }
+                string breakthroughSkillName = Managers.Data.BreakthroughDic[breakthroughSkillID].Name;
 
+                SkillBase btSkillBase = Managers.Skill.allSkillDic[breakthroughSkillName][0];
+
+                // 이미 사용중인 돌파스킬은 제외
+                List<SkillBase> usingSkillList = Managers.Skill.usingSkillDic[Define.SkillType.Breakthrough];
+                if (usingSkillList.Contains(btSkillBase) == true) { continue; }
+
+                // 스킬 선택 리스트에 돌파스킬 추가
+                sampleSkillList.Add(btSkillBase);
+                RemoveSameSkillList(btSkillBase);
+
+                pick++; // 돌파스킬UI 추가된만큼 다른스킬 추가X
+
+                if (pick < 3 == false) { break; }
+            }
+            // 돌파스킬 검사 끝
+
+            var randomIndex = Random.Range(0, tempList.Count);
+            SkillBase selectedSkillBase = allSkillDic[tempList[randomIndex]][0];
+            // 일반스킬 검사 시작
             // 1) usingSkillDic 에서 현재 추가하려는 스킬이 있는지 검사한다.
             SkillData selectedSkillData = selectedSkillBase.SkillData;
             foreach (var skill in Managers.Skill.usingSkillDic[selectedSkillData.skillType])
@@ -223,7 +249,7 @@ public class SkillManager
                     selectedSkillBase = allSkillDic[tempList[randomIndex]][currentLevel + 1];
                 }
             }
-            // 끝
+            // 일반스킬 검사 시작
 
             // 스킬 선택 리스트에 새 스킬 추가
             sampleSkillList.Add(selectedSkillBase);
@@ -261,59 +287,7 @@ public class SkillManager
         if (hasDuplicates == true) { sampleSkillList.Remove(selectedSkillBase); }
     }
 
-    // 백업 240811 @홍지형
-    ///// <summary>
-    ///// 스킬 3개 랜덤 뽑기
-    ///// </summary>
-    //private void CreateRandomSkills()
-    //{
-    //    sampleSkillList.Clear();
-
-    //    List<string> tempList = new List<string>();
-    //    tempList.AddRange(canPickSkillList);
-
-    //    // 칸이 가득 찼는지 체크 (나중에 추가)
-    //    bool isFullActive = usingSkillDic[SkillType.Active].Count == 6;
-    //    bool isFullPassive = usingSkillDic[SkillType.Passive].Count == 6;
-
-    //    // TODO:
-    //    // 1) usingSkillDic 에서 현재 추가하려는 스킬이 있는지 검사한다.
-    //    // 2) 현재 추가하려는 스킬이 usingSkillDic에 있으면, 그 존재하는 스킬의 레벨+1 된 스킬을 sampleSkillList에 넣는다.
-
-    //    int pick = 0;
-    //    while (pick < 3)
-    //    {
-    //        if (tempList.Count == 0)
-    //        {
-    //            var randomName = canPickSkillList[Random.Range(0, canPickSkillList.Count)];
-    //            sampleSkillList.Add(allSkillDic[randomName][0]); // TODO: 240811
-    //        }
-    //        else
-    //        {
-    //            var randomIndex = Random.Range(0, tempList.Count);
-    //            sampleSkillList.Add(allSkillDic[tempList[randomIndex]][0]); // TODO: 240811
-    //            tempList.RemoveAt(randomIndex);
-    //        }
-    //        pick++;
-    //    }
-
-    //    // DEBUG::
-    //    foreach (var skill in sampleSkillList)
-    //    {
-    //        // Debug.Log("sampleSkillList:" + skill.SkillData.Name);
-    //    }
-
-    //    //Managers.UI.ShowWindowUI<MonoBehaviour>("SkillWindow");
-    //    //Managers.UI.ShowPopupUI<UI_LevelUp>().SetInfo(sampleSkillList);
-    //    //UIManagerNew.Instance.ShowWindow<SkillLevelUpWindow>(Define.UIWindowType.SkillLevelUpWindow);
-
-    //    UIManagerNew.Instance.ShowWindow<WindowBase>(Define.UIWindowType.SkillLevelUpWindow); // 캐싱
-    //    // UIManagerNew.Instance.ShowWindow<SkillLevelUpWindow>(); // 논캐싱
-
-    //    // Managers.UI.ShowWindowUI<SkillLevelUpWindow>(Define.UIWindowType.SkillLevelUpWindow).Show();
-    //    //Managers.UI.ShowWindowUI<SkillLevelUpWindow>("SkillLevelUpWindow");
-    //}
-
+    // 레거시 코드. 미사용
     private void AddSkill(SkillData skillData)
     {
         var list = usingSkillDic[skillData.skillType];
