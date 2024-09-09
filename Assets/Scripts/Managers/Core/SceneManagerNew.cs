@@ -7,7 +7,7 @@ public class SceneManagerNew : SingletonMonoBehaviour<SceneManagerNew>
     public event System.Action OnSceneLoaded;
     private AsyncOperation asyncOperation;
 
-    protected override void Init()
+    public override void Init()
     {
         // 씬 관련 초기화 작업을 수행합니다.
         //Debug.Log("SceneManager initialized.");

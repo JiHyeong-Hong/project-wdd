@@ -26,7 +26,9 @@ public class Medkit : Item
         Hero hero = target as Hero;
         if (hero == null)
             return;
-
+        
+        SoundManager.Instance.Play(Define.ESoundMainType.Item, Define.ESoundType.Item);
+        
         float healthToRestore = hero.MaxHp * (healthRestorePercent / 100.0f);
         hero.Hp = Mathf.Min(hero.Hp + healthToRestore, hero.MaxHp);
 

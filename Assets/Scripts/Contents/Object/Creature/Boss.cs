@@ -314,6 +314,8 @@ public class Boss : Monster
         float m_angle = (angle/5) * -1;
         float M_angle = (angle/5);
         
+        SoundManager.Instance.Play(Define.ESoundMainType.Boss, Define.ESoundType.BossShot);
+        
         for (int i = 1; i <= monsterData.ProjectileNum; i++)
         {
             var proj = Managers.Object.Spawn<EnemyProjectile>(transform.position, monsterData.ProjectileID);
@@ -356,6 +358,7 @@ public class Boss : Monster
     
     protected override IEnumerator Skill1()
     {
+        SoundManager.Instance.Play(Define.ESoundMainType.Boss, Define.ESoundType.BossRoar);
         Debug.Log("돌진 공격중");
         bool targeting = false;
         Vector2 targetPosition = new Vector2();

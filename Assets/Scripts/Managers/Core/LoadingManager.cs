@@ -27,7 +27,7 @@ public class LoadingManager : MonoBehaviour
         "Prefabs",
         "Animations",
         //"UI/Popups"
-        // ÇÊ¿äÇÑ ¸®¼Ò½º¸¦ ¿©±â¿¡ Ãß°¡
+        // ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ò½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â¿¡ ï¿½ß°ï¿½
     };
 
     IEnumerator Start()
@@ -57,6 +57,9 @@ public class LoadingManager : MonoBehaviour
         //    totalResources += resources.Length;
         //}
         //Debug.Log($"totalResources : {totalResources}");
+        
+        DataManager.Instance.Init();
+        // SoundManager.Instance.Init();
 
         foreach (string folderPath in resourcesToLoad)
         {
@@ -88,13 +91,14 @@ public class LoadingManager : MonoBehaviour
     private void UpdateLoadingBar(string name, float progress)
     {
         loadingBar.fillAmount = progress;
-        loadingText.text = $"{name}\n Data Loading...  {Mathf.RoundToInt(progress * 100)}%";
+        // loadingText.text = $"{name}\n Data Loading...  {Mathf.RoundToInt(progress * 100)}%";
+        loadingText.text = $"Resource Data Loading...  {Mathf.RoundToInt(progress * 100)}%";
     }
 
     private void OnLoadingComplete()
     {
         loadingScreen.SetActive(false);
-        // ·Îµù ¿Ï·á ÈÄ GameManager ÃÊ±âÈ­ È£Ãâ
+        // ï¿½Îµï¿½ ï¿½Ï·ï¿½ ï¿½ï¿½ GameManager ï¿½Ê±ï¿½È­ È£ï¿½ï¿½
         //GameManager.Instance.InitializeManagers();
         startButton.SetActive(true);
         Debug.Log("Loading Complete");
@@ -104,9 +108,9 @@ public class LoadingManager : MonoBehaviour
     {
         string assetPath = AssetDatabase.GetAssetPath(resource);
         string resourcePath = assetPath.Substring(assetPath.IndexOf("Resources/") + 10);
-        // ÆÄÀÏ ÀÌ¸§¿¡ . µé¾î°£ °Íµé ¼öÁ¤ or È®ÀåÀÚ Ã£¾Æ¼­ ÇÏ³ª¾¿ Ãß°¡
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ . ï¿½ï¿½î°£ ï¿½Íµï¿½ ï¿½ï¿½ï¿½ï¿½ or È®ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½Æ¼ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
         resourcePath = resourcePath.Substring(0, resourcePath.IndexOf("."));
-        //resourcePath = resourcePath.Replace(".prefab", "").Replace(".asset", ""); // ÇÊ¿äÇÑ °æ¿ì ´Ù¸¥ È®ÀåÀÚµµ Ãß°¡
+        //resourcePath = resourcePath.Replace(".prefab", "").Replace(".asset", ""); // ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ È®ï¿½ï¿½ï¿½Úµï¿½ ï¿½ß°ï¿½
         return resourcePath;
     }
 

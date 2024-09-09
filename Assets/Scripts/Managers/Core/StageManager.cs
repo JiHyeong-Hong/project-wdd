@@ -228,6 +228,7 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
             {
                 state = EStageState.Warning;
                 // Managers.UI.ShowPopupUI<UI_Warning>();
+                SoundManager.Instance.Play(Define.ESoundMainType.UI, Define.ESoundType.Warning);
                 UIManagerNew.Instance.ShowPopup<WarningPopup>(false);
             }
             else if (state == EStageState.Warning)
@@ -243,13 +244,14 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
             }
             else if (state == EStageState.Barricade)
             {
+                SoundManager.Instance.Play(Define.ESoundMainType.Bgm, Define.ESoundType.Boss);
                 //TODO Eung StageLv 테이블을 만들어서 스테이지별 등장 보스몬스터 넘버를 받아와서 대입하면 될듯 
                 Managers.Object.Spawn<Boss>(Barricate.transform.position + Vector3.up*3, spawn.MonsterID);
                 state = EStageState.Boss;
                 break;
             }
 
-            yield return YieldInstructionCache.WaitForSeconds(1f);
+            yield return YieldInstructionCache.WaitForSeconds(2f);
         }
     }
 

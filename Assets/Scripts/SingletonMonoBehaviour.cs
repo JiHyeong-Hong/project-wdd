@@ -25,7 +25,7 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
         }
     }
 
-    protected virtual void Init() { }
+    public virtual void Init() { }
 
     private void Awake()
     {

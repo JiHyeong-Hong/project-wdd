@@ -14,6 +14,7 @@ public class ParrotSkill : SkillBase
     private Sequence sequence; // 기존 시퀀스를 저장할 변수 추가
     public override void DoSkill()
     {
+        SoundManager.Instance.Play(Define.ESoundMainType.Skill1, Define.ESoundType.Parrot);
         ClearSatellites();
 
         if (BreakthroughHelper.Instance.CheckBreakthrough(SkillData.SkillID))

@@ -1,9 +1,9 @@
 using Data;
+using System;
 using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 public class SkillLevelUpView : MonoBehaviour, IView
 {
     private SkillLevelUpPresenter presenter;
@@ -18,7 +18,11 @@ public class SkillLevelUpView : MonoBehaviour, IView
     private TMP_Text skillLevel;
     [SerializeField]
     private TMP_Text skillDescription;
-    
+    [SerializeField]
+    private Image skillImageCombination;
+    [SerializeField]
+    private TMP_Text hasSkillText;
+
     public Button levelUpButton;
 
     public void SetPresenter(SkillLevelUpPresenter presenter)
@@ -29,26 +33,53 @@ public class SkillLevelUpView : MonoBehaviour, IView
 
     public void UpdateUI(object data)
     {
-        if (data is SkillBase)
+        if (data is SkillBase) // 스킬 선택 UI thumbNail 갱신
         {
             SkillBase skillBase = (SkillBase)data;
             levelUpButton.enabled = true; // UpdateUI가 호출되는 버튼만 활성화
-            string name = skillBase.SkillData.Name; // 영어원문 그대로
+            name = skillBase.SkillData.Name; // 영어원문 그대로
             int level = skillBase.SkillData.Level;
             string description = skillBase.SkillData.Kor_Text;
 
-            // string name = Managers.Localization.GetLocalizedText(((SkillBase)data).SkillData.Name); // 백업
-            // string description = Managers.Localization.GetLocalizedText(((SkillBase)data).SkillData.Description);
-            
             skillLevel.text = $"Level {skillBase.SkillData.Level}";
 
             // 새로운 스킬에 'New!' 표시
-            if(skillBase.SkillData.Level == 1) { NewSkill.gameObject.SetActive(true); }
+            if (skillBase.SkillData.Level == 1) { NewSkill.gameObject.SetActive(true); }
             else { NewSkill.gameObject.SetActive(false); }
 
             skillImage.sprite = Managers.Resource.GetSkillSprite(skillBase.SkillData.Name);
             skillDescription.text = description;
             skillName.text = name;
+            return;
+        }
+        else // 조합 보유/미보유 UI 갱신
+        {
+            // 값 불러오기
+            var type = data.GetType();
+            var skillNameProperty = type.GetProperty("SkillName");
+            var isContainsSkillProperty = type.GetProperty("IsContiansSkill");
+            string skillName = "";
+            bool isContainsSkill = false;
+            if (skillNameProperty != null && isContainsSkillProperty != null)
+            {                
+                skillName = (string)skillNameProperty.GetValue(data);
+                isContainsSkill = (bool)isContainsSkillProperty.GetValue(data);
+            }
+            //
+
+            if (isContainsSkill == true) // 조합스킬 보유 시
+            {
+                skillImageCombination.sprite = Managers.Resource.GetSkillSprite(skillName);
+                skillImageCombination.color = new Color(255f, 255f, 255f); // 활성화 색
+                hasSkillText.text = "보유";
+            }
+            else // 조합스킬 미보유 시
+            {
+                skillImageCombination.sprite = Managers.Resource.GetSkillSprite(skillName);
+                skillImageCombination.color = new Color(85 / 255f, 85 / 255f, 85 / 255f); // 비활성화 색
+                hasSkillText.text = "미보유";
+            }
+            return;
         }
     }
 

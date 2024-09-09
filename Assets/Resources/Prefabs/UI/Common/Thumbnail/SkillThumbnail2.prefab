@@ -529,10 +529,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca4cd024590b2f945bf4e6b28ffd826f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NewSkill: {fileID: 0}
   skillImage: {fileID: 5473094393630758170}
   skillName: {fileID: 8229957194266243756}
   skillLevel: {fileID: 6796960046898641041}
   skillDescription: {fileID: 4943116896076536361}
+  skillImageCombination: {fileID: 0}
+  hasSkillText: {fileID: 0}
   levelUpButton: {fileID: 8127070228579067855}
 --- !u!1 &7520135848355630034
 GameObject:
@@ -708,7 +711,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535

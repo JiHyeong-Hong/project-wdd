@@ -474,4 +474,35 @@ namespace Data
 
 
     #endregion
+    
+    #region UserData
+
+    [Serializable]
+    public class UserData
+    {
+	    public int userID;
+	    public string Name;
+	    public int TicketAmt;
+	    public int MaxTicketAmt;
+	    public int GoldAmt;
+	    public int GoldKeyAmt;
+    }
+
+    [Serializable]
+    public class UserDataLoader : ILoader<int, UserData>
+    {
+	    public List<UserData> users = new List<UserData>();
+
+	    public Dictionary<int, UserData> MakeDict()
+	    {
+		    Dictionary<int, UserData> dict = new Dictionary<int, UserData>();
+		    foreach (UserData data in users)
+			    dict.Add(data.userID, data);
+		    return dict;
+	    }
+    }
+
+    #endregion
+    
+    
 }
