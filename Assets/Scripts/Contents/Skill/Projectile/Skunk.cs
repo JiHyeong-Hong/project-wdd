@@ -87,6 +87,7 @@ public class Skunk : Projectile
         {
             spriteRenderer.sprite = sprites[(int)ESkunkState.Landing];
             spriteRenderer.DOFade(0, 0.5f);
+            SoundManager.Instance.Play(Define.ESoundMainType.Skill1, Define.ESoundType.Skunk);
             poison = Managers.Resource.Instantiate("SkunkPoison", transform).GetOrAddComponent<SkunkPoison>(); ; // �� ���� spawn
             poison.Animator.SetBool("isNormal", true);
             poison.SetInfo(Owner, skill);

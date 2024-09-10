@@ -4,7 +4,7 @@
       "StageLvID": 1500,
       "StageID": 1000,
       "MaxPhase": 10,
-      "Cycle": 60
+      "Cycle": 1
     },
     {
       "StageLvID": 1501,

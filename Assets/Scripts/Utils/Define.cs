@@ -28,13 +28,50 @@ public static class Define
 		PointerUp,
 		Drag,
 	}
-
 	public enum ESound
 	{
 		Bgm,
 		Effect,
+		Skill1,
+		Skill2,
+		Item,
+		Object,
+		UI,
+		
 		Max,
 	}
+	public enum ESoundMainType
+	{
+		Bgm,
+		Skill1,
+		Skill2,
+		Item,
+		Object,
+		UI,
+		Boss,
+		
+		Max,
+	}
+	public enum ESoundType
+	{
+		Lobby = 0,
+		Tiger = 0,
+		Button = 0,
+		Item = 0,
+		ItemBox = 0,
+		BossShot = 0,
+		Ingame = 1,
+		Crocodile = 1,
+		Trumpet = 1,
+		Warning = 1,
+		BossRoar = 1,
+		Skunk = 2,
+		Boss = 2,
+		Peacock = 3,
+		Bear = 4,
+		Parrot = 5,
+	}
+	
 
 	public enum EObjectType
 	{
@@ -176,6 +213,7 @@ public static class Define
         OptionDialog = 6,
         LoadingDialog = 7,
     }
+	
 
 	
 	public const string SKILL_LEVEL_UP_WINDOW = "SkillLevelUpWindow";

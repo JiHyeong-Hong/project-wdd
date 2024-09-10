@@ -206,6 +206,8 @@ public class Monster : Creature
 
         if (CreatureType == ECreatureType.Boss)
             StageManager.Instance.state = EStageState.Clear;
+        else if (CreatureType == ECreatureType.Box)
+            SoundManager.Instance.Play(Define.ESoundMainType.Object, Define.ESoundType.ItemBox);
         bool isDrop = false;
         int rand = Random.Range(0, 100);
         // Debug.Log("아이템 드랍 확률 :" + $"{rand}");

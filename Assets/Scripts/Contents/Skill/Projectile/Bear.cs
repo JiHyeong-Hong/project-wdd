@@ -20,7 +20,7 @@ public class Bear : Projectile
         isInfinityDuration = true;
 		///
 
-
+		SoundManager.Instance.Play(Define.ESoundMainType.Skill1, Define.ESoundType.Bear);
         Despawn().Forget();
 		return true;
 	}
@@ -58,7 +58,7 @@ public class Bear : Projectile
         //await UniTask.Delay(TimeSpan.FromSeconds(GetAnimLength() + 0.15f));
         await UniTask.Delay(TimeSpan.FromSeconds(GetAnimLength() + 0.5f));
 		
-		// °´Ã¼°¡ ¾ÆÁ÷ Á¸ÀçÇÏ´ÂÁö È®ÀÎ
+		// ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 		if (this == null || gameObject == null)
 		{
 			return;

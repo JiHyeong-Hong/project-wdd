@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 using static Define;
 
@@ -80,6 +81,7 @@ public class BreakthroughHelper
         }
     }
 
+    // 돌파스킬 조건을 만족하면 compositeSkillTable에 해당 스킬을 등록한다.
     public void GetBreakthroughBaseSkill(SkillType type, int index)
     {
         int compositeSkill = 0;
@@ -100,12 +102,46 @@ public class BreakthroughHelper
                 break;
             }
         }
+       
+        // 돌파스킬 조건 만족하면 자동으로 돌파스킬 획득 (미사용)
+        //if (compositeSkill != 0 && 
+        //    compositeSkillTable[compositeSkill].Active.Item2 == true && compositeSkillTable[compositeSkill].Passive.Item2 == true)
+        //{
+        //    Managers.Skill.BreakthroughAdd(compositeSkill);
+        //}
+    }
 
-        // 만약 돌파스킬 발동 조건을 모두 성립한다면
-        if (compositeSkill != 0 && 
-            compositeSkillTable[compositeSkill].Active.Item2 == true && compositeSkillTable[compositeSkill].Passive.Item2 == true)
+    // 돌파스킬이 가능하도록 등록하고, 돌파스킬ID를 반환한다.
+    public int GetBreakthroughSkillID(SkillType type, int index)
+    {
+        int compositeSkillID = 0;
+
+        foreach (var item in compositeSkillTable)
         {
-            Managers.Skill.BreakthroughAdd(compositeSkill);
+            if (type == SkillType.Active && item.Value.Active.Item1 == index)
+            {
+                compositeSkillID = item.Key;
+                item.Value.SetData(type, index);
+                break;
+            }
+
+            if (type == SkillType.Passive && item.Value.Passive.Item1 == index)
+            {
+                compositeSkillID = item.Key;
+                item.Value.SetData(type, index);
+                break;
+            }
+        }
+
+        // 만약 돌파스킬 발동 조건 성립
+        if (compositeSkillID != 0 &&
+            compositeSkillTable[compositeSkillID].Active.Item2 == true && compositeSkillTable[compositeSkillID].Passive.Item2 == true)
+        {
+            return compositeSkillID;
+        }
+        else
+        {
+            return -1; // 돌파스킬 발동 조건 성립 X
         }
 
     }
@@ -128,13 +164,19 @@ public class BreakthroughHelper
                     break;
                 }
             }
+            if (breakthroughSkill == null) { return false; }
 
-            if (nomalSkillCastCount.ContainsKey(index) && nomalSkillCastCount[index] >= breakthroughSkill.SkillData.SkillTurn && IsActivated(breakthroughSkill.SkillData.CastPer))
-            {
-                nomalSkillCastCount[index] = 0;
-                breakthroughSkill.DoSkill();
-                return true;
-            }
+            // DEBUG::
+            nomalSkillCastCount[index] = 0;
+            breakthroughSkill.DoSkill();
+            return true;
+            // 백업
+            //if (nomalSkillCastCount.ContainsKey(index) && nomalSkillCastCount[index] >= breakthroughSkill.SkillData.SkillTurn && IsActivated(breakthroughSkill.SkillData.CastPer))
+            //{
+            //    nomalSkillCastCount[index] = 0;
+            //    breakthroughSkill.DoSkill();
+            //    return true;
+            //}
         }
 
         if (nomalSkillCastCount.ContainsKey(index))
@@ -158,7 +200,17 @@ public class BreakthroughHelper
 
         return null;
     }
+    
+    // 현재 스킬의 레벨1 ID값을 가져온다.
+    public int GetFirstLvSkillID(int id)
+    {
+        // 상위 3자리 숫자를 추출
+        int topThreeDigits = id / 10;
 
+        // 상위 3자리 숫자에 마지막 자리를 1로 설정하여 레벨1 ID값을 가져온다.
+        return topThreeDigits * 10 + 1;
+    }
+       
     public string FindPassiveName(string activeName)
     {
         Managers.Skill.allSkillDic.TryGetValue(activeName, out List<SkillBase> findSkillList);

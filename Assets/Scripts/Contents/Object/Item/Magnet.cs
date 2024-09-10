@@ -36,6 +36,7 @@ public class Magnet : Item
         }
 
         
+        SoundManager.Instance.Play(Define.ESoundMainType.Item, Define.ESoundType.Item);
         // ���� �ִ� ��� ����ġ ���� ã��
         Exp[] exps = FindObjectsOfType<Exp>();
         

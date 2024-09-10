@@ -17,6 +17,7 @@ public class Peacock : Projectile
 			col = GetComponent<CircleCollider2D>();
 		
 		Renderer = GetComponentInChildren<SpriteRenderer>();
+		SoundManager.Instance.Play(Define.ESoundMainType.Skill1, Define.ESoundType.Peacock);
 		isInfinityDuration = true;
 		
 		return true;

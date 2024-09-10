@@ -24,6 +24,7 @@ public class Exp : Item
         if (hero == null)
             return;
 
+        SoundManager.Instance.Play(Define.ESoundMainType.Item, Define.ESoundType.Item);
         hero.Exp += ItemData.Value;
         // Debug.Log($"����ġ {ItemData.Value}��ŭ ȹ��. �� ����ġ : {hero.Exp}");
 

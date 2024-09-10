@@ -24,6 +24,7 @@ public class Key : Item
         if (hero == null)
             return;
 
+        SoundManager.Instance.Play(Define.ESoundMainType.Item, Define.ESoundType.Item);
         //TODO 키 카운트 작성
         // hero.Exp += ItemData.Value;
         // Debug.Log($"����ġ {ItemData.Value}��ŭ ȹ��. �� ����ġ : {hero.Exp}");

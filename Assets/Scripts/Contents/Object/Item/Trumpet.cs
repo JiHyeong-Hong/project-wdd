@@ -29,7 +29,7 @@ public class Trumpet : Item
         Hero hero = target as Hero;
         if (hero == null)
             return;
-
+        SoundManager.Instance.Play(Define.ESoundMainType.Item, Define.ESoundType.Trumpet);
         if (Renderer != null)
         {
             Color color = Renderer.material.color;
