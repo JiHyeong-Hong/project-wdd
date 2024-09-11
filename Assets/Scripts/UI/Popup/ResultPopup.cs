@@ -41,6 +41,7 @@ public class ResultPopup : PopupBase
 
     public void OnClickHomeButton()
     {
+        SoundManager.Instance.Play(Define.ESoundMainType.UI, Define.ESoundType.Button);
         SceneManagerNew.Instance.LoadScene(Define.EScene.Lobby);
     }
 

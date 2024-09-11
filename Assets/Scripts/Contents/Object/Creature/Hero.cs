@@ -239,7 +239,10 @@ public class Hero : Creature
 
 		// Managers.Game.GameOver();
 		StageManager.Instance.state = EStageState.Fail;
-		UIManagerNew.Instance.ShowPopup<ResultPopup>(true);
+		SoundManager.Instance.Play(Define.ESoundMainType.Character, Define.ESoundType.HeroDead);
+		
+		// UIManagerNew.Instance.ShowPopup<ResultPopup>(true);
+		StartCoroutine(UIManagerNew.Instance.DelayShowPopup<ResultPopup>(3f, true, ESoundType.Clear));
 	}
 
 	private void LevelUp()

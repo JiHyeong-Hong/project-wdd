@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class LobbyWindow : UIWindow
 {
+    [SerializeField]
+    private GameObject SettingButton;
+    
     [SerializeField]
     private Transform goodsThumbnailListGrid;
     
@@ -33,6 +37,12 @@ public class LobbyWindow : UIWindow
 
         stageThumbnailView = Instantiate(stageThumbnail, MiddleAnchor).GetComponent<IView>();
         SoundManager.Instance.Play(Define.ESoundMainType.Bgm, Define.ESoundType.Lobby);
+    }
+
+
+    public void OnClickSetting()
+    {
+        UIManagerNew.Instance.ShowPopup<SettingPopup>(false);
     }
 
 }

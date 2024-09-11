@@ -763,7 +763,7 @@
       "ProjectileNum": 1,
       "CastAngle": 0.0,
       "Damage": 30.0,
-      "AttackSpeed": 15.0,
+      "AttackSpeed": 8.5,
       "AttackRange": 1.0,
       "KnockbackPower": 0.0,
       "StunTime": 0.0,

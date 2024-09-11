@@ -54,6 +54,7 @@ public class UI_Pause : UI_Popup
 
     private void OnClickReturnButton(PointerEventData evt)
     {
+        SoundManager.Instance.Play(Define.ESoundMainType.UI, Define.ESoundType.Button);
         Managers.Game.IsGamePaused = false;
         Managers.UI.ClosePopupUI(this);
     }
