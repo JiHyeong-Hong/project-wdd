@@ -401,6 +401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20d8b73654135774ab2ba2455788a469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isCached: 0
   isTestScene: 0
   view: {fileID: 360305885620878248}
 --- !u!114 &360305885620878248
@@ -425,7 +426,7 @@ MonoBehaviour:
   _expImg: {fileID: 710740377821960318}
   _bosshpbackImg: {fileID: 6842642608283828474}
   _bosshpImg: {fileID: 1269430187286978172}
-  PauseBtn: {fileID: 0}
+  PauseBtn: {fileID: 2821285622169377892}
 --- !u!223 &5647835648044261818
 Canvas:
   m_ObjectHideFlags: 0
