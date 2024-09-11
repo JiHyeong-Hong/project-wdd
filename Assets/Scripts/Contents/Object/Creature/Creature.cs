@@ -250,14 +250,14 @@ public class Creature : BaseObject
 
         Hp = Mathf.Clamp(Hp - finalDamage, 0, MaxHp);
         //Debug.LogWarning($"[{gameObject.name}] Hit! HP({Hp}/{MaxHp})"); // 디버깅용. 삭제가능 @홍지형
-        if (Hp <= 0)
+        if (Hp <= 0 && CreatureState != ECreatureState.Dead)
         {
+            CreatureState = ECreatureState.Dead;
             OnDead(attacker, skill);
-            // CreatureState = ECreatureState.Dead;
         }
         else
         {
-            if(CreatureType != ECreatureType.Boss)
+            if(CreatureType != ECreatureType.Boss && CreatureState != ECreatureState.Dead)
                 CreatureState = ECreatureState.Hit;
         }
 

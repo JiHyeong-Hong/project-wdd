@@ -9,6 +9,9 @@ public class SoundManager: SingletonMonoBehaviour<SoundManager>
 	// [SerializeField]
  //    List<AudioSource> _audioSources;
     
+	private bool BGMState = false;
+	private bool EffectState = false;
+	
     [SerializeField]
     List<AudioClip> BGMList;
     
@@ -28,6 +31,9 @@ public class SoundManager: SingletonMonoBehaviour<SoundManager>
     List<AudioClip> UIEffectList;
     
     [SerializeField]
+    List<AudioClip> CharacterEffectList;
+    
+    [SerializeField]
     List<AudioClip> BossEffectList;
     
     [SerializeField]
@@ -41,22 +47,25 @@ public class SoundManager: SingletonMonoBehaviour<SoundManager>
     [SerializeField]
     List<AudioSource> ObjectEffect;
     [SerializeField]
-    List<AudioSource> UIEffect;
+    AudioSource UIEffect;
     [SerializeField]
-    List<AudioSource> BossEffect;
+    AudioSource CharacterEffect;
+    [SerializeField]
+    AudioSource BossEffect;
     
     // Dictionary<string, AudioClip> _audioClips = new Dictionary<string, AudioClip>();
 
     private void Start()
     {
 	    BGM = gameObject.AddComponent<AudioSource>();
+	    BossEffect = gameObject.AddComponent<AudioSource>();
+	    CharacterEffect = gameObject.AddComponent<AudioSource>();
+	    UIEffect = gameObject.AddComponent<AudioSource>();
 	    BGM.loop = true;
 	    SetAudioSoruce(Skill1EffectList, Skill1Effect);
 	    SetAudioSoruce(Skill2EffectList, Skill2Effect);
 	    SetAudioSoruce(ItemEffectList, ItemEffect);
 	    SetAudioSoruce(ObjectEffectList, ObjectEffect);
-	    SetAudioSoruce(UIEffectList, UIEffect);
-	    SetAudioSoruce(BossEffectList, BossEffect);
     }
 
     public override void Init()
@@ -70,6 +79,30 @@ public class SoundManager: SingletonMonoBehaviour<SoundManager>
 	    {
 		    sourceList.Add(gameObject.AddComponent<AudioSource>());
 	    }
+    }
+    public void MuteAudioSoruce(List<AudioSource> sourceList)
+    {
+	    for (int i = 0; i < sourceList.Count; i++)
+	    {
+		    sourceList[i].mute = !sourceList[i].mute;
+	    }
+    }
+
+    public void BGMMute()
+    {
+	    BGMState = !BGMState; 
+	    BGM.mute = !BGM.mute;
+	}
+    public void EffectMute()
+    {
+	    EffectState = !EffectState;
+	    BossEffect.mute = !BossEffect.mute;
+	    CharacterEffect.mute = !CharacterEffect.mute;
+	    UIEffect.mute = !UIEffect.mute;
+	    MuteAudioSoruce(Skill1Effect);
+	    MuteAudioSoruce(Skill2Effect);
+	    MuteAudioSoruce(ItemEffect);
+	    MuteAudioSoruce(ObjectEffect);
     }
     public void Play(Define.ESoundMainType main,Define.ESoundType type, float pitch = 1.0f)
 	{
@@ -103,13 +136,18 @@ public class SoundManager: SingletonMonoBehaviour<SoundManager>
 				break;
 			case Define.ESoundMainType.UI:
 				audioClip = UIEffectList[(int)type];
-				UIEffect[(int)type].clip = audioClip;
-				UIEffect[(int)type].Play();
+				UIEffect.clip = audioClip;
+				UIEffect.Play();
 				break;
 			case Define.ESoundMainType.Boss:
 				audioClip = BossEffectList[(int)type];
-				BossEffect[(int)type].clip = audioClip;
-				BossEffect[(int)type].Play();
+				BossEffect.clip = audioClip;
+				BossEffect.Play();
+				break;
+			case Define.ESoundMainType.Character:
+				audioClip = CharacterEffectList[(int)type];
+				CharacterEffect.clip = audioClip;
+				CharacterEffect.Play();
 				break;
 		}
 		
@@ -155,4 +193,5 @@ public class SoundManager: SingletonMonoBehaviour<SoundManager>
  //
 	// 	return audioClip;
  //    }
+ 
 }

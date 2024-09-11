@@ -27,7 +27,7 @@ public class StageThumbnailView : MonoBehaviour, IView
     private Data.Stage currentStageData;
     private int stageIndex = 0;
 
-    // ´õ¹Ì µ¥ÀÌÅÍ
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private Data.Stage stageData = new Data.Stage()
     {
         StageID = 1,
@@ -55,6 +55,7 @@ public class StageThumbnailView : MonoBehaviour, IView
 
     private void OnClickStageButton()
     {
+        SoundManager.Instance.Play(Define.ESoundMainType.UI, Define.ESoundType.Button);
         SceneManagerNew.Instance.LoadScene(Define.EScene.GameScene);
 
     }
@@ -71,11 +72,11 @@ public class StageThumbnailView : MonoBehaviour, IView
 
     private void ChangedStage(int stageIndex)
     {
-        // stageIndex °¡ 0º¸´Ù ÀÛÀ¸¸é 0À¸·Î ÃÊ±âÈ­ ¶Ç´Â stageIndex°¡ StageListÀÇ Countº¸´Ù Å©¸é Count - 1·Î ÃÊ±âÈ­
+        // stageIndex ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½Ç´ï¿½ stageIndexï¿½ï¿½ StageListï¿½ï¿½ Countï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ Count - 1ï¿½ï¿½ ï¿½Ê±ï¿½È­
         if (stageIndex < 0) stageIndex = 0;
         if (stageIndex >= Managers.Game.StageList.Count) stageIndex = Managers.Game.StageList.Count - 1;
 
-        // stageIndex¿¡ ÇØ´çÇÏ´Â StageData¸¦ °¡Á®¿È
+        // stageIndexï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ StageDataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         Data.Stage stageData = Managers.Game.StageList[stageIndex];
         if (currentStageData != stageData)
         {
@@ -92,12 +93,12 @@ public class StageThumbnailView : MonoBehaviour, IView
         stageDescription.text = currentStageData.Info;
 
 
-        // ÀÌ¹ÌÁö ·Îµå
+        // ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½Îµï¿½
         //Managers.Resource.LoadResource<Sprite>(currentStageData.IconURL);
         //Sprite sprite = Managers.Resource.GetResource<Sprite>(currentStageData.IconURL);
         //stageImage.sprite = sprite;
 
-        // Àá±Ý ¿©ºÎ¿¡ µû¶ó ¹öÆ° È°¼ºÈ­
+        // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° È°ï¿½ï¿½È­
         stageStartButton.interactable = !currentStageData.Locked;
         stageLockImage.gameObject.SetActive(currentStageData.Locked);
 

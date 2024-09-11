@@ -11,5 +11,6 @@ public class TitleWindow : MonoBehaviour
     public void StartLobby()
     {
         SceneManagerNew.Instance.LoadScene(Define.EScene.Lobby);
+        SoundManager.Instance.Play(Define.ESoundMainType.UI, Define.ESoundType.Button);
     }
 }

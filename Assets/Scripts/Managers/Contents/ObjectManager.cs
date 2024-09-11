@@ -14,7 +14,7 @@ public class ObjectManager :SingletonMonoBehaviour<ObjectManager>
             if (hero == null) 
             {
                 hero = RespawnHero(Vector3.zero, Define.HERO_ZOOKEEPER_ID);
-                StartCoroutine(Managers.Skill.CoInit());
+                
 
             }
             return hero;
@@ -54,6 +54,11 @@ public class ObjectManager :SingletonMonoBehaviour<ObjectManager>
     public Transform GoldRoot { get { return GetRootTransform("@Golds"); } }
     #endregion
 
+    public void SetHero()
+    {
+        StartCoroutine(Managers.Skill.CoInit());
+    }
+    
     public T Spawn<T>(Vector3 position, int templateID, Transform parent = null) where T : BaseObject
     {
         string prefabName = typeof(T).Name;
