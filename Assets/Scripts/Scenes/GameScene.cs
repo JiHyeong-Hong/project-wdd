@@ -10,6 +10,7 @@ public class GameScene : BaseScene
         if (base.Init() == false)
             return false;
 
+        ObjectManager.Instance.SetHero();
         SceneType = Define.EScene.GameScene;
 
         // Managers.UI.ShowSceneUI<UI_GameScene>(); // 테스트용. 지울것
