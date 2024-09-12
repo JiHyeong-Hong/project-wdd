@@ -235,6 +235,7 @@ public class SkillManager
             // 돌파스킬 검사 끝
 
             var randomIndex = Random.Range(0, tempList.Count);
+            bool isMaxSkillLevel = false;
             SkillBase selectedSkillBase = allSkillDic[tempList[randomIndex]][0];
             // 일반스킬 검사 시작
             // 1) usingSkillDic 에서 현재 추가하려는 스킬이 있는지 검사한다.
@@ -245,11 +246,20 @@ public class SkillManager
                 if (skill.SkillData.Name == selectedSkillData.Name)
                 {
                     // 3) 존재하는 스킬의 레벨+1 된 스킬을 sampleSkillList에 넣는다.
+                    // 만렙은 예외처리
+                    if (skill.SkillData.Level < 5 == false)
+                    {
+                        // 뽑을 수 있는 스킬목록에서 삭제
+                        Managers.Skill.canPickSkillList.Remove(skill.SkillData.Name);
+                        isMaxSkillLevel = true;
+                        continue; 
+                    } 
                     int currentLevel = skill.SkillData.Level - 1; // level값을 인덱스 값으로 변환
                     selectedSkillBase = allSkillDic[tempList[randomIndex]][currentLevel + 1];
                 }
             }
-            // 일반스킬 검사 시작
+            if (isMaxSkillLevel) { continue; } // 만렙이면 생략
+            // 일반스킬 검사 끝
 
             // 스킬 선택 리스트에 새 스킬 추가
             sampleSkillList.Add(selectedSkillBase);
