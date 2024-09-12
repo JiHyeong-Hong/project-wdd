@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -37,6 +38,7 @@ public class SaveManager : SingletonMonoBehaviour<SaveManager>
         // Managers.Data.UserDic[0].GoldAmt = PlayerPrefs.GetInt("GoldAmt");
         SoundManager.Instance.BGMState = Convert.ToBoolean(PlayerPrefs.GetInt("BGMState"));
         SoundManager.Instance.EffectState = Convert.ToBoolean(PlayerPrefs.GetInt("EffectState"));
+        Managers.Data.UserDic.Select(x => x.Value).FirstOrDefault().GoldAmt = PlayerPrefs.GetInt("GoldAmt");
         SoundManager.Instance.Init();
         
         //TODO 현재 저장된 데이터 불러오기

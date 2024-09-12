@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Data;
 using UnityEngine;
 
-public class LobbyModel : MonoBehaviour
+public class LobbyModel
 {
+    // public UserData userData;
+    // public event Action<UserData> OnProfileDataChanged;
     // Start is called before the first frame update
     void Start()
     {
