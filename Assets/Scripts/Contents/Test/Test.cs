@@ -11,6 +11,10 @@ public class Test : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Keypad0))
+        {
+            Debug.Log($"BGM AudioSource Sound Mute value is {SoundManager.Instance.BGM.mute} ");
+        }
         if (Input.GetKeyDown(KeyCode.V))
         {
             FindSkillForName("Bear");

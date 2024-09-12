@@ -9,8 +9,20 @@ public class SoundManager: SingletonMonoBehaviour<SoundManager>
 	// [SerializeField]
  //    List<AudioSource> _audioSources;
     
-	private bool BGMState = false;
-	private bool EffectState = false;
+	private bool _bgmstate = false;
+	private bool _effectstate = false;
+
+	public bool BGMState
+	{
+		get { return _bgmstate; }
+		set { _bgmstate = value; }
+	}
+	
+	public bool EffectState
+	{
+		get { return _effectstate; }
+		set { _effectstate = value; }
+	}
 	
     [SerializeField]
     List<AudioClip> BGMList;
@@ -37,7 +49,7 @@ public class SoundManager: SingletonMonoBehaviour<SoundManager>
     List<AudioClip> BossEffectList;
     
     [SerializeField]
-    AudioSource BGM;
+    public AudioSource BGM;
     [SerializeField]
     List<AudioSource> Skill1Effect;
     [SerializeField]
@@ -70,7 +82,11 @@ public class SoundManager: SingletonMonoBehaviour<SoundManager>
 
     public override void Init()
     {
-       
+	    if(BGMState)
+		    BGMMute();
+	    if(EffectState)
+		    EffectMute();
+       Debug.Log("사운드체크");
     }
 
     public void SetAudioSoruce(List<AudioClip> clipList, List<AudioSource> sourceList)
@@ -90,12 +106,12 @@ public class SoundManager: SingletonMonoBehaviour<SoundManager>
 
     public void BGMMute()
     {
-	    BGMState = !BGMState; 
 	    BGM.mute = !BGM.mute;
-	}
+	    Debug.Log($"BGM AudioSource Sound Mute value is {BGM.mute} ");
+    }
     public void EffectMute()
     {
-	    EffectState = !EffectState;
+	    // _effectstate = !_effectstate;
 	    BossEffect.mute = !BossEffect.mute;
 	    CharacterEffect.mute = !CharacterEffect.mute;
 	    UIEffect.mute = !UIEffect.mute;
