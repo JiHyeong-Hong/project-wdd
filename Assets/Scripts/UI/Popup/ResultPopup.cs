@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Data;
 using TMPro;
 using UnityEngine;
@@ -42,6 +43,8 @@ public class ResultPopup : PopupBase
     public void OnClickHomeButton()
     {
         SoundManager.Instance.Play(Define.ESoundMainType.UI, Define.ESoundType.Button);
+        Managers.Data.UserDic.Select(x => x.Value).FirstOrDefault().GoldAmt += Managers.Object.Hero.Gold;
+        SaveManager.Instance.SaveClearData(Managers.Data.UserDic.Select(x => x.Value).FirstOrDefault().GoldAmt);
         SceneManagerNew.Instance.LoadScene(Define.EScene.Lobby);
     }
 

@@ -1,0 +1,12 @@
+{
+  "users": [
+    {
+      "userID": 1000,
+      "Name": "Name",
+      "TicketAmt": 0,
+      "MaxTicketAmt": 0,
+      "GoldAmt": 0,
+      "GoldKeyAmt": 0
+    }
+  ]
+}

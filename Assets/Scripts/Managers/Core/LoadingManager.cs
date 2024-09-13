@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 public class LoadingManager : MonoBehaviour
 {
@@ -32,16 +34,19 @@ public class LoadingManager : MonoBehaviour
 
     IEnumerator Start()
     {
-        if (Managers.Instance.isTest)
-        {
-            OnLoadingComplete();
-        }
-        else
-        {
+        // if (Managers.Instance.isTest)
+        // {
+        //     OnLoadingComplete();
+        // }
+        // else
+        // {
             StartCoroutine(LoadResources<Object>());
-        }
+        // }
+       
 
         yield return null;
+        SaveManager.Instance.LoadData();
+
     }
 
     private IEnumerator LoadResources<T>() where T : Object
@@ -114,9 +119,9 @@ public class LoadingManager : MonoBehaviour
         return resourcePath;
     }
 
-    [ContextMenu("CheckAll")]
-    public void TestCheckAll()
-    {
-        ResourceManager.Instance.CheckAllLoadedResources();
-    }
+    // [ContextMenu("CheckAll")]
+    // public void TestCheckAll()
+    // {
+    //     ResourceManager.Instance.CheckAllLoadedResources();
+    // }
 }

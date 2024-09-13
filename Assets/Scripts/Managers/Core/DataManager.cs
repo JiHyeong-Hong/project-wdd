@@ -46,8 +46,9 @@ public class DataManager : SingletonMonoBehaviour<DataManager>
         StageDic = LoadJson<Data.StageLoader, int, Data.Stage>("StageData").MakeDict();
         StageLvDic = LoadJson<Data.StageLevelLoader, int, Data.StageLevel>("StageLvData").MakeDict();
         SpawnDic = LoadJson<Data.SpawnLoader, int, Data.Spawn>("SpawnData").MakeDict();
-        // UserDic = LoadJson<Data.UserDataLoader, int, Data.UserData>("UserData").MakeDict();
+        UserDic = LoadJson<Data.UserDataLoader, int, Data.UserData>("UserData").MakeDict();
         
+        Debug.Log("DataDic Create");
 
     }
 
