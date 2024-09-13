@@ -30,11 +30,11 @@ public class ResourceManager : SingletonMonoBehaviour<ResourceManager>
         if (resource != null)
         {
             loadedResources[path] = resource;
-            Debug.Log($"Resource loaded: {path}");
+            // Debug.Log($"Resource loaded: {path}");
         }
         else
         {
-            Debug.Log($"Failed to load resource: {path}");
+            // Debug.Log($"Failed to load resource: {path}");
         }
     }
 
@@ -46,7 +46,7 @@ public class ResourceManager : SingletonMonoBehaviour<ResourceManager>
         }
         else
         {
-            Debug.LogError($"Resource not found: {path}");
+            // Debug.LogError($"Resource not found: {path}");
             return null;
         }
     }
@@ -73,7 +73,7 @@ public class ResourceManager : SingletonMonoBehaviour<ResourceManager>
         GameObject original = Load<GameObject>($"Prefabs/{path}");
         if (original == null)
         {
-            Debug.Log($"Failed to load prefab : {path}");
+            // Debug.Log($"Failed to load prefab : {path}");
             return null;
         }
 
@@ -103,7 +103,7 @@ public class ResourceManager : SingletonMonoBehaviour<ResourceManager>
     internal Sprite GetSkillSprite(string skillName)
     {
         Sprite sprite = Load<Sprite>($"Art/Skills/{skillName}");
-        if(sprite == null) Debug.LogWarning($"Failed to load sprite : {skillName}");
+        // if(sprite == null) Debug.LogWarning($"Failed to load sprite : {skillName}");
         return sprite;
     }
 }
