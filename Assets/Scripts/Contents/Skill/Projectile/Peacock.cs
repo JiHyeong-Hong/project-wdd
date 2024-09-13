@@ -25,13 +25,24 @@ public class Peacock : Projectile
 
 	public void SetTarget(Monster target)
 	{
-		this.target = target;
-		col.enabled = target == null;
+		Boss boss = FindObjectOfType<Boss>();
+
+		if (boss != null)
+		{
+			this.target = boss;
+		}
+		else
+		{
+			this.target = target;
+		}
+
+		col.enabled = this.target == null;
 	}
 
     public override void SetSpawnInfo(Creature owner, SkillBase skill, Vector2 direction)
     {
         base.SetSpawnInfo(owner, skill, direction);
+		SetTarget(null);
     }
 
 	public void SetSpawnInfo (Creature owner, SkillBase skill, Vector2 direction, bool isBTSkill)
