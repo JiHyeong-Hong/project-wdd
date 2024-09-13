@@ -11,26 +11,21 @@ public class Crocodile : Projectile
     private SpriteRenderer spriteRenderer;
     private SpriteRenderer swampRenderer;
 
-    public float speed = 4f;
-
+    public float speed = 7f;
     private Vector2 moveDirection;
-    private Hero hero;
-    public float crocodileHeightOffset = 5f; // Crocodile�� ��ȯ�� �� �߰������� ������ ���� ��
 
     [SerializeField]
     private GameObject gravityPoint;
     public bool isBreakthrough = false;
 
     public SkillBase skill2;
+    private Monster target; // 주변의 몬스터 타겟
 
     void Start()
     {
-        hero = FindObjectOfType<Hero>();
+        SetTarget();    
 
-        Direction();
-
-        // �浹���� ���� �ν��Ͻ��� �ڵ����� Despawn�ǵ��� ��
-        StartCoroutine(DespawnAfterTime(5f));
+        StartCoroutine(DespawnAfterTime(4f));
 
         SizeControl(0.7f);
         swampRenderer = Util.FindChild<Transform>(transform.gameObject, "Swamp").GetComponent<SpriteRenderer>();
@@ -50,26 +45,34 @@ public class Crocodile : Projectile
         return true;
     }
 
-    void FixedUpdate()
+    private void SetTarget()
     {
-        Move();
-    }
+        Boss boss = FindObjectOfType<Boss>(); 
 
-    private void Direction()
-    {
-        transform.right = Managers.Object.Hero.destination.position - Owner.transform.position;
-        if (transform.right.x < 0)
+        if (boss != null)
         {
-            spriteRenderer.flipY = true;
+            target = boss;
         }
-
-        moveDirection = transform.right.normalized * speed;
+        else
+        {
+            Collider2D[] nearbyMonsters = Util.SearchCollidersInRadius(transform.position, 20f); // 반경 10 내의 몬스터 검색
+            foreach (var collider in nearbyMonsters)
+            {
+                Monster monster = collider.GetComponent<Monster>();
+                if (monster != null)
+                {
+                    target = monster; // 첫 번째로 발견된 몬스터를 타겟으로 설정
+                    break;
+                }
+            }
+        }
     }
 
     protected override void Move()
     {
-        if (canMove)
+        if (target != null && canMove)
         {
+            moveDirection = (target.transform.position - transform.position).normalized * speed;
             rb.velocity = moveDirection;
         }
         else
