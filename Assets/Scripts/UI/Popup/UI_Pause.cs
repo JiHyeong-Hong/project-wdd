@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-
+// 레거시 코드, 미사용 @홍지형 240912
 public class UI_Pause : UI_Popup
 {
     enum Texts
@@ -19,10 +19,11 @@ public class UI_Pause : UI_Popup
 
     enum Buttons
     {
-        ReturnBtn,
+        ContinueButton,
+        HomeButton,
         ExitBtn,
         AddBtn,
-        SoundBtn,
+        MuteButton,
     }
 
     private TextMeshProUGUI _monsterKillCount;
@@ -39,9 +40,9 @@ public class UI_Pause : UI_Popup
         _monsterKillCount = GetText((int)Texts.MonsterKillCount);
 
         GetImage((int)Images.BackGround).gameObject.BindEvent(OnClickReturnButton);
-        GetButton((int)Buttons.ReturnBtn).gameObject.BindEvent(OnClickReturnButton);
+        GetButton((int)Buttons.ContinueButton).gameObject.BindEvent(OnClickReturnButton);
         GetButton((int)Buttons.ExitBtn).gameObject.BindEvent(OnClickReturnButton);
-        GetButton((int)Buttons.SoundBtn).gameObject.BindEvent(OnClickToggleSoundButton);
+        GetButton((int)Buttons.MuteButton).gameObject.BindEvent(OnClickToggleSoundButton);
 
         RefreshUI();
         return true;
