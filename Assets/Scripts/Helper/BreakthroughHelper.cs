@@ -153,7 +153,8 @@ public class BreakthroughHelper
             return false;
 
         CompositeData data = compositeSkillTable[breakthroughIndex];
-        if (data.Active.Item2 == true && data.Passive.Item2 == true)
+        // if (data.Active.Item2 == true && data.Passive.Item2 == true)
+        if (true) // DEBUG::
         {
             SkillBase breakthroughSkill = null;
             foreach (var item in Managers.Skill.usingSkillDic[SkillType.Breakthrough])
@@ -167,18 +168,18 @@ public class BreakthroughHelper
             if (breakthroughSkill == null) { return false; }
 
             // DEBUG::
-            nomalSkillCastCount[index] = 0;
-            breakthroughSkill.DoSkill();
-            return true;
-            // 백업
-            //if (nomalSkillCastCount.ContainsKey(index) && nomalSkillCastCount[index] >= breakthroughSkill.SkillData.SkillTurn && IsActivated(breakthroughSkill.SkillData.CastPer))
-            //{
-            //    nomalSkillCastCount[index] = 0;
-            //    breakthroughSkill.DoSkill();
-            //    return true;
-            //}
+            //nomalSkillCastCount[index] = 0;
+            //breakthroughSkill.DoSkill();
+            //return true;
+            
+            if (nomalSkillCastCount.ContainsKey(index) && nomalSkillCastCount[index] >= breakthroughSkill.SkillData.SkillTurn && IsActivated(breakthroughSkill.SkillData.CastPer * (1 + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.CastPer))))
+            {
+                nomalSkillCastCount[index] = 0;
+                breakthroughSkill.DoSkill();
+                return true;
+            }
         }
-
+        
         if (nomalSkillCastCount.ContainsKey(index))
             nomalSkillCastCount[index]++;
         else

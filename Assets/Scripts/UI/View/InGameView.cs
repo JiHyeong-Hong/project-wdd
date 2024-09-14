@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -69,13 +69,16 @@ public class InGameView : MonoBehaviour, IView
 
     private void OnClickPauseButton()
     {
-        Managers.Game.IsGamePaused = !Managers.Game.IsGamePaused;
-        Time.timeScale = Managers.Game.IsGamePaused ? 0 : 1;
+        UIManagerNew.Instance.ShowPopup<PausePopup>(true);
 
-        if (Managers.Game.IsGamePaused)
-        {
-            Managers.UI.ShowPopupUI<UI_Pause>();
-        }
+        // 레거시 코드, 삭제예정 240912 @홍지형
+        //Managers.Game.IsGamePaused = !Managers.Game.IsGamePaused;
+        //Time.timeScale = Managers.Game.IsGamePaused ? 0 : 1;
+
+        //if (Managers.Game.IsGamePaused)
+        //{
+        //    Managers.UI.ShowPopupUI<UI_Pause>();            
+        //}
     }
 
     }

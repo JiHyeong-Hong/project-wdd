@@ -57,7 +57,7 @@ public class Skunk : Projectile
     public override void SetSpawnInfo(Creature owner, SkillBase skill, Vector2 direction)
     {
         base.SetSpawnInfo(owner, skill, direction);
-
+        float duration = skill.SkillData.Duration * (1 + PassiveHelper.Instance.GetPassiveValue(Define.PassiveSkillStatusType.Duration));
         spriteRenderer.sprite = sprites[(int)ESkunkState.Jump];
 
         if (isBTSkill)
@@ -72,7 +72,7 @@ public class Skunk : Projectile
             poison.Animator.SetBool("isBreakthrough", true);
             poison.SetInfo(Owner, skill);
         })
-        .AppendInterval(skill.SkillData.Duration)
+        .AppendInterval(duration)
         .AppendCallback(() =>
         {
             Managers.Object.Despawn(this);
@@ -92,7 +92,7 @@ public class Skunk : Projectile
             poison.Animator.SetBool("isNormal", true);
             poison.SetInfo(Owner, skill);
         })
-        .AppendInterval(skill.SkillData.Duration)
+        .AppendInterval(duration)
         .AppendCallback(() =>
         {
             Managers.Object.Despawn(this);

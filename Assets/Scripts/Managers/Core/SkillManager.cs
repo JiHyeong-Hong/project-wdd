@@ -352,7 +352,7 @@ public class SkillManager
         {
             if (Managers.Skill.usingSkillDic[skillData.skillType].Remove(Managers.Skill.allSkillDic[skillData.Name][skillData.Level - 2])) // 이전레벨의 스킬 삭제
             {
-                // UnityEngine.Debug.Log($"삭제성공"); // TODO: 240811 usingSkillDic가 remove가 제대로 되고 있지 않는 문제 디버깅 필요.
+                // UnityEngine.Debug.Log($"삭제성공"); 
             }
             else
             {

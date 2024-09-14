@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public abstract class UIBase : MonoBehaviour
 {
@@ -24,6 +24,14 @@ public abstract class UIBase : MonoBehaviour
         gameObject.SetActive(false);
         OnHide();
     }
+
+    public virtual void Hide(bool isGamePaused) // UI창마다 인게임 일시정지 여부가 다름
+    {
+        if (isGamePaused == true) { Managers.Game.IsGamePaused = false; }
+        gameObject.SetActive(false);
+        OnHide();
+    }
+
 
     public virtual void Refresh() 
     {
