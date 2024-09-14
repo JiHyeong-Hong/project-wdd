@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -13,6 +13,7 @@ public class GameScene : BaseScene
         ObjectManager.Instance.SetHero();
         SceneType = Define.EScene.GameScene;
 
+        Managers.UI.SetJoyStick(Managers.UI.ShowBaseUI<UI_Joystick>().gameObject);
         // Managers.UI.ShowSceneUI<UI_GameScene>(); // 테스트용. 지울것
         //Managers.UI.ShowWindowUI<InGameWindow>(Define.UIWindowType.Game).Show();
 
@@ -44,7 +45,6 @@ public class GameScene : BaseScene
         // 길리슈터 생성 테스트용. @홍지형
         // Managers.Object.Spawn<Shooter>(new Vector3(-5f, 5f, 0f), Define.MONSTER_SHOOTER_ID);
 
-        Managers.UI.SetJoyStick(Managers.UI.ShowBaseUI<UI_Joystick>().gameObject);
         
         //TODO Eung 보스 출현 카운트
         // StartCoroutine(Managers.Game.BossCount()); // 테스트용
