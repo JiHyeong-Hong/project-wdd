@@ -34,7 +34,7 @@ public class SafeAreaAdjuster : MonoBehaviour
     //         panelRectTransform.anchorMax = anchorMax;
     //     }
     // }
-    
+
     // void Start()
     // {
     //     ApplySafeArea();
@@ -55,7 +55,7 @@ public class SafeAreaAdjuster : MonoBehaviour
     //     rectTransform.anchorMin = anchorMin;
     //     rectTransform.anchorMax = anchorMax;
     // }
-    
+
     // public Canvas canvas;
     //
     // void Start()
@@ -90,7 +90,7 @@ public class SafeAreaAdjuster : MonoBehaviour
     //     canvasRectTransform.anchorMin = anchorMin;
     //     canvasRectTransform.anchorMax = anchorMax;
     // }
-    
+
     // public RectTransform targetRectTransform;
     //
     // void Start()
@@ -124,14 +124,18 @@ public class SafeAreaAdjuster : MonoBehaviour
     //     targetRectTransform.anchorMin = anchorMin;
     //     targetRectTransform.anchorMax = anchorMax;
     // }
-    
+
+    public RectTransform CanvasRectTransform;
     public RectTransform targetRectTransform;
     public RectTransform TopAreaRectTransform;
     public RectTransform TopMenuAreaRectTransform;
-    public RectTransform CanvasRectTransform;
+    public RectTransform MainAreaRectTransform;
     
+
     void Start()
     {
+        MainAreaRectTransform = GameObject.Find("StagePreview").gameObject.GetComponent<RectTransform>();
+        SetUIResolution();
         AdjustToSafeArea();
         CalculateAndLogTopGap();
     }
@@ -168,71 +172,71 @@ public class SafeAreaAdjuster : MonoBehaviour
         targetRectTransform.offsetMin = offsetMin;
         targetRectTransform.offsetMax = offsetMax;
     }
-    
-    
+
+
     void CalculateAndLogTopGap()
     {
         Rect safeArea = targetRectTransform.rect;
         Rect screen = CanvasRectTransform.rect;
         Rect TopArea = TopAreaRectTransform.rect;
         Rect TopMenuArea = TopMenuAreaRectTransform.rect;
-        
+
         float screenHeight = screen.height;
-        
+
         // Safe Area의 Top과 전체 화면의 Top 사이의 간격을 계산
         float safeAreaTop = safeArea.height;
         float screenTop = screenHeight;
         float screenTopMenu = TopMenuArea.height;
-    
+
+        Debug.Log($"Top Gap between Safe Area and Screen Top: {screenTop - safeAreaTop}");
         // 전체 화면에서 Safe Area의 Top까지의 간격
         float topGap = screenTop - safeAreaTop + screenTopMenu;
 
         Vector2 topAreaSize = TopAreaRectTransform.sizeDelta;
-        topAreaSize.y = topGap;
+        if (topGap <= 100)
+        {
+            topAreaSize.y = screenTopMenu;
+        }
+        else
+        {
+            topAreaSize.y = topGap;
+        }
+
         TopAreaRectTransform.sizeDelta = topAreaSize;
-    
-        Debug.Log($"Top Gap between Safe Area and Screen Top: {topGap}");
+
+        // Debug.Log($"Top Gap between Safe Area and Screen Top: {topGap}");
         Debug.Log($"Top Gap between Safe Area and Screen Top: {TopArea}");
     }
-    // void CalculateAndLogTopGap()
+
+    public void SetUIResolution()
+    {
+        // Vector2 TopMenuSize = TopMenuAreaRectTransform.sizeDelta;
+        // TopMenuSize.y = 100f;
+        // TopMenuAreaRectTransform.sizeDelta = TopMenuSize;
+        
+        Vector2 TopMenuSize = TopMenuAreaRectTransform.sizeDelta;
+    
+        // 새 높이 설정 (너비는 기존 값 유지)
+        float newHeight = 100f;
+        TopMenuAreaRectTransform.sizeDelta = new Vector2(TopMenuSize.x, newHeight);
+    }
+    
+    // void SetUIResolution()
     // {
-    //     if (targetRectTransform == null)
+    //     if (TopMenuAreaRectTransform == null)
     //     {
     //         Debug.LogError("RectTransform reference is missing!");
     //         return;
     //     }
-    //     
-    //     Rect safeArea = Screen.safeArea;
-    //     float screenHeight = Screen.height;
-    //     
-    //     // Calculate the top edge of the Safe Area
-    //     float safeAreaTop = screenHeight - safeArea.yMax;
-    //     
-    //     // Calculate the top edge of the entire screen
-    //     float screenTop = screenHeight;
-    //     
-    //     // Calculate the gap between the Safe Area and the top of the screen
-    //     float topGap = screenTop - safeAreaTop;
-    //     
-    //     Debug.Log($"Top Gap between Safe Area and Screen Top: {topGap}");
-        
-        // if (targetRectTransform == null)
-        // {
-        //     Debug.LogError("RectTransform reference is missing!");
-        //     return;
-        // }
-        //
-        //
-        // Rect safeArea = targetRectTransform.rect;
-        // float screenHeight = Screen.height;
-        //
-        // // Calculate Safe Area's top position relative to screen
-        // Debug.Log($"{}");
-        // float safeAreaTop = screenHeight - safeArea.yMax;
-        //
-        // // Calculate the distance from the top of the screen to Safe Area's top edge
-        // float topGap = safeAreaTop;
-        //
-        // Debug.Log($"Top Gap between Safe Area and Screen Top: {topGap}");
+    //
+    //     // 현재 사이즈 가져오기
+    //     Vector2 currentSize = TopMenuAreaRectTransform.sizeDelta;
+    //
+    //     // 새 높이 설정 (너비는 기존 값 유지)
+    //     float newHeight = 100f;
+    //     TopMenuAreaRectTransform.sizeDelta = new Vector2(currentSize.x, newHeight);
+    //
+    //     // 새 사이즈가 적용된 후의 크기 확인
+    //     Debug.Log($"New SizeDelta: {TopMenuAreaRectTransform.sizeDelta}");
     // }
 }
