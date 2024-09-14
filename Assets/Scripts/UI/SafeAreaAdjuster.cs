@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class SafeAreaAdjuster : MonoBehaviour
@@ -126,23 +127,28 @@ public class SafeAreaAdjuster : MonoBehaviour
     // }
 
     public RectTransform CanvasRectTransform;
-    public RectTransform targetRectTransform;
+    public RectTransform SafeAreaRectTransform;
     public RectTransform TopAreaRectTransform;
+    public RectTransform BottomAreaRectTransform;
     public RectTransform TopMenuAreaRectTransform;
     public RectTransform MainAreaRectTransform;
-    
+    public RectTransform TopMenuRectTransform;
+    public RectTransform BottomMenuRectTransform;
+
 
     void Start()
     {
-        MainAreaRectTransform = GameObject.Find("StagePreview").gameObject.GetComponent<RectTransform>();
-        SetUIResolution();
-        AdjustToSafeArea();
-        CalculateAndLogTopGap();
+        // MainAreaRectTransform = GameObject.Find("StagePreview").gameObject.GetComponent<RectTransform>();
+        // SetUIResolution();
+        // AdjustToSafeArea();
+        // CalculateAndLogTopGap();
+        // AdjustSafeAreaAndMargins();
+        AdjustSafeAreaAndMenus();
     }
 
     void AdjustToSafeArea()
     {
-        if (targetRectTransform == null)
+        if (SafeAreaRectTransform == null)
         {
             Debug.LogError("RectTransform reference is missing!");
             return;
@@ -162,21 +168,21 @@ public class SafeAreaAdjuster : MonoBehaviour
         anchorMax.y /= screenHeight;
 
         // Apply Safe Area to RectTransform
-        targetRectTransform.anchorMin = anchorMin;
-        targetRectTransform.anchorMax = anchorMax;
+        SafeAreaRectTransform.anchorMin = anchorMin;
+        SafeAreaRectTransform.anchorMax = anchorMax;
 
         // Optionally adjust the size and position
         Vector2 offsetMin = new Vector2(safeArea.x, safeArea.y) / new Vector2(screenWidth, screenHeight);
         Vector2 offsetMax = new Vector2(safeArea.xMax, safeArea.yMax) / new Vector2(screenWidth, screenHeight);
 
-        targetRectTransform.offsetMin = offsetMin;
-        targetRectTransform.offsetMax = offsetMax;
+        SafeAreaRectTransform.offsetMin = offsetMin;
+        SafeAreaRectTransform.offsetMax = offsetMax;
     }
 
 
     void CalculateAndLogTopGap()
     {
-        Rect safeArea = targetRectTransform.rect;
+        Rect safeArea = SafeAreaRectTransform.rect;
         Rect screen = CanvasRectTransform.rect;
         Rect TopArea = TopAreaRectTransform.rect;
         Rect TopMenuArea = TopMenuAreaRectTransform.rect;
@@ -210,33 +216,188 @@ public class SafeAreaAdjuster : MonoBehaviour
 
     public void SetUIResolution()
     {
-        // Vector2 TopMenuSize = TopMenuAreaRectTransform.sizeDelta;
-        // TopMenuSize.y = 100f;
-        // TopMenuAreaRectTransform.sizeDelta = TopMenuSize;
-        
         Vector2 TopMenuSize = TopMenuAreaRectTransform.sizeDelta;
-    
+
         // 새 높이 설정 (너비는 기존 값 유지)
-        float newHeight = 100f;
-        TopMenuAreaRectTransform.sizeDelta = new Vector2(TopMenuSize.x, newHeight);
+        float topHeight = 100f;
+        TopMenuAreaRectTransform.sizeDelta = new Vector2(TopMenuSize.x, topHeight);
+
+        Vector2 BottomMenuSize = BottomMenuRectTransform.sizeDelta;
+
+        // 새 높이 설정 (너비는 기존 값 유지)
+        float bottomHeight = 200f;
+        BottomMenuRectTransform.sizeDelta = new Vector2(BottomMenuSize.x, bottomHeight);
     }
-    
-    // void SetUIResolution()
+
+    // void AdjustSafeAreaAndMargins()
     // {
-    //     if (TopMenuAreaRectTransform == null)
+    //     if (SafeAreaRectTransform == null || TopAreaRectTransform == null || BottomAreaRectTransform == null)
     //     {
-    //         Debug.LogError("RectTransform reference is missing!");
+    //         Debug.LogError("One or more RectTransform references are missing!");
     //         return;
     //     }
     //
-    //     // 현재 사이즈 가져오기
-    //     Vector2 currentSize = TopMenuAreaRectTransform.sizeDelta;
+    //     // Get the screen safe area
+    //     Rect safeArea = Screen.safeArea;
+    //     float screenWidth = Screen.width;
+    //     float screenHeight = Screen.height;
     //
-    //     // 새 높이 설정 (너비는 기존 값 유지)
-    //     float newHeight = 100f;
-    //     TopMenuAreaRectTransform.sizeDelta = new Vector2(currentSize.x, newHeight);
+    //     // Safe Area as normalized anchors
+    //     Vector2 safeAreaMin = safeArea.position;
+    //     Vector2 safeAreaMax = safeArea.position + safeArea.size;
+    //     safeAreaMin.x /= screenWidth;
+    //     safeAreaMin.y /= screenHeight;
+    //     safeAreaMax.x /= screenWidth;
+    //     safeAreaMax.y /= screenHeight;
     //
-    //     // 새 사이즈가 적용된 후의 크기 확인
-    //     Debug.Log($"New SizeDelta: {TopMenuAreaRectTransform.sizeDelta}");
+    //     // Apply Safe Area to SafeAreaRectTransform
+    //     SafeAreaRectTransform.anchorMin = safeAreaMin;
+    //     SafeAreaRectTransform.anchorMax = safeAreaMax;
+    //
+    //     // Calculate the size of top and bottom margins
+    //     float bottomMargin = safeArea.yMin;
+    //     float topMargin = screenHeight - safeArea.yMax;
+    //
+    //     // Normalize margins to screen height
+    //     bottomMargin /= screenHeight;
+    //     topMargin /= screenHeight;
+    //
+    //     // Adjust TopAreaRectTransform and BottomAreaRectTransform
+    //     TopAreaRectTransform.anchorMin = new Vector2(0, 1 - topMargin);
+    //     TopAreaRectTransform.anchorMax = new Vector2(1, 1);
+    //     TopAreaRectTransform.offsetMin = Vector2.zero;
+    //     TopAreaRectTransform.offsetMax = Vector2.zero;
+    //
+    //     BottomAreaRectTransform.anchorMin = new Vector2(0, 0);
+    //     BottomAreaRectTransform.anchorMax = new Vector2(1, bottomMargin);
+    //     BottomAreaRectTransform.offsetMin = Vector2.zero;
+    //     BottomAreaRectTransform.offsetMax = Vector2.zero;
+    //
+    //     // Optionally log for debugging
+    //     Debug.Log($"Top Margin: {topMargin * screenHeight}px, Bottom Margin: {bottomMargin * screenHeight}px");
     // }
+
+    void AdjustSafeAreaAndMargins()
+    {
+        if (SafeAreaRectTransform == null || TopAreaRectTransform == null || BottomAreaRectTransform == null ||
+            MainAreaRectTransform == null)
+        {
+            Debug.LogError("One or more RectTransform references are missing!");
+            return;
+        }
+
+        // Get the screen safe area
+        Rect safeArea = Screen.safeArea;
+        float screenWidth = Screen.width;
+        float screenHeight = Screen.height;
+
+        // Safe Area as normalized anchors
+        Vector2 safeAreaMin = safeArea.position;
+        Vector2 safeAreaMax = safeArea.position + safeArea.size;
+        safeAreaMin.x /= screenWidth;
+        safeAreaMin.y /= screenHeight;
+        safeAreaMax.x /= screenWidth;
+        safeAreaMax.y /= screenHeight;
+
+        // Apply Safe Area to SafeAreaRectTransform
+        SafeAreaRectTransform.anchorMin = safeAreaMin;
+        SafeAreaRectTransform.anchorMax = safeAreaMax;
+
+        // Calculate the size of top and bottom margins
+        float bottomMargin = safeArea.yMin;
+        float topMargin = screenHeight - safeArea.yMax;
+
+        // Normalize margins to screen height
+        bottomMargin /= screenHeight;
+        topMargin /= screenHeight;
+
+        // Adjust TopAreaRectTransform and BottomAreaRectTransform
+        TopAreaRectTransform.anchorMin = new Vector2(0, 1 - topMargin);
+        TopAreaRectTransform.anchorMax = new Vector2(1, 1);
+        TopAreaRectTransform.offsetMin = Vector2.zero;
+        TopAreaRectTransform.offsetMax = Vector2.zero;
+
+        BottomAreaRectTransform.anchorMin = new Vector2(0, 0);
+        BottomAreaRectTransform.anchorMax = new Vector2(1, bottomMargin);
+        BottomAreaRectTransform.offsetMin = Vector2.zero;
+        BottomAreaRectTransform.offsetMax = Vector2.zero;
+
+        // Adjust MainAreaRectTransform to fit between Top and Bottom areas
+        MainAreaRectTransform.anchorMin = new Vector2(0, bottomMargin);
+        MainAreaRectTransform.anchorMax = new Vector2(1, 1 - topMargin);
+        MainAreaRectTransform.offsetMin = Vector2.zero;
+        MainAreaRectTransform.offsetMax = Vector2.zero;
+
+        // Optionally log for debugging
+        Debug.Log($"Top Margin: {topMargin * screenHeight}px, Bottom Margin: {bottomMargin * screenHeight}px");
+    }
+
+    void AdjustSafeAreaAndMenus()
+    {
+        if (SafeAreaRectTransform == null || TopAreaRectTransform == null || BottomAreaRectTransform == null ||
+            MainAreaRectTransform == null
+            || TopMenuRectTransform == null || BottomMenuRectTransform == null)
+        {
+            Debug.LogError("One or more RectTransform references are missing!");
+            return;
+        }
+
+        // Get the screen safe area
+        Rect safeArea = Screen.safeArea;
+        float screenWidth = Screen.width;
+        float screenHeight = Screen.height;
+
+        // Safe Area as normalized anchors
+        Vector2 safeAreaMin = safeArea.position;
+        Vector2 safeAreaMax = safeArea.position + safeArea.size;
+        safeAreaMin.x /= screenWidth;
+        safeAreaMin.y /= screenHeight;
+        safeAreaMax.x /= screenWidth;
+        safeAreaMax.y /= screenHeight;
+
+        // Apply Safe Area to SafeAreaRectTransform
+        SafeAreaRectTransform.anchorMin = safeAreaMin;
+        SafeAreaRectTransform.anchorMax = safeAreaMax;
+
+        // Calculate the size of top and bottom margins
+        float topMargin = screenHeight - safeArea.yMax + TopMenuRectTransform.rect.height +0.0148726f;
+        float bottomMargin = safeArea.yMin;
+
+        float topMenuHeightPx = TopMenuRectTransform.rect.height;
+        
+        // Normalize margins to screen height
+        topMargin /= screenHeight;
+        bottomMargin /= screenHeight;
+        
+
+        // Adjust TopAreaRectTransform and BottomAreaRectTransform
+        TopAreaRectTransform.anchorMin = new Vector2(0, 1 - topMargin );
+        TopAreaRectTransform.anchorMax = new Vector2(1, 1);
+        TopAreaRectTransform.offsetMin = Vector2.zero;
+        TopAreaRectTransform.offsetMax = Vector2.zero;
+        
+        TopMenuRectTransform.anchorMin = new Vector2(0.5f, 0); // Center horizontally, align to bottom
+        TopMenuRectTransform.anchorMax = new Vector2(0.5f, 0); // Center horizontally, align to bottom
+        TopMenuRectTransform.pivot = new Vector2(0.5f, 0); // Set pivot to bottom center
+        TopMenuRectTransform.offsetMin = new Vector2(-topMenuHeightPx / 2, 0); // Center horizontally by half of height
+        TopMenuRectTransform.offsetMax = new Vector2(topMenuHeightPx / 2, topMenuHeightPx); // Center horizontally by half of height and height
+
+        BottomAreaRectTransform.anchorMin = new Vector2(0, 0);
+        BottomAreaRectTransform.anchorMax = new Vector2(1, bottomMargin);
+        BottomAreaRectTransform.offsetMin = Vector2.zero;
+        BottomAreaRectTransform.offsetMax = Vector2.zero;
+        
+        
+        
+        // Adjust MainAreaRectTransform to fit between the top and bottom menus
+        MainAreaRectTransform.anchorMin = new Vector2(0, bottomMargin);
+        MainAreaRectTransform.anchorMax = new Vector2(1, 1 - topMargin);
+        MainAreaRectTransform.offsetMin = Vector2.zero;
+        MainAreaRectTransform.offsetMax = Vector2.zero;
+
+        // Optionally log for debugging
+        Debug.Log($"Top Margin: {topMargin * screenHeight}px");
+        // Debug.Log(
+        // $"Bottom Margin: {bottomMargin * screenHeight}px, Bottom Menu Height: {bottomMenuHeight * screenHeight}px");
+    }
 }

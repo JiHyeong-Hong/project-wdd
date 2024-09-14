@@ -97,7 +97,7 @@ public class LoadingManager : MonoBehaviour
     {
         loadingBar.fillAmount = progress;
         // loadingText.text = $"{name}\n Data Loading...  {Mathf.RoundToInt(progress * 100)}%";
-        // loadingText.text = $"Resource Data Loading...  {Mathf.RoundToInt(progress * 100)}%";
+        loadingText.text = $"Resource Data Loading...  {Mathf.RoundToInt(progress * 100)}%";
     }
 
     private void OnLoadingComplete()
@@ -106,7 +106,7 @@ public class LoadingManager : MonoBehaviour
         // �ε� �Ϸ� �� GameManager �ʱ�ȭ ȣ��
         //GameManager.Instance.InitializeManagers();
         startButton.SetActive(true);
-        // Debug.Log("Loading Complete");
+        Debug.Log("Loading Complete");
     }
 
     private string GetResourcePath<T>(T resource) where T : Object
