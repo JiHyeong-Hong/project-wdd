@@ -1,8 +1,10 @@
+using System.Timers;
 using Cysharp.Threading.Tasks.Triggers;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Sequence = DG.Tweening.Sequence;
 
@@ -12,8 +14,12 @@ public class ParrotSkill : SkillBase
     private float orbitRadius = 1f;
     private List<Bird> birds = new List<Bird>();
     private Sequence sequence; // 기존 시퀀스를 저장할 변수 추가
+    private float elapsedTime;
+    private float duration;
+
     public override void DoSkill()
     {
+        //duration = SkillData.Duration * (1 + PassiveHelper.Instance.GetPassiveValue(Define.PassiveSkillStatusType.Duration));
         SoundManager.Instance.Play(Define.ESoundMainType.Skill1, Define.ESoundType.Parrot);
         ClearSatellites();
 
@@ -106,5 +112,16 @@ public class ParrotSkill : SkillBase
         birdPool = new GameObject("BirdPool");
         birdPool.transform.parent = Owner.transform;
         birdPool.transform.localPosition = Vector3.zero; // Owner의 위치로 이동
+    }
+
+    // duration 사용시, 현재 미사용
+    private void UpdateDuration()
+    {
+        elapsedTime += Time.deltaTime;
+
+        if (elapsedTime > duration)
+        {
+            Clear();
+        }
     }
 }

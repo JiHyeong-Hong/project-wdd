@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Define;
 
 public class Tiger : Projectile
 {
@@ -128,9 +129,9 @@ public class Tiger : Projectile
     //}
 
     void DoDamage()
-    {
-        
-        Collider2D[] targets = Util.SearchCollidersInRadius(transform.position, Skill.SkillData.AttackRange); // �浹�� ���� �ֺ��� �ִ� ���͵��� ã��
+    {        
+        // Collider2D[] targets = Util.SearchCollidersInRadius(transform.position, Skill.SkillData.AttackRange); // �浹�� ���� �ֺ��� �ִ� ���͵��� ã��
+        Collider2D[] targets = Util.SearchCollidersInRadius(transform.position, Skill.SkillData.AttackRange * (1 + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.AttackRange)));
         foreach (var target in targets)
         {
             //Debug.Log("Tiger DoDamage");

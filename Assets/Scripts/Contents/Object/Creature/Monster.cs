@@ -172,9 +172,11 @@ public class Monster : Creature
                 finalDamage = projectile.ProjectileData.ContactDmg;
         }
         else if (CreatureType == ECreatureType.Hero)
-            finalDamage = skill.SkillData.Damage + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Attack);
+            // finalDamage = skill.SkillData.Damage + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Attack);
+            finalDamage = skill.SkillData.Damage * (1 + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Attack));
         else if (CreatureType == ECreatureType.Monster || CreatureType == ECreatureType.MiddleBoss || CreatureType == ECreatureType.Boss)
-            finalDamage = skill.SkillData.Damage + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Attack);
+            // finalDamage = skill.SkillData.Damage + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Attack);
+            finalDamage = skill.SkillData.Damage * (1 + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Attack));
 
         return finalDamage;
     }

@@ -98,7 +98,7 @@ public static class Define
 		Exp = 1,
 		Magnet = 2,
 		Trumpet = 3,
-		Medkit = 4,
+		FirstAidKit = 4,
 		BulletproofVest = 5,
 		Gold = 6,
 		Key = 7,

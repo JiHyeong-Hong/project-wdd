@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7270687952977908853}
   - component: {fileID: 5702591537111429288}
   m_Layer: 0
-  m_Name: Medkit
+  m_Name: FirstAidKit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

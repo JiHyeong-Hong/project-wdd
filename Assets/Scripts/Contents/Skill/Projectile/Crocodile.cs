@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
+using static Define;
 
 public class Crocodile : Projectile
 {
@@ -119,9 +120,9 @@ public class Crocodile : Projectile
             SoundManager.Instance.Play(Define.ESoundMainType.Skill2, Define.ESoundType.Crocodile);
             
 
-            Collider2D[] targets = Util.SearchCollidersInRadius(transform.position, Skill.SkillData.AttackRange); // �浹�� ���� �ֺ��� �ִ� ���͵��� ã��
+            Collider2D[] targets = Util.SearchCollidersInRadius(transform.position, Skill.SkillData.AttackRange * (1 + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.AttackRange))); // �浹�� ���� �ֺ��� �ִ� ���͵��� ã��
 
-            StartCoroutine(Util.DrawCircle(transform.position, Skill.SkillData.AttackRange, 16, Color.red, 5f)); // ���� ������ �ð������� ǥ��
+            StartCoroutine(Util.DrawCircle(transform.position, Skill.SkillData.AttackRange * (1 + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.AttackRange)), 16, Color.red, 5f)); // ���� ������ �ð������� ǥ��
 
             foreach (var target in targets)
             {
@@ -167,13 +168,13 @@ public class Crocodile : Projectile
         Collider2D[] targets = null;
         float elapsedTime = 0; // ��� �ð�
 
-        swampRenderer.transform.DOScale(new Vector3(0.5f, 0.5f, 1), skill2.SkillData.AttackRange);
-        swampRenderer.transform.DOMove(gravityPoint.transform.position, skill2.SkillData.AttackRange);
+        swampRenderer.transform.DOScale(new Vector3(0.5f, 0.5f, 1), skill2.SkillData.AttackRange * (1 + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.AttackRange)));
+        swampRenderer.transform.DOMove(gravityPoint.transform.position, skill2.SkillData.AttackRange * (1 + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.AttackRange)));
 
         while (elapsedTime <= 2)
         {
             elapsedTime+= Time.deltaTime;
-            targets = Util.SearchCollidersInRadius(transform.position, skill2.SkillData.AttackRange); // �浹�� ���� �ֺ��� �ִ� ���͵��� ã��
+            targets = Util.SearchCollidersInRadius(transform.position, skill2.SkillData.AttackRange * (1 + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.AttackRange))); // �浹�� ���� �ֺ��� �ִ� ���͵��� ã��
 
             foreach (var item in targets)
             {

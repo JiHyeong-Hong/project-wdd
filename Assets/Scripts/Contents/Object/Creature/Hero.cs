@@ -39,15 +39,21 @@ public class Hero : Creature
 
     public void AddGold(int amount)
     {
-        Gold += amount;
-		//Debug.Log($"골드 획득 : {amount}");
-		//Debug.Log($"총 골드 : {Gold}");
+        float increaseVal = PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Gold); // 패시브 스킬 반영 @홍지형 240914
+        int resultAmount = Mathf.CeilToInt(amount * (1 + increaseVal)); // 소수점 올림
+        Gold += resultAmount;
+        //Debug.Log($"골드 획득 : {resultAmount}");
+        //Debug.Log($"골드 증가율 : {increaseVal}");
+        //Debug.Log($"총 골드 : {Gold}");
     }
 
     public void AddExp(float amount)
     {
-        Exp += amount;
-        //Debug.Log($"경험치 획득 : {amount}");
+        float increaseVal = PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Exp); // 패시브 스킬 반영 @홍지형 240914
+        float resultAmount = amount * (1 + increaseVal);
+        Exp += resultAmount;
+        //Debug.Log($"경험치 획득 : {resultAmount}");
+        //Debug.Log($"경험치 증가율 : {increaseVal}");
         //Debug.Log($"총 경험치 : {Exp}");
     }
 
@@ -113,15 +119,16 @@ public class Hero : Creature
 		Level = heroData.Level;
 		MaxExp = heroData.MaxExp;
 		Exp = 0;
-		MaxHp = heroData.MaxHp + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Hp);
-		Hp = heroData.MaxHp + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Hp);
+        MaxHp = heroData.MaxHp * (1 + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Hp));
+        Hp = heroData.MaxHp * (1 + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Hp));		
 		ItemAcquireRange = heroData.ItemAcquireRange + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Farming);
 		ResistDisorder = heroData.ResistDisorder + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.DamageCare);
+        MoveSpeed = heroData.MoveSpeed * (1 + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.MoveSpeed)) * Define.DEFAULT_SPEED;
+        
+        // foreach (int skillID in hereData.SkillIdList)
+        // 	AddSkill(skillID);
 
-		// foreach (int skillID in hereData.SkillIdList)
-		// 	AddSkill(skillID);
-
-		Managers.Game.RefreshUI();
+        Managers.Game.RefreshUI();
 	}
 
 	void Update()
@@ -162,6 +169,9 @@ public class Hero : Creature
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
+            // DEBUG::            
+            //Debug.Log($"[체력] {Hp} / {MaxHp}"); 
+            Debug.Log($"[이속] {MoveSpeed}"); 
             //UIManagerNew.Instance.ShowWindow<SkillLevelUpWindow>(Define.UIWindowType.AnimalRescueWindow);
             // UIManagerNew.Instance.ShowWindow<SkillLevelUpWindow>(Define.UIWindowType.ShopWindow);
         }
@@ -254,11 +264,11 @@ public class Hero : Creature
 		Data.HeroLevelData heroLevelData = Managers.Data.HeroLevelDic[DataID + Level];
 		
 		Exp = 0;
-		MaxHp = heroLevelData.MaxHp + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Hp);
-		Hp = heroLevelData.MaxHp + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Hp);
-		MaxExp = heroLevelData.Exp;
-		MoveSpeed = ((heroLevelData.MoveSpeed + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.MoveSpeed)) / 100.0f) * Define.DEFAULT_SPEED;
-		ItemAcquireRange = heroLevelData.ItemAcquireRange + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Farming);
+		MaxHp = heroLevelData.MaxHp * (1 + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Hp));
+		Hp = heroLevelData.MaxHp * (1 + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Hp));
+        MaxExp = heroLevelData.Exp;        
+        //MoveSpeed = (heroLevelData.MoveSpeed / 100.0f) * Define.DEFAULT_SPEED; // HeroLevelData에 있는 이속증가값은 사용 안함. 레거시코드
+        ItemAcquireRange = heroLevelData.ItemAcquireRange + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Farming);
 		ResistDisorder = heroLevelData.ResistDisorder + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.DamageCare);
 
 		Managers.Game.OnLevelUp?.Invoke();
