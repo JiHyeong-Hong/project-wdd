@@ -37,6 +37,13 @@ public class PassiveHelper
             HeroData heroData = hero.CreatureData as HeroData;            
             hero.MoveSpeed = hero.MoveSpeed * (1 + Math.Abs(stateValue));
         }
+        // 최대체력증가는 선택 시 바로 적용 240915 @홍지형
+        if (statusType == PassiveSkillStatusType.Hp)
+        {
+            Hero hero = Managers.Object.Hero;
+            HeroData heroData = hero.CreatureData as HeroData;
+            hero.MaxHp = hero.MaxHp * (1 + Math.Abs(stateValue));
+        }
     }
 
     public float GetPassiveValue(PassiveSkillStatusType value) => passiveSkill.TryGetValue(value, out float v) ? v : 0;

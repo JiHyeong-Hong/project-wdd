@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using SkillType = Define.SkillType;
@@ -359,9 +360,16 @@ public class SkillManager
                 // UnityEngine.Debug.Log($"삭제실패..");
             }
         }
+        
         Managers.Skill.usingSkillDic[skillData.skillType].Add(Managers.Skill.allSkillDic[skillData.Name][skillData.Level - 1]); // 현재레벨의 스킬 추가
         Managers.Skill.usingSkillDic[skillData.skillType][Managers.Skill.usingSkillDic[skillData.skillType].Count - 1].SetInfo(skillData);
         Managers.Skill.usingSkillDic[skillData.skillType][Managers.Skill.usingSkillDic[skillData.skillType].Count - 1].SetOwner(Managers.Object.Hero);
+        
+        if (skillData.Level == 1 && skillData.skillType == SkillType.Passive) // 1렙 패시브인경우
+        {
+            SkillBase skill = Managers.Skill.allSkillDic[skillData.Name][skillData.Level - 1]; // 추가한 현재스킬
+            skill.LevelUp(Managers.Skill.allSkillDic[skillData.Name][skillData.Level - 1].SkillData);     // 스킬등록
+        }
 
         BreakthroughHelper.Instance.GetBreakthroughBaseSkill(skillData.skillType, skillData.SkillID);
     }

@@ -174,7 +174,7 @@ public class Monster : Creature
         else if (CreatureType == ECreatureType.Hero)
             // finalDamage = skill.SkillData.Damage + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Attack);
             finalDamage = skill.SkillData.Damage * (1 + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Attack));
-        else if (CreatureType == ECreatureType.Monster || CreatureType == ECreatureType.MiddleBoss || CreatureType == ECreatureType.Boss)
+        else if (CreatureType == ECreatureType.Monster || CreatureType == ECreatureType.MiddleBoss || CreatureType == ECreatureType.Boss || CreatureType == ECreatureType.Box)
             // finalDamage = skill.SkillData.Damage + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Attack);
             finalDamage = skill.SkillData.Damage * (1 + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Attack));
 

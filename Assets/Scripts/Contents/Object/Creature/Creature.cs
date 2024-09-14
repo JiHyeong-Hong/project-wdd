@@ -249,18 +249,11 @@ public class Creature : BaseObject
         else if(CreatureType == ECreatureType.Monster || CreatureType == ECreatureType.MiddleBoss || CreatureType == ECreatureType.Boss || CreatureType == ECreatureType.Box)
             // finalDamage = skill.SkillData.Damage + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Attack);
             finalDamage = skill.SkillData.Damage * (1 + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Attack));
+        
+        Hp = Mathf.Clamp(Hp - finalDamage, 0, MaxHp);
 
-        if (creature is Hero)
-        {
-            Hero hero = creature as Hero;
-            Hp = Mathf.Clamp(hero.Hp - finalDamage, 0, hero.MaxHp); 
-        }
-        else  // 만약 히어로가 아닌 크리쳐들도 Hp정보를 Creature이 아닌데서 가져오면, 히어로처럼 예외처리 해야함.
-        {
-            Hp = Mathf.Clamp(Hp - finalDamage, 0, MaxHp);
-        }        
+        // Debug.LogWarning($"[{gameObject.name}] Hit! HP({Hp}/{MaxHp})"); // 디버깅용. 삭제가능 @홍지형
 
-        //Debug.LogWarning($"[{gameObject.name}] Hit! HP({Hp}/{MaxHp})"); // 디버깅용. 삭제가능 @홍지형
         if (Hp <= 0 && CreatureState != ECreatureState.Dead)
         {
             CreatureState = ECreatureState.Dead;

@@ -234,9 +234,9 @@ public class Hero : Creature
         if (isInvincible)
             return; // 무적 상태일 때는 아무런 처리를 하지 않음
 
-        base.OnDamaged(attacker, skill);	
-
-		Managers.Game.RefreshUI();
+        base.OnDamaged(attacker, skill);
+        Debug.LogWarning($"[{gameObject.name}] Hit! HP({Hp}/{MaxHp})"); // 디버깅용. 삭제가능 @홍지형
+        Managers.Game.RefreshUI();
 	}
 
 	public override void OnDead(BaseObject attacker, SkillBase skill)
@@ -264,8 +264,7 @@ public class Hero : Creature
 		Data.HeroLevelData heroLevelData = Managers.Data.HeroLevelDic[DataID + Level];
 		
 		Exp = 0;
-		MaxHp = heroLevelData.MaxHp * (1 + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Hp));
-		Hp = heroLevelData.MaxHp * (1 + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Hp));
+        // MaxHp = heroLevelData.MaxHp * (1 + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Hp)); HeroLevelData의 MaxLevel은 미사용. 레거시코드        
         MaxExp = heroLevelData.Exp;        
         //MoveSpeed = (heroLevelData.MoveSpeed / 100.0f) * Define.DEFAULT_SPEED; // HeroLevelData에 있는 이속증가값은 사용 안함. 레거시코드
         ItemAcquireRange = heroLevelData.ItemAcquireRange + PassiveHelper.Instance.GetPassiveValue(PassiveSkillStatusType.Farming);
