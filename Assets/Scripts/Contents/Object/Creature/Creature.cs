@@ -263,7 +263,8 @@ public class Creature : BaseObject
 
 
         // 넉백
-        if (skill != null && skill.SkillData.KnockbackPower != 0)
+        // if (skill != null && skill.SkillData.KnockbackPower != 0)
+        if (skill != null && skill.SkillData.KnockbackPower != 0 && CreatureType != ECreatureType.Boss)
         {
             StartCoroutine(knockbackUpdate(transform.position - attacker.transform.position, skill.SkillData.KnockbackPower * 0.01f, 0.5f));
         }
