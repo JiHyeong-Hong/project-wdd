@@ -211,21 +211,32 @@ public class Monster : Creature
         else if (CreatureType == ECreatureType.Box)
             SoundManager.Instance.Play(Define.ESoundMainType.Object, Define.ESoundType.ItemBox);
         bool isDrop = false;
-        int rand = Random.Range(0, 100);
-        // Debug.Log("아이템 드랍 확률 :" + $"{rand}");
-        int setVal = 0;
+
+        // DropPer의 전체 합계 구하기
+        int totalDropPer = 0;
         foreach (var item in DropData)
         {
-            Debug.Log($"[Drop] ID:{item.ItemID}, DropPer:{item.DropPer}");
-            setVal += item.DropPer;
-            Debug.Log($"[Drop] setVal:{setVal}");
+            totalDropPer += item.DropPer;
+        }
 
-            if (rand <= setVal)
+        // 랜덤 값 생성 (0부터 totalDropPer 사이의 값)
+        int rand = Random.Range(0, totalDropPer);
+        //Debug.Log("아이템 드랍 확률 :" + $"{rand}/{totalDropChance}");
+
+        int cumulativeDropPer = 0;
+        foreach (var item in DropData)
+        {
+            // 각 아이템의 드랍 확률을 누적
+            cumulativeDropPer += item.DropPer;
+
+            //Debug.Log($"[Drop] ID:{item.ItemID}, rand:{rand}, cumulativeDropChance:{cumulativeDropChance}");
+            // 랜덤 값이 누적 확률 이하일 경우 아이템 드랍
+            if (rand < cumulativeDropPer)
             {
-                isDrop = !isDrop;
+                isDrop = true;
                 OnDrop(transform, item.ItemID);
-                Debug.Log($"[Drop O] ID:{item.ItemID}");
-                break;
+                //Debug.Log($"[Drop O] ID:{item.ItemID}");
+                break;  // 드랍에 성공하면 더 이상 검사하지 않음
             }
         }
 
@@ -233,16 +244,12 @@ public class Monster : Creature
         {
             // Debug.Log("아이템 드랍 실패!!");
         }
- 		
- 		// 골드 획득 테스트용. @홍지형 삭제가능
-        //Managers.Object.Spawn<Gold>(transform.position, 0);
 
-        if(CoMonsterAI != null)
+        if (CoMonsterAI != null)
             StopCoroutine(CoMonsterAI);
         CoMonsterAI = null;
         // Managers.Resource.Destroy(gameObject);
         Managers.Object.Despawn(this);
-
 
         if (damageTextPrefab == null)
         {

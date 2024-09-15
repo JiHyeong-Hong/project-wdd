@@ -75,6 +75,7 @@ public class StageThumbnailView : MonoBehaviour, IView
             lockImage.gameObject.SetActive(true);
             stage2Image.gameObject.SetActive(true);
             rightButton.interactable = false;
+            stageStartButton.interactable = false; // 스테이지2 시작버튼 막아놓음
 
         ChangedStage(++stageIndex);
     }
@@ -88,6 +89,7 @@ public class StageThumbnailView : MonoBehaviour, IView
             stage2Image.gameObject.SetActive(false);
             stage1Image.gameObject.SetActive(true);
             rightButton.interactable = true;
+            stageStartButton.interactable = true; // 스테이지2 시작버튼 막아놓음
 
         ChangedStage(--stageIndex);
     }

@@ -24,7 +24,7 @@ public class PeacockSkill : SkillBase
         
         AttackKunai(direction, 0);
 
-        for (int i = 2; i <= SkillData.CastCount; ++i)
+        for (int i = 2; i <= SkillData.ProjectileNum; ++i)
         {
             float angle = (i / 2) * SkillData.CastAngle;
             if (i % 2 == 1)
