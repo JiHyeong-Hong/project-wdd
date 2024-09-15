@@ -1,91 +1,91 @@
 SkillID,Name,AttackPattern,Type,Lv,ProjectileNum,CastAngle,Damage,AttackSpeed,AttackRange,KnockbackPower,StunTime,ConditionRange,CastCount,Duration,SkillTurn,CoolTime,CastPer,StatType,StatValue,SkillGetType,SkillMaxLv,Kor_Text,Eng_Text
-1011,Tiger,11,1,1,1,0,20,1,1.5,200,0,1,1,0,0,10,1,0,0,0,5,È£¶ûÀÌ°¡ ´Ş·Á¿Í ÀûÀ» Å¸°İÇÕ´Ï´Ù. (µ¥¹ÌÁö 20),A tiger runs over and hits the enemy. (Damage 20)
-1012,Tiger,11,1,2,1,0,25,1,2,200,0,2,1,0,0,10,1,0,0,0,5,È£¶ûÀÌ°¡ ´Ş·Á¿Í ÀûÀ» Å¸°İÇÕ´Ï´Ù. (µ¥¹ÌÁö 25),A tiger runs over and hits the enemy. (Damage 25)
-1013,Tiger,11,1,3,1,0,30,1,2.5,200,0,2,1,0,0,10,1,0,0,0,5,È£¶ûÀÌ°¡ ´Ş·Á¿Í ÀûÀ» Å¸°İÇÕ´Ï´Ù. (µ¥¹ÌÁö 30),A tiger runs over and hits the enemy. (Damage 30)
-1014,Tiger,11,1,4,1,0,35,1,3,200,0,3,1,0,0,9,1,0,0,0,5,È£¶ûÀÌ°¡ ´Ş·Á¿Í ÀûÀ» Å¸°İÇÕ´Ï´Ù. (µ¥¹ÌÁö 35),A tiger runs over and hits the enemy. (Damage 35)
-1015,Tiger,11,1,5,2,180,35,1,3,200,0,3,1,0,0,8,1,0,0,1,5,È£¶ûÀÌ°¡ ´Ş·Á¿Í ÀûÀ» Å¸°İÇÕ´Ï´Ù. (µ¥¹ÌÁö 35),A tiger runs over and hits the enemy. (Damage 35)
-1021,Parrot,12,1,1,1,0,5,1,1,100,0,1,6,5,0,5,1,0,0,0,5,ÁÖÀ§¸¦ È¸ÀüÇÏ´Â ¾Ş¹«»õ°¡ 1¸¶¸®°¡ ¼ÒÈ¯µË´Ï´Ù.,The parrot spinning around is summoned 1.
-1022,Parrot,12,1,2,2,0,8,1,1,100,0,1,6,5,0,5,1,0,0,0,5,ÁÖÀ§¸¦ È¸ÀüÇÏ´Â ¾Ş¹«»õ°¡ 2¸¶¸®°¡ ¼ÒÈ¯µË´Ï´Ù.,The parrot spinning around is summoned 2.
-1023,Parrot,12,1,3,3,0,11,1,1,100,0,1,6,5,0,5,1,0,0,0,5,ÁÖÀ§¸¦ È¸ÀüÇÏ´Â ¾Ş¹«»õ°¡ 3¸¶¸®°¡ ¼ÒÈ¯µË´Ï´Ù.,The parrot spinning around is summoned 3.
-1024,Parrot,12,1,4,4,0,11,1,1,100,0,1,6,5,0,5,1,0,0,0,5,ÁÖÀ§¸¦ È¸ÀüÇÏ´Â ¾Ş¹«»õ°¡ 4¸¶¸®°¡ ¼ÒÈ¯µË´Ï´Ù.,The parrot spinning around is summoned 4.
-1025,Parrot,12,1,5,4,0,15,1,2,100,0,2,6,5,0,5,1,0,0,1,5,ÁÖÀ§¸¦ È¸ÀüÇÏ´Â ¾Ş¹«»õ°¡ 4¸¶¸®°¡ ¼ÒÈ¯µË´Ï´Ù.,The parrot spinning around is summoned 4.
-1031,Bear,1,1,1,1,0,8,1,1,100,0,1,1,0,0,1,1,0,0,0,5,Àü¹æ¿¡ °õÀÌ ½ºÀ®ÇÏ¿© ÀûÀ» º£¾î¹ö¸³´Ï´Ù. (µ¥¹ÌÁö n),A bear swings ahead and cuts down the enemy. (Damage n)
-1032,Bear,1,1,2,1,0,10,1,2,100,0,2,1,0,0,1,1,0,0,0,5,Àü¹æ¿¡ °õÀÌ ½ºÀ®ÇÏ¿© ÀûÀ» º£¾î¹ö¸³´Ï´Ù. (µ¥¹ÌÁö n),A bear swings ahead and cuts down the enemy. (Damage n)
-1033,Bear,1,1,3,1,0,10,1,2,100,0,2,1,0,0,1,1,0,0,0,5,Àü¹æ¿¡ °õÀÌ ½ºÀ®ÇÏ¿© ÀûÀ» º£¾î¹ö¸³´Ï´Ù. (µ¥¹ÌÁö n),A bear swings ahead and cuts down the enemy. (Damage n)
-1034,Bear,1,1,4,1,0,12,1,3,100,0,3,1,0,0,1,1,0,0,0,5,Àü¹æ¿¡ °õÀÌ ½ºÀ®ÇÏ¿© ÀûÀ» º£¾î¹ö¸³´Ï´Ù. (µ¥¹ÌÁö n),A bear swings ahead and cuts down the enemy. (Damage n)
-1035,Bear,1,1,5,2,180,14,1,3,100,0,3,1,0,0,1,1,0,0,1,5,Àü¹æ¿¡ °õÀÌ ½ºÀ®ÇÏ¿© ÀûÀ» º£¾î¹ö¸³´Ï´Ù. (µ¥¹ÌÁö n),A bear swings ahead and cuts down the enemy. (Damage n)
-1041,Crocodile,1,1,1,1,0,15,1,1,100,0,1,1,0,0,10,1,0,0,0,5,ÀûÀ» Å¸°ÙÇÑ ¾Ç¾î°¡ ´Ş·Á°¡ ÀûÀ» ¹°¾î¹ö¸³´Ï´Ù. (µ¥¹ÌÁö 15),A crocodile targeting the enemy runs and bites the enemy. (Damage 15)
-1042,Crocodile,1,1,2,1,0,20,1,2,100,0,2,1,0,0,10,1,0,0,0,5,ÀûÀ» Å¸°ÙÇÑ ¾Ç¾î°¡ ´Ş·Á°¡ ÀûÀ» ¹°¾î¹ö¸³´Ï´Ù. (µ¥¹ÌÁö 20),A crocodile targeting the enemy runs and bites the enemy. (Damage 20)
-1043,Crocodile,1,1,3,1,0,25,1,2,100,0,2,1,0,0,7,1,0,0,0,5,ÀûÀ» Å¸°ÙÇÑ ¾Ç¾î°¡ ´Ş·Á°¡ ÀûÀ» ¹°¾î¹ö¸³´Ï´Ù. (µ¥¹ÌÁö 25),A crocodile targeting the enemy runs and bites the enemy. (Damage 25)
-1044,Crocodile,1,1,4,1,0,30,1,3,100,0,3,1,0,0,7,1,0,0,0,5,ÀûÀ» Å¸°ÙÇÑ ¾Ç¾î°¡ ´Ş·Á°¡ ÀûÀ» ¹°¾î¹ö¸³´Ï´Ù. (µ¥¹ÌÁö 30),A crocodile targeting the enemy runs and bites the enemy. (Damage 30)
-1045,Crocodile,1,1,5,1,0,35,1,3,100,0,3,1,0,0,6,1,0,0,1,5,ÀûÀ» Å¸°ÙÇÑ ¾Ç¾î°¡ ´Ş·Á°¡ ÀûÀ» ¹°¾î¹ö¸³´Ï´Ù. (µ¥¹ÌÁö 35),A crocodile targeting the enemy runs and bites the enemy. (Damage 35)
-1061,Skunk,12,1,1,2,0,5,1,1,0,0,0,1,10,0,7,1,0,0,0,5,ÁÖº¯¿¡ ½ºÄÈÅ©°¡ ¶ÙÃÄ³ª¿Í °¡½º¸¦ »ìÆ÷ÇÕ´Ï´Ù. (µ¥¹ÌÁö 8),Skunks run out around and spray gas. (Damage 8)
-1062,Skunk,12,1,2,3,0,5,1,2,0,0,0,1,10,0,7,1,0,0,0,5,ÁÖº¯¿¡ ½ºÄÈÅ©°¡ ¶ÙÃÄ³ª¿Í °¡½º¸¦ »ìÆ÷ÇÕ´Ï´Ù. (µ¥¹ÌÁö 8),Skunks run out around and spray gas. (Damage 8)
-1063,Skunk,12,1,3,4,0,5,1,2,0,0,0,1,10,0,7,1,0,0,0,5,ÁÖº¯¿¡ ½ºÄÈÅ©°¡ ¶ÙÃÄ³ª¿Í °¡½º¸¦ »ìÆ÷ÇÕ´Ï´Ù. (µ¥¹ÌÁö 10),Skunks run out around and spray gas. (Damage 10)
-1064,Skunk,12,1,4,4,0,5,1,2,0,0,0,1,10,0,7,1,0,0,0,5,ÁÖº¯¿¡ ½ºÄÈÅ©°¡ ¶ÙÃÄ³ª¿Í °¡½º¸¦ »ìÆ÷ÇÕ´Ï´Ù. (µ¥¹ÌÁö 10),Skunks run out around and spray gas. (Damage 10)
-1065,Skunk,12,1,5,4,0,7,1,2,0,0,0,1,10,0,5,1,0,0,1,5,ÁÖº¯¿¡ ½ºÄÈÅ©°¡ ¶ÙÃÄ³ª¿Í °¡½º¸¦ »ìÆ÷ÇÕ´Ï´Ù. (µ¥¹ÌÁö 14),Skunks run out around and spray gas. (Damage 14)
-1081,Peacock,4,1,1,1,10,10,15,1,0,0,0,1,0,0,0.5,1,0,0,0,5,ÀûÀ» Å¸°ÙÇÏ¿© ±êÅĞÀ» ¹ß»çÇÕ´Ï´Ù. (µ¥¹ÌÁö 10),Fire feathers at the enemy. (Damage 10)
-1082,Peacock,4,1,2,3,10,15,15,1,0,0,0,1,0,0,0.5,1,0,0,0,5,ÀûÀ» Å¸°ÙÇÏ¿© ±êÅĞÀ» ¹ß»çÇÕ´Ï´Ù. (µ¥¹ÌÁö 15),Fire feathers at the enemy. (Damage 15)
-1083,Peacock,4,1,3,3,10,20,15,1,0,0,0,1,0,0,0.5,1,0,0,0,5,ÀûÀ» Å¸°ÙÇÏ¿© ±êÅĞÀ» ¹ß»çÇÕ´Ï´Ù. (µ¥¹ÌÁö 20),Fire feathers at the enemy. (Damage 20)
-1084,Peacock,4,1,4,5,10,25,15,1,0,0,0,1,0,0,0.5,1,0,0,0,5,ÀûÀ» Å¸°ÙÇÏ¿© ±êÅĞÀ» ¹ß»çÇÕ´Ï´Ù. (µ¥¹ÌÁö 25),Fire feathers at the enemy. (Damage 25)
-1085,Peacock,4,1,5,5,10,30,15,1,0,0,0,1,0,0,0.5,1,0,0,1,5,ÀûÀ» Å¸°ÙÇÏ¿© ±êÅĞÀ» ¹ß»çÇÕ´Ï´Ù. (µ¥¹ÌÁö 30),Fire feathers at the enemy. (Damage 30)
-1,GuardianOfMountain,11,3,1,1,180,45,1,4,300,0,4,1,0,5,30,0.2,0,0,0,1,»êÀÇ ¼öÈ£ÀÚ°¡ ´Ş·Á¿Í ÀûÀ» Å¸°İÇÕ´Ï´Ù.,The guardian of the mountain runs and hits the enemy.
-2,AwakeningParrot,12,3,1,6,0,30,2,1,0,0,1,10,5,5,30,0.2,0,0,0,1,ÁÖÀ§¸¦ È¸ÀüÇÏ´Â °¢¼ºÇÑ ¾Ş¹«»õ°¡ 5¸¶¸®°¡ ¼ÒÈ¯µË´Ï´Ù.,The woke parrot spinning around is summoned 5.
-3,HungryBear,1,3,1,1,0,30,1,4,200,0,4,4,0,5,30,0.2,0,0,0,1,Àü¹æ¿¡ ±¾ÁÖ¸° °õÀÌ ½ºÀ®ÇÏ¿© ÀûÀ» º£¾î¹ö¸³´Ï´Ù.,A hungry bear in front swings and cuts down the enemy.
-7,PoisonGas,12,3,1,6,0,8,1,3,0,0,0,1,12,5,30,0.2,0,0,0,1,ÁÖº¯¿¡ ½ºÄÈÅ©°¡ ¶ÙÃÄ³ª¿Í µ¶°¡½º¸¦ »ìÆ÷ÇÕ´Ï´Ù.,Skunks run out around and spray poisonous gas.
-9,StormFeather,4,3,1,1,0,15,2,1,0,0,0,40,0,5,30,0.2,0,0,0,1,°øÀÛÀÌ ÀûÀ» Å¸°ÙÇÏ¿© ±êÅĞÀ» ¿¬»çÇÏ¿© ¹ß»çÇÕ´Ï´Ù.,Peacock is targeting the enemy and fires the feathers in a row.
-2011,Wistle,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0.08,1,5,ÄğÅ¸ÀÓÀÌ 8% °¨¼ÒÇÕ´Ï´Ù.,The cool time is reduced by 8% seconds.
-2012,Wistle,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0.16,0,5,ÄğÅ¸ÀÓÀÌ 16% °¨¼ÒÇÕ´Ï´Ù.,The cool time is reduced by 16% seconds.
-2013,Wistle,0,2,3,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0.24,0,5,ÄğÅ¸ÀÓÀÌ 24% °¨¼ÒÇÕ´Ï´Ù.,The cool time is reduced by 24% seconds.
-2014,Wistle,0,2,4,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0.32,0,5,ÄğÅ¸ÀÓÀÌ 32% °¨¼ÒÇÕ´Ï´Ù.,The cool time is reduced by 32% seconds.
-2015,Wistle,0,2,5,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0.4,0,5,ÄğÅ¸ÀÓÀÌ 40% °¨¼ÒÇÕ´Ï´Ù.,The cool time is reduced by 40% seconds.
-2031,Comb,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,1,3,0.08,1,5,È¹µæÇÏ´Â °æÇèÄ¡°¡ 8% Áõ°¡ÇÕ´Ï´Ù.,The experience you get increases by 8%.
-2032,Comb,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,1,3,0.16,0,5,È¹µæÇÏ´Â °æÇèÄ¡°¡ 16% Áõ°¡ÇÕ´Ï´Ù.,The experience you get increases by 16%.
-2033,Comb,0,2,3,0,0,0,0,0,0,0,0,0,0,0,0,1,3,0.24,0,5,È¹µæÇÏ´Â °æÇèÄ¡°¡ 24% Áõ°¡ÇÕ´Ï´Ù.,The experience you get increases by 24%.
-2034,Comb,0,2,4,0,0,0,0,0,0,0,0,0,0,0,0,1,3,0.32,0,5,È¹µæÇÏ´Â °æÇèÄ¡°¡ 32% Áõ°¡ÇÕ´Ï´Ù.,The experience you get increases by 32%.
-2035,Comb,0,2,5,0,0,0,0,0,0,0,0,0,0,0,0,1,3,0.4,0,5,È¹µæÇÏ´Â °æÇèÄ¡°¡ 40% Áõ°¡ÇÕ´Ï´Ù.,The experience you get increases by 40%.
-2041,PiggyBank,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,1,4,0.08,1,5,È¹µæÇÏ´Â °ñµå·®ÀÌ 4% Áõ°¡ÇÕ´Ï´Ù.,Increase the amount of gold you earn by 4%.
-2042,PiggyBank,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,1,4,0.16,0,5,È¹µæÇÏ´Â °ñµå·®ÀÌ 16% Áõ°¡ÇÕ´Ï´Ù.,Increase the amount of gold you earn by 16%.
-2043,PiggyBank,0,2,3,0,0,0,0,0,0,0,0,0,0,0,0,1,4,0.24,0,5,È¹µæÇÏ´Â °ñµå·®ÀÌ 24% Áõ°¡ÇÕ´Ï´Ù.,Increase the amount of gold you earn by 24%.
-2044,PiggyBank,0,2,4,0,0,0,0,0,0,0,0,0,0,0,0,1,4,0.32,0,5,È¹µæÇÏ´Â °ñµå·®ÀÌ 32% Áõ°¡ÇÕ´Ï´Ù.,Increase the amount of gold you earn by 32%.
-2045,PiggyBank,0,2,5,0,0,0,0,0,0,0,0,0,0,0,0,1,4,0.4,0,5,È¹µæÇÏ´Â °ñµå·®ÀÌ 40% Áõ°¡ÇÕ´Ï´Ù.,Increase the amount of gold you earn by 40%.
-2051,GasMask,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,1,5,0.1,1,5,Áö¼Ó½Ã°£ÀÌ 10% Áõ°¡ÇÕ´Ï´Ù.,Increases duration by 10% seconds.
-2052,GasMask,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,1,5,0.2,0,5,Áö¼Ó½Ã°£ÀÌ 20% Áõ°¡ÇÕ´Ï´Ù.,Increases duration by 20% seconds.
-2053,GasMask,0,2,3,0,0,0,0,0,0,0,0,0,0,0,0,1,5,0.3,0,5,Áö¼Ó½Ã°£ÀÌ 30% Áõ°¡ÇÕ´Ï´Ù.,Increases duration by 30% seconds.
-2054,GasMask,0,2,4,0,0,0,0,0,0,0,0,0,0,0,0,1,5,0.4,0,5,Áö¼Ó½Ã°£ÀÌ 40% Áõ°¡ÇÕ´Ï´Ù.,Increases duration by 40% seconds.
-2055,GasMask,0,2,5,0,0,0,0,0,0,0,0,0,0,0,0,1,5,0.5,0,5,Áö¼Ó½Ã°£ÀÌ 50% Áõ°¡ÇÕ´Ï´Ù.,Increases duration by 50% seconds.
-2061,Tomahawk,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,1,6,0.03,1,5,Ã¼·Â È¸º¹·®ÀÌ 3% Áõ°¡ÇÕ´Ï´Ù.,Increases physical strength recovery by 3%.
-2062,Tomahawk,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,1,6,0.06,0,5,Ã¼·Â È¸º¹·®ÀÌ 6% Áõ°¡ÇÕ´Ï´Ù.,Increases physical strength recovery by 6%.
-2063,Tomahawk,0,2,3,0,0,0,0,0,0,0,0,0,0,0,0,1,6,0.09,0,5,Ã¼·Â È¸º¹·®ÀÌ 9% Áõ°¡ÇÕ´Ï´Ù.,Increases physical strength recovery by 9%.
-2064,Tomahawk,0,2,4,0,0,0,0,0,0,0,0,0,0,0,0,1,6,0.12,0,5,Ã¼·Â È¸º¹·®ÀÌ 12% Áõ°¡ÇÕ´Ï´Ù.,Increases physical strength recovery by 12%.
-2065,Tomahawk,0,2,5,0,0,0,0,0,0,0,0,0,0,0,0,1,6,0.24,0,5,Ã¼·Â È¸º¹·®ÀÌ 24% Áõ°¡ÇÕ´Ï´Ù.,Increases physical strength recovery by 24%.
-2071,NutryInjection,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,1,7,0.1,1,5,ÃÖ´ë Ã¼·Â·®ÀÌ 10% Áõ°¡ÇÕ´Ï´Ù.,Maximum physical strength increases by 10%.
-2072,NutryInjection,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,1,7,0.2,0,5,ÃÖ´ë Ã¼·Â·®ÀÌ 20% Áõ°¡ÇÕ´Ï´Ù.,Maximum physical strength increases by 20%.
-2073,NutryInjection,0,2,3,0,0,0,0,0,0,0,0,0,0,0,0,1,7,0.4,0,5,ÃÖ´ë Ã¼·Â·®ÀÌ 40% Áõ°¡ÇÕ´Ï´Ù.,Maximum physical strength increases by 40%.
-2074,NutryInjection,0,2,4,0,0,0,0,0,0,0,0,0,0,0,0,1,7,0.6,0,5,ÃÖ´ë Ã¼·Â·®ÀÌ 60% Áõ°¡ÇÕ´Ï´Ù.,Maximum physical strength increases by 60%.
-2075,NutryInjection,0,2,5,0,0,0,0,0,0,0,0,0,0,0,0,1,7,0.8,0,5,ÃÖ´ë Ã¼·Â·®ÀÌ 80% Áõ°¡ÇÕ´Ï´Ù.,Maximum physical strength increases by 80%.
-2081,EnergyDrink,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,1,8,0.1,1,5,ÀÌµ¿¼Óµµ°¡ 10% Áõ°¡ÇÕ´Ï´Ù.,Increase the movement speed by 10%.
-2082,EnergyDrink,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,1,8,0.2,0,5,ÀÌµ¿¼Óµµ°¡ 20% Áõ°¡ÇÕ´Ï´Ù.,Increase the movement speed by 20%.
-2083,EnergyDrink,0,2,3,0,0,0,0,0,0,0,0,0,0,0,0,1,8,0.3,0,5,ÀÌµ¿¼Óµµ°¡ 30% Áõ°¡ÇÕ´Ï´Ù.,Increase the movement speed by 30%.
-2084,EnergyDrink,0,2,4,0,0,0,0,0,0,0,0,0,0,0,0,1,8,0.4,0,5,ÀÌµ¿¼Óµµ°¡ 40% Áõ°¡ÇÕ´Ï´Ù.,Increase the movement speed by 40%.
-2085,EnergyDrink,0,2,5,0,0,0,0,0,0,0,0,0,0,0,0,1,8,0.5,0,5,ÀÌµ¿¼Óµµ°¡ 50% Áõ°¡ÇÕ´Ï´Ù.,Increase the movement speed by 50%.
-2091,Dumbbell,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,1,9,0.1,1,5,½ºÅ³ µ¥¹ÌÁö°¡ 10% Áõ°¡ÇÕ´Ï´Ù.,Increases skill damage by 10%.
-2092,Dumbbell,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,1,9,0.2,0,5,½ºÅ³ µ¥¹ÌÁö°¡ 20% Áõ°¡ÇÕ´Ï´Ù.,Increases skill damage by 20%.
-2093,Dumbbell,0,2,3,0,0,0,0,0,0,0,0,0,0,0,0,1,9,0.3,0,5,½ºÅ³ µ¥¹ÌÁö°¡ 30% Áõ°¡ÇÕ´Ï´Ù.,Increases skill damage by 30%.
-2094,Dumbbell,0,2,4,0,0,0,0,0,0,0,0,0,0,0,0,1,9,0.4,0,5,½ºÅ³ µ¥¹ÌÁö°¡ 40% Áõ°¡ÇÕ´Ï´Ù.,Increases skill damage by 40%.
-2095,Dumbbell,0,2,5,0,0,0,0,0,0,0,0,0,0,0,0,1,9,0.5,0,5,½ºÅ³ µ¥¹ÌÁö°¡ 50% Áõ°¡ÇÕ´Ï´Ù.,Increases skill damage by 50%.
-2101,CatFishingRod,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,1,10,0.1,1,5,°ø°İ¼Óµµ°¡ 10% Áõ°¡ÇÕ´Ï´Ù.,Increases attack speed by 10%.
-2102,CatFishingRod,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,1,10,0.2,0,5,°ø°İ¼Óµµ°¡ 20% Áõ°¡ÇÕ´Ï´Ù.,Increases attack speed by 20%.
-2103,CatFishingRod,0,2,3,0,0,0,0,0,0,0,0,0,0,0,0,1,10,0.3,0,5,°ø°İ¼Óµµ°¡ 30% Áõ°¡ÇÕ´Ï´Ù.,Increases attack speed by 30%.
-2104,CatFishingRod,0,2,4,0,0,0,0,0,0,0,0,0,0,0,0,1,10,0.4,0,5,°ø°İ¼Óµµ°¡ 40% Áõ°¡ÇÕ´Ï´Ù.,Increases attack speed by 40%.
-2105,CatFishingRod,0,2,5,0,0,0,0,0,0,0,0,0,0,0,0,1,10,0.5,0,5,°ø°İ¼Óµµ°¡ 50% Áõ°¡ÇÕ´Ï´Ù.,Increases attack speed by 50%.
-2111,Salmon,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,1,11,0.1,1,5,°ø°İ¹üÀ§°¡ 10% Áõ°¡ÇÕ´Ï´Ù.,Increases attack range by 10%.
-2112,Salmon,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,1,11,0.2,0,5,°ø°İ¹üÀ§°¡ 20% Áõ°¡ÇÕ´Ï´Ù.,Increases attack range by 20%.
-2113,Salmon,0,2,3,0,0,0,0,0,0,0,0,0,0,0,0,1,11,0.3,0,5,°ø°İ¹üÀ§°¡ 30% Áõ°¡ÇÕ´Ï´Ù.,Increases attack range by 30%.
-2114,Salmon,0,2,4,0,0,0,0,0,0,0,0,0,0,0,0,1,11,0.4,0,5,°ø°İ¹üÀ§°¡ 40% Áõ°¡ÇÕ´Ï´Ù.,Increases attack range by 40%.
-2115,Salmon,0,2,5,0,0,0,0,0,0,0,0,0,0,0,0,1,11,0.5,0,5,°ø°İ¹üÀ§°¡ 50% Áõ°¡ÇÕ´Ï´Ù.,Increases attack range by 50%.
-2131,Panflute,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,1,13,0.03,1,5,½ºÅ³¹ßµ¿È®·üÀÌ 3% Áõ°¡ÇÕ´Ï´Ù.,Increases skill triggering probability by 3%.
-2132,Panflute,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,1,13,0.06,0,5,½ºÅ³¹ßµ¿È®·üÀÌ 6% Áõ°¡ÇÕ´Ï´Ù.,Increases skill triggering probability by 6%.
-2133,Panflute,0,2,3,0,0,0,0,0,0,0,0,0,0,0,0,1,13,0.09,0,5,½ºÅ³¹ßµ¿È®·üÀÌ 9% Áõ°¡ÇÕ´Ï´Ù.,Increases skill triggering probability by 9%.
-2134,Panflute,0,2,4,0,0,0,0,0,0,0,0,0,0,0,0,1,13,0.12,0,5,½ºÅ³¹ßµ¿È®·üÀÌ 12% Áõ°¡ÇÕ´Ï´Ù.,Increases skill triggering probability by 12%.
-2135,Panflute,0,2,5,0,0,0,0,0,0,0,0,0,0,0,0,1,13,0.2,0,5,½ºÅ³¹ßµ¿È®·üÀÌ 20% Áõ°¡ÇÕ´Ï´Ù.,Increases skill triggering probability by 20%.
+1011,Tiger,11,1,1,1,0,20,1,1.5,200,0,1,1,0,0,10,1,0,0,0,5,í˜¸ë‘ì´ê°€ ë‹¬ë ¤ì™€ ì ì„ íƒ€ê²©í•©ë‹ˆë‹¤. (ë°ë¯¸ì§€ 20),A tiger runs over and hits the enemy. (Damage 20)
+1012,Tiger,11,1,2,1,0,25,1,2,200,0,2,1,0,0,10,1,0,0,0,5,í˜¸ë‘ì´ê°€ ë‹¬ë ¤ì™€ ì ì„ íƒ€ê²©í•©ë‹ˆë‹¤. (ë°ë¯¸ì§€ 25),A tiger runs over and hits the enemy. (Damage 25)
+1013,Tiger,11,1,3,1,0,30,1,2.5,200,0,2,1,0,0,10,1,0,0,0,5,í˜¸ë‘ì´ê°€ ë‹¬ë ¤ì™€ ì ì„ íƒ€ê²©í•©ë‹ˆë‹¤. (ë°ë¯¸ì§€ 30),A tiger runs over and hits the enemy. (Damage 30)
+1014,Tiger,11,1,4,1,0,35,1,3,200,0,3,1,0,0,9,1,0,0,0,5,í˜¸ë‘ì´ê°€ ë‹¬ë ¤ì™€ ì ì„ íƒ€ê²©í•©ë‹ˆë‹¤. (ë°ë¯¸ì§€ 35),A tiger runs over and hits the enemy. (Damage 35)
+1015,Tiger,11,1,5,2,180,35,1,3,200,0,3,1,0,0,8,1,0,0,1,5,í˜¸ë‘ì´ê°€ ë‹¬ë ¤ì™€ ì ì„ íƒ€ê²©í•©ë‹ˆë‹¤. (ë°ë¯¸ì§€ 35),A tiger runs over and hits the enemy. (Damage 35)
+1021,Parrot,12,1,1,1,0,5,1,1,100,0,1,6,5,0,5,1,0,0,0,5,ì£¼ìœ„ë¥¼ íšŒì „í•˜ëŠ” ì•µë¬´ìƒˆê°€ 1ë§ˆë¦¬ê°€ ì†Œí™˜ë©ë‹ˆë‹¤.,The parrot spinning around is summoned 1.
+1022,Parrot,12,1,2,2,0,8,1,1,100,0,1,6,5,0,5,1,0,0,0,5,ì£¼ìœ„ë¥¼ íšŒì „í•˜ëŠ” ì•µë¬´ìƒˆê°€ 2ë§ˆë¦¬ê°€ ì†Œí™˜ë©ë‹ˆë‹¤.,The parrot spinning around is summoned 2.
+1023,Parrot,12,1,3,3,0,11,1,1,100,0,1,6,5,0,5,1,0,0,0,5,ì£¼ìœ„ë¥¼ íšŒì „í•˜ëŠ” ì•µë¬´ìƒˆê°€ 3ë§ˆë¦¬ê°€ ì†Œí™˜ë©ë‹ˆë‹¤.,The parrot spinning around is summoned 3.
+1024,Parrot,12,1,4,4,0,11,1,1,100,0,1,6,5,0,5,1,0,0,0,5,ì£¼ìœ„ë¥¼ íšŒì „í•˜ëŠ” ì•µë¬´ìƒˆê°€ 4ë§ˆë¦¬ê°€ ì†Œí™˜ë©ë‹ˆë‹¤.,The parrot spinning around is summoned 4.
+1025,Parrot,12,1,5,4,0,15,1,2,100,0,2,6,5,0,5,1,0,0,1,5,ì£¼ìœ„ë¥¼ íšŒì „í•˜ëŠ” ì•µë¬´ìƒˆê°€ 4ë§ˆë¦¬ê°€ ì†Œí™˜ë©ë‹ˆë‹¤.,The parrot spinning around is summoned 4.
+1031,Bear,1,1,1,1,0,8,1,1,100,0,1,1,0,0,1,1,0,0,0,5,ì „ë°©ì— ê³°ì´ ìŠ¤ìœ™í•˜ì—¬ ì ì„ ë² ì–´ë²„ë¦½ë‹ˆë‹¤. (ë°ë¯¸ì§€ n),A bear swings ahead and cuts down the enemy. (Damage n)
+1032,Bear,1,1,2,1,0,10,1,2,100,0,2,1,0,0,1,1,0,0,0,5,ì „ë°©ì— ê³°ì´ ìŠ¤ìœ™í•˜ì—¬ ì ì„ ë² ì–´ë²„ë¦½ë‹ˆë‹¤. (ë°ë¯¸ì§€ n),A bear swings ahead and cuts down the enemy. (Damage n)
+1033,Bear,1,1,3,1,0,10,1,2,100,0,2,1,0,0,1,1,0,0,0,5,ì „ë°©ì— ê³°ì´ ìŠ¤ìœ™í•˜ì—¬ ì ì„ ë² ì–´ë²„ë¦½ë‹ˆë‹¤. (ë°ë¯¸ì§€ n),A bear swings ahead and cuts down the enemy. (Damage n)
+1034,Bear,1,1,4,1,0,12,1,3,100,0,3,1,0,0,1,1,0,0,0,5,ì „ë°©ì— ê³°ì´ ìŠ¤ìœ™í•˜ì—¬ ì ì„ ë² ì–´ë²„ë¦½ë‹ˆë‹¤. (ë°ë¯¸ì§€ n),A bear swings ahead and cuts down the enemy. (Damage n)
+1035,Bear,1,1,5,2,180,14,1,3,100,0,3,1,0,0,1,1,0,0,1,5,ì „ë°©ì— ê³°ì´ ìŠ¤ìœ™í•˜ì—¬ ì ì„ ë² ì–´ë²„ë¦½ë‹ˆë‹¤. (ë°ë¯¸ì§€ n),A bear swings ahead and cuts down the enemy. (Damage n)
+1041,Crocodile,1,1,1,1,0,15,1,1,100,0,1,1,0,0,10,1,0,0,0,5,ì ì„ íƒ€ê²Ÿí•œ ì•…ì–´ê°€ ë‹¬ë ¤ê°€ ì ì„ ë¬¼ì–´ë²„ë¦½ë‹ˆë‹¤. (ë°ë¯¸ì§€ 15),A crocodile targeting the enemy runs and bites the enemy. (Damage 15)
+1042,Crocodile,1,1,2,1,0,20,1,2,100,0,2,1,0,0,10,1,0,0,0,5,ì ì„ íƒ€ê²Ÿí•œ ì•…ì–´ê°€ ë‹¬ë ¤ê°€ ì ì„ ë¬¼ì–´ë²„ë¦½ë‹ˆë‹¤. (ë°ë¯¸ì§€ 20),A crocodile targeting the enemy runs and bites the enemy. (Damage 20)
+1043,Crocodile,1,1,3,1,0,25,1,2,100,0,2,1,0,0,7,1,0,0,0,5,ì ì„ íƒ€ê²Ÿí•œ ì•…ì–´ê°€ ë‹¬ë ¤ê°€ ì ì„ ë¬¼ì–´ë²„ë¦½ë‹ˆë‹¤. (ë°ë¯¸ì§€ 25),A crocodile targeting the enemy runs and bites the enemy. (Damage 25)
+1044,Crocodile,1,1,4,1,0,30,1,3,100,0,3,1,0,0,7,1,0,0,0,5,ì ì„ íƒ€ê²Ÿí•œ ì•…ì–´ê°€ ë‹¬ë ¤ê°€ ì ì„ ë¬¼ì–´ë²„ë¦½ë‹ˆë‹¤. (ë°ë¯¸ì§€ 30),A crocodile targeting the enemy runs and bites the enemy. (Damage 30)
+1045,Crocodile,1,1,5,1,0,35,1,3,100,0,3,1,0,0,6,1,0,0,1,5,ì ì„ íƒ€ê²Ÿí•œ ì•…ì–´ê°€ ë‹¬ë ¤ê°€ ì ì„ ë¬¼ì–´ë²„ë¦½ë‹ˆë‹¤. (ë°ë¯¸ì§€ 35),A crocodile targeting the enemy runs and bites the enemy. (Damage 35)
+1061,Skunk,12,1,1,2,0,5,1,1,0,0,0,1,10,0,7,1,0,0,0,5,ì£¼ë³€ì— ìŠ¤ì»¹í¬ê°€ ë›°ì³ë‚˜ì™€ ê°€ìŠ¤ë¥¼ ì‚´í¬í•©ë‹ˆë‹¤. (ë°ë¯¸ì§€ 8),Skunks run out around and spray gas. (Damage 8)
+1062,Skunk,12,1,2,3,0,5,1,2,0,0,0,1,10,0,7,1,0,0,0,5,ì£¼ë³€ì— ìŠ¤ì»¹í¬ê°€ ë›°ì³ë‚˜ì™€ ê°€ìŠ¤ë¥¼ ì‚´í¬í•©ë‹ˆë‹¤. (ë°ë¯¸ì§€ 8),Skunks run out around and spray gas. (Damage 8)
+1063,Skunk,12,1,3,4,0,5,1,2,0,0,0,1,10,0,7,1,0,0,0,5,ì£¼ë³€ì— ìŠ¤ì»¹í¬ê°€ ë›°ì³ë‚˜ì™€ ê°€ìŠ¤ë¥¼ ì‚´í¬í•©ë‹ˆë‹¤. (ë°ë¯¸ì§€ 10),Skunks run out around and spray gas. (Damage 10)
+1064,Skunk,12,1,4,4,0,5,1,2,0,0,0,1,10,0,7,1,0,0,0,5,ì£¼ë³€ì— ìŠ¤ì»¹í¬ê°€ ë›°ì³ë‚˜ì™€ ê°€ìŠ¤ë¥¼ ì‚´í¬í•©ë‹ˆë‹¤. (ë°ë¯¸ì§€ 10),Skunks run out around and spray gas. (Damage 10)
+1065,Skunk,12,1,5,4,0,7,1,2,0,0,0,1,10,0,5,1,0,0,1,5,ì£¼ë³€ì— ìŠ¤ì»¹í¬ê°€ ë›°ì³ë‚˜ì™€ ê°€ìŠ¤ë¥¼ ì‚´í¬í•©ë‹ˆë‹¤. (ë°ë¯¸ì§€ 14),Skunks run out around and spray gas. (Damage 14)
+1081,Peacock,4,1,1,1,10,10,15,1,0,0,0,1,0,0,0.5,1,0,0,0,5,ì ì„ íƒ€ê²Ÿí•˜ì—¬ ê¹ƒí„¸ì„ ë°œì‚¬í•©ë‹ˆë‹¤. (ë°ë¯¸ì§€ 10),Fire feathers at the enemy. (Damage 10)
+1082,Peacock,4,1,2,3,10,15,15,1,0,0,0,1,0,0,0.5,1,0,0,0,5,ì ì„ íƒ€ê²Ÿí•˜ì—¬ ê¹ƒí„¸ì„ ë°œì‚¬í•©ë‹ˆë‹¤. (ë°ë¯¸ì§€ 15),Fire feathers at the enemy. (Damage 15)
+1083,Peacock,4,1,3,3,10,20,15,1,0,0,0,1,0,0,0.5,1,0,0,0,5,ì ì„ íƒ€ê²Ÿí•˜ì—¬ ê¹ƒí„¸ì„ ë°œì‚¬í•©ë‹ˆë‹¤. (ë°ë¯¸ì§€ 20),Fire feathers at the enemy. (Damage 20)
+1084,Peacock,4,1,4,5,10,25,15,1,0,0,0,1,0,0,0.5,1,0,0,0,5,ì ì„ íƒ€ê²Ÿí•˜ì—¬ ê¹ƒí„¸ì„ ë°œì‚¬í•©ë‹ˆë‹¤. (ë°ë¯¸ì§€ 25),Fire feathers at the enemy. (Damage 25)
+1085,Peacock,4,1,5,5,10,30,15,1,0,0,0,1,0,0,0.5,1,0,0,1,5,ì ì„ íƒ€ê²Ÿí•˜ì—¬ ê¹ƒí„¸ì„ ë°œì‚¬í•©ë‹ˆë‹¤. (ë°ë¯¸ì§€ 30),Fire feathers at the enemy. (Damage 30)
+1,GuardianOfMountain,11,3,1,1,180,45,1,4,300,0,4,1,0,5,30,0.2,0,0,0,1,ì‚°ì˜ ìˆ˜í˜¸ìê°€ ë‹¬ë ¤ì™€ ì ì„ íƒ€ê²©í•©ë‹ˆë‹¤.,The guardian of the mountain runs and hits the enemy.
+2,AwakeningParrot,12,3,1,6,0,30,2,1,0,0,1,10,5,5,30,0.2,0,0,0,1,ì£¼ìœ„ë¥¼ íšŒì „í•˜ëŠ” ê°ì„±í•œ ì•µë¬´ìƒˆê°€ 5ë§ˆë¦¬ê°€ ì†Œí™˜ë©ë‹ˆë‹¤.,The woke parrot spinning around is summoned 5.
+3,HungryBear,1,3,1,1,0,30,1,4,200,0,4,4,0,5,30,0.2,0,0,0,1,ì „ë°©ì— êµ¶ì£¼ë¦° ê³°ì´ ìŠ¤ìœ™í•˜ì—¬ ì ì„ ë² ì–´ë²„ë¦½ë‹ˆë‹¤.,A hungry bear in front swings and cuts down the enemy.
+7,PoisonGas,12,3,1,6,0,8,1,3,0,0,0,1,12,5,30,0.2,0,0,0,1,ì£¼ë³€ì— ìŠ¤ì»¹í¬ê°€ ë›°ì³ë‚˜ì™€ ë…ê°€ìŠ¤ë¥¼ ì‚´í¬í•©ë‹ˆë‹¤.,Skunks run out around and spray poisonous gas.
+9,StormFeather,4,3,1,1,0,15,2,1,0,0,0,40,0,5,30,0.2,0,0,0,1,ê³µì‘ì´ ì ì„ íƒ€ê²Ÿí•˜ì—¬ ê¹ƒí„¸ì„ ì—°ì‚¬í•˜ì—¬ ë°œì‚¬í•©ë‹ˆë‹¤.,Peacock is targeting the enemy and fires the feathers in a row.
+2011,Wistle,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0.08,1,5,ì¿¨íƒ€ì„ì´ 8% ê°ì†Œí•©ë‹ˆë‹¤.,The cool time is reduced by 8% seconds.
+2012,Wistle,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0.16,0,5,ì¿¨íƒ€ì„ì´ 16% ê°ì†Œí•©ë‹ˆë‹¤.,The cool time is reduced by 16% seconds.
+2013,Wistle,0,2,3,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0.24,0,5,ì¿¨íƒ€ì„ì´ 24% ê°ì†Œí•©ë‹ˆë‹¤.,The cool time is reduced by 24% seconds.
+2014,Wistle,0,2,4,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0.32,0,5,ì¿¨íƒ€ì„ì´ 32% ê°ì†Œí•©ë‹ˆë‹¤.,The cool time is reduced by 32% seconds.
+2015,Wistle,0,2,5,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0.4,0,5,ì¿¨íƒ€ì„ì´ 40% ê°ì†Œí•©ë‹ˆë‹¤.,The cool time is reduced by 40% seconds.
+2031,Comb,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,1,3,0.08,1,5,íšë“í•˜ëŠ” ê²½í—˜ì¹˜ê°€ 8% ì¦ê°€í•©ë‹ˆë‹¤.,The experience you get increases by 8%.
+2032,Comb,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,1,3,0.16,0,5,íšë“í•˜ëŠ” ê²½í—˜ì¹˜ê°€ 16% ì¦ê°€í•©ë‹ˆë‹¤.,The experience you get increases by 16%.
+2033,Comb,0,2,3,0,0,0,0,0,0,0,0,0,0,0,0,1,3,0.24,0,5,íšë“í•˜ëŠ” ê²½í—˜ì¹˜ê°€ 24% ì¦ê°€í•©ë‹ˆë‹¤.,The experience you get increases by 24%.
+2034,Comb,0,2,4,0,0,0,0,0,0,0,0,0,0,0,0,1,3,0.32,0,5,íšë“í•˜ëŠ” ê²½í—˜ì¹˜ê°€ 32% ì¦ê°€í•©ë‹ˆë‹¤.,The experience you get increases by 32%.
+2035,Comb,0,2,5,0,0,0,0,0,0,0,0,0,0,0,0,1,3,0.4,0,5,íšë“í•˜ëŠ” ê²½í—˜ì¹˜ê°€ 40% ì¦ê°€í•©ë‹ˆë‹¤.,The experience you get increases by 40%.
+2041,PiggyBank,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,1,4,0.08,1,5,íšë“í•˜ëŠ” ê³¨ë“œëŸ‰ì´ 4% ì¦ê°€í•©ë‹ˆë‹¤.,Increase the amount of gold you earn by 4%.
+2042,PiggyBank,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,1,4,0.16,0,5,íšë“í•˜ëŠ” ê³¨ë“œëŸ‰ì´ 16% ì¦ê°€í•©ë‹ˆë‹¤.,Increase the amount of gold you earn by 16%.
+2043,PiggyBank,0,2,3,0,0,0,0,0,0,0,0,0,0,0,0,1,4,0.24,0,5,íšë“í•˜ëŠ” ê³¨ë“œëŸ‰ì´ 24% ì¦ê°€í•©ë‹ˆë‹¤.,Increase the amount of gold you earn by 24%.
+2044,PiggyBank,0,2,4,0,0,0,0,0,0,0,0,0,0,0,0,1,4,0.32,0,5,íšë“í•˜ëŠ” ê³¨ë“œëŸ‰ì´ 32% ì¦ê°€í•©ë‹ˆë‹¤.,Increase the amount of gold you earn by 32%.
+2045,PiggyBank,0,2,5,0,0,0,0,0,0,0,0,0,0,0,0,1,4,0.4,0,5,íšë“í•˜ëŠ” ê³¨ë“œëŸ‰ì´ 40% ì¦ê°€í•©ë‹ˆë‹¤.,Increase the amount of gold you earn by 40%.
+2051,GasMask,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,1,5,0.1,1,5,ì§€ì†ì‹œê°„ì´ 10% ì¦ê°€í•©ë‹ˆë‹¤.,Increases duration by 10% seconds.
+2052,GasMask,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,1,5,0.2,0,5,ì§€ì†ì‹œê°„ì´ 20% ì¦ê°€í•©ë‹ˆë‹¤.,Increases duration by 20% seconds.
+2053,GasMask,0,2,3,0,0,0,0,0,0,0,0,0,0,0,0,1,5,0.3,0,5,ì§€ì†ì‹œê°„ì´ 30% ì¦ê°€í•©ë‹ˆë‹¤.,Increases duration by 30% seconds.
+2054,GasMask,0,2,4,0,0,0,0,0,0,0,0,0,0,0,0,1,5,0.4,0,5,ì§€ì†ì‹œê°„ì´ 40% ì¦ê°€í•©ë‹ˆë‹¤.,Increases duration by 40% seconds.
+2055,GasMask,0,2,5,0,0,0,0,0,0,0,0,0,0,0,0,1,5,0.5,0,5,ì§€ì†ì‹œê°„ì´ 50% ì¦ê°€í•©ë‹ˆë‹¤.,Increases duration by 50% seconds.
+2061,Tomahawk,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,1,6,0.03,1,5,ì²´ë ¥ íšŒë³µëŸ‰ì´ 3% ì¦ê°€í•©ë‹ˆë‹¤.,Increases physical strength recovery by 3%.
+2062,Tomahawk,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,1,6,0.06,0,5,ì²´ë ¥ íšŒë³µëŸ‰ì´ 6% ì¦ê°€í•©ë‹ˆë‹¤.,Increases physical strength recovery by 6%.
+2063,Tomahawk,0,2,3,0,0,0,0,0,0,0,0,0,0,0,0,1,6,0.09,0,5,ì²´ë ¥ íšŒë³µëŸ‰ì´ 9% ì¦ê°€í•©ë‹ˆë‹¤.,Increases physical strength recovery by 9%.
+2064,Tomahawk,0,2,4,0,0,0,0,0,0,0,0,0,0,0,0,1,6,0.12,0,5,ì²´ë ¥ íšŒë³µëŸ‰ì´ 12% ì¦ê°€í•©ë‹ˆë‹¤.,Increases physical strength recovery by 12%.
+2065,Tomahawk,0,2,5,0,0,0,0,0,0,0,0,0,0,0,0,1,6,0.24,0,5,ì²´ë ¥ íšŒë³µëŸ‰ì´ 24% ì¦ê°€í•©ë‹ˆë‹¤.,Increases physical strength recovery by 24%.
+2071,NutryInjection,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,1,7,0.1,1,5,ìµœëŒ€ ì²´ë ¥ëŸ‰ì´ 10% ì¦ê°€í•©ë‹ˆë‹¤.,Maximum physical strength increases by 10%.
+2072,NutryInjection,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,1,7,0.2,0,5,ìµœëŒ€ ì²´ë ¥ëŸ‰ì´ 20% ì¦ê°€í•©ë‹ˆë‹¤.,Maximum physical strength increases by 20%.
+2073,NutryInjection,0,2,3,0,0,0,0,0,0,0,0,0,0,0,0,1,7,0.4,0,5,ìµœëŒ€ ì²´ë ¥ëŸ‰ì´ 40% ì¦ê°€í•©ë‹ˆë‹¤.,Maximum physical strength increases by 40%.
+2074,NutryInjection,0,2,4,0,0,0,0,0,0,0,0,0,0,0,0,1,7,0.6,0,5,ìµœëŒ€ ì²´ë ¥ëŸ‰ì´ 60% ì¦ê°€í•©ë‹ˆë‹¤.,Maximum physical strength increases by 60%.
+2075,NutryInjection,0,2,5,0,0,0,0,0,0,0,0,0,0,0,0,1,7,0.8,0,5,ìµœëŒ€ ì²´ë ¥ëŸ‰ì´ 80% ì¦ê°€í•©ë‹ˆë‹¤.,Maximum physical strength increases by 80%.
+2081,EnergyDrink,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,1,8,0.1,1,5,ì´ë™ì†ë„ê°€ 10% ì¦ê°€í•©ë‹ˆë‹¤.,Increase the movement speed by 10%.
+2082,EnergyDrink,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,1,8,0.2,0,5,ì´ë™ì†ë„ê°€ 20% ì¦ê°€í•©ë‹ˆë‹¤.,Increase the movement speed by 20%.
+2083,EnergyDrink,0,2,3,0,0,0,0,0,0,0,0,0,0,0,0,1,8,0.3,0,5,ì´ë™ì†ë„ê°€ 30% ì¦ê°€í•©ë‹ˆë‹¤.,Increase the movement speed by 30%.
+2084,EnergyDrink,0,2,4,0,0,0,0,0,0,0,0,0,0,0,0,1,8,0.4,0,5,ì´ë™ì†ë„ê°€ 40% ì¦ê°€í•©ë‹ˆë‹¤.,Increase the movement speed by 40%.
+2085,EnergyDrink,0,2,5,0,0,0,0,0,0,0,0,0,0,0,0,1,8,0.5,0,5,ì´ë™ì†ë„ê°€ 50% ì¦ê°€í•©ë‹ˆë‹¤.,Increase the movement speed by 50%.
+2091,Dumbbell,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,1,9,0.1,1,5,ìŠ¤í‚¬ ë°ë¯¸ì§€ê°€ 10% ì¦ê°€í•©ë‹ˆë‹¤.,Increases skill damage by 10%.
+2092,Dumbbell,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,1,9,0.2,0,5,ìŠ¤í‚¬ ë°ë¯¸ì§€ê°€ 20% ì¦ê°€í•©ë‹ˆë‹¤.,Increases skill damage by 20%.
+2093,Dumbbell,0,2,3,0,0,0,0,0,0,0,0,0,0,0,0,1,9,0.3,0,5,ìŠ¤í‚¬ ë°ë¯¸ì§€ê°€ 30% ì¦ê°€í•©ë‹ˆë‹¤.,Increases skill damage by 30%.
+2094,Dumbbell,0,2,4,0,0,0,0,0,0,0,0,0,0,0,0,1,9,0.4,0,5,ìŠ¤í‚¬ ë°ë¯¸ì§€ê°€ 40% ì¦ê°€í•©ë‹ˆë‹¤.,Increases skill damage by 40%.
+2095,Dumbbell,0,2,5,0,0,0,0,0,0,0,0,0,0,0,0,1,9,0.5,0,5,ìŠ¤í‚¬ ë°ë¯¸ì§€ê°€ 50% ì¦ê°€í•©ë‹ˆë‹¤.,Increases skill damage by 50%.
+2101,CatFishingRod,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,1,10,0.1,1,5,ê³µê²©ì†ë„ê°€ 10% ì¦ê°€í•©ë‹ˆë‹¤.,Increases attack speed by 10%.
+2102,CatFishingRod,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,1,10,0.2,0,5,ê³µê²©ì†ë„ê°€ 20% ì¦ê°€í•©ë‹ˆë‹¤.,Increases attack speed by 20%.
+2103,CatFishingRod,0,2,3,0,0,0,0,0,0,0,0,0,0,0,0,1,10,0.3,0,5,ê³µê²©ì†ë„ê°€ 30% ì¦ê°€í•©ë‹ˆë‹¤.,Increases attack speed by 30%.
+2104,CatFishingRod,0,2,4,0,0,0,0,0,0,0,0,0,0,0,0,1,10,0.4,0,5,ê³µê²©ì†ë„ê°€ 40% ì¦ê°€í•©ë‹ˆë‹¤.,Increases attack speed by 40%.
+2105,CatFishingRod,0,2,5,0,0,0,0,0,0,0,0,0,0,0,0,1,10,0.5,0,5,ê³µê²©ì†ë„ê°€ 50% ì¦ê°€í•©ë‹ˆë‹¤.,Increases attack speed by 50%.
+2111,Salmon,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,1,11,0.1,1,5,ê³µê²©ë²”ìœ„ê°€ 10% ì¦ê°€í•©ë‹ˆë‹¤.,Increases attack range by 10%.
+2112,Salmon,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,1,11,0.2,0,5,ê³µê²©ë²”ìœ„ê°€ 20% ì¦ê°€í•©ë‹ˆë‹¤.,Increases attack range by 20%.
+2113,Salmon,0,2,3,0,0,0,0,0,0,0,0,0,0,0,0,1,11,0.3,0,5,ê³µê²©ë²”ìœ„ê°€ 30% ì¦ê°€í•©ë‹ˆë‹¤.,Increases attack range by 30%.
+2114,Salmon,0,2,4,0,0,0,0,0,0,0,0,0,0,0,0,1,11,0.4,0,5,ê³µê²©ë²”ìœ„ê°€ 40% ì¦ê°€í•©ë‹ˆë‹¤.,Increases attack range by 40%.
+2115,Salmon,0,2,5,0,0,0,0,0,0,0,0,0,0,0,0,1,11,0.5,0,5,ê³µê²©ë²”ìœ„ê°€ 50% ì¦ê°€í•©ë‹ˆë‹¤.,Increases attack range by 50%.
+2131,Panflute,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,1,13,0.03,1,5,ìŠ¤í‚¬ë°œë™í™•ë¥ ì´ 3% ì¦ê°€í•©ë‹ˆë‹¤.,Increases skill triggering probability by 3%.
+2132,Panflute,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,1,13,0.06,0,5,ìŠ¤í‚¬ë°œë™í™•ë¥ ì´ 6% ì¦ê°€í•©ë‹ˆë‹¤.,Increases skill triggering probability by 6%.
+2133,Panflute,0,2,3,0,0,0,0,0,0,0,0,0,0,0,0,1,13,0.09,0,5,ìŠ¤í‚¬ë°œë™í™•ë¥ ì´ 9% ì¦ê°€í•©ë‹ˆë‹¤.,Increases skill triggering probability by 9%.
+2134,Panflute,0,2,4,0,0,0,0,0,0,0,0,0,0,0,0,1,13,0.12,0,5,ìŠ¤í‚¬ë°œë™í™•ë¥ ì´ 12% ì¦ê°€í•©ë‹ˆë‹¤.,Increases skill triggering probability by 12%.
+2135,Panflute,0,2,5,0,0,0,0,0,0,0,0,0,0,0,0,1,13,0.2,0,5,ìŠ¤í‚¬ë°œë™í™•ë¥ ì´ 20% ì¦ê°€í•©ë‹ˆë‹¤.,Increases skill triggering probability by 20%.
