@@ -213,7 +213,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5712552360476387668, guid: 04d13c5b44bed4b2a8ce4d102d210dfb, type: 3}
       propertyPath: m_text
-      value: "\uD3EC\uC704\uB9DD\uC774 \uC881\uD600\uC635\uB2C8\uB2E4!"
+      value: "\uBCF4\uC2A4 \uCD9C\uD604!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5712552360476387668, guid: 04d13c5b44bed4b2a8ce4d102d210dfb, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 875a72b13883b4149978eefbe67a9588, type: 2}
+    - target: {fileID: 5712552360476387668, guid: 04d13c5b44bed4b2a8ce4d102d210dfb, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -6731452692870977875, guid: 875a72b13883b4149978eefbe67a9588, type: 2}
+    - target: {fileID: 5712552360476387668, guid: 04d13c5b44bed4b2a8ce4d102d210dfb, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5712552360476387668, guid: 04d13c5b44bed4b2a8ce4d102d210dfb, type: 3}
       propertyPath: m_fontSize
