@@ -1,13 +1,14 @@
 using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class StormFeatherSkill : SkillBase
 {
-    private GameObject peacockEffect;
-    
+    private GameObject peacockEffect;    
     public override void DoSkill()
     {
        Vector2 direction = Vector2.zero;
@@ -23,9 +24,9 @@ public class StormFeatherSkill : SkillBase
         }
         
         AttackKunai(direction, 0);
-        PeacockEffectFindSetActive(true, 0.1f * SkillData.CastCount);
+        PeacockEffectFindSetActive(true);
 
-        for (int i = 2; i <= SkillData.CastCount; ++i)
+        for (int i = 2; i <= SkillData.ProjectileNum; ++i)
         {
             float angle = (i / 2) * SkillData.CastAngle;
             if (i % 2 == 1)
@@ -44,9 +45,9 @@ public class StormFeatherSkill : SkillBase
         peacock.SetSpawnInfo(Owner, this, Util.RotateVectorByAngle(direction, angle));
     }
 
-
-    private void PeacockEffectFindSetActive(bool active, float time)
+    private void PeacockEffectFindSetActive(bool active)
     {
+       
         Hero hero = Managers.Object.Hero;
 
         // �̹� ���� ȿ���� �����ϴ��� Ȯ��
