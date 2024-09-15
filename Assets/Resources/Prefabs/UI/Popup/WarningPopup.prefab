@@ -91,6 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a51a59ad1e533248915cd406eba5bc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isCached: 0
   rawImage: {fileID: 4866647629663643897}
   iconImage: {fileID: 5226449372639203345}
   desc: {fileID: 1879130757152604740}
@@ -212,7 +213,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5712552360476387668, guid: 04d13c5b44bed4b2a8ce4d102d210dfb, type: 3}
       propertyPath: m_text
-      value: "\uD3EC\uC704\uB9DD\uC774 \uC881\uD600\uC635\uB2C8\uB2E4!"
+      value: "\uBCF4\uC2A4 \uCD9C\uD604!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5712552360476387668, guid: 04d13c5b44bed4b2a8ce4d102d210dfb, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 875a72b13883b4149978eefbe67a9588, type: 2}
+    - target: {fileID: 5712552360476387668, guid: 04d13c5b44bed4b2a8ce4d102d210dfb, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -6731452692870977875, guid: 875a72b13883b4149978eefbe67a9588, type: 2}
+    - target: {fileID: 5712552360476387668, guid: 04d13c5b44bed4b2a8ce4d102d210dfb, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5917338660631224543, guid: 04d13c5b44bed4b2a8ce4d102d210dfb, type: 3}
       propertyPath: m_Pivot.x
