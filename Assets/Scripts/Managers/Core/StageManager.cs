@@ -120,9 +120,9 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
         }
 
         Debug.Log($"Starting Stage: {currentStage.Name}, Level: {currentStage.Lv}");
-        StartCoroutine(StageRoutine());
+        StartCoroutine(StageRoutine()); // DEBUG::
         Managers.Game.isStartGame = true;
-        state = EStageState.Nomal;
+        state = EStageState.Nomal;        
     }
 
 
@@ -267,6 +267,20 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
         // {
         //     StartCoroutine(Managers.Game.BossCount());
         // }
+    }
+
+    public void ResetDatas()
+    {
+        StopAllCoroutines();
+        //StopCoroutine(StageRoutine());
+        currentStageID = -1;
+        currentStage = null;
+        phases = new List<PhaseInfo>();
+        currentPhaseIndex = 0;
+        phaseTimer = 0;
+        maxPhase = 0;
+        state = EStageState.None;
+        activeCoroutines = new Dictionary<int, Coroutine>();
     }
 
 

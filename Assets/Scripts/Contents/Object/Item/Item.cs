@@ -45,9 +45,15 @@ public class Item : BaseObject
                 Vector3.MoveTowards(item.transform.position, 
                     Managers.Object.Hero.transform.position, 
                     3f * Time.deltaTime);
-            Debug.Log("이동중!!");
+            //Debug.Log("이동중!!");
 
             yield return YieldInstructionCache.WaitForEndOfFrame;
         }
+    }
+
+    // Manager reset 시 삭제.
+    public void ResetDatas()
+    {
+        Managers.Object.Despawn(this);
     }
 }

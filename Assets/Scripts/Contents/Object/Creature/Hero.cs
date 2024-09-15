@@ -1,4 +1,5 @@
 using Data;
+using Microsoft.Unity.VisualStudio.Editor;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -171,7 +172,9 @@ public class Hero : Creature
         {
             // DEBUG::            
             //Debug.Log($"[체력] {Hp} / {MaxHp}"); 
-            Debug.Log($"[이속] {MoveSpeed}"); 
+            // Debug.Log($"[이속] {MoveSpeed}"); 
+            Managers.Object.Spawn<Monster>(new Vector3(0, 0), Define.MONSTER_SECURITY1_ID);
+
             //UIManagerNew.Instance.ShowWindow<SkillLevelUpWindow>(Define.UIWindowType.AnimalRescueWindow);
             // UIManagerNew.Instance.ShowWindow<SkillLevelUpWindow>(Define.UIWindowType.ShopWindow);
         }
@@ -235,7 +238,7 @@ public class Hero : Creature
             return; // 무적 상태일 때는 아무런 처리를 하지 않음
 
         base.OnDamaged(attacker, skill);
-        Debug.LogWarning($"[{gameObject.name}] Hit! HP({Hp}/{MaxHp})"); // 디버깅용. 삭제가능 @홍지형
+        Debug.Log($"[{gameObject.name}] Hit! HP({Hp}/{MaxHp})"); // 디버깅용. 삭제가능 @홍지형
         Managers.Game.RefreshUI();
 	}
 
@@ -248,7 +251,7 @@ public class Hero : Creature
 		SetRigidbodyVelocity(Vector2.zero);
 
 		// Managers.Game.GameOver();
-		StageManager.Instance.state = EStageState.Fail;
+		Managers.Stage.state = EStageState.Fail;
 		SoundManager.Instance.Play(Define.ESoundMainType.Character, Define.ESoundType.HeroDead);
 		
 		// UIManagerNew.Instance.ShowPopup<ResultPopup>(true);
@@ -352,14 +355,24 @@ public class Hero : Creature
     {
         int protectionHits = maxHits;
         float endTime = Time.time + duration;
-        isInvincible = true;  
+        isInvincible = true;
+
+        // 무적 표시
+        Color invincibleColor = new Color(150 / 255f, 167 / 255f, 255 / 255f); // 무적 색
+        SpriteRenderer heroSprite = this.GetComponent<SpriteRenderer>();
+        heroSprite.color = invincibleColor;
 
         while (Time.time < endTime && protectionHits > 0)
-        {
+        {            
             yield return null;
         }
 
-        isInvincible = false;  
+        isInvincible = false;
+        
+        // 무적 표시 해제
+        Color defaultColor = new Color(255 / 255f, 255 / 255f, 255 / 255f); // 원래 색
+        heroSprite = this.GetComponent<SpriteRenderer>();
+        heroSprite.color = defaultColor;
     }
 	
 	// enemyprojectile에 맞았을 시 호출되는 함수

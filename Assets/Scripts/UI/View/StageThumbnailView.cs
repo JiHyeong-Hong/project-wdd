@@ -63,7 +63,7 @@ public class StageThumbnailView : MonoBehaviour, IView
     {
         SoundManager.Instance.Play(Define.ESoundMainType.UI, Define.ESoundType.Button);
         SceneManagerNew.Instance.LoadScene(Define.EScene.GameScene);
-
+        Managers.Game.IsGamePaused = false;
     }
 
     private void OnClickRightStageButton()

@@ -27,7 +27,7 @@ public class GameScene : BaseScene
 
         Managers.EscapePattern.SpawnEscapePattern();
 
-        StageManager.Instance.LoadStage(Managers.Game.currentStageID);
+        Managers.Stage.LoadStage(Managers.Game.currentStageID);
 
         // UIManagerNew.Instance.ShowWindow<WindowBase>(Define.UIWindowType.InGameWindow); // 캐싱        
         UIManagerNew.Instance.ShowWindow<InGameWindow>(false); // 논캐싱

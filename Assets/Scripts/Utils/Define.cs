@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -125,6 +125,7 @@ public static class Define
 	
 	public enum EStageState
 	{
+        None,
 		Nomal = 1,
 		Warning = 2,
 		Barricade = 3,

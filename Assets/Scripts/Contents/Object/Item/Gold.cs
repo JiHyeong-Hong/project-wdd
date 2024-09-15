@@ -32,4 +32,10 @@ public class Gold : Item
 
         Managers.Object.Despawn(this);
     }
+
+    // Manager reset 시 삭제.
+    public void ResetDatas()
+    {
+        Managers.Object.Despawn(this);
+    }
 }

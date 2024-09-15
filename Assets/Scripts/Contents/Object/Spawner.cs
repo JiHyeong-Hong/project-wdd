@@ -29,4 +29,10 @@ public class Spawner : BaseObject
     {
         Managers.Object.Spawn<Monster>(transform.position, ID);
     }
+
+    // Manager reset 시 삭제.
+    public void ResetDatas()
+    {
+        Managers.Object.Despawn(this);
+    }
 }

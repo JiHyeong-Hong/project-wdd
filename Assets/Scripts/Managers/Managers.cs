@@ -7,11 +7,12 @@ public class Managers : SingletonMonoBehaviour<Managers>
     #region Contents
     private GameManager _game = new GameManager();
     //private ObjectManager _object = new ObjectManager();
-    private SpawnManager _spawner = new SpawnManager();
+    private SpawnManager _spawner = new SpawnManager();    
 
     public static GameManager Game { get { return Instance._game; } }
     public static ObjectManager Object { get { return ObjectManager.Instance; } }
     public static SpawnManager Spawner { get { return Instance?._spawner; } }
+    public static StageManager Stage { get { return StageManager.Instance; } }
     #endregion
 
     #region Core
@@ -49,12 +50,15 @@ public class Managers : SingletonMonoBehaviour<Managers>
         // 각 매니저들 초기화
         _game = new GameManager();
         _spawner = new SpawnManager();
+        Object.ResetDatas();
         _pool = new PoolManager();
         _scene = new SceneManagerEx();
         _sound = new SoundManager();
         _ui = new UIManager();
         _skill = new SkillManager();
         _localizationManager = new LocalizationManager();
+        BreakthroughHelper.ResetInstance();
+        Stage.ResetDatas();
     }
 
     IEnumerator Start()

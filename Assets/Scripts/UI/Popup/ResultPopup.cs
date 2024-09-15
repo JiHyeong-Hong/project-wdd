@@ -26,7 +26,7 @@ public class ResultPopup : PopupBase
 
     private void Awake()
     {
-        switch (StageManager.Instance.state)
+        switch (Managers.Stage.state)
         {
             case Define.EStageState.Clear:
                 Title.text = "구출 성공";
@@ -46,6 +46,7 @@ public class ResultPopup : PopupBase
         Managers.Data.UserDic.Select(x => x.Value).FirstOrDefault().GoldAmt += Managers.Object.Hero.Gold;
         SaveManager.Instance.SaveClearData(Managers.Data.UserDic.Select(x => x.Value).FirstOrDefault().GoldAmt);
         SceneManagerNew.Instance.LoadScene(Define.EScene.Lobby);
+        Managers.Instance.ResetManagers();
     }
 
 }

@@ -13,4 +13,10 @@ public class Structure : BaseObject
 
         return true;
     }
+
+    // Manager reset 시 삭제.
+    public void ResetDatas()
+    {
+        Managers.Object.Despawn(this);
+    }
 }

@@ -238,4 +238,9 @@ public class BreakthroughHelper
         return randomValue <= ActivationProbability;
     }
 
+    // 인스턴스를 삭제하고 다시 생성하는 메서드
+    public static void ResetInstance()
+    {
+        _instance = null;
+    }
 }

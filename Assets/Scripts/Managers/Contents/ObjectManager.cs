@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Data;
+using Unity.VisualScripting;
 using UnityEngine;
 using static Define;
 
@@ -14,19 +15,18 @@ public class ObjectManager :SingletonMonoBehaviour<ObjectManager>
             if (hero == null) 
             {
                 hero = RespawnHero(Vector3.zero, Define.HERO_ZOOKEEPER_ID);
-                
-
             }
             return hero;
         }
+        set { hero = value; }
     }
-    public HashSet<Monster> Monsters { get; } = new HashSet<Monster>();
+    public HashSet<Monster> Monsters { get; set; } = new HashSet<Monster>();
     public Boss Bosses { get; set; }
-    public HashSet<Projectile> Projectiles { get; } = new HashSet<Projectile>();
-    public HashSet<Item> Items { get; } = new HashSet<Item>();
-    public HashSet<Structure> Structures { get; } = new HashSet<Structure>();
-    public HashSet<Spawner> Spawners { get; } = new HashSet<Spawner>();
-    public HashSet<Gold> Golds { get; } = new HashSet<Gold>();
+    public HashSet<Projectile> Projectiles { get; set; } = new HashSet<Projectile>();
+    public HashSet<Item> Items { get; set; } = new HashSet<Item>();
+    public HashSet<Structure> Structures { get; set; } = new HashSet<Structure>();
+    public HashSet<Spawner> Spawners { get; set; } = new HashSet<Spawner>();
+    public HashSet<Gold> Golds { get; set; } = new HashSet<Gold>();
     #region Roots
     public Transform GetRootTransform(string name)
     {
@@ -269,5 +269,60 @@ public class ObjectManager :SingletonMonoBehaviour<ObjectManager>
         }
 
         return closestMonster;
+    }
+
+
+    private void RemoveAllObjects<T>(HashSet<T> originalSet)
+    {
+        // HashSet의 복사본 생성
+        var objectsCopy = new HashSet<T>(originalSet);
+
+        // 삭제할 요소를 모아두는 리스트
+        List<T> objectsToRemove = new List<T>();
+
+        // 복사본을 순회하면서 삭제할 객체를 찾아냄
+        foreach (var obj in objectsCopy)
+        {
+            if(obj is Monster monster)             { monster.ResetDatas(); }
+            else if (obj is Projectile projectile) { projectile.ResetDatas();}
+            else if (obj is Item item)             { item.ResetDatas(); }
+            else if (obj is Structure structure)   { structure.ResetDatas(); }
+            else if (obj is Spawner spawner)       { spawner.ResetDatas(); }
+            else if (obj is Gold gold)             { gold.ResetDatas(); }
+
+            objectsToRemove.Add(obj); // 삭제할 객체를 리스트에 추가
+        }
+
+        // 원본 컬렉션에서 삭제할 요소를 제거
+        foreach (var obj in objectsToRemove)
+        {
+            originalSet.Remove(obj);
+        }
+    }
+
+    // 내부 데이터 초기화
+    public void ResetDatas()
+    {
+        Hero = RespawnHero(Vector3.zero, Define.HERO_ZOOKEEPER_ID);
+
+        RemoveAllObjects(Monsters);
+        Monsters = new HashSet<Monster>();
+
+        Bosses = null;
+
+        RemoveAllObjects(Projectiles);
+        Projectiles = new HashSet<Projectile>();
+
+        RemoveAllObjects(Items);
+        Items = new HashSet<Item>();
+
+        RemoveAllObjects(Structures);
+        Structures = new HashSet<Structure>();
+
+        RemoveAllObjects(Spawners);
+        Spawners = new HashSet<Spawner>();
+
+        RemoveAllObjects(Golds);
+        Golds = new HashSet<Gold>();
     }
 }

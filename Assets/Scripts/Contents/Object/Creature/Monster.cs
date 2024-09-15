@@ -207,7 +207,7 @@ public class Monster : Creature
         base.OnDead(attacker, skill);
 
         if (CreatureType == ECreatureType.Boss)
-            StageManager.Instance.state = EStageState.Clear;
+            Managers.Stage.state = EStageState.Clear;
         else if (CreatureType == ECreatureType.Box)
             SoundManager.Instance.Play(Define.ESoundMainType.Object, Define.ESoundType.ItemBox);
         bool isDrop = false;
@@ -216,12 +216,15 @@ public class Monster : Creature
         int setVal = 0;
         foreach (var item in DropData)
         {
+            Debug.Log($"[Drop] ID:{item.ItemID}, DropPer:{item.DropPer}");
             setVal += item.DropPer;
+            Debug.Log($"[Drop] setVal:{setVal}");
 
             if (rand <= setVal)
             {
                 isDrop = !isDrop;
                 OnDrop(transform, item.ItemID);
+                Debug.Log($"[Drop O] ID:{item.ItemID}");
                 break;
             }
         }
@@ -365,7 +368,8 @@ public class Monster : Creature
     {
         if (monsterData.AttackType == 1 || monsterData.AttackType == 3)
             return false;
-        
+        //Debug.Log($"[WHO?]{this.monsterData.Name}");
+        //if (monsterData.Name == "Hunter1") { }
         distance = Vector2.Distance(_hero.transform.position, this.transform.position);
         
         if (_hero.IsValid())
@@ -443,4 +447,14 @@ public class Monster : Creature
     }
 
     #endregion
+
+    // Manager reset 시 삭제.
+    public void ResetDatas()
+    {
+        if (CoMonsterAI != null)
+            StopCoroutine(CoMonsterAI);
+        CoMonsterAI = null;
+        // Managers.Resource.Destroy(gameObject);
+        Managers.Object.Despawn(this);
+    }
 }
