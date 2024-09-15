@@ -42,7 +42,7 @@ public abstract class SkillBase
         
         _cooldownTick += deltaTime;
         
-        if (_cooldownTick < SkillData.CoolTime - PassiveHelper.Instance.GetPassiveValue(Define.PassiveSkillStatusType.CoolTimeDown))
+        if (_cooldownTick < SkillData.CoolTime * (1 - PassiveHelper.Instance.GetPassiveValue(Define.PassiveSkillStatusType.CoolTimeDown)))
             return;
         
         _cooldownTick = 0.0f;
