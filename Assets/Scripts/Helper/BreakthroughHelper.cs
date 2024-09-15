@@ -153,8 +153,8 @@ public class BreakthroughHelper
             return false;
 
         CompositeData data = compositeSkillTable[breakthroughIndex];
-        // if (data.Active.Item2 == true && data.Passive.Item2 == true)
-        if (true) // DEBUG::
+        if (data.Active.Item2 == true && data.Passive.Item2 == true)
+        //if (true) // DEBUG::
         {
             SkillBase breakthroughSkill = null;
             foreach (var item in Managers.Skill.usingSkillDic[SkillType.Breakthrough])

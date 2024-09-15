@@ -23,7 +23,7 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "호랑이가 달려와 적을 타격합니다. (데미지 20)",
+      "Kor_Text": "ȣ���̰� �޷��� ���� Ÿ���մϴ�. (������ 20)",
       "Eng_Text": "A tiger runs over and hits the enemy. (Damage 20)"
     },
     {
@@ -49,7 +49,7 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "호랑이가 달려와 적을 타격합니다. (데미지 25)",
+      "Kor_Text": "ȣ���̰� �޷��� ���� Ÿ���մϴ�. (������ 25)",
       "Eng_Text": "A tiger runs over and hits the enemy. (Damage 25)"
     },
     {
@@ -61,7 +61,7 @@
       "ProjectileNum": 1,
       "CastAngle": 0.0,
       "Damage": 30.0,
-      "AttackSpeed": 1.5,
+      "AttackSpeed": 1.0,
       "AttackRange": 2.5,
       "KnockbackPower": 200.0,
       "StunTime": 0.0,
@@ -75,7 +75,7 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "호랑이가 달려와 적을 타격합니다. (데미지 30)",
+      "Kor_Text": "ȣ���̰� �޷��� ���� Ÿ���մϴ�. (������ 30)",
       "Eng_Text": "A tiger runs over and hits the enemy. (Damage 30)"
     },
     {
@@ -101,7 +101,7 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "호랑이가 달려와 적을 타격합니다. (데미지 35)",
+      "Kor_Text": "ȣ���̰� �޷��� ���� Ÿ���մϴ�. (������ 35)",
       "Eng_Text": "A tiger runs over and hits the enemy. (Damage 35)"
     },
     {
@@ -127,7 +127,7 @@
       "StatValue": 0.0,
       "SkillGetType": 1,
       "SkillMaxLv": 5,
-      "Kor_Text": "호랑이가 달려와 적을 타격합니다. (데미지 35)",
+      "Kor_Text": "ȣ���̰� �޷��� ���� Ÿ���մϴ�. (������ 35)",
       "Eng_Text": "A tiger runs over and hits the enemy. (Damage 35)"
     },
     {
@@ -153,7 +153,7 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "주위를 회전하는 앵무새가 1마리가 소환됩니다.",
+      "Kor_Text": "������ ȸ���ϴ� �޹����� 1������ ��ȯ�˴ϴ�.",
       "Eng_Text": "The parrot spinning around is summoned 1."
     },
     {
@@ -179,7 +179,7 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "주위를 회전하는 앵무새가 2마리가 소환됩니다.",
+      "Kor_Text": "������ ȸ���ϴ� �޹����� 2������ ��ȯ�˴ϴ�.",
       "Eng_Text": "The parrot spinning around is summoned 2."
     },
     {
@@ -205,7 +205,7 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "주위를 회전하는 앵무새가 3마리가 소환됩니다.",
+      "Kor_Text": "������ ȸ���ϴ� �޹����� 3������ ��ȯ�˴ϴ�.",
       "Eng_Text": "The parrot spinning around is summoned 3."
     },
     {
@@ -231,7 +231,7 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "주위를 회전하는 앵무새가 4마리가 소환됩니다.",
+      "Kor_Text": "������ ȸ���ϴ� �޹����� 4������ ��ȯ�˴ϴ�.",
       "Eng_Text": "The parrot spinning around is summoned 4."
     },
     {
@@ -257,7 +257,7 @@
       "StatValue": 0.0,
       "SkillGetType": 1,
       "SkillMaxLv": 5,
-      "Kor_Text": "주위를 회전하는 앵무새가 4마리가 소환됩니다.",
+      "Kor_Text": "������ ȸ���ϴ� �޹����� 4������ ��ȯ�˴ϴ�.",
       "Eng_Text": "The parrot spinning around is summoned 4."
     },
     {
@@ -283,8 +283,8 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "전방에 곰이 스윙하여 적을 베어버립니다. (데미지 8)",
-      "Eng_Text": "A bear swings ahead and cuts down the enemy. (Damage 8)"
+      "Kor_Text": "���濡 ���� �����Ͽ� ���� ��������ϴ�. (������ n)",
+      "Eng_Text": "A bear swings ahead and cuts down the enemy. (Damage n)"
     },
     {
       "SkillID": 1032,
@@ -309,8 +309,8 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "전방에 곰이 스윙하여 적을 베어버립니다. (데미지 10)",
-      "Eng_Text": "A bear swings ahead and cuts down the enemy. (Damage 10)"
+      "Kor_Text": "���濡 ���� �����Ͽ� ���� ��������ϴ�. (������ n)",
+      "Eng_Text": "A bear swings ahead and cuts down the enemy. (Damage n)"
     },
     {
       "SkillID": 1033,
@@ -335,8 +335,8 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "전방에 곰이 스윙하여 적을 베어버립니다. (데미지 10)",
-      "Eng_Text": "A bear swings ahead and cuts down the enemy. (Damage 10)"
+      "Kor_Text": "���濡 ���� �����Ͽ� ���� ��������ϴ�. (������ n)",
+      "Eng_Text": "A bear swings ahead and cuts down the enemy. (Damage n)"
     },
     {
       "SkillID": 1034,
@@ -361,8 +361,8 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "전방에 곰이 스윙하여 적을 베어버립니다. (데미지 12)",
-      "Eng_Text": "A bear swings ahead and cuts down the enemy. (Damage 12)"
+      "Kor_Text": "���濡 ���� �����Ͽ� ���� ��������ϴ�. (������ n)",
+      "Eng_Text": "A bear swings ahead and cuts down the enemy. (Damage n)"
     },
     {
       "SkillID": 1035,
@@ -387,8 +387,8 @@
       "StatValue": 0.0,
       "SkillGetType": 1,
       "SkillMaxLv": 5,
-      "Kor_Text": "전방에 곰이 스윙하여 적을 베어버립니다. (데미지 14)",
-      "Eng_Text": "A bear swings ahead and cuts down the enemy. (Damage 14)"
+      "Kor_Text": "���濡 ���� �����Ͽ� ���� ��������ϴ�. (������ n)",
+      "Eng_Text": "A bear swings ahead and cuts down the enemy. (Damage n)"
     },
     {
       "SkillID": 1041,
@@ -413,7 +413,7 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "적을 타겟한 악어가 달려가 적을 물어버립니다. (데미지 15)",
+      "Kor_Text": "���� Ÿ���� �Ǿ �޷��� ���� ��������ϴ�. (������ 15)",
       "Eng_Text": "A crocodile targeting the enemy runs and bites the enemy. (Damage 15)"
     },
     {
@@ -439,7 +439,7 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "적을 타겟한 악어가 달려가 적을 물어버립니다. (데미지 20)",
+      "Kor_Text": "���� Ÿ���� �Ǿ �޷��� ���� ��������ϴ�. (������ 20)",
       "Eng_Text": "A crocodile targeting the enemy runs and bites the enemy. (Damage 20)"
     },
     {
@@ -465,7 +465,7 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "적을 타겟한 악어가 달려가 적을 물어버립니다. (데미지 25)",
+      "Kor_Text": "���� Ÿ���� �Ǿ �޷��� ���� ��������ϴ�. (������ 25)",
       "Eng_Text": "A crocodile targeting the enemy runs and bites the enemy. (Damage 25)"
     },
     {
@@ -491,7 +491,7 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "적을 타겟한 악어가 달려가 적을 물어버립니다. (데미지 30)",
+      "Kor_Text": "���� Ÿ���� �Ǿ �޷��� ���� ��������ϴ�. (������ 30)",
       "Eng_Text": "A crocodile targeting the enemy runs and bites the enemy. (Damage 30)"
     },
     {
@@ -517,7 +517,7 @@
       "StatValue": 0.0,
       "SkillGetType": 1,
       "SkillMaxLv": 5,
-      "Kor_Text": "적을 타겟한 악어가 달려가 적을 물어버립니다. (데미지 35)",
+      "Kor_Text": "���� Ÿ���� �Ǿ �޷��� ���� ��������ϴ�. (������ 35)",
       "Eng_Text": "A crocodile targeting the enemy runs and bites the enemy. (Damage 35)"
     },
     {
@@ -543,7 +543,7 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "주변에 스컹크가 뛰쳐나와 가스를 살포합니다. (데미지 8)",
+      "Kor_Text": "�ֺ��� ����ũ�� ���ĳ��� ������ �����մϴ�. (������ 8)",
       "Eng_Text": "Skunks run out around and spray gas. (Damage 8)"
     },
     {
@@ -569,7 +569,7 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "주변에 스컹크가 뛰쳐나와 가스를 살포합니다. (데미지 8)",
+      "Kor_Text": "�ֺ��� ����ũ�� ���ĳ��� ������ �����մϴ�. (������ 8)",
       "Eng_Text": "Skunks run out around and spray gas. (Damage 8)"
     },
     {
@@ -595,7 +595,7 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "주변에 스컹크가 뛰쳐나와 가스를 살포합니다. (데미지 10)",
+      "Kor_Text": "�ֺ��� ����ũ�� ���ĳ��� ������ �����մϴ�. (������ 10)",
       "Eng_Text": "Skunks run out around and spray gas. (Damage 10)"
     },
     {
@@ -621,7 +621,7 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "주변에 스컹크가 뛰쳐나와 가스를 살포합니다. (데미지 10)",
+      "Kor_Text": "�ֺ��� ����ũ�� ���ĳ��� ������ �����մϴ�. (������ 10)",
       "Eng_Text": "Skunks run out around and spray gas. (Damage 10)"
     },
     {
@@ -647,7 +647,7 @@
       "StatValue": 0.0,
       "SkillGetType": 1,
       "SkillMaxLv": 5,
-      "Kor_Text": "주변에 스컹크가 뛰쳐나와 가스를 살포합니다. (데미지 14)",
+      "Kor_Text": "�ֺ��� ����ũ�� ���ĳ��� ������ �����մϴ�. (������ 14)",
       "Eng_Text": "Skunks run out around and spray gas. (Damage 14)"
     },
     {
@@ -657,14 +657,14 @@
       "skillType": 1,
       "Level": 1,
       "ProjectileNum": 1,
-      "CastAngle": 0.0,
+      "CastAngle": 10.0,
       "Damage": 10.0,
       "AttackSpeed": 15.0,
       "AttackRange": 1.0,
       "KnockbackPower": 0.0,
       "StunTime": 0.0,
       "ConditionRange": 0.0,
-      "CastCount": 5,
+      "CastCount": 1,
       "Duration": 0.0,
       "SkillTurn": 0,
       "CoolTime": 0.5,
@@ -673,7 +673,7 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "적을 타겟하여 깃털을 발사합니다. (데미지 10)",
+      "Kor_Text": "���� Ÿ���Ͽ� ������ �߻��մϴ�. (������ 10)",
       "Eng_Text": "Fire feathers at the enemy. (Damage 10)"
     },
     {
@@ -682,15 +682,15 @@
       "AttackPattern": 4,
       "skillType": 1,
       "Level": 2,
-      "ProjectileNum": 1,
-      "CastAngle": 0.0,
+      "ProjectileNum": 3,
+      "CastAngle": 10.0,
       "Damage": 15.0,
       "AttackSpeed": 15.0,
       "AttackRange": 1.0,
       "KnockbackPower": 0.0,
       "StunTime": 0.0,
       "ConditionRange": 0.0,
-      "CastCount": 5,
+      "CastCount": 1,
       "Duration": 0.0,
       "SkillTurn": 0,
       "CoolTime": 0.5,
@@ -699,7 +699,7 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "적을 타겟하여 깃털을 발사합니다. (데미지 15)",
+      "Kor_Text": "���� Ÿ���Ͽ� ������ �߻��մϴ�. (������ 15)",
       "Eng_Text": "Fire feathers at the enemy. (Damage 15)"
     },
     {
@@ -708,15 +708,15 @@
       "AttackPattern": 4,
       "skillType": 1,
       "Level": 3,
-      "ProjectileNum": 1,
-      "CastAngle": 0.0,
+      "ProjectileNum": 3,
+      "CastAngle": 10.0,
       "Damage": 20.0,
       "AttackSpeed": 15.0,
       "AttackRange": 1.0,
       "KnockbackPower": 0.0,
       "StunTime": 0.0,
       "ConditionRange": 0.0,
-      "CastCount": 5,
+      "CastCount": 1,
       "Duration": 0.0,
       "SkillTurn": 0,
       "CoolTime": 0.5,
@@ -725,7 +725,7 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "적을 타겟하여 깃털을 발사합니다. (데미지 20)",
+      "Kor_Text": "���� Ÿ���Ͽ� ������ �߻��մϴ�. (������ 20)",
       "Eng_Text": "Fire feathers at the enemy. (Damage 20)"
     },
     {
@@ -734,15 +734,15 @@
       "AttackPattern": 4,
       "skillType": 1,
       "Level": 4,
-      "ProjectileNum": 1,
-      "CastAngle": 0.0,
+      "ProjectileNum": 5,
+      "CastAngle": 10.0,
       "Damage": 25.0,
       "AttackSpeed": 15.0,
       "AttackRange": 1.0,
       "KnockbackPower": 0.0,
       "StunTime": 0.0,
       "ConditionRange": 0.0,
-      "CastCount": 10,
+      "CastCount": 1,
       "Duration": 0.0,
       "SkillTurn": 0,
       "CoolTime": 0.5,
@@ -751,7 +751,7 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "적을 타겟하여 깃털을 발사합니다. (데미지 25)",
+      "Kor_Text": "���� Ÿ���Ͽ� ������ �߻��մϴ�. (������ 25)",
       "Eng_Text": "Fire feathers at the enemy. (Damage 25)"
     },
     {
@@ -760,15 +760,15 @@
       "AttackPattern": 4,
       "skillType": 1,
       "Level": 5,
-      "ProjectileNum": 1,
-      "CastAngle": 0.0,
+      "ProjectileNum": 5,
+      "CastAngle": 10.0,
       "Damage": 30.0,
-      "AttackSpeed": 8.5,
+      "AttackSpeed": 15.0,
       "AttackRange": 1.0,
       "KnockbackPower": 0.0,
       "StunTime": 0.0,
       "ConditionRange": 0.0,
-      "CastCount": 10,
+      "CastCount": 1,
       "Duration": 0.0,
       "SkillTurn": 0,
       "CoolTime": 0.5,
@@ -777,7 +777,7 @@
       "StatValue": 0.0,
       "SkillGetType": 1,
       "SkillMaxLv": 5,
-      "Kor_Text": "적을 타겟하여 깃털을 발사합니다. (데미지 30)",
+      "Kor_Text": "���� Ÿ���Ͽ� ������ �߻��մϴ�. (������ 30)",
       "Eng_Text": "Fire feathers at the enemy. (Damage 30)"
     },
     {
@@ -803,7 +803,7 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 1,
-      "Kor_Text": "산의 수호자가 달려와 적을 타격합니다.",
+      "Kor_Text": "���� ��ȣ�ڰ� �޷��� ���� Ÿ���մϴ�.",
       "Eng_Text": "The guardian of the mountain runs and hits the enemy."
     },
     {
@@ -829,7 +829,7 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 1,
-      "Kor_Text": "주위를 회전하는 각성한 앵무새가 5마리가 소환됩니다.",
+      "Kor_Text": "������ ȸ���ϴ� ������ �޹����� 5������ ��ȯ�˴ϴ�.",
       "Eng_Text": "The woke parrot spinning around is summoned 5."
     },
     {
@@ -855,60 +855,8 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 1,
-      "Kor_Text": "전방에 굶주린 곰이 스윙하여 적을 베어버립니다.",
+      "Kor_Text": "���濡 ���ָ� ���� �����Ͽ� ���� ��������ϴ�.",
       "Eng_Text": "A hungry bear in front swings and cuts down the enemy."
-    },
-    {
-      "SkillID": 4,
-      "Name": "GluttonyKing",
-      "AttackPattern": 1,
-      "skillType": 3,
-      "Level": 1,
-      "ProjectileNum": 1,
-      "CastAngle": 0.0,
-      "Damage": 0.0,
-      "AttackSpeed": 1.0,
-      "AttackRange": 0.0,
-      "KnockbackPower": 0.0,
-      "StunTime": 0.0,
-      "ConditionRange": 0.0,
-      "CastCount": 1,
-      "Duration": 0.0,
-      "SkillTurn": 5,
-      "CoolTime": 0.0,
-      "CastPer": 0.2,
-      "StatType": 0,
-      "StatValue": 0.0,
-      "SkillGetType": 0,
-      "SkillMaxLv": 1,
-      "Kor_Text": "적을 타겟한 포식의 왕이 달려가 적을 물어버립니다.",
-      "Eng_Text": "The king of predation targeting the enemy runs and bites the enemy."
-    },
-    {
-      "SkillID": 5,
-      "Name": "GluttonyKing",
-      "AttackPattern": 21,
-      "skillType": 3,
-      "Level": 1,
-      "ProjectileNum": 1,
-      "CastAngle": 0.0,
-      "Damage": 45.0,
-      "AttackSpeed": 1.0,
-      "AttackRange": 4.0,
-      "KnockbackPower": 0.0,
-      "StunTime": 0.0,
-      "ConditionRange": 0.0,
-      "CastCount": 1,
-      "Duration": 3.0,
-      "SkillTurn": 5,
-      "CoolTime": 30.0,
-      "CastPer": 1.0,
-      "StatType": 0,
-      "StatValue": 0.0,
-      "SkillGetType": 0,
-      "SkillMaxLv": 1,
-      "Kor_Text": null,
-      "Eng_Text": null
     },
     {
       "SkillID": 7,
@@ -933,7 +881,7 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 1,
-      "Kor_Text": "주변에 스컹크가 뛰쳐나와 독가스를 살포합니다.",
+      "Kor_Text": "�ֺ��� ����ũ�� ���ĳ��� �������� �����մϴ�.",
       "Eng_Text": "Skunks run out around and spray poisonous gas."
     },
     {
@@ -959,7 +907,7 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 1,
-      "Kor_Text": "공작이 적을 타겟하여 깃털을 연사하여 발사합니다.",
+      "Kor_Text": "������ ���� Ÿ���Ͽ� ������ �����Ͽ� �߻��մϴ�.",
       "Eng_Text": "Peacock is targeting the enemy and fires the feathers in a row."
     },
     {
@@ -985,7 +933,7 @@
       "StatValue": 0.08,
       "SkillGetType": 1,
       "SkillMaxLv": 5,
-      "Kor_Text": "쿨타임이 8% 감소합니다.",
+      "Kor_Text": "��Ÿ���� 8% �����մϴ�.",
       "Eng_Text": "The cool time is reduced by 8% seconds."
     },
     {
@@ -1011,7 +959,7 @@
       "StatValue": 0.16,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "쿨타임이 16% 감소합니다.",
+      "Kor_Text": "��Ÿ���� 16% �����մϴ�.",
       "Eng_Text": "The cool time is reduced by 16% seconds."
     },
     {
@@ -1037,7 +985,7 @@
       "StatValue": 0.24,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "쿨타임이 24% 감소합니다.",
+      "Kor_Text": "��Ÿ���� 24% �����մϴ�.",
       "Eng_Text": "The cool time is reduced by 24% seconds."
     },
     {
@@ -1063,7 +1011,7 @@
       "StatValue": 0.32,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "쿨타임이 32% 감소합니다.",
+      "Kor_Text": "��Ÿ���� 32% �����մϴ�.",
       "Eng_Text": "The cool time is reduced by 32% seconds."
     },
     {
@@ -1089,138 +1037,8 @@
       "StatValue": 0.4,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "쿨타임이 40% 감소합니다.",
+      "Kor_Text": "��Ÿ���� 40% �����մϴ�.",
       "Eng_Text": "The cool time is reduced by 40% seconds."
-    },
-    {
-      "SkillID": 2021,
-      "Name": "Compass",
-      "AttackPattern": 0,
-      "skillType": 2,
-      "Level": 1,
-      "ProjectileNum": 0,
-      "CastAngle": 0.0,
-      "Damage": 0.0,
-      "AttackSpeed": 0.0,
-      "AttackRange": 0.0,
-      "KnockbackPower": 0.0,
-      "StunTime": 0.0,
-      "ConditionRange": 0.0,
-      "CastCount": 0,
-      "Duration": 0.0,
-      "SkillTurn": 0,
-      "CoolTime": 0.0,
-      "CastPer": 1.0,
-      "StatType": 2,
-      "StatValue": 0.2,
-      "SkillGetType": 1,
-      "SkillMaxLv": 5,
-      "Kor_Text": "아이템을 획득하는 자석효과가 20% 증가합니다.",
-      "Eng_Text": "The magnet effect of acquiring items increases by 20%."
-    },
-    {
-      "SkillID": 2022,
-      "Name": "Compass",
-      "AttackPattern": 0,
-      "skillType": 2,
-      "Level": 2,
-      "ProjectileNum": 0,
-      "CastAngle": 0.0,
-      "Damage": 0.0,
-      "AttackSpeed": 0.0,
-      "AttackRange": 0.0,
-      "KnockbackPower": 0.0,
-      "StunTime": 0.0,
-      "ConditionRange": 0.0,
-      "CastCount": 0,
-      "Duration": 0.0,
-      "SkillTurn": 0,
-      "CoolTime": 0.0,
-      "CastPer": 1.0,
-      "StatType": 2,
-      "StatValue": 0.3,
-      "SkillGetType": 0,
-      "SkillMaxLv": 5,
-      "Kor_Text": "아이템을 획득하는 자석효과가 30% 증가합니다.",
-      "Eng_Text": "The magnet effect of acquiring items increases by 30%."
-    },
-    {
-      "SkillID": 2023,
-      "Name": "Compass",
-      "AttackPattern": 0,
-      "skillType": 2,
-      "Level": 3,
-      "ProjectileNum": 0,
-      "CastAngle": 0.0,
-      "Damage": 0.0,
-      "AttackSpeed": 0.0,
-      "AttackRange": 0.0,
-      "KnockbackPower": 0.0,
-      "StunTime": 0.0,
-      "ConditionRange": 0.0,
-      "CastCount": 0,
-      "Duration": 0.0,
-      "SkillTurn": 0,
-      "CoolTime": 0.0,
-      "CastPer": 1.0,
-      "StatType": 2,
-      "StatValue": 0.4,
-      "SkillGetType": 0,
-      "SkillMaxLv": 5,
-      "Kor_Text": "아이템을 획득하는 자석효과가 40% 증가합니다.",
-      "Eng_Text": "The magnet effect of acquiring items increases by 40%."
-    },
-    {
-      "SkillID": 2024,
-      "Name": "Compass",
-      "AttackPattern": 0,
-      "skillType": 2,
-      "Level": 4,
-      "ProjectileNum": 0,
-      "CastAngle": 0.0,
-      "Damage": 0.0,
-      "AttackSpeed": 0.0,
-      "AttackRange": 0.0,
-      "KnockbackPower": 0.0,
-      "StunTime": 0.0,
-      "ConditionRange": 0.0,
-      "CastCount": 0,
-      "Duration": 0.0,
-      "SkillTurn": 0,
-      "CoolTime": 0.0,
-      "CastPer": 1.0,
-      "StatType": 2,
-      "StatValue": 0.5,
-      "SkillGetType": 0,
-      "SkillMaxLv": 5,
-      "Kor_Text": "아이템을 획득하는 자석효과가 50% 증가합니다.",
-      "Eng_Text": "The magnet effect of acquiring items increases by 50%."
-    },
-    {
-      "SkillID": 2025,
-      "Name": "Compass",
-      "AttackPattern": 0,
-      "skillType": 2,
-      "Level": 5,
-      "ProjectileNum": 0,
-      "CastAngle": 0.0,
-      "Damage": 0.0,
-      "AttackSpeed": 0.0,
-      "AttackRange": 0.0,
-      "KnockbackPower": 0.0,
-      "StunTime": 0.0,
-      "ConditionRange": 0.0,
-      "CastCount": 0,
-      "Duration": 0.0,
-      "SkillTurn": 0,
-      "CoolTime": 0.0,
-      "CastPer": 1.0,
-      "StatType": 2,
-      "StatValue": 1.0,
-      "SkillGetType": 0,
-      "SkillMaxLv": 5,
-      "Kor_Text": "아이템을 획득하는 자석효과가 100% 증가합니다.",
-      "Eng_Text": "The magnet effect of acquiring items increases by 100%."
     },
     {
       "SkillID": 2031,
@@ -1245,7 +1063,7 @@
       "StatValue": 0.08,
       "SkillGetType": 1,
       "SkillMaxLv": 5,
-      "Kor_Text": "획득하는 경험치가 8% 증가합니다.",
+      "Kor_Text": "ȹ���ϴ� ����ġ�� 8% �����մϴ�.",
       "Eng_Text": "The experience you get increases by 8%."
     },
     {
@@ -1271,7 +1089,7 @@
       "StatValue": 0.16,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "획득하는 경험치가 16% 증가합니다.",
+      "Kor_Text": "ȹ���ϴ� ����ġ�� 16% �����մϴ�.",
       "Eng_Text": "The experience you get increases by 16%."
     },
     {
@@ -1297,7 +1115,7 @@
       "StatValue": 0.24,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "획득하는 경험치가 24% 증가합니다.",
+      "Kor_Text": "ȹ���ϴ� ����ġ�� 24% �����մϴ�.",
       "Eng_Text": "The experience you get increases by 24%."
     },
     {
@@ -1323,7 +1141,7 @@
       "StatValue": 0.32,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "획득하는 경험치가 32% 증가합니다.",
+      "Kor_Text": "ȹ���ϴ� ����ġ�� 32% �����մϴ�.",
       "Eng_Text": "The experience you get increases by 32%."
     },
     {
@@ -1349,7 +1167,7 @@
       "StatValue": 0.4,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "획득하는 경험치가 40% 증가합니다.",
+      "Kor_Text": "ȹ���ϴ� ����ġ�� 40% �����մϴ�.",
       "Eng_Text": "The experience you get increases by 40%."
     },
     {
@@ -1375,7 +1193,7 @@
       "StatValue": 0.08,
       "SkillGetType": 1,
       "SkillMaxLv": 5,
-      "Kor_Text": "획득하는 골드량이 4% 증가합니다.",
+      "Kor_Text": "ȹ���ϴ� ��差�� 4% �����մϴ�.",
       "Eng_Text": "Increase the amount of gold you earn by 4%."
     },
     {
@@ -1401,7 +1219,7 @@
       "StatValue": 0.16,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "획득하는 골드량이 16% 증가합니다.",
+      "Kor_Text": "ȹ���ϴ� ��差�� 16% �����մϴ�.",
       "Eng_Text": "Increase the amount of gold you earn by 16%."
     },
     {
@@ -1427,7 +1245,7 @@
       "StatValue": 0.24,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "획득하는 골드량이 24% 증가합니다.",
+      "Kor_Text": "ȹ���ϴ� ��差�� 24% �����մϴ�.",
       "Eng_Text": "Increase the amount of gold you earn by 24%."
     },
     {
@@ -1453,7 +1271,7 @@
       "StatValue": 0.32,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "획득하는 골드량이 32% 증가합니다.",
+      "Kor_Text": "ȹ���ϴ� ��差�� 32% �����մϴ�.",
       "Eng_Text": "Increase the amount of gold you earn by 32%."
     },
     {
@@ -1479,7 +1297,7 @@
       "StatValue": 0.4,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "획득하는 골드량이 40% 증가합니다.",
+      "Kor_Text": "ȹ���ϴ� ��差�� 40% �����մϴ�.",
       "Eng_Text": "Increase the amount of gold you earn by 40%."
     },
     {
@@ -1505,7 +1323,7 @@
       "StatValue": 0.1,
       "SkillGetType": 1,
       "SkillMaxLv": 5,
-      "Kor_Text": "지속시간이 10% 증가합니다.",
+      "Kor_Text": "���ӽð��� 10% �����մϴ�.",
       "Eng_Text": "Increases duration by 10% seconds."
     },
     {
@@ -1531,7 +1349,7 @@
       "StatValue": 0.2,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "지속시간이 20% 증가합니다.",
+      "Kor_Text": "���ӽð��� 20% �����մϴ�.",
       "Eng_Text": "Increases duration by 20% seconds."
     },
     {
@@ -1557,7 +1375,7 @@
       "StatValue": 0.3,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "지속시간이 30% 증가합니다.",
+      "Kor_Text": "���ӽð��� 30% �����մϴ�.",
       "Eng_Text": "Increases duration by 30% seconds."
     },
     {
@@ -1583,7 +1401,7 @@
       "StatValue": 0.4,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "지속시간이 40% 증가합니다.",
+      "Kor_Text": "���ӽð��� 40% �����մϴ�.",
       "Eng_Text": "Increases duration by 40% seconds."
     },
     {
@@ -1609,7 +1427,7 @@
       "StatValue": 0.5,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "지속시간이 50% 증가합니다.",
+      "Kor_Text": "���ӽð��� 50% �����մϴ�.",
       "Eng_Text": "Increases duration by 50% seconds."
     },
     {
@@ -1635,7 +1453,7 @@
       "StatValue": 0.03,
       "SkillGetType": 1,
       "SkillMaxLv": 5,
-      "Kor_Text": "체력 회복량이 3% 증가합니다.",
+      "Kor_Text": "ü�� ȸ������ 3% �����մϴ�.",
       "Eng_Text": "Increases physical strength recovery by 3%."
     },
     {
@@ -1661,7 +1479,7 @@
       "StatValue": 0.06,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "체력 회복량이 6% 증가합니다.",
+      "Kor_Text": "ü�� ȸ������ 6% �����մϴ�.",
       "Eng_Text": "Increases physical strength recovery by 6%."
     },
     {
@@ -1687,7 +1505,7 @@
       "StatValue": 0.09,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "체력 회복량이 9% 증가합니다.",
+      "Kor_Text": "ü�� ȸ������ 9% �����մϴ�.",
       "Eng_Text": "Increases physical strength recovery by 9%."
     },
     {
@@ -1713,7 +1531,7 @@
       "StatValue": 0.12,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "체력 회복량이 12% 증가합니다.",
+      "Kor_Text": "ü�� ȸ������ 12% �����մϴ�.",
       "Eng_Text": "Increases physical strength recovery by 12%."
     },
     {
@@ -1739,7 +1557,7 @@
       "StatValue": 0.24,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "체력 회복량이 24% 증가합니다.",
+      "Kor_Text": "ü�� ȸ������ 24% �����մϴ�.",
       "Eng_Text": "Increases physical strength recovery by 24%."
     },
     {
@@ -1765,7 +1583,7 @@
       "StatValue": 0.1,
       "SkillGetType": 1,
       "SkillMaxLv": 5,
-      "Kor_Text": "최대 체력량이 10% 증가합니다.",
+      "Kor_Text": "�ִ� ü�·��� 10% �����մϴ�.",
       "Eng_Text": "Maximum physical strength increases by 10%."
     },
     {
@@ -1791,7 +1609,7 @@
       "StatValue": 0.2,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "최대 체력량이 20% 증가합니다.",
+      "Kor_Text": "�ִ� ü�·��� 20% �����մϴ�.",
       "Eng_Text": "Maximum physical strength increases by 20%."
     },
     {
@@ -1817,7 +1635,7 @@
       "StatValue": 0.4,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "최대 체력량이 40% 증가합니다.",
+      "Kor_Text": "�ִ� ü�·��� 40% �����մϴ�.",
       "Eng_Text": "Maximum physical strength increases by 40%."
     },
     {
@@ -1843,7 +1661,7 @@
       "StatValue": 0.6,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "최대 체력량이 60% 증가합니다.",
+      "Kor_Text": "�ִ� ü�·��� 60% �����մϴ�.",
       "Eng_Text": "Maximum physical strength increases by 60%."
     },
     {
@@ -1869,7 +1687,7 @@
       "StatValue": 0.8,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "최대 체력량이 80% 증가합니다.",
+      "Kor_Text": "�ִ� ü�·��� 80% �����մϴ�.",
       "Eng_Text": "Maximum physical strength increases by 80%."
     },
     {
@@ -1895,7 +1713,7 @@
       "StatValue": 0.1,
       "SkillGetType": 1,
       "SkillMaxLv": 5,
-      "Kor_Text": "이동속도가 10% 증가합니다.",
+      "Kor_Text": "�̵��ӵ��� 10% �����մϴ�.",
       "Eng_Text": "Increase the movement speed by 10%."
     },
     {
@@ -1921,7 +1739,7 @@
       "StatValue": 0.2,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "이동속도가 20% 증가합니다.",
+      "Kor_Text": "�̵��ӵ��� 20% �����մϴ�.",
       "Eng_Text": "Increase the movement speed by 20%."
     },
     {
@@ -1947,7 +1765,7 @@
       "StatValue": 0.3,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "이동속도가 30% 증가합니다.",
+      "Kor_Text": "�̵��ӵ��� 30% �����մϴ�.",
       "Eng_Text": "Increase the movement speed by 30%."
     },
     {
@@ -1973,7 +1791,7 @@
       "StatValue": 0.4,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "이동속도가 40% 증가합니다.",
+      "Kor_Text": "�̵��ӵ��� 40% �����մϴ�.",
       "Eng_Text": "Increase the movement speed by 40%."
     },
     {
@@ -1999,7 +1817,7 @@
       "StatValue": 0.5,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "이동속도가 50% 증가합니다.",
+      "Kor_Text": "�̵��ӵ��� 50% �����մϴ�.",
       "Eng_Text": "Increase the movement speed by 50%."
     },
     {
@@ -2025,7 +1843,7 @@
       "StatValue": 0.1,
       "SkillGetType": 1,
       "SkillMaxLv": 5,
-      "Kor_Text": "스킬 데미지가 10% 증가합니다.",
+      "Kor_Text": "��ų �������� 10% �����մϴ�.",
       "Eng_Text": "Increases skill damage by 10%."
     },
     {
@@ -2051,7 +1869,7 @@
       "StatValue": 0.2,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "스킬 데미지가 20% 증가합니다.",
+      "Kor_Text": "��ų �������� 20% �����մϴ�.",
       "Eng_Text": "Increases skill damage by 20%."
     },
     {
@@ -2077,7 +1895,7 @@
       "StatValue": 0.3,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "스킬 데미지가 30% 증가합니다.",
+      "Kor_Text": "��ų �������� 30% �����մϴ�.",
       "Eng_Text": "Increases skill damage by 30%."
     },
     {
@@ -2103,7 +1921,7 @@
       "StatValue": 0.4,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "스킬 데미지가 40% 증가합니다.",
+      "Kor_Text": "��ų �������� 40% �����մϴ�.",
       "Eng_Text": "Increases skill damage by 40%."
     },
     {
@@ -2129,7 +1947,7 @@
       "StatValue": 0.5,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "스킬 데미지가 50% 증가합니다.",
+      "Kor_Text": "��ų �������� 50% �����մϴ�.",
       "Eng_Text": "Increases skill damage by 50%."
     },
     {
@@ -2155,7 +1973,7 @@
       "StatValue": 0.1,
       "SkillGetType": 1,
       "SkillMaxLv": 5,
-      "Kor_Text": "공격속도가 10% 증가합니다.",
+      "Kor_Text": "���ݼӵ��� 10% �����մϴ�.",
       "Eng_Text": "Increases attack speed by 10%."
     },
     {
@@ -2181,7 +1999,7 @@
       "StatValue": 0.2,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "공격속도가 20% 증가합니다.",
+      "Kor_Text": "���ݼӵ��� 20% �����մϴ�.",
       "Eng_Text": "Increases attack speed by 20%."
     },
     {
@@ -2207,7 +2025,7 @@
       "StatValue": 0.3,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "공격속도가 30% 증가합니다.",
+      "Kor_Text": "���ݼӵ��� 30% �����մϴ�.",
       "Eng_Text": "Increases attack speed by 30%."
     },
     {
@@ -2233,7 +2051,7 @@
       "StatValue": 0.4,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "공격속도가 40% 증가합니다.",
+      "Kor_Text": "���ݼӵ��� 40% �����մϴ�.",
       "Eng_Text": "Increases attack speed by 40%."
     },
     {
@@ -2259,7 +2077,7 @@
       "StatValue": 0.5,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "공격속도가 50% 증가합니다.",
+      "Kor_Text": "���ݼӵ��� 50% �����մϴ�.",
       "Eng_Text": "Increases attack speed by 50%."
     },
     {
@@ -2285,7 +2103,7 @@
       "StatValue": 0.1,
       "SkillGetType": 1,
       "SkillMaxLv": 5,
-      "Kor_Text": "공격범위가 10% 증가합니다.",
+      "Kor_Text": "���ݹ����� 10% �����մϴ�.",
       "Eng_Text": "Increases attack range by 10%."
     },
     {
@@ -2311,7 +2129,7 @@
       "StatValue": 0.2,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "공격범위가 20% 증가합니다.",
+      "Kor_Text": "���ݹ����� 20% �����մϴ�.",
       "Eng_Text": "Increases attack range by 20%."
     },
     {
@@ -2337,7 +2155,7 @@
       "StatValue": 0.3,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "공격범위가 30% 증가합니다.",
+      "Kor_Text": "���ݹ����� 30% �����մϴ�.",
       "Eng_Text": "Increases attack range by 30%."
     },
     {
@@ -2363,7 +2181,7 @@
       "StatValue": 0.4,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "공격범위가 40% 증가합니다.",
+      "Kor_Text": "���ݹ����� 40% �����մϴ�.",
       "Eng_Text": "Increases attack range by 40%."
     },
     {
@@ -2389,7 +2207,7 @@
       "StatValue": 0.5,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "공격범위가 50% 증가합니다.",
+      "Kor_Text": "���ݹ����� 50% �����մϴ�.",
       "Eng_Text": "Increases attack range by 50%."
     },
     {
@@ -2415,7 +2233,7 @@
       "StatValue": 0.03,
       "SkillGetType": 1,
       "SkillMaxLv": 5,
-      "Kor_Text": "스킬 발동확률이 3% 증가합니다.",
+      "Kor_Text": "��ų�ߵ�Ȯ���� 3% �����մϴ�.",
       "Eng_Text": "Increases skill triggering probability by 3%."
     },
     {
@@ -2441,7 +2259,7 @@
       "StatValue": 0.06,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "스킬 발동확률이 6% 증가합니다.",
+      "Kor_Text": "��ų�ߵ�Ȯ���� 6% �����մϴ�.",
       "Eng_Text": "Increases skill triggering probability by 6%."
     },
     {
@@ -2467,7 +2285,7 @@
       "StatValue": 0.09,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "스킬 발동확률이 9% 증가합니다.",
+      "Kor_Text": "��ų�ߵ�Ȯ���� 9% �����մϴ�.",
       "Eng_Text": "Increases skill triggering probability by 9%."
     },
     {
@@ -2493,7 +2311,7 @@
       "StatValue": 0.12,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "스킬 발동확률이 12% 증가합니다.",
+      "Kor_Text": "��ų�ߵ�Ȯ���� 12% �����մϴ�.",
       "Eng_Text": "Increases skill triggering probability by 12%."
     },
     {
@@ -2519,7 +2337,7 @@
       "StatValue": 0.2,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "스킬 발동확률이 20% 증가합니다.",
+      "Kor_Text": "��ų�ߵ�Ȯ���� 20% �����մϴ�.",
       "Eng_Text": "Increases skill triggering probability by 20%."
     }
   ]

@@ -1,17 +1,17 @@
 {
   "heroes": [
     {
-      "Level": 1,
+      "Level": 60,
       "MaxExp": 70,
       "ItemAcquireRange": 0.0,
       "SkillIdList": [
         1081
       ],
       "Index": 100,
-      "DescriptionTextID": "사육사",
+      "DescriptionTextID": "������",
       "MaxHp": 100,
-      "Atk": 2,
-      "MoveSpeed": 1.3,
+      "Atk": 1,
+      "MoveSpeed": 1.0,
       "ResistDisorder": 0.0,
       "AnimatorDataID": "Animations/Hero/hero"
     }

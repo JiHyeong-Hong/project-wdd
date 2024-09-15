@@ -2,17 +2,10 @@
   "stages": [
     {
       "StageID": 1000,
-      "Name": "맵1",
+      "Name": null,
       "Lv": 1,
-      "Info": "맵 정보1",
+      "Info": null,
       "Locked": false
-    },
-    {
-      "StageID": 1001,
-      "Name": "맵2",
-      "Lv": 2,
-      "Info": "맵 정보2",
-      "Locked": true
     }
   ]
 }
