@@ -12,7 +12,7 @@ public class GluttonyKingSkill : SkillBase
 
     private void Attack()
     {
-        Crocodile crocodile = Managers.Object.Spawn<Crocodile>(Owner.transform.position, SkillData.ProjectileNum);
+        Crocodile crocodile = Managers.Object.Spawn<Crocodile>(Owner.transform.position, 1);
         crocodile.SetSpawnInfo(Owner, this, Vector2.zero);
         crocodile.isBreakthrough = true;
         crocodile.skill2 = BreakthroughHelper.Instance.FindBreakthroughSkill(SkillData.SkillID);

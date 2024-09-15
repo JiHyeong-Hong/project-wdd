@@ -240,7 +240,7 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 
                 state = EStageState.Barricade;
                 //TODO Eung 바리게이트 오브젝트만들어서 생성하면 될듯 - 바리게이트 Spawn으로 바꾸면 될듯
-                Barricate = Managers.Object.Spawn<Structure>(Managers.Object.Hero.transform.position, 0);
+                Barricate = Managers.Object.Spawn<Structure>(Managers.Object.Hero.transform.position, 1);
             }
             else if (state == EStageState.Barricade)
             {

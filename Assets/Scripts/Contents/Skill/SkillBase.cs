@@ -24,14 +24,14 @@ public abstract class SkillBase
         Clear();
         _cooldownTick = SkillData.CoolTime;
 
-        //¸¸·¾ÀÌ¸é »ÌÀ» ¼ö ÀÖ´Â ½ºÅ³¸ñ·Ï¿¡¼­ »èÁ¦
+        //ë§Œë ™ì´ë©´ ë½‘ì„ ìˆ˜ ìˆëŠ” ìŠ¤í‚¬ëª©ë¡ì—ì„œ ì‚­ì œ
         if (data.Level == MAX_SKILL_LEVEL)
             Managers.Skill.canPickSkillList.Remove(data.Name);
     }
 
-    public void SetPassive(int operatorValue)
+    public void SetPassive()
     {
-        PassiveHelper.Instance.SetPassive(SkillData, operatorValue);
+        PassiveHelper.Instance.SetPassive(SkillData);
     }
 
     protected float _cooldownTick = 0f;

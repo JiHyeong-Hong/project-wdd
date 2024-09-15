@@ -9,7 +9,7 @@ public class HungryBearSkill : SkillBase
         var dir = Owner.Direction;
         bool isFlip = dir.x < 0;
 
-        Bear bear = Managers.Object.Spawn<Bear>((Vector2)Owner.transform.position + Vector2.up, SkillData.ProjectileNum);
+        Bear bear = Managers.Object.Spawn<Bear>((Vector2)Owner.transform.position + Vector2.up, 1);
         bear.Skills[1].SetActive(true);
         bear.myCollider2D.radius = 1.3f;
 

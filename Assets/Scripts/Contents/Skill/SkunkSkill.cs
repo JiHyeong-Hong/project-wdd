@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// ½ºÄÈÅ© ½ºÅ³ Å¬·¡½º. @È«ÁöÇü // TODO: ½ºÄÈÅ© µ¶ ¾ÆÆ®·Î ¼öÁ¤ÇØ¾ßÇÔ.
+// ìŠ¤ì»¹í¬ ìŠ¤í‚¬ í´ë˜ìŠ¤. @í™ì§€í˜• // TODO: ìŠ¤ì»¹í¬ ë… ì•„íŠ¸ë¡œ ìˆ˜ì •í•´ì•¼í•¨.
 public class SkunkSkill : SkillBase
 {
-    public List<int> availableQuadrants = new List<int> { 1, 2, 3, 4 }; // »ç¿ë °¡´ÉÇÑ »çºĞ¸é ¸ñ·Ï
+    public List<int> availableQuadrants = new List<int> { 1, 2, 3, 4 }; // ì‚¬ìš© ê°€ëŠ¥í•œ ì‚¬ë¶„ë©´ ëª©ë¡
 
     public override void DoSkill()
     {
@@ -30,7 +30,7 @@ public class SkunkSkill : SkillBase
 
         for (int i = 0; i < SkillData.ProjectileNum; i++)
         {
-            Skunk skunk = Managers.Object.Spawn<Skunk>(Owner.transform.position + new Vector3(offsetX, offsetY, 0f), SkillData.ProjectileNum);
+            Skunk skunk = Managers.Object.Spawn<Skunk>(Owner.transform.position + new Vector3(offsetX, offsetY, 0f), 1);
             skunk.quadrant = spawnPointList[0];
             skunk.SetSpawnInfo(Owner, this, Vector2.up, false);
             skunk.LookLeft = (direction.x < 0);

@@ -14,7 +14,7 @@ public class CrocodileSkill : SkillBase
 
     private void Attack()
     {
-        Crocodile crocodile = Managers.Object.Spawn<Crocodile>(Owner.transform.position, SkillData.ProjectileNum);
+        Crocodile crocodile = Managers.Object.Spawn<Crocodile>(Owner.transform.position, 1);
         crocodile.SetSpawnInfo(Owner, this, Vector2.zero);
     }
 

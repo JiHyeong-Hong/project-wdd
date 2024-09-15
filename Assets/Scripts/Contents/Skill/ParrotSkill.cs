@@ -44,7 +44,7 @@ public class ParrotSkill : SkillBase
         {
             float angle = i * 360f / SkillData.ProjectileNum;
             Vector2 spawnPosition = GetCirclePosition(angle, orbitRadius);
-            Bird bird = Managers.Object.Spawn<Bird>(spawnPosition, SkillData.ProjectileNum, birdPool.transform);
+            Bird bird = Managers.Object.Spawn<Bird>(spawnPosition, 1, birdPool.transform);
             bird.SetSpawnInfo(Owner, this, Vector2.up);
             bird.Animator.SetTrigger("Normal");
             birds.Add(bird);

@@ -18,7 +18,7 @@ public class ZebraSkill : SkillBase
         float boxHeight = 9f; // ������ �׸�ĭ ����
         Vector2 topRight = centerPosition + new Vector2(boxWidth / 2, boxHeight / 2);            
 
-        Zebra zebra = Managers.Object.Spawn<Zebra>(topRight, SkillData.ProjectileNum);
+        Zebra zebra = Managers.Object.Spawn<Zebra>(topRight, 1);
         zebra.SetSpawnInfo(Owner, this, direction);
     }
 

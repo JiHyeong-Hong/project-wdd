@@ -20,7 +20,7 @@ public class BearSkill : SkillBase
 		var angle = hero.pivot.eulerAngles.z;
 		angle += isFlip ? -ANGLE_OFFSET : ANGLE_OFFSET;
 
-		Bear bear = Managers.Object.Spawn<Bear>((Vector2)Owner.transform.position + Owner.Direction.normalized * DISTANCE_OFFSET, SkillData.ProjectileNum);
+		Bear bear = Managers.Object.Spawn<Bear>((Vector2)Owner.transform.position + Owner.Direction.normalized * DISTANCE_OFFSET, 1);
 		bear.Skills[0].SetActive(true);
 
         bear.SetSpawnInfo(Owner, this, Vector3.zero);

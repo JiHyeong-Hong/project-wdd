@@ -27,7 +27,7 @@ public class PoisonGasSkill : SkunkSkill
 
         for (int i = 0; i < SkillData.ProjectileNum; i++)
         {
-            Skunk skunk = Managers.Object.Spawn<Skunk>(Owner.transform.position + new Vector3(offsetX, offsetY, 0f), 4);
+            Skunk skunk = Managers.Object.Spawn<Skunk>(Owner.transform.position + new Vector3(offsetX, offsetY, 0f), 1);
             skunk.isBTSkill = true;
             skunk.quadrant = spawnPointList[0];
             skunk.SetSpawnInfo(Owner, this, direction, true);

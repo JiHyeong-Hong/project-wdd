@@ -19,7 +19,7 @@ public class GuardianOfMountainSkill : TigerSkill
         if (Mathf.Abs(direction.y) < 0.001f && direction.x < 0)
             offsetY *= -2;
 
-        Tiger tiger = Managers.Object.Spawn<Tiger>(Owner.transform.position + new Vector3(offsetX, offsetY, 0f), SkillData.ProjectileNum);
+        Tiger tiger = Managers.Object.Spawn<Tiger>(Owner.transform.position + new Vector3(offsetX, offsetY, 0f), 1);
         tiger.isBTSkill = true;
         tiger.transform.localScale = new Vector3(0.45f, 0.45f, 0.45f);
         tiger.SetSpawnInfo(Owner, this, direction);

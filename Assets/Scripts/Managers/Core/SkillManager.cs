@@ -351,16 +351,10 @@ public class SkillManager
     {
         if (skillData.Level > 1)
         {
-            if (Managers.Skill.usingSkillDic[skillData.skillType].Remove(Managers.Skill.allSkillDic[skillData.Name][skillData.Level - 2])) // 이전레벨의 스킬 삭제
-            {
-                // UnityEngine.Debug.Log($"삭제성공"); 
-            }
-            else
-            {
-                // UnityEngine.Debug.Log($"삭제실패..");
-            }
+            // 이전 레벨의 스킬을 삭제한다
+            Managers.Skill.usingSkillDic[skillData.skillType].RemoveAll(skill => skill.SkillData.Name == skillData.Name);
         }
-        
+
         Managers.Skill.usingSkillDic[skillData.skillType].Add(Managers.Skill.allSkillDic[skillData.Name][skillData.Level - 1]); // 현재레벨의 스킬 추가
         Managers.Skill.usingSkillDic[skillData.skillType][Managers.Skill.usingSkillDic[skillData.skillType].Count - 1].SetInfo(skillData);
         Managers.Skill.usingSkillDic[skillData.skillType][Managers.Skill.usingSkillDic[skillData.skillType].Count - 1].SetOwner(Managers.Object.Hero);

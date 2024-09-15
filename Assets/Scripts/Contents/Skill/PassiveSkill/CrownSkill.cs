@@ -17,8 +17,7 @@ public class CrownSkill : SkillBase
 
 
     private void UpdatePassive(bool removePassive = false)
-    {
-        int operatorValue = removePassive ? -1 : 1;
-        SetPassive(operatorValue);
+    {        
+        SetPassive();
     }
 }

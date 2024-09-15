@@ -29,7 +29,7 @@ public class TigerSkill : SkillBase
         if (Mathf.Abs(direction.y) < 0.001f && direction.x < 0)
             offsetY *= -2;
 
-        Tiger tiger = Managers.Object.Spawn<Tiger>(Owner.transform.position + new Vector3(offsetX, offsetY, 0f), SkillData.ProjectileNum);
+        Tiger tiger = Managers.Object.Spawn<Tiger>(Owner.transform.position + new Vector3(offsetX, offsetY, 0f), 1);
         tiger.SetSpawnInfo(Owner, this, direction);
     }
 

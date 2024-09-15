@@ -32,7 +32,7 @@ public class KunaiSkill : SkillBase
 
     private void AttackKunai(Vector2 direction, float angle)
     {
-        Kunai proj = Managers.Object.Spawn<Kunai>(Owner.transform.position, SkillData.ProjectileNum);
+        Kunai proj = Managers.Object.Spawn<Kunai>(Owner.transform.position, 1);
         proj.SetSpawnInfo(Owner, this, Util.RotateVectorByAngle(direction, angle));
     }
 

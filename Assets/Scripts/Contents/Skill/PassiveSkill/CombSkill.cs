@@ -7,7 +7,7 @@ public class CombSkill : SkillBase
 {
     public override void Clear()
     {
-        UpdatePassive(true);
+        UpdatePassive();
     }
 
     public override void DoSkill()
@@ -17,8 +17,7 @@ public class CombSkill : SkillBase
 
 
     private void UpdatePassive(bool removePassive = false)
-    {
-        int operatorValue = removePassive ? -1 : 1;
-        SetPassive(operatorValue);
+    {        
+        SetPassive();
     }
 }

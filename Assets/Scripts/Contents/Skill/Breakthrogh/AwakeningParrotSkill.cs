@@ -27,7 +27,7 @@ public class AwakeningParrotSkill : SkillBase
         {
             float angle = i * 360f / SkillData.ProjectileNum;
             Vector2 spawnPosition = GetCirclePosition(angle, orbitRadius);
-            Bird bird = Managers.Object.Spawn<Bird>(spawnPosition, SkillData.ProjectileNum, birdPool.transform);
+            Bird bird = Managers.Object.Spawn<Bird>(spawnPosition, 1, birdPool.transform);
             bird.transform.localScale = Vector3.one * 3f;
             bird.SetSpawnInfo(Owner, this, Vector2.up);
             bird.Animator.SetBool("isBreakthrough", true);

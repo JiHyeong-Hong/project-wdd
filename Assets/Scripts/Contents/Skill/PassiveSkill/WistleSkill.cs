@@ -7,7 +7,7 @@ public class WistleSkill : SkillBase
 {
     public override void Clear()
     {
-        UpdatePassive(true);
+        UpdatePassive();
     }
 
     public override void DoSkill()
@@ -16,9 +16,8 @@ public class WistleSkill : SkillBase
     }
 
 
-    private void UpdatePassive(bool removePassive = false)
-    {
-        int operatorValue = removePassive ? -1 : 1;
-        SetPassive(operatorValue);
+    private void UpdatePassive()
+    {        
+        SetPassive();
     }
 }

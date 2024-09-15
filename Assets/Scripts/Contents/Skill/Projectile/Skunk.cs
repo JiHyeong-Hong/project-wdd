@@ -57,6 +57,7 @@ public class Skunk : Projectile
     public override void SetSpawnInfo(Creature owner, SkillBase skill, Vector2 direction)
     {
         base.SetSpawnInfo(owner, skill, direction);
+        var test = PassiveHelper.Instance.GetPassiveValue(Define.PassiveSkillStatusType.Duration);        
         float duration = skill.SkillData.Duration * (1 + PassiveHelper.Instance.GetPassiveValue(Define.PassiveSkillStatusType.Duration));
         spriteRenderer.sprite = sprites[(int)ESkunkState.Jump];
 
