@@ -111,12 +111,14 @@ public class LoadingManager : MonoBehaviour
 
     private string GetResourcePath<T>(T resource) where T : Object
     {
-        string assetPath = AssetDatabase.GetAssetPath(resource);
-        string resourcePath = assetPath.Substring(assetPath.IndexOf("Resources/") + 10);
-        // ���� �̸��� . �� �͵� ���� or Ȯ���� ã�Ƽ� �ϳ��� �߰�
-        resourcePath = resourcePath.Substring(0, resourcePath.IndexOf("."));
-        //resourcePath = resourcePath.Replace(".prefab", "").Replace(".asset", ""); // �ʿ��� ��� �ٸ� Ȯ���ڵ� �߰�
-        return resourcePath;
+    #if UNITY_EDITOR
+    string assetPath = AssetDatabase.GetAssetPath(resource);
+    string resourcePath = assetPath.Substring(assetPath.IndexOf("Resources/") + 10);
+    resourcePath = resourcePath.Substring(0, resourcePath.IndexOf("."));
+    return resourcePath;
+    #else
+    return null;
+    #endif
     }
 
     // [ContextMenu("CheckAll")]

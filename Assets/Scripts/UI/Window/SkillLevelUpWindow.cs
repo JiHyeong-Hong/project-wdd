@@ -5,7 +5,7 @@ using Data;
 using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
 using System.Threading;
-using static UnityEditor.Progress;
+//using static UnityEditor.Progress;
 using System.Linq;
 using System.Collections;
 using System;
