@@ -44,7 +44,7 @@ public class Item : BaseObject
             item.transform.position = 
                 Vector3.MoveTowards(item.transform.position, 
                     Managers.Object.Hero.transform.position, 
-                    3f * Time.deltaTime);
+                    10f * Time.deltaTime);
             //Debug.Log("이동중!!");
 
             yield return YieldInstructionCache.WaitForEndOfFrame;
