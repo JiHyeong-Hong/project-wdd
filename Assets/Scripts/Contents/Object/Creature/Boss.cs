@@ -309,25 +309,6 @@ public class Boss : Monster
 
             yield return null;
         }
-
-
-        // for (int i = 1; i <= monsterData.ProjectileNum; i++)
-        // {
-        //     var proj = Managers.Object.Spawn<EnemyProjectile>(transform.position, monsterData.ProjectileID);
-        //     Vector2 direction = (_hero.transform.position - this.transform.position).normalized;
-        //     float ran_angle = Random.Range(m_angle, M_angle + 1);
-        //     proj.SetImage();
-        //     proj.SetSpawnInfo(this, null, Util.RotateVectorByAngle(direction, ran_angle));
-        //     proj.SetTarget(_hero);
-        //     SetImageDirecton(direction);
-
-        //     // 박현규
-        //     // 로직 진행 중 어디에선가 발생할지 모르는 상태 변화를 막기위한 코드
-        //     CreatureState = ECreatureState.Attack;
-        //     TriggerAnimation(CreatureState);
-
-        //     yield return new WaitForSeconds(0.3f);
-        // }
         attackLock = false;
     }
 

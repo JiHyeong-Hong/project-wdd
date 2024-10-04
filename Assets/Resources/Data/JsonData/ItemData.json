@@ -69,6 +69,13 @@
       "Type": 6,
       "Value": 100,
       "IconPath": "Art/Item/Gold3"
+    },
+    {
+      "ItemId": 200,
+      "Name": "EndBox",
+      "Type": 9,
+      "Value": 0,
+      "IconPath": "Art/Item/ExpLv1"
     }
   ]
 }

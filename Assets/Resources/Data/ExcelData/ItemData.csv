@@ -9,3 +9,4 @@ ItemID,Name,Type,Value,IconPath
 81,Gold1,6,10,Art/Item/Gold1
 82,Gold2,6,50,Art/Item/Gold2
 83,Gold3,6,100,Art/Item/Gold3
+200,End_Box,9,0,Art/Item/ExpLv1

@@ -321,7 +321,7 @@
       "KnockbackPowerHitType": 0
     },
     {
-      "MonsterID": 501,
+      "MonsterID": 200,
       "Name": "ItemBox",
       "Type": 4,
       "AttackType": 0,

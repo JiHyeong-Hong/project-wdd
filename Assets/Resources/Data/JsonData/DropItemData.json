@@ -779,6 +779,12 @@
       "MonsterID": 241,
       "ItemID": 83,
       "DropPer": 0
+    },
+    {
+      "DropItemID": 9130,
+      "MonsterID": 241,
+      "ItemID": 200,
+      "DropPer": 100
     }
   ]
 }
