@@ -7,7 +7,7 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ZooLedger1
-  m_Controller: {fileID: 9100000, guid: a84f8496a0bd64f31a49a566da3949ec, type: 2}
+  m_Controller: {fileID: 9100000, guid: b3de9ebe155e92f49b0a44827b272f11, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: 9bbef05898b0b450093431d62d591dcd, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: fd8bb5e8921754af8844a4ff75088a94, type: 2}

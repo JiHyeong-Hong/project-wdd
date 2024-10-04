@@ -166,36 +166,36 @@ public class Creature : BaseObject
         }
     }
     //TODO Eung 몬스터와 보스를 하나의 Monster객체로 만들면 사실상필요없는 코드 - CoUpdateAI와 통합가능
-    protected IEnumerator CoUpdateBossAI()
-    {
-        while (true)
-        {
-            switch (CreatureState)
-            {
-                case ECreatureState.Idle:
-                    UpdateIdle();
-                    break;
-                case ECreatureState.Move:
-                    UpdateMove();
-                    break;
-                case ECreatureState.Attack:
-                    UpdateAttack();
-                    break;
-                case ECreatureState.Hit:
-                    UpdateHit();
-                    break;
-                case ECreatureState.Dead:
-                    UpdateDead();
-                    break;
-            }
-            // Debug.Log(CreatureState);
-            // Debug.Log(UpdateAITick + "후에 재실행");
-            if (UpdateAITick > 0)
-                yield return new WaitForSeconds(UpdateAITick);
-            else
-                yield return null;
-        }
-    }
+    // protected IEnumerator CoUpdateBossAI()
+    // {
+    //     while (true)
+    //     {
+    //         switch (CreatureState)
+    //         {
+    //             case ECreatureState.Idle:
+    //                 UpdateIdle();
+    //                 break;
+    //             case ECreatureState.Move:
+    //                 UpdateMove();
+    //                 break;
+    //             case ECreatureState.Attack:
+    //                 UpdateAttack();
+    //                 break;
+    //             case ECreatureState.Hit:
+    //                 UpdateHit();
+    //                 break;
+    //             case ECreatureState.Dead:
+    //                 UpdateDead();
+    //                 break;
+    //         }
+    //         // Debug.Log(CreatureState);
+    //         // Debug.Log(UpdateAITick + "후에 재실행");
+    //         if (UpdateAITick > 0)
+    //             yield return new WaitForSeconds(UpdateAITick);
+    //         else
+    //             yield return null;
+    //     }
+    // }
 
     protected virtual void UpdateIdle() { }
     protected virtual void UpdateMove() { }

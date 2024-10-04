@@ -7,7 +7,7 @@ public class PeacockSkill : SkillBase
 {
     public override void DoSkill()
     {
-         if (BreakthroughHelper.Instance.CheckBreakthrough(SkillData.SkillID))
+         if (BreakthroughHelper.Instance.CheckBreakthrough(SkillData.SkillID) || Owner == null)
              return;
 
        Vector2 direction = Vector2.zero;

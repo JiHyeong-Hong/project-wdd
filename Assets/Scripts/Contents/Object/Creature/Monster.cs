@@ -101,19 +101,19 @@ public class Monster : Creature
         //  Creature creature = target as Creature;
         //  if (creature == null || creature.CreatureType != Define.ECreatureType.Hero)
         //      return;
-        /// jh ���� ���� �÷��̾�� ������ ���ư� �������
+        // jh 몬스터와 히어로의 충돌 시 처리
         Creature creature = target as Creature;
         if (creature == null || creature.CreatureType != Define.ECreatureType.Hero)
         {
             Hero hero = creature as Hero;
             if (hero != null && hero.IsInvincible)
             {
-                // ���ư��� �ִϸ��̼� ����
+                // 히어로가 무적 상태일 때 처리
                 Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
                 if (rb != null)
                 {
-                    rb.AddForce(new Vector2(0, 500)); // ����, ��
+                    rb.AddForce(new Vector2(0, 500)); // 위로 힘을 가함
                 }
 
                 Destroy(gameObject);
@@ -278,7 +278,7 @@ public class Monster : Creature
 
     #region AI
     public Hero _hero;
-    private float distance = 0f;
+    protected float distance = 0f;
     public float cooltime = 0f;
     public bool Atk_chk;
 
@@ -320,8 +320,7 @@ public class Monster : Creature
         
         Vector2 dest = (_hero.transform.position - transform.position).normalized;
         SetRigidbodyVelocity(dest * 0);
-        SetImageDirecton(dest);
-        
+        SetImageDirecton(dest); 
     }
     protected override void UpdateMove()
     {
@@ -366,12 +365,18 @@ public class Monster : Creature
     protected override void UpdateHit()
     {
         if(CreatureType == ECreatureType.Boss)
-            Debug.Log("보스타입입니다.");
+        {
+            // Debug.Log("보스타입입니다.");
+        }
+            
         if(CreatureType != ECreatureType.Boss)
+        {
+            // Debug.Log("보스타입이 아닙니다. - " + gameObject.name);
             CreatureState = ECreatureState.Idle;
+        }     
     }
 
-    public bool HeroSearching()
+    public virtual bool HeroSearching()
     {
         if (monsterData.AttackType == 1 || monsterData.AttackType == 3)
             return false;

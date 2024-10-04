@@ -128,75 +128,133 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 
     private IEnumerator StageRoutine()
     {
-        while (currentPhaseIndex < phases.Count)
+        PhaseInfo phase ;
+        
+        // currentPhaseIndex = maxPhase-1; // 마지막 페이즈는 보스 스테이지 테스트 코드
+        currentPhaseIndex = 0;
+        int phaseCount = phases.Count-2; // 마지막 페이즈는 보스 스테이지
+        while(currentPhaseIndex < phaseCount) 
         {
-            Debug.Log(currentPhaseIndex);
-
-            PhaseInfo phase = phases[currentPhaseIndex];
             phaseTimer = 0;
-
-
-            if (phase.Phase < maxPhase)
-            {
-                Debug.Log($"<color=red>Starting Phase {phase.Phase} for {phase.Duration} seconds \n phasesCount:{phases.Count} </color>");
-                foreach (var spawn in phase.Spawns)
-                {
-                    Coroutine coroutine = StartCoroutine(SpawnMonsterCoroutine(spawn));
-                    if (coroutine != null)
-                    {
-                        //activeCoroutines.Add(coroutine);
-                        coroutines.Add(coroutine);
-                    }
-                    else
-                    {
-                        // Debug.LogError($"Failed to start coroutine for spawn ID {spawn.SpawnID}");
-                    }
-                }
-
-                while (phaseTimer < phase.Duration)
-                {
-                    phaseTimer += Time.deltaTime;
-                    yield return null;
-                }
-            }
-            else
-            {
-                Debug.Log($"<color=red>Last Phase {phase.Phase} is Boss Stage </color>");
-                Coroutine coroutine = StartCoroutine(StartBossStage(phase.Spawns[0]));
-                if (coroutine != null)
-                {
-                    //activeCoroutines.Add(coroutine);
-                    coroutines.Add(coroutine);
-                    yield return null;
-                }
-                else
-                {
-                    // Debug.LogError($"Failed to start coroutine for spawn ID {spawn.SpawnID}");
-                }
-            }
-            
-            TransitionToNextPhase();
+            phase = phases[currentPhaseIndex];
+            Debug.Log($"<color=red>Starting Phase {phase.Phase} for {phase.Duration} seconds \n phasesCount:{phases.Count} </color>");
+            SpawnMonsters("SpawnMonsterCoroutine",phase.Spawns);
+            yield return new WaitForSeconds(phase.Duration);
+            currentPhaseIndex++;
         }
 
+        phaseTimer = 0;
+        phase = phases[maxPhase-1];
+        SpawnMonsters("StartBossStage",phase.Spawns);
+        yield return new WaitForSeconds(phase.Duration);
 
+        
+        // {
+        //     // PhaseInfo phase = phases[currentPhaseIndex];
+        //     phaseTimer = 0;
+
+        //     if (phase.Phase < maxPhase)
+        //     {
+        //         Debug.Log($"<color=red>Starting Phase {phase.Phase} for {phase.Duration} seconds \n phasesCount:{phases.Count} </color>");
+        //         foreach (var spawn in phase.Spawns)
+        //         {
+        //             Coroutine coroutine = StartCoroutine(SpawnMonsterCoroutine(spawn));
+        //             if (coroutine != null)
+        //             {
+        //                 //activeCoroutines.Add(coroutine);
+        //                 coroutines.Add(coroutine);
+        //             }
+        //             else
+        //             {
+        //                 // Debug.LogError($"Failed to start coroutine for spawn ID {spawn.SpawnID}");
+        //             }
+        //         }
+
+        //         while (phaseTimer < phase.Duration)
+        //         {
+        //             phaseTimer += Time.deltaTime;
+        //             yield return null;
+        //         }
+        //     }
+
+        // }
+
+        // while (currentPhaseIndex < phases.Count)
+        // {
+        //     // Debug.Log(currentPhaseIndex);
+        //     PhaseInfo phase = phases[currentPhaseIndex];
+        //     phaseTimer = 0;
+
+        //     if (phase.Phase < maxPhase)
+        //     {
+        //         Debug.Log($"<color=red>Starting Phase {phase.Phase} for {phase.Duration} seconds \n phasesCount:{phases.Count} </color>");
+        //         foreach (var spawn in phase.Spawns)
+        //         {
+        //             Coroutine coroutine = StartCoroutine(SpawnMonsterCoroutine(spawn));
+        //             if (coroutine != null)
+        //             {
+        //                 //activeCoroutines.Add(coroutine);
+        //                 coroutines.Add(coroutine);
+        //             }
+        //             else
+        //             {
+        //                 // Debug.LogError($"Failed to start coroutine for spawn ID {spawn.SpawnID}");
+        //             }
+        //         }
+
+        //         while (phaseTimer < phase.Duration)
+        //         {
+        //             phaseTimer += Time.deltaTime;
+        //             yield return null;
+        //         }
+        //     }
+        //     else
+        //     {
+        //         Debug.Log($"<color=red>Last Phase {phase.Phase} is Boss Stage </color>");
+        //         Coroutine coroutine = StartCoroutine(StartBossStage(phase.Spawns[0]));
+        //         if (coroutine != null)
+        //         {
+        //             //activeCoroutines.Add(coroutine);
+        //             coroutines.Add(coroutine);
+        //             yield return null;
+        //         }
+
+        //     }
+            
+        //     PhaseCoroutineRelease();
+        // }
+
+        PhaseCoroutineRelease();
         EndStage();
     }
 
-    private void TransitionToNextPhase()
+    private void SpawnMonsters(string coroutineName,List<Spawn> spawns)
     {
-        currentPhaseIndex++;
-        phaseTimer = 0;
-        Debug.Log($"Transitioning to Phase {currentPhaseIndex + 1}");
-
-        if (currentPhaseIndex < phases.Count)
+        PhaseCoroutineRelease();
+        foreach (var spawn in spawns)
         {
+            Coroutine coroutine = StartCoroutine(coroutineName,spawn);
+            if (coroutine != null)
+            {
+                coroutines.Add(coroutine);
+            }
+        }
+    }
+
+    private void PhaseCoroutineRelease()
+    {
+        // currentPhaseIndex++;
+        // phaseTimer = 0;
+        // Debug.Log($"Transitioning to Phase {currentPhaseIndex + 1}");
+
+        // if (currentPhaseIndex < phases.Count)
+        // {
             foreach (var coroutine in coroutines)
             {
                 StopCoroutine(coroutine);
             }
-
             coroutines.Clear();
-        }
+        // }
     }
 
     private IEnumerator SpawnMonsterCoroutine(Spawn spawn)
@@ -206,7 +264,7 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
             // Debug.Log($"Spawning {spawn.Count} of MonsterID {spawn.MonsterID} at Phase {currentPhaseIndex + 1} spawn.CycleTime : {spawn.CycleTime}");
             for (int i = 0; i < spawn.Count; i++)
             {
-                // ���� ���� ���� ������ ���⿡ �߰�
+                // 몬스터를 지정된 수만큼 소환
                 Managers.Spawner.SpawnNew<Monster>(spawn.MonsterID);
             }
 
@@ -244,8 +302,13 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
             }
             else if (state == EStageState.Barricade)
             {
+                if(Barricate == null)  // 박현규
+                {
+                    Barricate = Managers.Object.Spawn<Structure>(Managers.Object.Hero.transform.position, 1);
+                }
                 SoundManager.Instance.Play(Define.ESoundMainType.Bgm, Define.ESoundType.Boss);
                 //TODO Eung StageLv 테이블을 만들어서 스테이지별 등장 보스몬스터 넘버를 받아와서 대입하면 될듯 
+                Debug.Log("보스 생성 " + (spawn != null) + "/" + (Managers.Object != null) + "/" + (Barricate != null));
                 Managers.Object.Spawn<Boss>(Barricate.transform.position + Vector3.up*3, spawn.MonsterID);
                 state = EStageState.Boss;
                 break;
@@ -259,9 +322,9 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
     {
         // Debug.Log("Stage Ended.");
         // Managers.Game.isStartGame = false;
-        // // �������� ���� �� �ʿ��� ������ ���⿡ �߰�
-        // // �������� ���� �� ���� �˾�
-        // // Ŭ���� �Ǻ�
+        // // 보스가 등장할 때 카메라 줌 아웃
+        // // 보스가 사라질 때 카메라 줌 인
+        // // 스테이지 클리어
 
         // if (currentPhaseIndex == maxPhase)
         // {
