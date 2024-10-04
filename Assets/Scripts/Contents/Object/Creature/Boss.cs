@@ -270,6 +270,9 @@ public class Boss : Monster
             yield break;
         }
         attackLock = true;
+
+        yield return new WaitForSeconds(0.5f);
+
         float angle = 90f;
         float m_angle = (angle/5) * -1;
         float M_angle = (angle/5);
@@ -540,6 +543,12 @@ public class Boss : Monster
             {
                 if(Phase != i)
                 {
+                    if(CoIdle != null)
+                    {
+                        StopCoroutine(CoIdle);
+                        CoIdle = null;
+                    }
+
                     Phase = i;
                     isChangePhase = true;
                     CreatureState = ECreatureState.ChangePhase;
