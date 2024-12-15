@@ -112,7 +112,7 @@
       "Level": 5,
       "ProjectileNum": 2,
       "CastAngle": 180.0,
-      "Damage": 35.0,
+      "Damage": 45.0,
       "AttackSpeed": 1.0,
       "AttackRange": 3.0,
       "KnockbackPower": 200.0,
@@ -127,8 +127,8 @@
       "StatValue": 0.0,
       "SkillGetType": 1,
       "SkillMaxLv": 5,
-      "Kor_Text": "호랑이가 달려와 적을 타격합니다. (데미지 35)",
-      "Eng_Text": "A tiger runs over and hits the enemy. (Damage 35)"
+      "Kor_Text": "호랑이가 달려와 적을 타격합니다. (데미지 45)",
+      "Eng_Text": "A tiger runs over and hits the enemy. (Damage 45)"
     },
     {
       "SkillID": 1021,
@@ -190,7 +190,7 @@
       "Level": 3,
       "ProjectileNum": 3,
       "CastAngle": 0.0,
-      "Damage": 11.0,
+      "Damage": 10.0,
       "AttackSpeed": 1.0,
       "AttackRange": 1.0,
       "KnockbackPower": 100.0,
@@ -216,7 +216,7 @@
       "Level": 4,
       "ProjectileNum": 4,
       "CastAngle": 0.0,
-      "Damage": 11.0,
+      "Damage": 10.0,
       "AttackSpeed": 1.0,
       "AttackRange": 1.0,
       "KnockbackPower": 100.0,
@@ -283,8 +283,8 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "전방에 곰이 스윙하여 적을 베어버립니다. (데미지 n)",
-      "Eng_Text": "A bear swings ahead and cuts down the enemy. (Damage n)"
+      "Kor_Text": "전방에 곰이 스윙하여 적을 베어버립니다. (데미지 10)",
+      "Eng_Text": "A bear swings ahead and cuts down the enemy. (Damage 10)"
     },
     {
       "SkillID": 1032,
@@ -309,8 +309,8 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "전방에 곰이 스윙하여 적을 베어버립니다. (데미지 n)",
-      "Eng_Text": "A bear swings ahead and cuts down the enemy. (Damage n)"
+      "Kor_Text": "전방에 곰이 스윙하여 적을 베어버립니다. (데미지 10)",
+      "Eng_Text": "A bear swings ahead and cuts down the enemy. (Damage 10)"
     },
     {
       "SkillID": 1033,
@@ -335,8 +335,8 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "전방에 곰이 스윙하여 적을 베어버립니다. (데미지 n)",
-      "Eng_Text": "A bear swings ahead and cuts down the enemy. (Damage n)"
+      "Kor_Text": "전방에 곰이 스윙하여 적을 베어버립니다. (데미지 15)",
+      "Eng_Text": "A bear swings ahead and cuts down the enemy. (Damage 15)"
     },
     {
       "SkillID": 1034,
@@ -361,8 +361,8 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "전방에 곰이 스윙하여 적을 베어버립니다. (데미지 n)",
-      "Eng_Text": "A bear swings ahead and cuts down the enemy. (Damage n)"
+      "Kor_Text": "전방에 곰이 스윙하여 적을 베어버립니다. (데미지 15)",
+      "Eng_Text": "A bear swings ahead and cuts down the enemy. (Damage 15)"
     },
     {
       "SkillID": 1035,
@@ -387,8 +387,8 @@
       "StatValue": 0.0,
       "SkillGetType": 1,
       "SkillMaxLv": 5,
-      "Kor_Text": "전방에 곰이 스윙하여 적을 베어버립니다. (데미지 n)",
-      "Eng_Text": "A bear swings ahead and cuts down the enemy. (Damage n)"
+      "Kor_Text": "전방에 곰이 스윙하여 적을 베어버립니다. (데미지 20)",
+      "Eng_Text": "A bear swings ahead and cuts down the enemy. (Damage 20)"
     },
     {
       "SkillID": 1041,
@@ -543,8 +543,8 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "주변에 스컹크가 뛰쳐나와 가스를 살포합니다. (데미지 8)",
-      "Eng_Text": "Skunks run out around and spray gas. (Damage 8)"
+      "Kor_Text": "주변에 스컹크가 뛰쳐나와 가스를 살포합니다. (데미지 5)",
+      "Eng_Text": "Skunks run out around and spray gas. (Damage 5)"
     },
     {
       "SkillID": 1062,
@@ -569,8 +569,8 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "주변에 스컹크가 뛰쳐나와 가스를 살포합니다. (데미지 8)",
-      "Eng_Text": "Skunks run out around and spray gas. (Damage 8)"
+      "Kor_Text": "주변에 스컹크가 뛰쳐나와 가스를 살포합니다. (데미지 5)",
+      "Eng_Text": "Skunks run out around and spray gas. (Damage 5)"
     },
     {
       "SkillID": 1063,
@@ -595,8 +595,8 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "주변에 스컹크가 뛰쳐나와 가스를 살포합니다. (데미지 10)",
-      "Eng_Text": "Skunks run out around and spray gas. (Damage 10)"
+      "Kor_Text": "주변에 스컹크가 뛰쳐나와 가스를 살포합니다. (데미지 5)",
+      "Eng_Text": "Skunks run out around and spray gas. (Damage 5)"
     },
     {
       "SkillID": 1064,
@@ -621,8 +621,8 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "주변에 스컹크가 뛰쳐나와 가스를 살포합니다. (데미지 10)",
-      "Eng_Text": "Skunks run out around and spray gas. (Damage 10)"
+      "Kor_Text": "주변에 스컹크가 뛰쳐나와 가스를 살포합니다. (데미지 5)",
+      "Eng_Text": "Skunks run out around and spray gas. (Damage 5)"
     },
     {
       "SkillID": 1065,
@@ -632,7 +632,7 @@
       "Level": 5,
       "ProjectileNum": 4,
       "CastAngle": 0.0,
-      "Damage": 7.0,
+      "Damage": 10.0,
       "AttackSpeed": 1.0,
       "AttackRange": 2.0,
       "KnockbackPower": 0.0,
@@ -647,8 +647,8 @@
       "StatValue": 0.0,
       "SkillGetType": 1,
       "SkillMaxLv": 5,
-      "Kor_Text": "주변에 스컹크가 뛰쳐나와 가스를 살포합니다. (데미지 14)",
-      "Eng_Text": "Skunks run out around and spray gas. (Damage 14)"
+      "Kor_Text": "주변에 스컹크가 뛰쳐나와 가스를 살포합니다. (데미지 10)",
+      "Eng_Text": "Skunks run out around and spray gas. (Damage 10)"
     },
     {
       "SkillID": 1081,
@@ -682,9 +682,9 @@
       "AttackPattern": 4,
       "skillType": 1,
       "Level": 2,
-      "ProjectileNum": 3,
+      "ProjectileNum": 2,
       "CastAngle": 10.0,
-      "Damage": 15.0,
+      "Damage": 10.0,
       "AttackSpeed": 15.0,
       "AttackRange": 1.0,
       "KnockbackPower": 0.0,
@@ -699,8 +699,8 @@
       "StatValue": 0.0,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "적을 타겟하여 깃털을 발사합니다. (데미지 15)",
-      "Eng_Text": "Fire feathers at the enemy. (Damage 15)"
+      "Kor_Text": "적을 타겟하여 깃털을 발사합니다. (데미지 10)",
+      "Eng_Text": "Fire feathers at the enemy. (Damage 10)"
     },
     {
       "SkillID": 1083,
@@ -709,6 +709,58 @@
       "skillType": 1,
       "Level": 3,
       "ProjectileNum": 3,
+      "CastAngle": 10.0,
+      "Damage": 10.0,
+      "AttackSpeed": 15.0,
+      "AttackRange": 1.0,
+      "KnockbackPower": 0.0,
+      "StunTime": 0.0,
+      "ConditionRange": 0.0,
+      "CastCount": 1,
+      "Duration": 0.0,
+      "SkillTurn": 0,
+      "CoolTime": 0.5,
+      "CastPer": 1.0,
+      "StatType": 0,
+      "StatValue": 0.0,
+      "SkillGetType": 0,
+      "SkillMaxLv": 5,
+      "Kor_Text": "적을 타겟하여 깃털을 발사합니다. (데미지 10)",
+      "Eng_Text": "Fire feathers at the enemy. (Damage 10)"
+    },
+    {
+      "SkillID": 1084,
+      "Name": "Peacock",
+      "AttackPattern": 4,
+      "skillType": 1,
+      "Level": 4,
+      "ProjectileNum": 5,
+      "CastAngle": 10.0,
+      "Damage": 10.0,
+      "AttackSpeed": 15.0,
+      "AttackRange": 1.0,
+      "KnockbackPower": 0.0,
+      "StunTime": 0.0,
+      "ConditionRange": 0.0,
+      "CastCount": 1,
+      "Duration": 0.0,
+      "SkillTurn": 0,
+      "CoolTime": 0.5,
+      "CastPer": 1.0,
+      "StatType": 0,
+      "StatValue": 0.0,
+      "SkillGetType": 0,
+      "SkillMaxLv": 5,
+      "Kor_Text": "적을 타겟하여 깃털을 발사합니다. (데미지 10)",
+      "Eng_Text": "Fire feathers at the enemy. (Damage 10)"
+    },
+    {
+      "SkillID": 1085,
+      "Name": "Peacock",
+      "AttackPattern": 4,
+      "skillType": 1,
+      "Level": 5,
+      "ProjectileNum": 5,
       "CastAngle": 10.0,
       "Damage": 20.0,
       "AttackSpeed": 15.0,
@@ -723,62 +775,10 @@
       "CastPer": 1.0,
       "StatType": 0,
       "StatValue": 0.0,
-      "SkillGetType": 0,
+      "SkillGetType": 1,
       "SkillMaxLv": 5,
       "Kor_Text": "적을 타겟하여 깃털을 발사합니다. (데미지 20)",
       "Eng_Text": "Fire feathers at the enemy. (Damage 20)"
-    },
-    {
-      "SkillID": 1084,
-      "Name": "Peacock",
-      "AttackPattern": 4,
-      "skillType": 1,
-      "Level": 4,
-      "ProjectileNum": 5,
-      "CastAngle": 10.0,
-      "Damage": 25.0,
-      "AttackSpeed": 15.0,
-      "AttackRange": 1.0,
-      "KnockbackPower": 0.0,
-      "StunTime": 0.0,
-      "ConditionRange": 0.0,
-      "CastCount": 1,
-      "Duration": 0.0,
-      "SkillTurn": 0,
-      "CoolTime": 0.5,
-      "CastPer": 1.0,
-      "StatType": 0,
-      "StatValue": 0.0,
-      "SkillGetType": 0,
-      "SkillMaxLv": 5,
-      "Kor_Text": "적을 타겟하여 깃털을 발사합니다. (데미지 25)",
-      "Eng_Text": "Fire feathers at the enemy. (Damage 25)"
-    },
-    {
-      "SkillID": 1085,
-      "Name": "Peacock",
-      "AttackPattern": 4,
-      "skillType": 1,
-      "Level": 5,
-      "ProjectileNum": 5,
-      "CastAngle": 10.0,
-      "Damage": 30.0,
-      "AttackSpeed": 15.0,
-      "AttackRange": 1.0,
-      "KnockbackPower": 0.0,
-      "StunTime": 0.0,
-      "ConditionRange": 0.0,
-      "CastCount": 1,
-      "Duration": 0.0,
-      "SkillTurn": 0,
-      "CoolTime": 0.5,
-      "CastPer": 1.0,
-      "StatType": 0,
-      "StatValue": 0.0,
-      "SkillGetType": 1,
-      "SkillMaxLv": 5,
-      "Kor_Text": "적을 타겟하여 깃털을 발사합니다. (데미지 30)",
-      "Eng_Text": "Fire feathers at the enemy. (Damage 30)"
     },
     {
       "SkillID": 1,
@@ -797,8 +797,8 @@
       "CastCount": 1,
       "Duration": 0.0,
       "SkillTurn": 5,
-      "CoolTime": 30.0,
-      "CastPer": 0.2,
+      "CoolTime": 20.0,
+      "CastPer": 0.4,
       "StatType": 0,
       "StatValue": 0.0,
       "SkillGetType": 0,
@@ -823,8 +823,8 @@
       "CastCount": 10,
       "Duration": 5.0,
       "SkillTurn": 5,
-      "CoolTime": 30.0,
-      "CastPer": 0.2,
+      "CoolTime": 20.0,
+      "CastPer": 0.4,
       "StatType": 0,
       "StatValue": 0.0,
       "SkillGetType": 0,
@@ -849,8 +849,8 @@
       "CastCount": 4,
       "Duration": 0.0,
       "SkillTurn": 5,
-      "CoolTime": 30.0,
-      "CastPer": 0.2,
+      "CoolTime": 20.0,
+      "CastPer": 0.4,
       "StatType": 0,
       "StatValue": 0.0,
       "SkillGetType": 0,
@@ -875,8 +875,8 @@
       "CastCount": 1,
       "Duration": 12.0,
       "SkillTurn": 5,
-      "CoolTime": 30.0,
-      "CastPer": 0.2,
+      "CoolTime": 20.0,
+      "CastPer": 0.4,
       "StatType": 0,
       "StatValue": 0.0,
       "SkillGetType": 0,
@@ -892,8 +892,8 @@
       "Level": 1,
       "ProjectileNum": 1,
       "CastAngle": 0.0,
-      "Damage": 15.0,
-      "AttackSpeed": 2.0,
+      "Damage": 40.0,
+      "AttackSpeed": 20.0,
       "AttackRange": 1.0,
       "KnockbackPower": 0.0,
       "StunTime": 0.0,
@@ -901,8 +901,8 @@
       "CastCount": 40,
       "Duration": 0.0,
       "SkillTurn": 5,
-      "CoolTime": 30.0,
-      "CastPer": 0.2,
+      "CoolTime": 20.0,
+      "CastPer": 0.4,
       "StatType": 0,
       "StatValue": 0.0,
       "SkillGetType": 0,
@@ -1450,11 +1450,11 @@
       "CoolTime": 0.0,
       "CastPer": 1.0,
       "StatType": 6,
-      "StatValue": 0.03,
+      "StatValue": 0.1,
       "SkillGetType": 1,
       "SkillMaxLv": 5,
-      "Kor_Text": "체력 회복량이 3% 증가합니다.",
-      "Eng_Text": "Increases physical strength recovery by 3%."
+      "Kor_Text": "체력 회복량이 10% 증가합니다.",
+      "Eng_Text": "Increases physical strength recovery by 10%."
     },
     {
       "SkillID": 2062,
@@ -1476,11 +1476,11 @@
       "CoolTime": 0.0,
       "CastPer": 1.0,
       "StatType": 6,
-      "StatValue": 0.06,
+      "StatValue": 0.2,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "체력 회복량이 6% 증가합니다.",
-      "Eng_Text": "Increases physical strength recovery by 6%."
+      "Kor_Text": "체력 회복량이 20% 증가합니다.",
+      "Eng_Text": "Increases physical strength recovery by 20%."
     },
     {
       "SkillID": 2063,
@@ -1502,11 +1502,11 @@
       "CoolTime": 0.0,
       "CastPer": 1.0,
       "StatType": 6,
-      "StatValue": 0.09,
+      "StatValue": 0.3,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "체력 회복량이 9% 증가합니다.",
-      "Eng_Text": "Increases physical strength recovery by 9%."
+      "Kor_Text": "체력 회복량이 30% 증가합니다.",
+      "Eng_Text": "Increases physical strength recovery by 30%."
     },
     {
       "SkillID": 2064,
@@ -1528,11 +1528,11 @@
       "CoolTime": 0.0,
       "CastPer": 1.0,
       "StatType": 6,
-      "StatValue": 0.12,
+      "StatValue": 0.4,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "체력 회복량이 12% 증가합니다.",
-      "Eng_Text": "Increases physical strength recovery by 12%."
+      "Kor_Text": "체력 회복량이 40% 증가합니다.",
+      "Eng_Text": "Increases physical strength recovery by 40%."
     },
     {
       "SkillID": 2065,
@@ -1554,11 +1554,11 @@
       "CoolTime": 0.0,
       "CastPer": 1.0,
       "StatType": 6,
-      "StatValue": 0.24,
+      "StatValue": 0.5,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "체력 회복량이 24% 증가합니다.",
-      "Eng_Text": "Increases physical strength recovery by 24%."
+      "Kor_Text": "체력 회복량이 50% 증가합니다.",
+      "Eng_Text": "Increases physical strength recovery by 50%."
     },
     {
       "SkillID": 2071,
@@ -1710,11 +1710,11 @@
       "CoolTime": 0.0,
       "CastPer": 1.0,
       "StatType": 8,
-      "StatValue": 0.1,
+      "StatValue": 0.05,
       "SkillGetType": 1,
       "SkillMaxLv": 5,
-      "Kor_Text": "이동속도가 10% 증가합니다.",
-      "Eng_Text": "Increase the movement speed by 10%."
+      "Kor_Text": "이동속도가 5% 증가합니다.",
+      "Eng_Text": "Increase the movement speed by 5%."
     },
     {
       "SkillID": 2082,
@@ -1736,11 +1736,11 @@
       "CoolTime": 0.0,
       "CastPer": 1.0,
       "StatType": 8,
-      "StatValue": 0.2,
+      "StatValue": 0.1,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "이동속도가 20% 증가합니다.",
-      "Eng_Text": "Increase the movement speed by 20%."
+      "Kor_Text": "이동속도가 10% 증가합니다.",
+      "Eng_Text": "Increase the movement speed by 10%."
     },
     {
       "SkillID": 2083,
@@ -1762,11 +1762,11 @@
       "CoolTime": 0.0,
       "CastPer": 1.0,
       "StatType": 8,
-      "StatValue": 0.3,
+      "StatValue": 0.15,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "이동속도가 30% 증가합니다.",
-      "Eng_Text": "Increase the movement speed by 30%."
+      "Kor_Text": "이동속도가 15% 증가합니다.",
+      "Eng_Text": "Increase the movement speed by 15%."
     },
     {
       "SkillID": 2084,
@@ -1788,11 +1788,11 @@
       "CoolTime": 0.0,
       "CastPer": 1.0,
       "StatType": 8,
-      "StatValue": 0.4,
+      "StatValue": 0.2,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "이동속도가 40% 증가합니다.",
-      "Eng_Text": "Increase the movement speed by 40%."
+      "Kor_Text": "이동속도가 20% 증가합니다.",
+      "Eng_Text": "Increase the movement speed by 20%."
     },
     {
       "SkillID": 2085,
@@ -1814,11 +1814,11 @@
       "CoolTime": 0.0,
       "CastPer": 1.0,
       "StatType": 8,
-      "StatValue": 0.5,
+      "StatValue": 0.25,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "이동속도가 50% 증가합니다.",
-      "Eng_Text": "Increase the movement speed by 50%."
+      "Kor_Text": "이동속도가 25% 증가합니다.",
+      "Eng_Text": "Increase the movement speed by 25%."
     },
     {
       "SkillID": 2091,
@@ -1918,11 +1918,11 @@
       "CoolTime": 0.0,
       "CastPer": 1.0,
       "StatType": 9,
-      "StatValue": 0.4,
+      "StatValue": 0.5,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "스킬 데미지가 40% 증가합니다.",
-      "Eng_Text": "Increases skill damage by 40%."
+      "Kor_Text": "스킬 데미지가 50% 증가합니다.",
+      "Eng_Text": "Increases skill damage by 50%."
     },
     {
       "SkillID": 2095,
@@ -1944,11 +1944,11 @@
       "CoolTime": 0.0,
       "CastPer": 1.0,
       "StatType": 9,
-      "StatValue": 0.5,
+      "StatValue": 0.7,
       "SkillGetType": 0,
       "SkillMaxLv": 5,
-      "Kor_Text": "스킬 데미지가 50% 증가합니다.",
-      "Eng_Text": "Increases skill damage by 50%."
+      "Kor_Text": "스킬 데미지가 70% 증가합니다.",
+      "Eng_Text": "Increases skill damage by 70%."
     },
     {
       "SkillID": 2101,

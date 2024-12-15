@@ -2,7 +2,7 @@
   "heroes": [
     {
       "Level": 1,
-      "MaxExp": 70,
+      "MaxExp": 100,
       "ItemAcquireRange": 0.0,
       "SkillIdList": [
         1081
