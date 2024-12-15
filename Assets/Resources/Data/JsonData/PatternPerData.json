@@ -4,33 +4,33 @@
       "Index": 241,
       "MonsterID": 241,
       "PhaseNum": 1,
-      "Pattern1": 50,
-      "Pattern2": 50,
+      "Pattern1": 70,
+      "Pattern2": 30,
       "Pattern3": 0
     },
     {
       "Index": 242,
       "MonsterID": 241,
       "PhaseNum": 2,
-      "Pattern1": 20,
-      "Pattern2": 40,
-      "Pattern3": 40
+      "Pattern1": 50,
+      "Pattern2": 50,
+      "Pattern3": 0
     },
     {
       "Index": 243,
       "MonsterID": 241,
       "PhaseNum": 3,
-      "Pattern1": 10,
-      "Pattern2": 45,
-      "Pattern3": 45
+      "Pattern1": 40,
+      "Pattern2": 60,
+      "Pattern3": 0
     },
     {
       "Index": 244,
       "MonsterID": 241,
       "PhaseNum": 4,
-      "Pattern1": 10,
-      "Pattern2": 45,
-      "Pattern3": 45
+      "Pattern1": 20,
+      "Pattern2": 80,
+      "Pattern3": 0
     }
   ]
 }

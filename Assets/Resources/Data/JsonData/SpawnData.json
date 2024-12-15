@@ -311,7 +311,7 @@
       "StageID": 1000,
       "MonsterID": 202,
       "Phase": 9,
-      "CycleTime": 0.5,
+      "CycleTime": 1.0,
       "Count": 3,
       "RiseRate": 0.0
     },
@@ -320,7 +320,7 @@
       "StageID": 1000,
       "MonsterID": 213,
       "Phase": 9,
-      "CycleTime": 0.5,
+      "CycleTime": 1.0,
       "Count": 3,
       "RiseRate": 0.0
     },
@@ -329,7 +329,7 @@
       "StageID": 1000,
       "MonsterID": 223,
       "Phase": 9,
-      "CycleTime": 0.8,
+      "CycleTime": 1.0,
       "Count": 3,
       "RiseRate": 0.0
     },
