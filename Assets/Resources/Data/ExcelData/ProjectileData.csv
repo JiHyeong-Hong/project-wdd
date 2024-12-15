@@ -1,7 +1,7 @@
 Index,ProjectileId,Name,MoveSpeed,ContactDmg,ConditionType,SkillLvDown,SkillID,AnimatorDataID
 1,601,Bullet1,5,10,0,0,0,Art/Projectile/Bullet1
-2,602,Bullet2,15,20,0,0,0,Art/Projectile/Bullet2
-3,603,Bullet3,20,30,0,0,0,Art/Projectile/Bullet3
-4,701,Boss_Bullet1,20,60,0,0,0,Art/Projectile/Bullet1
+2,602,Bullet2,8,20,0,0,0,Art/Projectile/Bullet2
+3,603,Bullet3,13,22,0,0,0,Art/Projectile/Bullet3
+4,701,Boss_Bullet1,15,20,0,0,0,Art/Projectile/Bullet1
 7,801,Ghillie_Bullet,1,90,0,0,0,Art/Projectile/GullieBullet
 8,1,BaseProj,1,1,0,0,0,
